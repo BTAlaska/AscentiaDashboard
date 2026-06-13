@@ -79,6 +79,42 @@
     .history-chart { height: 210px; }
   }
 
+  .handoff-intro { color: var(--muted); font-size: 13px; margin: -4px 0 12px; max-width: 840px; }
+  .handoff-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px;
+  }
+  .handoff-toolbar .label { color: var(--faint); font-size: 12px; margin-right: 2px; }
+  .handoff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 10px; }
+  details.handoff-card {
+    background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+    border-radius: 10px; overflow: hidden;
+  }
+  details.handoff-card[open] { background: #1a1e25; }
+  .handoff-card summary {
+    list-style: none; cursor: pointer; padding: 12px 14px; display: grid;
+    grid-template-columns: 54px 1fr auto; gap: 10px; align-items: center;
+  }
+  .handoff-card summary::-webkit-details-marker { display: none; }
+  .handoff-phase { color: var(--gold); font-weight: 700; font-size: 12px; }
+  .handoff-title { font-weight: 650; font-size: 14px; }
+  .handoff-status { color: var(--muted); font-size: 11.5px; text-align: right; }
+  .handoff-body { border-top: 1px solid var(--border); padding: 12px 14px 14px; }
+  .handoff-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .handoff-tag { color: var(--blue); background: rgba(90,169,230,0.10); border: 1px solid rgba(90,169,230,0.32); border-radius: 999px; padding: 1px 8px; font-size: 11px; }
+  .handoff-block { margin: 9px 0; }
+  .handoff-block b { display: block; color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .handoff-block p { margin: 0; color: var(--muted); font-size: 12.5px; }
+  .handoff-block ul { margin: 3px 0 0; padding-left: 18px; color: var(--muted); font-size: 12.5px; }
+  .handoff-block li { margin: 2px 0; }
+  .handoff-verify { color: var(--blue); font-family: "Cascadia Mono", Consolas, monospace; font-size: 11.5px; overflow-wrap: anywhere; }
+  .handoff-hidden { display: none; }
+  @media (max-width: 700px) {
+    .handoff-grid { grid-template-columns: 1fr; }
+    .handoff-card summary { grid-template-columns: 46px 1fr; }
+    .handoff-status { grid-column: 1 / -1; text-align: left; }
+  }
+
   h2 { font-family: Georgia, serif; font-size: 19px; color: var(--gold); margin: 30px 0 12px; font-weight: 600; }
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
   .card { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--missing); border-radius: 10px; padding: 14px 16px; }
@@ -187,6 +223,25 @@
 
   <h2>Where Ascentia already meets or beats the bar</h2>
   <div class="strengths"><ul id="strengths"></ul></div>
+
+  <h2>Designer handoff cards</h2>
+  <p class="handoff-intro">
+    These cards explain the next designer work in plain English. Open one card at a time, make the listed assets or Blueprint changes, then use the manual and remote checks to prove the feature is moving from native scaffold to player-facing game feel.
+  </p>
+  <div class="handoff-toolbar" id="handoffToolbar">
+    <span class="label">Show:</span>
+    <span class="chip on" data-handoff="all">All</span>
+    <span class="chip" data-handoff="Animation">Animation</span>
+    <span class="chip" data-handoff="Blueprint">Blueprint</span>
+    <span class="chip" data-handoff="UI">UI</span>
+    <span class="chip" data-handoff="VFX">VFX</span>
+    <span class="chip" data-handoff="Audio">Audio</span>
+    <span class="chip" data-handoff="Balance">Balance</span>
+    <span class="chip" data-handoff="Data">Data</span>
+    <span class="chip" data-handoff="Settings">Settings</span>
+    <span class="count" id="handoffCount"></span>
+  </div>
+  <div class="handoff-grid" id="handoffs"></div>
 
   <h2>Gap matrix</h2>
   <div class="filterbar" id="filterbar">
@@ -404,6 +459,106 @@
     c.append(t, p); $('phases').appendChild(c);
   }
 
+  // ---- designer handoff cards ----
+  const handoffCards = [];
+  let handoffFilter = 'all';
+  function addHandoffBlock(parent, title, value, isList) {
+    if (!value || (Array.isArray(value) && value.length === 0)) return;
+    const block = document.createElement('div');
+    block.className = 'handoff-block';
+    const b = document.createElement('b');
+    b.textContent = title;
+    block.appendChild(b);
+    if (isList || Array.isArray(value)) {
+      const ul = document.createElement('ul');
+      for (const item of value) {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      }
+      block.appendChild(ul);
+    } else {
+      const p = document.createElement('p');
+      p.textContent = value;
+      block.appendChild(p);
+    }
+    parent.appendChild(block);
+  }
+  function renderHandoffs() {
+    const data = typeof DESIGNER_HANDOFFS === 'undefined' ? [] : DESIGNER_HANDOFFS;
+    const root = $('handoffs');
+    root.textContent = '';
+    handoffCards.length = 0;
+    for (const item of data) {
+      const card = document.createElement('details');
+      card.className = 'handoff-card';
+      const summary = document.createElement('summary');
+      const phase = document.createElement('span');
+      phase.className = 'handoff-phase';
+      phase.textContent = item.phase;
+      const title = document.createElement('span');
+      title.className = 'handoff-title';
+      title.textContent = item.title;
+      const status = document.createElement('span');
+      status.className = 'handoff-status';
+      status.textContent = item.status;
+      summary.append(phase, title, status);
+
+      const body = document.createElement('div');
+      body.className = 'handoff-body';
+      const tags = document.createElement('div');
+      tags.className = 'handoff-tags';
+      for (const tag of item.tags || []) {
+        const chip = document.createElement('span');
+        chip.className = 'handoff-tag';
+        chip.textContent = tag;
+        tags.appendChild(chip);
+      }
+      body.appendChild(tags);
+      addHandoffBlock(body, 'What this means', item.what);
+      addHandoffBlock(body, 'Why it matters', item.why);
+      addHandoffBlock(body, 'Where you work', item.where);
+      addHandoffBlock(body, 'How to start', item.how, true);
+      addHandoffBlock(body, 'Done when', item.done, true);
+      addHandoffBlock(body, 'Manual check', item.manual);
+      if (item.verify) {
+        const block = document.createElement('div');
+        block.className = 'handoff-block';
+        const b = document.createElement('b');
+        b.textContent = 'Remote proof';
+        const p = document.createElement('p');
+        p.className = 'handoff-verify';
+        p.textContent = item.verify;
+        block.append(b, p);
+        body.appendChild(block);
+      }
+      addHandoffBlock(body, 'Future settings menu', item.settings, true);
+
+      card.append(summary, body);
+      root.appendChild(card);
+      handoffCards.push({ el: card, tags: new Set(item.tags || []) });
+    }
+    applyHandoffFilter();
+  }
+  function applyHandoffFilter() {
+    let shown = 0;
+    for (const card of handoffCards) {
+      const ok = handoffFilter === 'all' || card.tags.has(handoffFilter);
+      card.el.classList.toggle('handoff-hidden', !ok);
+      if (ok) shown++;
+    }
+    $('handoffCount').textContent = shown + ' / ' + handoffCards.length + ' shown';
+  }
+  document.querySelectorAll('#handoffToolbar .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#handoffToolbar .chip').forEach(c => c.classList.remove('on'));
+      chip.classList.add('on');
+      handoffFilter = chip.dataset.handoff || 'all';
+      applyHandoffFilter();
+    });
+  });
+  renderHandoffs();
+
   // ---- categories ----
   const catEls = [];
   const heroCatPcts = [];
@@ -480,7 +635,7 @@
     $('shown').textContent = shown + ' / ' + total + ' shown';
   }
 
-  document.querySelectorAll('.chip').forEach(chip => {
+  document.querySelectorAll('#filterbar .chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const set = chip.dataset.status ? statusSet : planSet;
       const key = chip.dataset.status || chip.dataset.plan;

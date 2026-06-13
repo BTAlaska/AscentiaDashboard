@@ -55,6 +55,470 @@ const PROGRESS_HISTORY = [
   { t: '2026-06-13 03:19', label: 'P14 dual wield', have: 18, partial: 53, missing: 63, verified: 39, note: 'Equipped off-hand items now resolve to shield-pair, dual-wield, and power-stance modes with paired moveset tags and two-hand suppression.' },
 ];
 
+const DESIGNER_HANDOFFS = [
+  {
+    phase: 'P11',
+    title: 'Dodge and roll feel',
+    status: 'Native rules work. Needs feel pass.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'Balance', 'Settings'],
+    what: 'The game already knows when a dodge should ignore damage and which roll type the player has. Your job is to make that feel clear and fair.',
+    why: 'Players must trust dodge timing. If the roll looks late, too slow, or unreadable, the system will feel unfair even when the code is correct.',
+    where: 'Work in the player Animation Blueprint, dodge montages, camera/feedback Blueprints, and UI warnings for heavy or overloaded equipment.',
+    how: [
+      'Make separate light, medium, heavy, and overloaded roll animations or montage sections.',
+      'Add visual and sound feedback for the invincible part of the dodge.',
+      'Show a clear warning when the player is overloaded.',
+      'Tune recovery time so the player cannot attack too early or feel stuck too long.'
+    ],
+    done: [
+      'A player can see the difference between light, medium, and heavy rolls.',
+      'Getting hit during the dodge window feels believable.',
+      'Overloaded state is obvious before the player tries to dodge.'
+    ],
+    manual: 'In the boss arena, change equipment weight, roll near an attack, and check if the timing looks fair.',
+    verify: 'Tools/remote_playtest.py iframe and Tools/remote_playtest.py roll_type',
+    settings: ['Roll-type indicator visibility', 'Overloaded warning style', 'Dodge assist or timing help']
+  },
+  {
+    phase: 'P11',
+    title: 'Block, parry, stagger, and critical payoff',
+    status: 'Native combat windows work. Needs animation and payoff.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Balance', 'Settings'],
+    what: 'The game can open parry, riposte, stagger, and guard-break windows. Your job is to make the player see those moments and know what button to press.',
+    why: 'These are high-skill combat moments. They need strong timing, readable poses, and a reward that feels worth the risk.',
+    where: 'Work in block/parry montages, enemy stagger montages, critical execution montages, HUD prompts, camera shake, Niagara, and impact sounds.',
+    how: [
+      'Create block hit, guard-break, parry success, stagger, and critical execution animations.',
+      'Add a short prompt or icon when a riposte or critical is available.',
+      'Add camera, sound, and VFX that clearly say the player succeeded.',
+      'Tune how long each window stays open.'
+    ],
+    done: [
+      'The player can tell the difference between a normal block, parry, guard break, and stagger.',
+      'The critical attack lines up with the target and looks intentional.',
+      'The reward feels strong but not confusing.'
+    ],
+    manual: 'Fight the boss, block and parry attacks, then check if the success and punish windows are easy to read.',
+    verify: 'Tools/remote_playtest.py block_guard, parry, stagger, critical_exec',
+    settings: ['Critical camera intensity', 'Critical prompt visibility', 'Guard-counter prompt visibility', 'Combat feedback intensity']
+  },
+  {
+    phase: 'P11',
+    title: 'Hit feedback and impact VFX',
+    status: 'Native hooks work. Needs art and tuning.',
+    tags: ['Blueprint', 'VFX', 'Audio', 'UI', 'Settings'],
+    what: 'The code can report hits, blocked hits, guard breaks, hit-stop, damage numbers, rumble, and impact cue data. Your job is to make hits look and sound good.',
+    why: 'Combat feel depends on feedback. A hit should tell the player what happened without needing to read numbers.',
+    where: 'Work in GameplayCue Blueprints, Niagara systems, sound cues, damage number UI, camera shake, and controller feedback settings.',
+    how: [
+      'Create separate impact effects for flesh, armor, block, and guard break.',
+      'Add sparks, dust, blood, or decals where they fit the rating and style.',
+      'Tune hit-stop and camera feedback so it feels strong but not annoying.',
+      'Make damage numbers easy to read and easy to turn down later.'
+    ],
+    done: [
+      'Normal hits, blocked hits, and guard breaks look different.',
+      'Damage numbers are readable but do not cover the fight.',
+      'Camera and rumble help the hit instead of distracting from it.'
+    ],
+    manual: 'Hit, block, and get hit in the boss arena. Check if you can understand each event without looking at logs.',
+    verify: 'Tools/remote_playtest.py hit_stop, damage_numbers, damage_feedback, impact_cue',
+    settings: ['Damage number visibility and size', 'Camera shake strength', 'Rumble strength', 'Blood or impact VFX amount']
+  },
+  {
+    phase: 'P11',
+    title: 'Boss arena presentation',
+    status: 'Native trigger points work. Needs authored presentation.',
+    tags: ['Blueprint', 'UI', 'VFX', 'Audio', 'Animation', 'Settings'],
+    what: 'The game can start boss phases, show a name card, seal a fog wall, and record music-state changes. Your job is to make the encounter feel like a boss fight.',
+    why: 'A boss needs a strong entrance, readable phase changes, and clear arena rules.',
+    where: 'Work in boss Blueprint, UMG name-card widget, fog-wall material, boss music or MetaSound setup, Sequencer, and phase presentation Blueprints.',
+    how: [
+      'Design the boss intro name card and defeat message.',
+      'Create the final fog-wall material and open/close VFX.',
+      'Add phase-change sound, music, camera, or animation beats.',
+      'Tune timing so the player does not lose control for too long.'
+    ],
+    done: [
+      'The boss start, phase change, and defeat are clear to the player.',
+      'The fog wall looks intentional and does not hide important action.',
+      'Music changes support the fight instead of feeling random.'
+    ],
+    manual: 'Enter the boss arena, trigger the fight, lower boss health into phase two, and defeat it.',
+    verify: 'Tools/remote_playtest.py boss_phase, fog_wall, boss_presentation',
+    settings: ['Boss intro skip', 'Boss name-card duration', 'Boss music intensity', 'Fog-wall visual intensity']
+  },
+  {
+    phase: 'P12',
+    title: 'Objectives and quest tracker',
+    status: 'Native world-state rules work. Needs content and UI polish.',
+    tags: ['Blueprint', 'UI', 'Data', 'Settings'],
+    what: 'The game can track simple world flags and objective steps. Your job is to write real objectives and make them readable in the HUD.',
+    why: 'Players need to know what they are doing, where to go, and when the world changed.',
+    where: 'Work in objective DataAssets or DataTables, trigger Blueprints, HUD tracker UI, and save/load design notes.',
+    how: [
+      'Write short objective steps for the arena, Below, and first world-zone flow.',
+      'Place triggers or interactables that set and clear world-state flags.',
+      'Make the HUD tracker readable at normal couch distance.',
+      'Decide which objective states must save.'
+    ],
+    done: [
+      'The player sees one clear next goal.',
+      'The tracker updates when the player completes a step.',
+      'Completed objectives do not come back unless they should.'
+    ],
+    manual: 'Start the arena flow, complete one step, and confirm the tracker updates in plain language.',
+    verify: 'Tools/remote_playtest.py world_state_objective',
+    settings: ['Objective tracker visibility', 'Hint frequency', 'Objective text size']
+  },
+  {
+    phase: 'P12',
+    title: 'NPC dialogue and vendor screens',
+    status: 'Native NPC and vendor basics work. Needs authored UX.',
+    tags: ['Blueprint', 'UI', 'Data', 'Audio', 'Settings'],
+    what: 'NPCs can speak lines, react to world-state flags, and sell items for Stones. Your job is to make real characters and screens.',
+    why: 'NPCs turn systems into story, guidance, shopping, and world flavor.',
+    where: 'Work in NPC Blueprint subclasses, dialogue DataTables, shop UI widgets, vendor stock data, subtitle styling, and optional VO placeholders.',
+    how: [
+      'Create at least one friendly NPC Blueprint with a real name and role.',
+      'Write dialogue lines that change after an objective or purchase.',
+      'Build a simple shop screen with price, item name, and sold-out state.',
+      'Add readable subtitles and interaction prompts.'
+    ],
+    done: [
+      'The player can talk, buy, and see the result immediately.',
+      'Sold-out or locked items are clear.',
+      'Dialogue text is easy to read and not too long.'
+    ],
+    manual: 'Talk to the NPC, buy one item, talk again, and confirm the line or shop state changed.',
+    verify: 'Tools/remote_playtest.py npc_dialogue and Tools/remote_playtest.py vendor_trade',
+    settings: ['Dialogue text size', 'Subtitle background opacity', 'Shop confirm mode', 'Auto-advance speed']
+  },
+  {
+    phase: 'P12',
+    title: 'Tutorial prompts',
+    status: 'Native prompt system works. Needs lesson design.',
+    tags: ['Blueprint', 'UI', 'Data', 'Settings'],
+    what: 'The game can show a tutorial prompt once and remember that it was dismissed. Your job is to choose what to teach and when.',
+    why: 'Good prompts help the player learn without stopping the game too often.',
+    where: 'Work in tutorial prompt data, trigger Blueprints, HUD prompt widget, input glyphs, and onboarding text.',
+    how: [
+      'Write short prompts for dodge, block, lock-on, inventory, and rest points.',
+      'Place triggers where the player needs the lesson.',
+      'Use button icons or input glyphs instead of long text.',
+      'Make sure prompts do not repeat after dismissal.'
+    ],
+    done: [
+      'A new player can learn the next action without reading a manual.',
+      'Prompts stay short and do not block combat.',
+      'Dismissed prompts stay dismissed.'
+    ],
+    manual: 'Walk through the first arena path and check if prompts appear only when useful.',
+    verify: 'Tools/remote_playtest.py tutorial_prompt',
+    settings: ['Tutorial verbosity', 'Replay or hide tutorials', 'Prompt duration', 'Input glyph style']
+  },
+  {
+    phase: 'P13',
+    title: 'Damage schools, armor, and status effects',
+    status: 'Native math works. Needs visible design layer.',
+    tags: ['Blueprint', 'UI', 'VFX', 'Audio', 'Data', 'Balance', 'Settings'],
+    what: 'The game can calculate physical, elemental, true damage, armor, resistance, buildup, poison, and frost. Your job is to make those rules visible and balanced.',
+    why: 'Build depth only matters if players can understand why damage changed and what status is happening.',
+    where: 'Work in damage/status DataTables, item stats, enemy resistances, HUD buildup bars, status icons, Niagara, sounds, and balance sheets.',
+    how: [
+      'Create status icons and buildup bars for poison, frost, bleed, rot, or the final names.',
+      'Author damage and resistance values for weapons, enemies, armor, and items.',
+      'Add VFX and sound when a status starts, ticks, and ends.',
+      'Write tooltip text that explains each damage type in one sentence.'
+    ],
+    done: [
+      'The player can tell when buildup is close to triggering.',
+      'Poison and frost look and sound different.',
+      'Damage changes make sense when gear or enemy resistance changes.'
+    ],
+    manual: 'Apply a status to an enemy and to the player. Watch the bar, trigger, payload, and cleanup.',
+    verify: 'Tools/remote_playtest.py damage_model and Tools/remote_playtest.py status_payload',
+    settings: ['Status bar visibility', 'Status VFX intensity', 'Colorblind palettes', 'Damage number size']
+  },
+  {
+    phase: 'P13',
+    title: 'Heavy attacks, charged attacks, and two-handing',
+    status: 'Native actions work. Needs input, animation, and feel.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Balance', 'Settings'],
+    what: 'The game can request heavy attacks, charge strength, and two-hand stance. Your job is to make them feel like real player choices.',
+    why: 'These actions should trade speed and safety for power. Players need to see and feel that trade.',
+    where: 'Work in input mapping, player Animation Blueprint, heavy/charged/two-hand montages, UI stance indicators, VFX, audio, and balance tables.',
+    how: [
+      'Map hold or press input for heavy and charged attacks.',
+      'Create heavy, charged, and two-hand stance animations.',
+      'Add a charge visual or sound so players know when the attack is ready.',
+      'Tune damage, poise, stamina cost, and recovery.'
+    ],
+    done: [
+      'Heavy attack is slower and stronger than light attack.',
+      'Charged attack gives clear charge feedback.',
+      'Two-handing changes the stance and is visible in UI or animation.'
+    ],
+    manual: 'In the arena, try light, heavy, charged, and two-hand attacks against the same enemy.',
+    verify: 'Tools/remote_playtest.py heavy_attack and Tools/remote_playtest.py two_handing',
+    settings: ['Hold versus toggle charge input', 'Charge indicator visibility', 'Two-hand toggle mode', 'Stance indicator visibility']
+  },
+  {
+    phase: 'P13',
+    title: 'Stat screen, passives, and critical scaling',
+    status: 'Native progression works. Needs player screen and content.',
+    tags: ['Blueprint', 'UI', 'Data', 'Balance', 'Settings'],
+    what: 'The game can spend stat points, refund them, unlock passives, and scale critical stats. Your job is to make a screen players can understand.',
+    why: 'Progression should make players excited to build a character, not confused about numbers.',
+    where: 'Work in the stat allocation UMG screen, passive icons, tooltip copy, DataTables for passive effects, and balance sheets.',
+    how: [
+      'Build a stat screen with current value, cost, and preview changes.',
+      'Show passive unlocks at 20 and every 10 points after that.',
+      'Add short tooltips for each stat and passive.',
+      'Show critical chance and critical damage in a clear way.'
+    ],
+    done: [
+      'A player can spend a point and understand what changed.',
+      'Passive unlocks feel like rewards.',
+      'Refund or reset behavior is clear before the player confirms.'
+    ],
+    manual: 'Give the player stat points, spend and refund them, then check UI previews and passive callouts.',
+    verify: 'Tools/remote_playtest.py stat_investment, threshold_passive, critical_stats',
+    settings: ['Stat confirm mode', 'Tooltip detail level', 'Passive callout duration', 'Large text for stat changes']
+  },
+  {
+    phase: 'P14',
+    title: 'Combo chains and movement attacks',
+    status: 'Native requests work. Needs montage set and cancel rules.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Balance', 'Settings'],
+    what: 'The game can tell the difference between combo steps, running attacks, rolling attacks, backstep attacks, and jump attacks. Your job is to make each one look and feel different.',
+    why: 'A Soulslike needs attack variety. The player should choose attacks because they solve different problems.',
+    where: 'Work in attack montages, player Animation Blueprint, input mapping, animation notifies, weapon trails, hitbox timing, and optional UI hints.',
+    how: [
+      'Create three light combo animations that flow together.',
+      'Create running, rolling, backstep, and jump attack animations.',
+      'Place damage notifies at the part of each swing that should hit.',
+      'Tune cancel windows so attacks feel responsive but not spammy.'
+    ],
+    done: [
+      'Each attack type is easy to recognize from the animation.',
+      'Hit timing matches the weapon swing.',
+      'The player can learn when to use each attack.'
+    ],
+    manual: 'In the boss arena, perform each attack type and check timing, recovery, and readability.',
+    verify: 'Tools/remote_playtest.py combo_chain, movement_attack, jump_attack',
+    settings: ['Combo leniency', 'Input buffer readability', 'Movement attack indicator', 'Jump attack assist']
+  },
+  {
+    phase: 'P14',
+    title: 'Guard counter',
+    status: 'Native counter window works. Needs prompt and payoff.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Balance', 'Settings'],
+    what: 'After a good block, the game can open a short guard-counter window. Your job is to show the chance and make the counter feel satisfying.',
+    why: 'Guard counter should reward brave blocking and help shield play feel active.',
+    where: 'Work in guard-counter montage, block reaction Blueprint, HUD prompt, camera/rumble, VFX, impact audio, and balance values.',
+    how: [
+      'Create a guard-counter attack animation.',
+      'Show a small prompt or icon only while the counter window is open.',
+      'Add a strong hit effect when the counter lands.',
+      'Tune the window so it is fair but not automatic.'
+    ],
+    done: [
+      'The player knows when a counter is available.',
+      'The counter animation feels stronger than a normal light attack.',
+      'Late counter input fails in a way that feels fair.'
+    ],
+    manual: 'Block a boss hit, press the counter input during the prompt, then try pressing late.',
+    verify: 'Tools/remote_playtest.py guard_counter',
+    settings: ['Guard-counter prompt visibility', 'Counter input leniency', 'Counter feedback intensity']
+  },
+  {
+    phase: 'P14',
+    title: 'Weapon skills and weapon-category movesets',
+    status: 'Native skill and weapon tags work. Needs content.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Data', 'Balance', 'Settings'],
+    what: 'The game can identify weapon families and fire a weapon skill. Your job is to create the real weapon identity: animations, skills, UI, and data rows.',
+    why: 'Weapons should not feel like stat sticks. A dagger, sword, greatsword, bow, and shield need different player choices.',
+    where: 'Work in weapon DataAssets or DataTables, Skills tab UI, weapon-skill montages, animation notifies, VFX, sound, and balance data.',
+    how: [
+      'Make weapon rows that pick family, moveset, skill, stats, and requirements.',
+      'Create at least one skill montage and effect for each starter weapon family.',
+      'Show skill cost, cooldown, and source weapon in the UI.',
+      'Tune weapon damage, poise, stamina cost, and speed.'
+    ],
+    done: [
+      'Changing weapon family changes animation or skill behavior.',
+      'The Skills tab explains what the weapon skill does.',
+      'The player can see why one weapon is different from another.'
+    ],
+    manual: 'Equip sword, dagger, and greatsword. Use the skill and check if UI, animation, and effect match the weapon.',
+    verify: 'Tools/remote_playtest.py weapon_moveset and Tools/remote_playtest.py weapon_skill',
+    settings: ['Weapon-skill input mode', 'Skill prompt visibility', 'Skill cooldown indicator', 'Weapon-family hint visibility']
+  },
+  {
+    phase: 'P14',
+    title: 'Dual wield and power stance',
+    status: 'Native detection works. Needs visible player mode.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Balance', 'Settings'],
+    what: 'The game can detect shield pair, mixed dual wield, and matched power stance. Your job is to make the player see and feel the mode.',
+    why: 'Dual wield only matters if the player gets different animations, choices, and feedback.',
+    where: 'Work in equipment visuals, off-hand sockets, paired attack montages, Animation Blueprint state, HUD mode icon, VFX, audio, and balance values.',
+    how: [
+      'Show the off-hand item correctly on the character.',
+      'Create dual-wield and power-stance attack animations.',
+      'Add a small UI icon or stance label for the current mode.',
+      'Decide which weapon pairs are allowed or discouraged.'
+    ],
+    done: [
+      'Sword plus dagger, dagger plus dagger, and shield plus weapon all read differently.',
+      'Two-handing clearly suppresses off-hand behavior.',
+      'Power stance feels stronger but still balanced.'
+    ],
+    manual: 'Equip sword plus dagger, dagger plus dagger, and shield plus sword. Check visuals, UI, and attack feel.',
+    verify: 'Tools/remote_playtest.py dual_wield',
+    settings: ['Power-stance indicator visibility', 'Off-hand warning style', 'Dual-wield assist or leniency']
+  },
+  {
+    phase: 'P14',
+    title: 'Bows, ammo, and throwables',
+    status: 'Bows and throwables are next. Needs native proof plus full design pass.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Data', 'Balance', 'Settings'],
+    what: 'The player needs ranged options: bows with ammo and throwable consumables. Some bow/ammo code is in progress, but it is not verified yet.',
+    why: 'Ranged tools change encounter design. They let players pull enemies, finish weak targets, or use crafted items.',
+    where: 'Work in item DataAssets, ammo slot UI, quick item UI, aiming reticle, projectile Blueprint, bow draw animation, throw animation, VFX trails, sounds, and balance data.',
+    how: [
+      'Create bow, arrow, and throwable item rows.',
+      'Make bow draw, aim, release, and cancel animations.',
+      'Create projectile Blueprints for arrows and throwable items.',
+      'Add ammo count and quick-item count to the HUD.',
+      'Tune range, damage, travel speed, and lock-on behavior.'
+    ],
+    done: [
+      'The player can see ammo or item count before using it.',
+      'The shot or throw has clear aim, travel, hit, and miss feedback.',
+      'Running out of ammo or items is obvious.'
+    ],
+    manual: 'Equip a bow and arrows, fire until empty, then try a throwable from the quick slot.',
+    verify: 'Expected future proof: Tools/remote_playtest.py ranged_ammo and a throwables scenario',
+    settings: ['Ranged reticle visibility', 'Ammo counter visibility', 'Aim assist', 'Projectile trail intensity']
+  },
+  {
+    phase: 'P15',
+    title: 'Magic and Eth spender',
+    status: 'Future phase. Needs first spell loop.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'UI', 'Data', 'Balance', 'Settings'],
+    what: 'Eth exists as a resource, but players do not spend it yet. Your job is to design the first spell loop.',
+    why: 'Magic gives build variety and makes Focus/Eth matter.',
+    where: 'Work in spell DataAssets, GameplayAbility Blueprints, Spellbook UI, cast animations, Niagara, audio, targeting UI, and balance data.',
+    how: [
+      'Pick three starter spells: one projectile, one area spell, and one buff or utility spell.',
+      'Create spell icons, short descriptions, Eth costs, and cooldowns.',
+      'Make cast animations and VFX that match each spell type.',
+      'Add Spellbook UI and equip slots.'
+    ],
+    done: [
+      'The player can equip and cast a spell.',
+      'Eth cost is clear before and after casting.',
+      'Each starter spell has a different use.'
+    ],
+    manual: 'Equip a spell, cast it in the arena, run out of Eth, and confirm the UI explains what happened.',
+    verify: 'No current remote proof. Needs first P15 scenario.',
+    settings: ['Spell reticle visibility', 'Spell VFX intensity', 'Cast input mode', 'Eth UI size']
+  },
+  {
+    phase: 'P16',
+    title: 'Items, upgrades, crafting, and economy',
+    status: 'Future phase. Needs content pipeline pass.',
+    tags: ['Blueprint', 'UI', 'Data', 'Balance', 'Settings'],
+    what: 'The item system exists, but the game needs many more items, upgrades, crafting choices, and economy sinks.',
+    why: 'Loot only feels good when players have reasons to compare, keep, upgrade, sell, craft, or replace items.',
+    where: 'Work in item DataAssets, affix tables, loot tables, crafting UI, vendor UI, upgrade UI, item icons, and balance sheets.',
+    how: [
+      'Create item families and rarity examples for each early zone.',
+      'Design upgrade materials and cost curves.',
+      'Add compare, sort, filter, sell, salvage, and stash flows.',
+      'Write short lore text for important items.'
+    ],
+    done: [
+      'A player can find an item and understand if it is better.',
+      'Upgrading or crafting has clear cost and benefit.',
+      'Vendors and loot tables support the first zone.'
+    ],
+    manual: 'Loot, compare, equip, sell, and upgrade items during a test run.',
+    verify: 'Existing support: Tools/remote_playtest.py vendor_trade. Needs P16 item economy scenarios.',
+    settings: ['Compare tooltip size', 'Sell confirmation', 'Loot beam intensity', 'Inventory text size']
+  },
+  {
+    phase: 'P17',
+    title: 'First world zone and traversal',
+    status: 'Future phase. Needs Landscry integration.',
+    tags: ['Blueprint', 'UI', 'VFX', 'Audio', 'Data', 'Balance'],
+    what: 'The game has an arena and pockets, but not a real open world yet. Your job is to turn the first generated zone into playable content.',
+    why: 'The AAA goal needs exploration, landmarks, secrets, travel, and reasons to move through space.',
+    where: 'Work in World Partition, Landscry-generated maps, PCG hooks, map UI, fast travel points, mounts, lifts, ladders, hazards, chests, and ambient audio.',
+    how: [
+      'Import or generate the first connected zone.',
+      'Place paths, landmarks, enemy camps, rest points, loot, and secrets.',
+      'Add map markers and fast travel points.',
+      'Test traversal rules like lifts, ladders, water, falls, and hazards.'
+    ],
+    done: [
+      'The player can travel from arena to world content and back.',
+      'There are clear landmarks and useful rewards.',
+      'The map helps without spoiling every secret.'
+    ],
+    manual: 'Walk the full route, find one secret, rest, fast travel, and return to the boss path.',
+    verify: 'Needs first P17 world-zone scenario.',
+    settings: ['Map marker visibility', 'Fast travel confirmation', 'Camera comfort while mounted']
+  },
+  {
+    phase: 'P18',
+    title: 'Enemy variety and encounters',
+    status: 'Future phase. Needs encounter design.',
+    tags: ['Animation', 'Blueprint', 'VFX', 'Audio', 'Data', 'Balance'],
+    what: 'The combat systems need more enemy types and better encounter setups.',
+    why: 'One enemy cannot carry a Soulslike. Players need new threats, groups, patrols, ranged enemies, and boss gimmicks.',
+    where: 'Work in enemy Blueprints, Behavior Trees, Blackboard data, animations, perception setup, spawn groups, loot tables, and encounter balance.',
+    how: [
+      'Design small, medium, ranged, caster, shield, and elite enemy roles.',
+      'Create patrol, alert, chase, leash, and group behavior rules.',
+      'Build encounters that teach one danger at a time.',
+      'Tune enemy health, poise, damage, and drops by region tier.'
+    ],
+    done: [
+      'Each enemy role has a clear silhouette and attack pattern.',
+      'Groups feel planned instead of random.',
+      'The first zone has a difficulty curve.'
+    ],
+    manual: 'Run through the first zone and note if each fight teaches or tests something different.',
+    verify: 'Existing support: Tools/remote_playtest.py enemy_resource, boss_phase, bt_phase_ai. Needs P18 encounter scenarios.',
+    settings: ['Enemy aggression assist', 'Target indicator options', 'Combat readability controls']
+  },
+  {
+    phase: 'P21',
+    title: 'Settings, controls, pause, and ship shell',
+    status: 'Future phase. Needs full player options pass.',
+    tags: ['Blueprint', 'UI', 'Audio', 'Settings'],
+    what: 'Many systems now have settings candidates. Your job is to turn those notes into a real Settings menu and shell.',
+    why: 'Players need control over comfort, readability, audio, controls, and accessibility before the game feels shippable.',
+    where: 'Work in main menu UI, pause menu UI, Settings widgets, save settings data, input remapping, gamepad navigation, localization, and audio mix sliders.',
+    how: [
+      'Group settings into Graphics, Audio, Controls, Gameplay, and Accessibility.',
+      'Add toggles, sliders, and dropdowns for the candidates listed in the matrix.',
+      'Make every setting save and load.',
+      'Test with mouse, keyboard, and gamepad.'
+    ],
+    done: [
+      'The player can pause, change settings, and return to the game.',
+      'Important combat readability settings are easy to find.',
+      'Gamepad navigation works across the shell.'
+    ],
+    manual: 'Open the menu, change settings, restart the game, and confirm choices stayed saved.',
+    verify: 'Needs P21 shell and settings scenarios.',
+    settings: ['This card becomes the actual Settings menu backlog']
+  }
+];
+
 const HEADLINES = [
   { rank: 1, title: 'No open world yet — build path is Landscry',
     body: 'One arena + the Below pocket. Terrain/biomes/POIs will be generated by the Landscry PCG pipeline (zip package → UE Importer + PCG Worldbuilder). The Ascentia side is integration — World Partition/streaming, wiring gameplay actors into generated zones, map UI, mount, day/night — planned as P17.' },
