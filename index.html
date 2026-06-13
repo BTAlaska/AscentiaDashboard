@@ -58,6 +58,27 @@
   .bigbar div { height: 100%; }
   .seg-have { background: var(--have); } .seg-partial { background: var(--partial); } .seg-missing { background: #5a2723; }
 
+  .history-panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .history-top { display: flex; gap: 14px; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .history-copy { color: var(--muted); font-size: 12.5px; max-width: 610px; }
+  .history-metrics { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+  .history-metric { background: var(--panel2); border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; min-width: 108px; }
+  .history-metric b { display: block; color: var(--gold); font-size: 18px; line-height: 1.1; }
+  .history-metric span { color: var(--faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px; }
+  .history-chart { width: 100%; height: 240px; display: block; background: #12151a; border: 1px solid #242a33; border-radius: 8px; }
+  .history-chart text { fill: var(--faint); font: 11px "Segoe UI", system-ui, sans-serif; }
+  .history-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 12px; }
+  .history-item { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; padding: 9px 10px; background: rgba(255,255,255,0.018); }
+  .history-item .label { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; font-weight: 600; }
+  .history-item .label span:last-child { color: var(--gold); white-space: nowrap; }
+  .history-item .note { margin-top: 3px; font-size: 11.5px; }
+  .history-item .proof { color: var(--blue); font-size: 11.5px; margin-top: 2px; }
+  @media (max-width: 700px) {
+    .history-top { display: block; }
+    .history-metrics { justify-content: flex-start; margin-top: 10px; }
+    .history-chart { height: 210px; }
+  }
+
   h2 { font-family: Georgia, serif; font-size: 19px; color: var(--gold); margin: 30px 0 12px; font-weight: 600; }
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
   .card { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--missing); border-radius: 10px; padding: 14px 16px; }
@@ -146,6 +167,20 @@
 
   <div class="kpis" id="kpis"></div>
   <div class="bigbar" id="bigbar" title="Weighted by feature count"></div>
+
+  <h2>Overall AAA progress over time</h2>
+  <div class="history-panel">
+    <div class="history-top">
+      <div class="history-copy">
+        Historical progress uses the same weighted score as the main KPI: full features count as 1.0,
+        partial features count as 0.5, and missing features count as 0. Remote evidence tracks verified
+        automation slices separately so implementation proof is visible even when a row was already partial.
+      </div>
+      <div class="history-metrics" id="progressSummary"></div>
+    </div>
+    <svg class="history-chart" id="progressChart" role="img" aria-label="Historical weighted completion chart"></svg>
+    <div class="history-list" id="progressHistory"></div>
+  </div>
 
   <h2>Headline gap bands</h2>
   <div class="cards" id="headlines"></div>
@@ -248,6 +283,103 @@
     d.title = cls.replace('seg-', '') + ': ' + n;
     $('bigbar').appendChild(d);
   }
+
+  // ---- historical overall progress ----
+  function weightedProgress(point) {
+    const tracked = point.have + point.partial + point.missing;
+    return tracked > 0 ? ((point.have + 0.5 * point.partial) / tracked) * 100 : 0;
+  }
+  function addSvg(tag, attrs, parent) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
+    parent.appendChild(el);
+    return el;
+  }
+  function renderProgressHistory() {
+    const history = typeof PROGRESS_HISTORY === 'undefined' ? [] : PROGRESS_HISTORY;
+    if (!history.length) return;
+
+    const latest = history[history.length - 1];
+    const first = history[0];
+    const latestPct = Math.round(weightedProgress(latest));
+    const deltaPct = Math.round((weightedProgress(latest) - weightedProgress(first)) * 10) / 10;
+    const verified = latest.verified || 0;
+    const metrics = [
+      [latestPct + '%', 'Current score'],
+      ['+' + deltaPct + ' pts', 'Since baseline'],
+      [verified, 'Verified slices'],
+    ];
+    for (const [num, label] of metrics) {
+      const box = document.createElement('div');
+      box.className = 'history-metric';
+      const b = document.createElement('b'); b.textContent = num;
+      const s = document.createElement('span'); s.textContent = label;
+      box.append(b, s);
+      $('progressSummary').appendChild(box);
+    }
+
+    const svg = $('progressChart');
+    const w = 860, h = 240, left = 48, right = 24, top = 22, bottom = 42;
+    const chartW = w - left - right, chartH = h - top - bottom;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.textContent = '';
+
+    const x = (i) => left + (history.length === 1 ? 0 : (i / (history.length - 1)) * chartW);
+    const y = (pctValue) => top + (1 - pctValue / 100) * chartH;
+    for (const tick of [0, 25, 50, 75, 100]) {
+      const ty = y(tick);
+      addSvg('line', { x1: left, x2: w - right, y1: ty, y2: ty, stroke: '#252b34', 'stroke-width': 1 }, svg);
+      const label = addSvg('text', { x: 10, y: ty + 4 }, svg);
+      label.textContent = tick + '%';
+    }
+
+    const progressPoints = history.map((p, i) => [x(i), y(weightedProgress(p))]);
+    const progressD = progressPoints.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+    const areaD = progressD + ' L ' + progressPoints[progressPoints.length - 1][0].toFixed(1) + ' ' + (h - bottom) + ' L ' + progressPoints[0][0].toFixed(1) + ' ' + (h - bottom) + ' Z';
+    addSvg('path', { d: areaD, fill: 'rgba(201,165,92,0.10)' }, svg);
+    addSvg('path', { d: progressD, fill: 'none', stroke: '#c9a55c', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+
+    const maxVerified = Math.max(1, ...history.map(p => p.verified || 0));
+    const verifiedPoints = history.map((p, i) => [x(i), top + chartH - ((p.verified || 0) / maxVerified) * chartH]);
+    const verifiedD = verifiedPoints.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+    addSvg('path', { d: verifiedD, fill: 'none', stroke: '#5aa9e6', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-dasharray': '5 5' }, svg);
+
+    history.forEach((point, i) => {
+      const pctValue = Math.round(weightedProgress(point));
+      const dot = addSvg('circle', { cx: x(i), cy: y(weightedProgress(point)), r: 4.5, fill: '#c9a55c', stroke: '#101216', 'stroke-width': 2 }, svg);
+      addSvg('circle', { cx: x(i), cy: verifiedPoints[i][1], r: 3.5, fill: '#5aa9e6', stroke: '#101216', 'stroke-width': 1.5 }, svg);
+      const label = addSvg('text', { x: x(i), y: h - 16, 'text-anchor': i === 0 ? 'start' : i === history.length - 1 ? 'end' : 'middle' }, svg);
+      label.textContent = point.t.slice(11);
+      const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = point.t + ' - ' + pctValue + '% AAA score, ' + (point.verified || 0) + ' verified slices. ' + point.note;
+      dot.appendChild(title);
+    });
+
+    const legend = addSvg('g', { transform: 'translate(' + (w - 250) + ' 14)' }, svg);
+    addSvg('line', { x1: 0, x2: 28, y1: 0, y2: 0, stroke: '#c9a55c', 'stroke-width': 3 }, legend);
+    let text = addSvg('text', { x: 36, y: 4 }, legend); text.textContent = 'Weighted AAA score';
+    addSvg('line', { x1: 0, x2: 28, y1: 18, y2: 18, stroke: '#5aa9e6', 'stroke-width': 2, 'stroke-dasharray': '5 5' }, legend);
+    text = addSvg('text', { x: 36, y: 22 }, legend); text.textContent = 'Verified remote slices';
+
+    for (const point of history.slice().reverse()) {
+      const item = document.createElement('div');
+      item.className = 'history-item';
+      const label = document.createElement('div');
+      label.className = 'label';
+      const name = document.createElement('span'); name.textContent = point.label;
+      const score = document.createElement('span'); score.textContent = Math.round(weightedProgress(point)) + '%';
+      label.append(name, score);
+      const proof = document.createElement('div');
+      proof.className = 'proof';
+      proof.textContent = (point.verified || 0) + ' verified remote slices - ' + point.t;
+      const note = document.createElement('div');
+      note.className = 'note';
+      note.textContent = point.note;
+      item.append(label, proof, note);
+      $('progressHistory').appendChild(item);
+    }
+  }
+  renderProgressHistory();
 
   // ---- headline / strengths / priorities ----
   for (const h of HEADLINES) {
