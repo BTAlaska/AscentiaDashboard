@@ -18,12 +18,25 @@
     background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,165,92,0.07), transparent);
   }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-  header h1 {
-    font-family: Georgia, "Times New Roman", serif; font-size: 30px; margin: 0;
-    color: var(--gold); letter-spacing: 0.5px;
+  .hero {
+    position: relative; height: 300px; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse 70% 90% at 50% 115%, rgba(88,240,168,0.10), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 50% -20%, rgba(201,165,92,0.08), transparent);
   }
-  header .sub { color: var(--muted); margin-top: 4px; }
-  header .meta { color: var(--faint); font-size: 12px; margin-top: 2px; }
+  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .hero-inner {
+    position: relative; z-index: 1; max-width: 1100px; margin: 0 auto;
+    padding: 88px 20px 0; text-align: center; pointer-events: none;
+  }
+  .hero-inner h1 {
+    font-family: Georgia, "Times New Roman", serif; font-size: 38px; margin: 0;
+    color: var(--gold); letter-spacing: 1px; text-shadow: 0 2px 22px rgba(0,0,0,0.85);
+  }
+  .hero-inner .sub { color: var(--muted); margin-top: 6px; text-shadow: 0 1px 10px rgba(0,0,0,0.9); }
+  .hero-inner .meta { color: var(--faint); font-size: 12px; margin-top: 3px; text-shadow: 0 1px 10px rgba(0,0,0,0.9); }
+  .hero-hint { position: absolute; right: 16px; bottom: 10px; z-index: 1; color: var(--faint); font-size: 11px; opacity: 0.8; }
 
   .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0 10px; }
   .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
@@ -109,12 +122,16 @@
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
+<div class="hero">
+  <canvas id="rune3d" aria-hidden="true"></canvas>
+  <div class="hero-inner">
     <h1 id="title"></h1>
     <div class="sub" id="benchmark"></div>
     <div class="meta" id="meta"></div>
-  </header>
+  </div>
+  <div class="hero-hint">rune circle — 12 categories lit by completion · inner arc = overall progress</div>
+</div>
+<div class="wrap">
 
   <div class="kpis" id="kpis"></div>
   <div class="bigbar" id="bigbar" title="Weighted by feature count"></div>
@@ -240,11 +257,13 @@
 
   // ---- categories ----
   const catEls = [];
+  const heroCatPcts = [];
   for (const cat of GAP_DATA) {
     const cHave = cat.features.filter(f => f.s === 'have').length;
     const cPartial = cat.features.filter(f => f.s === 'partial').length;
     const cMissing = cat.features.filter(f => f.s === 'missing').length;
     const cPct = Math.round(((cHave + 0.5 * cPartial) / cat.features.length) * 100);
+    heroCatPcts.push(cPct);
 
     const box = document.createElement('div'); box.className = 'cat';
     const head = document.createElement('div'); head.className = 'cat-head';
@@ -282,6 +301,9 @@
     $('cats').appendChild(box);
     catEls.push({ box: box, rows: rowEls });
   }
+
+  // hand the category percentages to the 3D hero (module script runs after this)
+  window.ASC_HERO = { catPcts: heroCatPcts, pct: pct };
 
   // ---- filtering ----
   const statusSet = new Set();
@@ -328,7 +350,153 @@
     'Status data lives in <code>gap-data.js</code> — edit a feature’s <code>s</code> field ' +
     '(<code>have | partial | missing</code>) and its note, bump <code>updated</code>, reload. ' +
     'Keep the source doc and the fix log in sync. Host with <code>serve.ps1</code> ' +
-    '(http://localhost:8765) or just open <code>index.html</code> directly.';
+    '(http://localhost:8765) or just open <code>index.html</code> directly. ' +
+    'The rune-circle hero uses three.js from a pinned CDN — without a connection the ' +
+    'dashboard simply renders without it.';
+})();
+</script>
+<script type="module">
+// Decorative three.js hero — a necropolis rune circle (echoes the game's arena).
+// The 12 outer arc segments are the 12 gap categories, colored and weighted by
+// completion; the inner bright arc is overall progress toward the AAA bar.
+// Loads three.js from a pinned CDN; on failure (offline) or reduced-motion it
+// silently skips — the dashboard is fully functional without it.
+(async () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let THREE;
+  try {
+    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js');
+  } catch (e) {
+    console.info('hero3d: three.js unavailable, skipping (' + e.message + ')');
+    return;
+  }
+
+  const hero = document.querySelector('.hero');
+  const canvas = document.getElementById('rune3d');
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, 2, 0.1, 60);
+  camera.position.set(0, 4.4, 7.2);
+
+  const data = window.ASC_HERO || { catPcts: [], pct: 0 };
+  const N = Math.max(data.catPcts.length, 1);
+
+  const red = new THREE.Color('#e0584f'), amber = new THREE.Color('#e8b84b'), green = new THREE.Color('#57d98c');
+  const pctColor = (p) => {
+    const c = new THREE.Color();
+    if (p < 50) c.lerpColors(red, amber, p / 50); else c.lerpColors(amber, green, (p - 50) / 50);
+    return c;
+  };
+
+  // outer rune ring: one arc segment per category (thicker + brighter = more complete)
+  const segs = new THREE.Group();
+  const span = (Math.PI * 2) / N, gapA = Math.min(0.06, span * 0.25);
+  data.catPcts.forEach((p, i) => {
+    const geo = new THREE.TorusGeometry(3, 0.05 + 0.04 * (p / 100), 10, 48, span - gapA);
+    const mat = new THREE.MeshBasicMaterial({
+      color: pctColor(p), transparent: true, opacity: 0.32 + 0.6 * (p / 100),
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    });
+    const m = new THREE.Mesh(geo, mat);
+    m.rotation.set(-Math.PI / 2, 0, i * span); // z = arc start angle, then lay flat
+    segs.add(m);
+  });
+  scene.add(segs);
+
+  // inner decorative circles + glyph ticks (counter-rotating)
+  const circles = new THREE.Group();
+  const circle = (r, color, opacity) => {
+    const pts = [];
+    for (let i = 0; i <= 96; i++) {
+      const a = (i / 96) * Math.PI * 2;
+      pts.push(new THREE.Vector3(Math.cos(a) * r, 0, Math.sin(a) * r));
+    }
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    circles.add(new THREE.Line(geo, new THREE.LineBasicMaterial({
+      color: color, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending,
+    })));
+  };
+  circle(2.45, 0xc9a55c, 0.55);
+  circle(2.1, 0x58f0a8, 0.3);
+  circle(1.45, 0xc9a55c, 0.35);
+  const ticks = [];
+  for (let i = 0; i < 36; i++) {
+    const a = (i / 36) * Math.PI * 2, r2 = i % 3 === 0 ? 2.0 : 1.8;
+    ticks.push(new THREE.Vector3(Math.cos(a) * 1.55, 0, Math.sin(a) * 1.55));
+    ticks.push(new THREE.Vector3(Math.cos(a) * r2, 0, Math.sin(a) * r2));
+  }
+  circles.add(new THREE.LineSegments(
+    new THREE.BufferGeometry().setFromPoints(ticks),
+    new THREE.LineBasicMaterial({ color: 0xc9a55c, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending })
+  ));
+  scene.add(circles);
+
+  // overall-progress arc, just inside the category ring (static gauge from 12 o'clock)
+  const prog = new THREE.Mesh(
+    new THREE.TorusGeometry(2.72, 0.035, 8, 64, Math.PI * 2 * (data.pct / 100)),
+    new THREE.MeshBasicMaterial({ color: 0x58f0a8, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false })
+  );
+  prog.rotation.set(-Math.PI / 2, 0, Math.PI / 2);
+  scene.add(prog);
+
+  // drifting embers
+  const COUNT = 240;
+  const pos = new Float32Array(COUNT * 3), col = new Float32Array(COUNT * 3), spd = new Float32Array(COUNT);
+  const palette = [new THREE.Color(0x58f0a8), new THREE.Color(0xc9a55c), new THREE.Color(0x7fd6ff)];
+  for (let i = 0; i < COUNT; i++) {
+    const r = 0.4 + Math.random() * 3.9, a = Math.random() * Math.PI * 2;
+    pos[i * 3] = Math.cos(a) * r; pos[i * 3 + 1] = Math.random() * 2.6; pos[i * 3 + 2] = Math.sin(a) * r;
+    const c = palette[(Math.random() * palette.length) | 0];
+    col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    spd[i] = 0.1 + Math.random() * 0.3;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({
+    size: 0.05, vertexColors: true, transparent: true, opacity: 0.85,
+    blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
+  })));
+
+  // mouse parallax (listener on the hero — the canvas ignores pointer events)
+  let mx = 0, tx = 0;
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    tx = ((e.clientX - r.left) / r.width) * 2 - 1;
+  });
+
+  const fit = () => {
+    const w = hero.clientWidth, h = hero.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  };
+  window.addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(hero); // also catches late/odd first layout
+  fit();
+
+  const clock = new THREE.Clock();
+  let t = 0;
+  const loop = () => {
+    const dt = Math.min(clock.getDelta(), 0.05);
+    t += dt;
+    segs.rotation.y = t * 0.07;
+    circles.rotation.y = -t * 0.12;
+    const arr = pGeo.attributes.position.array;
+    for (let i = 0; i < COUNT; i++) {
+      arr[i * 3 + 1] += spd[i] * dt;
+      if (arr[i * 3 + 1] > 2.8) arr[i * 3 + 1] = 0;
+    }
+    pGeo.attributes.position.needsUpdate = true;
+    mx += (tx - mx) * 0.04;
+    camera.position.x = mx * 1.1;
+    camera.lookAt(0, 0.35, 0);
+    renderer.render(scene, camera);
+  };
+  renderer.setAnimationLoop(loop);
+  window.__hero3dPause = (on) => renderer.setAnimationLoop(on ? null : loop); // debug/testing handle
+  console.info('hero3d: running');
 })();
 </script>
 </body>
