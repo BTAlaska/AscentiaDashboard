@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ascentiadashboard
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
