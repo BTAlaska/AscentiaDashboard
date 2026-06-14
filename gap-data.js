@@ -10,7 +10,7 @@
 const GAP_META = {
   title: 'Ascentia — AAA Gap Dashboard',
   benchmark: 'Benchmark: Elden Ring (open-world Soulslike) + PoE/D4 itemization',
-  updated: '2026-06-13',
+  updated: '2026-06-14',
   sourceDoc: 'Docs/Feature_Gap_Analysis_2026-06-12.md',
   reviewDoc: 'Docs/Code_Review_2026-06-11.md (fix log = live backlog)',
 };
@@ -53,6 +53,7 @@ const PROGRESS_HISTORY = [
   { t: '2026-06-13 02:45', label: 'P14 weapon skills', have: 18, partial: 51, missing: 65, verified: 37, note: 'Native weapon-skill / weapon-art scaffold now records skill/source tags, spends Breath, and applies boosted contact damage/poise.' },
   { t: '2026-06-13 03:00', label: 'P14 weapon movesets', have: 18, partial: 52, missing: 64, verified: 38, note: 'Equipped right-hand items now resolve to replicated weapon family, type, and moveset tags for native fallback weapon categories.' },
   { t: '2026-06-13 03:19', label: 'P14 dual wield', have: 18, partial: 53, missing: 63, verified: 39, note: 'Equipped off-hand items now resolve to shield-pair, dual-wield, and power-stance modes with paired moveset tags and two-hand suppression.' },
+  { t: '2026-06-14 04:00', label: 'GASP locomotion + AssassinGirl', have: 18, partial: 54, missing: 62, verified: 39, note: 'Architecture track (branch claude/phase2-mover-split, hand-validated in PIE — not the remote harness, so verified count unchanged): GASP motion-matching hand-ported 5.7→5.8 across the Mover API break, and AssassinGirl retargeted onto it via GASP’s VisualOverride costume system. Turn-in-place / start-stop / lean flips missing→partial (GASP removes the template-ABP ceiling). Also banked: the full Mover combat slice (move / dodge / attack / two-way). Next: re-base the player onto the GASP pawn so this lands in-game.' },
 ];
 
 const DESIGNER_HANDOFFS = [
@@ -698,12 +699,12 @@ const GAP_DATA = [
     { f: 'Gestures / emotes', s: 'missing', plan: 'P19', n: '' },
   ]},
   { id: 'animation', name: 'Presentation — Animation', icon: '🎬', features: [
-    { f: 'Locomotion blendspace', s: 'have', plan: '—', n: 'Template ThirdPerson ABP (cast-free)' },
+    { f: 'Locomotion blendspace', s: 'have', plan: '—', n: 'Template ThirdPerson ABP (cast-free); GASP motion-matching ported 5.7→5.8 + AssassinGirl-retargeted on branch claude/phase2-mover-split — replaces the template blendspace when the player re-base lands' },
     { f: 'Attack montages + notifies', s: 'missing', plan: 'P11', n: 'Single-node takeover hijacks the whole body. Damage now lands on swept BLADE CONTACT (2026-06-12 — supersedes notify windows for damage); montage conversion still needed for layering/root motion' },
     { f: 'Upper / lower body layering (attack while moving)', s: 'missing', plan: 'P11', n: 'Blocked by single-node takeover; same montage conversion work' },
     { f: 'Root-motion attacks', s: 'missing', plan: 'P11', n: 'In-place clips + impulse; convert during the P11 montage pass' },
     { f: 'Foot IK / slope adaptation', s: 'missing', plan: 'P20', n: '' },
-    { f: 'Turn-in-place, start / stop, lean', s: 'missing', plan: 'P20', n: 'Template ABP ceiling' },
+    { f: 'Turn-in-place, start / stop, lean', s: 'partial', plan: 'P20', n: 'GASP motion-matching provides turn-in-place / start-stop / lean — ported 5.7→5.8 + retargeted onto AssassinGirl, PIE-validated on branch claude/phase2-mover-split; lands on the player at the GASP re-base' },
     { f: 'Contextual anims (ladder, door, pickup)', s: 'missing', plan: 'P20', n: 'Traversal actors arrive in P17; anims polish in P20' },
     { f: 'Cloth / physics (cape, scarf, hair)', s: 'partial', plan: 'P20', n: 'Accessory bones exist; AnimDynamics pass on next-list; cape needs own physics' },
     { f: 'Facial / lipsync', s: 'missing', plan: 'P20', n: '' },
