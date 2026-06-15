@@ -16,6 +16,7 @@ The companion architecture reference is available as a separate static page:
 
 - `index.html` - dashboard / status view
 - `compendium.html` - Ascentia Compendium with linked table of contents
+- `AAA_ARPG_Compendium.md` - source Markdown for the rendered compendium page
 
 The status source of truth is shared:
 
@@ -49,6 +50,7 @@ Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
 |---|---|
 | `index.html` | The dashboard (vanilla HTML/CSS/JS, no dependencies) |
 | `compendium.html` | The rendered Ascentia Compendium, including anchored headings and a filterable table of contents |
+| `AAA_ARPG_Compendium.md` | Source Markdown for the rendered compendium |
 | `gap-data.js` | All feature statuses — the only file that changes routinely |
 | `serve.ps1` | Optional local server (TcpListener, no admin needed) |
 | `sync-from-ascentia.ps1` | Legacy helper for pulling an intentionally refreshed ignored local Ascentia dashboard copy |
