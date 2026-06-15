@@ -38,6 +38,17 @@
   .hero-inner .sub { color: var(--muted); margin-top: 6px; text-shadow: 0 1px 10px rgba(0,0,0,0.9); }
   .hero-inner .meta { color: var(--faint); font-size: 12px; margin-top: 3px; text-shadow: 0 1px 10px rgba(0,0,0,0.9); }
   .hero-hint { position: absolute; right: 16px; bottom: 10px; z-index: 1; color: var(--faint); font-size: 11px; opacity: 0.8; }
+  .topnav {
+    position: absolute; left: 20px; top: 18px; z-index: 2;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .topnav a {
+    border: 1px solid var(--border); background: rgba(24,27,33,0.74); color: var(--muted);
+    border-radius: 999px; padding: 5px 12px; font-size: 12px; text-decoration: none;
+    backdrop-filter: blur(6px);
+  }
+  .topnav a.active { color: var(--text); border-color: var(--gold); background: rgba(201,165,92,0.14); }
+  .topnav a:hover { color: var(--text); border-color: var(--blue); }
   @media (max-width: 640px) {
     .hero { height: 230px; }
     .hero-inner h1 { font-size: 21px; letter-spacing: 0.5px; }
@@ -192,6 +203,10 @@
 <body>
 <div class="hero">
   <canvas id="rune3d" aria-hidden="true"></canvas>
+  <nav class="topnav" aria-label="Primary">
+    <a class="active" href="index.html">Dashboard</a>
+    <a href="compendium.html">Compendium</a>
+  </nav>
   <div class="hero-inner">
     <h1 id="title"></h1>
     <div class="sub" id="benchmark"></div>
@@ -655,6 +670,7 @@
     '(<code>have | partial | missing</code>) and its note, bump <code>updated</code>, reload. ' +
     'Keep the source doc and the fix log in sync. Host with <code>serve.ps1</code> ' +
     '(http://localhost:8765) or just open <code>index.html</code> directly. ' +
+    'Use <a href="compendium.html">compendium.html</a> for the full architecture reference. ' +
     'The rune-circle hero uses three.js from a pinned CDN — without a connection the ' +
     'dashboard simply renders without it.';
 })();
