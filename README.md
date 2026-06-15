@@ -12,6 +12,11 @@ plan badge (P11/P12 phase plan, backlog, designed-in-xlsx, Landscry, unplanned).
 This is a **deploy mirror** — a dependency-free static site (no build step).
 Render serves the repo root; every push to `main` auto-deploys.
 
+The companion architecture reference is available as a separate static page:
+
+- `index.html` - dashboard / status view
+- `compendium.html` - Ascentia Compendium with linked table of contents
+
 The status source of truth is shared:
 
 - tracked prose/status docs in the Ascentia project, especially
@@ -43,6 +48,7 @@ Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
 | File | Purpose |
 |---|---|
 | `index.html` | The dashboard (vanilla HTML/CSS/JS, no dependencies) |
+| `compendium.html` | The rendered Ascentia Compendium, including anchored headings and a filterable table of contents |
 | `gap-data.js` | All feature statuses — the only file that changes routinely |
 | `serve.ps1` | Optional local server (TcpListener, no admin needed) |
 | `sync-from-ascentia.ps1` | Legacy helper for pulling an intentionally refreshed ignored local Ascentia dashboard copy |
