@@ -2,9 +2,10 @@
 
 > Status: first dashboard-published atlas, 2026-06-18.
 > Source: `Docs/DesignerSurfaces` on `BTAlaska/Ascentia`, branch
-> `codex/designer-compendium`, source commit `31cb171`.
+> `codex/designer-compendium`, source commit `576ea8f`.
 > Scope: designer-facing map of Ascentia Editor surfaces, safe tuning paths,
-> native boundaries, evidence requirements, and future custom tool needs.
+> native boundaries, placeholder image policy, evidence requirements, and future
+> custom tool needs.
 
 The Designer Compendium is the designer-facing companion to the architecture
 Compendium. The architecture Compendium explains how Ascentia systems should be
@@ -13,7 +14,8 @@ Editor, what they can safely change, why each surface exists, and how a change
 should be validated.
 
 This page is intentionally conservative. It names source-visible surfaces and
-planned tool homes, but canonical Editor screenshots are still future work.
+planned tool homes. Placeholder images are allowed until real tools or surfaces
+exist, but canonical Editor screenshots are still future work.
 
 ## What This Page Answers
 
@@ -23,6 +25,8 @@ planned tool homes, but canonical Editor screenshots are still future work.
   native-only?
 - How should the work be validated before it becomes a public or production
   claim?
+- Which images are placeholders, and which images are real captured Editor
+  screenshots?
 
 ## Current Status Vocabulary
 
@@ -113,8 +117,15 @@ where those editors already handle the base authoring job.
 
 The current Designer Compendium is not screenshot-complete. The source branch
 contains a screenshot runbook and P0 capture queue for 46 planned canonical
-Editor screenshots. Screenshot folders should only be added when real captures
-exist. Evidence screenshots under `Saved/Automation/Evidence` or
+Editor screenshots. Placeholder images are expected while custom tools, report
+boards, local content, or source-visible surfaces cannot be captured yet.
+
+Placeholders must be visibly labeled, must live outside canonical `screenshots`
+folders, and must not be listed in `canonical_screenshots`. They keep the UI
+capture layer navigable, but they do not count as proof and they must not change
+a shot to `captured`.
+
+Evidence screenshots under `Saved/Automation/Evidence` or
 `Saved/AscentiaEvidence` must not be copied into the compendium as if they were
 canonical UI documentation.
 
