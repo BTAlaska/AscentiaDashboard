@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ascentia Designer Compendium</title>
+<style>
+  :root {
+    --bg: #101216; --panel: #181b21; --panel2: #1e222a; --border: #2a303a;
+    --text: #e6e2d8; --muted: #9aa0ad; --faint: #6a7080;
+    --gold: #c9a55c; --blue: #5aa9e6; --teal: #4fd1c5; --warn: #e8b84b;
+    --danger: #e0584f; --good: #57d98c; --code: #11151b;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.62 "Segoe UI", system-ui, sans-serif;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,165,92,0.08), transparent),
+      radial-gradient(ellipse 40% 40% at 100% 0%, rgba(90,169,230,0.06), transparent);
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: "Cascadia Mono", Consolas, monospace; background: var(--code); border: 1px solid #242a33; border-radius: 4px; padding: 1px 4px; font-size: 0.92em; color: #d9e7ff; }
+  .hero { border-bottom: 1px solid var(--border); background: linear-gradient(180deg, rgba(201,165,92,0.08), rgba(16,18,22,0)); }
+  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 24px 20px 30px; }
+  .topnav { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 26px; }
+  .topnav a { border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; color: var(--muted); background: rgba(255,255,255,0.02); font-size: 12px; }
+  .topnav a.active { color: var(--text); border-color: var(--gold); background: rgba(201,165,92,0.12); }
+  .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; font-size: 12px; margin-bottom: 8px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 38px; line-height: 1.12; color: var(--gold); margin: 0; }
+  .lede { max-width: 880px; margin: 10px 0 0; color: var(--muted); }
+  .meta { color: var(--faint); font-size: 12px; margin-top: 8px; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .hero-links a { border: 1px solid rgba(90,169,230,0.42); border-radius: 999px; padding: 5px 11px; font-size: 12px; background: rgba(90,169,230,0.09); }
+  .layout { max-width: 1180px; margin: 0 auto; padding: 22px 20px 70px; display: grid; grid-template-columns: 276px minmax(0, 1fr); gap: 24px; align-items: start; }
+  .toc { position: sticky; top: 14px; max-height: calc(100vh - 28px); overflow: auto; border: 1px solid var(--border); border-radius: 10px; background: rgba(24,27,33,0.96); padding: 14px; }
+  .toc h2 { font: 650 13px/1.2 "Segoe UI", system-ui, sans-serif; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+  .toc nav { display: grid; gap: 4px; }
+  .toc a { display: block; color: var(--muted); font-size: 12px; line-height: 1.3; padding: 4px 6px; border-radius: 6px; }
+  .toc a:hover, .toc a.active { color: var(--text); background: rgba(90,169,230,0.12); text-decoration: none; }
+  .doc { min-width: 0; }
+  section { scroll-margin-top: 20px; margin-bottom: 28px; }
+  .panel { background: rgba(24,27,33,0.62); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  h2 { font-family: Georgia, "Times New Roman", serif; color: var(--gold); font-size: 25px; line-height: 1.25; margin: 0 0 12px; }
+  p { margin: 9px 0; }
+  ul { margin: 8px 0 12px; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 10px; }
+  .principle { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; padding: 12px 13px; background: rgba(255,255,255,0.018); }
+  .principle b { display: block; color: var(--gold); margin-bottom: 4px; }
+  .principle p { margin: 0; color: var(--muted); font-size: 12.5px; }
+  .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+  .status-card { border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; background: var(--panel2); }
+  .status-card b { display: block; color: var(--blue); margin-bottom: 4px; }
+  .status-card p { color: var(--muted); margin: 0; font-size: 12.5px; }
+  .callout { border: 1px solid rgba(232,184,75,0.44); border-left: 3px solid var(--warn); border-radius: 8px; background: rgba(232,184,75,0.07); padding: 12px 14px; color: var(--muted); }
+  .callout b { color: var(--warn); }
+  .filterbox { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 12px 0 14px; }
+  .filterbox input { flex: 1; min-width: 220px; background: var(--panel2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 7px 10px; font-size: 13px; }
+  .filterbox span { color: var(--faint); font-size: 12px; }
+  .table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 8px; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; min-width: 760px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { color: var(--gold); background: rgba(201,165,92,0.08); font-weight: 650; font-size: 12.5px; }
+  td { color: var(--muted); font-size: 12.5px; }
+  td:first-child { color: var(--text); font-weight: 650; }
+  tr:last-child td { border-bottom: 0; }
+  .tag { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 1px 7px; margin: 2px 3px 2px 0; font-size: 11px; color: var(--muted); background: rgba(255,255,255,0.02); white-space: nowrap; }
+  .tag.source { color: var(--good); border-color: rgba(87,217,140,0.35); }
+  .tag.future { color: var(--warn); border-color: rgba(232,184,75,0.38); }
+  .sources { display: grid; gap: 6px; }
+  .sources a { overflow-wrap: anywhere; }
+  .backtop { position: fixed; right: 18px; bottom: 16px; border: 1px solid var(--border); background: var(--panel2); color: var(--muted); border-radius: 999px; padding: 7px 11px; font-size: 12px; }
+  @media (max-width: 880px) {
+    .layout { display: block; padding-top: 12px; }
+    .toc { position: relative; top: auto; max-height: none; margin-bottom: 16px; }
+    h1 { font-size: 29px; }
+    h2 { font-size: 21px; }
+    .panel { padding: 15px 16px; }
+  }
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <nav class="topnav" aria-label="Primary">
+      <a href="index.html">Dashboard</a>
+      <a href="compendium.html">Compendium</a>
+      <a class="active" href="designer-compendium.html">Designer Compendium</a>
+    </nav>
+    <div class="eyebrow">Ascentia editor surfaces</div>
+    <h1>Ascentia Designer Compendium</h1>
+    <p class="lede">The designer-facing map of where Ascentia work belongs in the Unreal Editor: what can be tuned, where to open it, why it exists there, and how to validate it without bypassing native ownership.</p>
+    <div class="meta">Dashboard-published on 2026-06-18 from <code>Docs/DesignerSurfaces</code>, branch <code>codex/designer-compendium</code>, source commit <code>31cb171</code>. Canonical Editor screenshots are still planned.</div>
+    <div class="hero-links">
+      <a href="https://github.com/BTAlaska/Ascentia/tree/codex/designer-compendium/Docs/DesignerSurfaces">Source atlas</a>
+      <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Coverage_Matrix.md">Coverage matrix</a>
+      <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Designer_Task_Index.md">Designer task index</a>
+    </div>
+  </div>
+</header>
+<main class="layout">
+  <aside class="toc" aria-label="Table of contents">
+    <h2>On This Page</h2>
+    <nav id="tocNav">
+      <a href="#purpose">Purpose</a>
+      <a href="#status">Status Vocabulary</a>
+      <a href="#surface-map">Surface Map</a>
+      <a href="#tasks">Common Tasks</a>
+      <a href="#native-only">Native-Only Stops</a>
+      <a href="#custom-tools">Custom Tool Candidates</a>
+      <a href="#screenshots">Screenshot Status</a>
+      <a href="#sources">Source Links</a>
+    </nav>
+  </aside>
+  <section class="doc">
+    <section class="panel" id="purpose">
+      <h2>Purpose</h2>
+      <p>The Designer Compendium is the practical companion to the architecture Compendium. The architecture Compendium explains how Ascentia systems should be built; this page explains where Designers are expected to work in the Unreal Editor and where they should stop.</p>
+      <div class="principles">
+        <div class="principle"><b>What</b><p>Designer-owned fields, data, assets, events, presentation hooks, and read-only telemetry.</p></div>
+        <div class="principle"><b>Where</b><p>Exact Editor homes: asset paths, Details categories, Blueprint APIs, tools, reports, or commandlets.</p></div>
+        <div class="principle"><b>Why</b><p>The reason a surface is designer-owned, stock Unreal, future custom tooling, or native-only.</p></div>
+        <div class="principle"><b>How</b><p>Safe edits, forbidden shortcuts, validation commands, and evidence paths that prove the change.</p></div>
+      </div>
+      <p class="callout"><b>Current honesty check:</b> this is a first dashboard-published atlas. It captures source-visible surfaces and future tool homes, but canonical Editor screenshots have not been captured yet.</p>
+    </section>
+
+    <section class="panel" id="status">
+      <h2>Status Vocabulary</h2>
+      <div class="status-grid">
+        <div class="status-card"><b>source_visible</b><p>Backed by C++ reflection, Blueprint exposure, current docs, project settings, stock assets, or existing reports. Screenshots may still be missing.</p></div>
+        <div class="status-card"><b>standard_editor</b><p>Use stock Unreal Editor workflows. Ascentia should add docs, validation, screenshots, and evidence around them.</p></div>
+        <div class="status-card"><b>planned</b><p>Intended surface, but not implemented as a designer-ready workflow.</p></div>
+        <div class="status-card"><b>missing_custom_tool</b><p>Stock Unreal UI is not enough for the workflow Ascentia needs.</p></div>
+        <div class="status-card"><b>native_only</b><p>Designers may read reports or telemetry, but should not author behavior there.</p></div>
+      </div>
+    </section>
+
+    <section class="panel" id="surface-map">
+      <h2>Current Editor Surface Map</h2>
+      <div class="filterbox">
+        <input id="surfaceSearch" type="search" placeholder="Filter surfaces, editor paths, or gaps...">
+        <span id="surfaceCount">12 surfaces</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Surface area</th><th>Open first</th><th>Designer-owned work</th><th>Boundary or next gap</th></tr></thead>
+          <tbody id="surfaceRows">
+            <tr data-filter="combat gasp dodge combos weapon feel bp_ascentiagaspplayer avatarcomponent root motion animation trail audio contact native combat feel lab"><td>Combat, GASP, dodge, combos, and weapon feel</td><td><code>BP_AscentiaGaspPlayer</code> Class Defaults, <code>AvatarComponent</code> Details, weapon animation slots, root-motion and dodge categories</td><td>Assign animation assets, root-motion slots, dodge feel, trail/audio/contact presentation, weapon family overrides, and debug visualization.</td><td>Gameplay authority, GAS cost/commit, damage, replication, save state, and action-window math stay native. <span class="tag future">Combat Feel Lab needed</span></td></tr>
+            <tr data-filter="items loot affixes spells skills content data assets datatables registry provenance package content registry browser"><td>Items, loot, affixes, spells, skills, and data content</td><td>Content Browser paths under <code>/Game/Ascentia/Design/Items</code>, <code>/Affixes</code>, <code>/LootTables</code>, <code>/Spells</code>, ability sets, and DataTables</td><td>Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, affix rules, loot weights, spell metadata, and row data.</td><td>Registry resolution, fallback debt, grants, package gates, and migrations need validators plus a Content Registry Browser. <span class="tag source">stock editors stay primary</span></td></tr>
+            <tr data-filter="magic spellbook eth flask targeting skill ui spell dataassets spellbookcomponent magic replay"><td>Magic, spellbook, Eth flask, targeting, and skill UI</td><td>Spell DataAssets, skill rows, <code>SpellbookComponent</code>, combat spell/Eth request nodes, and current input fallbacks</td><td>Assign starter spells, spell cost/display/cue fields, UI prompts, safe getters, and presentation events.</td><td>Eth spend, unlocks, cooldown authority, targeting, damage, save state, and replication stay native. <span class="tag future">Skill/Spell Forge future</span></td></tr>
+            <tr data-filter="inventory equipment menu loot window progression ui wbp_ascentiamenu inventoryscreen lootwindow stat allocation passives"><td>Inventory, equipment, menu, loot window, and progression UI</td><td><code>WBP_AscentiaMenu</code>, inventory widget trees, <code>UAscentiaInventoryScreen</code>, <code>UAscentiaLootWindow</code>, progression bindings</td><td>Skin slots, tabs, detail panels, active inventory panels, footprint anchor and covered-cell states, stat allocation, passive readouts, and optional UMG trees.</td><td>Mutations, footprint fit, item transactions, held cursor authority, passive activation, corpse-loot authority, and save state stay native.</td></tr>
+            <tr data-filter="narrative dialogue vendors tutorial prompts world state npc vendor worldstatesubsystem dialogue graph tree viewer"><td>Narrative, dialogue, vendors, tutorial prompts, and world state</td><td>NPC/vendor actor Details, Blueprint graphs using <code>UAscentiaWorldStateSubsystem</code>, and tutorial prompt calls</td><td>Edit current dialogue arrays, vendor-facing text, stock references, prompt copy, map/memory tags, and presentation events.</td><td>Branching dialogue, localization, VO, state simulation, and dependency graphs need Dialogue Graph and World State Tree Viewer tools.</td></tr>
+            <tr data-filter="enemy ai boss behavior encounters fog walls behavior tree blackboard boss definition"><td>Enemy AI, boss behavior, encounters, and fog walls</td><td>Enemy Blueprint/Class Defaults, stock Behavior Tree and Blackboard editors, <code>UAscentiaBossDefinition</code>, encounter and fog-wall actors</td><td>Assign Behavior Trees, Blackboard assets, AI tuning fields, boss phase thresholds, ability sets, music states, fog-wall links, and presentation hooks.</td><td>Target choice, damage, rewards, phase authority, fog-wall runtime state, encounter state, and save state stay native/evidence-owned.</td></tr>
+            <tr data-filter="world placement traversal campsites gates discovery fast travel endgame encounters level editor actors zone delivery validator"><td>World placement, traversal, campsites, gates, discovery, and endgame entries</td><td>Level Editor placed actor Details for campsites, gates, fast travel, discovery actors, encounter zones, boss fog walls, and endgame entry/exit actors</td><td>Set tags, identities, references, transforms, encounter spawn rows, extents, request fields, and presentation context.</td><td>Route safety, streaming readiness, reset policy, duplicate identities, and zone signoff need placement validators and a Zone Delivery Board.</td></tr>
+            <tr data-filter="presentation niagara gameplaycues camera rumble ui payoff audio music ambient boss cue coverage"><td>Presentation, Niagara, GameplayCues, camera, rumble, UI payoff, and audio</td><td>GameplayCue Blueprints, Niagara systems, item visual fields, <code>AvatarComponent</code> trail fields, ambient music actors, boss music rows, UMG widgets</td><td>Assign VFX/audio/camera/rumble/UMG presentation assets and implement event responses to native facts.</td><td>Do not build a custom Niagara editor. Need GameplayCue coverage, presentation event browser, audio route, and budget evidence.</td></tr>
+            <tr data-filter="character creator cosmetics armor visuals grooms cloth portraits visual override wornmesh avatar"><td>Character creator, cosmetics, armor visuals, grooms, cloth, and portraits</td><td>Current GASP visual override, character base equipment seams, item <code>WornMesh</code> fields, future avatar/cosmetic profiles</td><td>Assign visual override classes, leader/costume meshes, worn meshes, sockets/transforms, carry poses, animation mesh policy, and preview fields.</td><td>Stable avatar identity, hide masks, groom/cloth policy, portrait capture, and save migration need creator/cosmetic labs.</td></tr>
+            <tr data-filter="tools evidence build doctor mutation safety reports project settings descriptors profiles registry evidence browser"><td>Tools, evidence, Build Doctor, mutation safety, and reports</td><td>Project Settings &gt; Ascentia Tooling, descriptor/profile assets, Build Doctor commandlet direction, report roots, Tool Registry/Evidence Browser backends</td><td>Configure descriptor roots, profile roots, dry-run roots, report roots, scan roots, and inspect report output.</td><td>Visual Tool Registry, Evidence Browser, Mutation Preview, manifest validator, and evidence bridge are not complete yet.</td></tr>
+            <tr data-filter="accessibility settings glyphs subtitles readability public claims ui prompts acceptance boards"><td>Accessibility, settings, glyphs, subtitles, readability, and public claims</td><td>Current UI/input/prompt hooks, future settings/glyph/accessibility profile assets, UMG surfaces</td><td>Skin readable UI, plan glyph/subtitle/caption/motion/flash settings, collect acceptance proof, and expose setting propagation.</td><td>Public claims, waivers, accessibility acceptance, and compliance gates need evidence-backed boards.</td></tr>
+            <tr data-filter="governance compliance external content performance release unreal insights uat gauntlet waiver artifact"><td>Governance, compliance, external content, performance, and release</td><td>Current mock reports, cadence/public-claim-freeze mock, stock Unreal Insights/stat/UAT/Gauntlet tools, and future profile assets</td><td>Inspect source/license/provenance, claim rows, waivers, package blockers, performance scenarios, release candidates, artifacts, and dashboard cards.</td><td>Synthetic mocks do not pass release gates. Production boards must import structured evidence and expose waivers.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="tasks">
+      <h2>Common Designer Tasks</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Task</th><th>Open first</th><th>Validate with</th></tr></thead>
+          <tbody>
+            <tr><td>Tune dodge, root motion, weapon animation, or combat feel</td><td><code>BP_AscentiaGaspPlayer</code> Class Defaults and <code>AvatarComponent</code> Details</td><td><code>Tools/gasp_controls_surface.py</code>, <code>gasp_dodge_motion</code>, and <code>gasp_attack_dodge_cancel</code></td></tr>
+            <tr><td>Add items, affixes, loot, lore, spells, abilities, or row content</td><td>Content Browser design paths and DataTables</td><td>Equipment/stat audits, inventory lifecycle audit, relevant remote playtest, and future Data Validation reports</td></tr>
+            <tr><td>Build spellbook, Eth flask, targeting, or magic UI</td><td>Spell DataAssets, spellbook component, and magic request nodes</td><td><code>spellbook_surface</code>, <code>spell_eth</code>, and <code>eth_potion</code> remote playtests</td></tr>
+            <tr><td>Skin inventory, equipment, menu, loot, or progression UI</td><td>Menu/inventory WBP paths and native fallback screen bindings</td><td><code>gasp_inventory_interaction</code>, <code>stat_investment</code>, <code>threshold_passive</code>, and UX mock reports</td></tr>
+            <tr><td>Write NPC dialogue, vendor copy, lore beats, or tutorial prompts</td><td>NPC/vendor Details, world-state subsystem calls, and tutorial prompt subsystem</td><td><code>npc_dialogue</code>, <code>vendor_trade</code>, <code>world_state_objective</code>, and <code>tutorial_prompt</code></td></tr>
+            <tr><td>Modify AI, Behavior Trees, Blackboard, or boss phases</td><td>Enemy Class Defaults, stock BT/BB editors, boss definition assets</td><td><code>bt_asset_ai</code>, <code>bt_phase_ai</code>, <code>boss_phase</code>, and <code>boss_presentation</code></td></tr>
+            <tr><td>Place traversal, discovery, fast-travel, camp, fog-wall, or endgame actors</td><td>Level Editor placed actor Details</td><td><code>fog_wall</code>, relevant playtest scenario, zone validator mock, and future placement/zone reports</td></tr>
+            <tr><td>Adjust Niagara, GameplayCues, camera, rumble, or UI payoff</td><td>GameplayCue Blueprints, Niagara, item visual fields, UMG, and presentation events</td><td><code>impact_cue</code>, <code>status_payload</code>, and future cue coverage and presentation budget reports</td></tr>
+            <tr><td>Inspect tools, evidence, Build Doctor, or mutation safety</td><td>Ascentia Tooling settings, descriptor/profile assets, commandlet reports</td><td><code>AscentiaRunToolCommandlet -ToolId=BuildDoctor -DryRun</code>, editor tooling tests, and manifest validation</td></tr>
+            <tr><td>Budget performance, release candidates, artifacts, waivers, or regression health</td><td>Performance/pipeline mock outputs and future release boards</td><td>Performance scenario mock, Agent 10 release mock, future packaged scenario and release candidate reports</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="native-only">
+      <h2>Native-Only Stops</h2>
+      <p>Stop at docs/evidence and route through native implementation work when a task requires:</p>
+      <ul>
+        <li>authoritative gameplay state changes, damage application, rewards, inventory grants, currency mutation, spell unlocks, boss phase authority, encounter runtime state, or fog-wall runtime state;</li>
+        <li>replication, Iris/Mover policy, server RPC validation, rollback, or audit logs;</li>
+        <li>save/load internals, migration code, durable schema ownership, or release compatibility gates;</li>
+        <li>evidence report schemas, mutation guard behavior, source-control/session guard policy, or commandlet repair execution;</li>
+        <li>public claims, legal/privacy/rating policy, player data handling, or release signoff.</li>
+      </ul>
+    </section>
+
+    <section class="panel" id="custom-tools">
+      <h2>Definite Custom Tool Candidates</h2>
+      <p>These tools are worth planning because stock Unreal Editor surfaces will not give Designers enough context by themselves. They should inspect, validate, preview, and produce evidence. They should not replace stock Unreal editors where those editors already handle the base authoring job.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tool</th><th>Why Ascentia needs it</th><th>First write policy</th></tr></thead>
+          <tbody>
+            <tr><td>Content Registry Browser</td><td>Shows resolved source, fallback debt, schema drift, source manifests, generated/external status, and package blockers across DataAssets, DataTables, registry rows, and fallbacks.</td><td>Reports only until guarded import/promotion exists.</td></tr>
+            <tr><td>World State Tree Viewer</td><td>Shows active/completed tags, objective dependencies, dialogue/vendor/tutorial sources, persistence status, stale tags, fixture state, and evidence.</td><td>Read-only first.</td></tr>
+            <tr><td>Dialogue Graph and Preview</td><td>Branching dialogue, localization, VO, subtitle rules, and state simulation outgrow actor arrays quickly.</td><td>Compile to validated dialogue data once policy exists.</td></tr>
+            <tr><td>AI Evidence Labs and Boss Move Matrix</td><td>Stock BT/BB editors do not show resolved enemy definitions, blackboard contracts, perception/threat decisions, reset policy, boss move quality, and latest evidence together.</td><td>Reports and guarded profile updates only.</td></tr>
+            <tr><td>GameplayCue Coverage Matrix</td><td>Designers own VFX/audio/camera/UI payoff, but every emitted cue/event needs visible coverage and scenario evidence.</td><td>Reports only.</td></tr>
+            <tr><td>Avatar Creator and Cosmetics Labs</td><td>Runtime assembly, stable save identity, hide-mask conflicts, PhysicsAsset/groom/cloth blockers, portrait drift, and stale evidence need a unified inspector.</td><td>Guarded data/profile writes only.</td></tr>
+            <tr><td>Item Economy and Reward Labs</td><td>Atomic transactions, price balance, vendor persistence, crafting/salvage outcomes, item identity, Below rewards, and deterministic replay cannot be proven in stock panels.</td><td>Guarded profile/data writes plus reports.</td></tr>
+            <tr><td>Save Progression and Migration Labs</td><td>Slot summaries, fragments, migration fixtures, async results, checkpoint identity, old-save compatibility, and release gates need visible proof.</td><td>Reports and guarded profile changes only.</td></tr>
+            <tr><td>Skill/Spell Forge and Magic Replay Labs</td><td>Spell cost, cooldown, targeting, delivery, spellbook state, flask policy, cue coverage, UI prompts, and latest evidence need one relationship view.</td><td>Guarded profile/data writes plus reports.</td></tr>
+            <tr><td>Performance Budget and Scenario Boards</td><td>Insights/stat tools diagnose runs, but Ascentia needs target profiles, scenario identity, artifacts, percentiles, asset weights, scalability policy, trend deltas, and blockers.</td><td>Reports and guarded profile changes only.</td></tr>
+            <tr><td>Release Candidate and Artifact Boards</td><td>UAT logs, staged folders, regression evidence, waivers, artifact manifests, and cadence verdicts are too scattered for producer decisions.</td><td>Candidate, waiver, and artifact report outputs.</td></tr>
+            <tr><td>Surface Manifest Validator and Evidence Bridge</td><td>The compendium will rot without checks for broken docs, screenshots, IDs, statuses, validation references, missing proof, and stale proof.</td><td>CI/build-doctor style report output.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="screenshots">
+      <h2>Screenshot Status</h2>
+      <p>The current Designer Compendium is not screenshot-complete. The source branch contains a screenshot runbook and P0 capture queue for 46 planned canonical Editor screenshots. Screenshot folders should only be added when real captures exist.</p>
+      <p>Evidence screenshots under <code>Saved/Automation/Evidence</code> or <code>Saved/AscentiaEvidence</code> must not be copied into the compendium as if they were canonical UI documentation.</p>
+    </section>
+
+    <section class="panel" id="sources">
+      <h2>Source Links</h2>
+      <div class="sources">
+        <a href="https://github.com/BTAlaska/Ascentia/tree/codex/designer-compendium/Docs/DesignerSurfaces">Designer atlas source</a>
+        <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/README.md">Atlas entry point</a>
+        <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Coverage_Matrix.md">Coverage matrix</a>
+        <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Designer_Task_Index.md">Designer task index</a>
+        <a href="Designer_Compendium.md">Dashboard source Markdown</a>
+      </div>
+    </section>
+  </section>
+</main>
+<a class="backtop" href="#top">Back to top</a>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const active = document.querySelector('#tocNav a.active');
+    if (active) active.classList.remove('active');
+    const next = document.querySelector('#tocNav a[href="#' + CSS.escape(visible.target.id) + '"]');
+    if (next) next.classList.add('active');
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: [0, 0.2, 0.5, 1] });
+  document.querySelectorAll('.doc section[id]').forEach(section => observer.observe(section));
+
+  const surfaceSearch = document.getElementById('surfaceSearch');
+  const surfaceCount = document.getElementById('surfaceCount');
+  const rows = Array.from(document.querySelectorAll('#surfaceRows tr'));
+  surfaceSearch.addEventListener('input', () => {
+    const q = surfaceSearch.value.trim().toLowerCase();
+    let visible = 0;
+    for (const row of rows) {
+      const show = !q || row.dataset.filter.includes(q) || row.textContent.toLowerCase().includes(q);
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    }
+    surfaceCount.textContent = visible + ' surfaces';
+  });
+</script>
+</body>
+</html>
+

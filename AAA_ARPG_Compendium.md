@@ -26,6 +26,11 @@ exist at AAA scale:
 - what presentation hooks make the feature feel alive;
 - what future phases must preserve.
 
+The Dashboard mirror also hosts a Designer Compendium page for the practical
+Editor-facing what/where/why/how map. Use that companion when the question is
+where a Designer should tune data, author content, skin UI, bind presentation,
+place actors, run evidence, or stop at a native-only boundary.
+
 The core principle is already present in `Docs/Architecture/00_Overview.md`:
 lower tiers provide stable contracts, higher tiers author content and feel.
 This compendium turns that into a per-system build manual.

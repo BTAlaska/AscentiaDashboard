@@ -91,6 +91,8 @@
   }
 
   .handoff-intro { color: var(--muted); font-size: 13px; margin: -4px 0 12px; max-width: 840px; }
+  .atlas-callout { border-left: 3px solid var(--blue); background: rgba(90,169,230,0.07); border-radius: 8px; padding: 9px 12px; max-width: 900px; }
+  .atlas-callout a { color: var(--blue); }
   .handoff-toolbar {
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
     background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px;
@@ -206,6 +208,7 @@
   <nav class="topnav" aria-label="Primary">
     <a class="active" href="index.html">Dashboard</a>
     <a href="compendium.html">Compendium</a>
+    <a href="designer-compendium.html">Designer Compendium</a>
   </nav>
   <div class="hero-inner">
     <h1 id="title"></h1>
@@ -242,6 +245,9 @@
   <h2>Designer handoff cards</h2>
   <p class="handoff-intro">
     These cards explain the next designer work in plain English. Open one card at a time, make the listed assets or Blueprint changes, then use the manual and remote checks to prove the feature is moving from native scaffold to player-facing game feel.
+  </p>
+  <p class="handoff-intro atlas-callout">
+    Use <a href="designer-compendium.html">Designer Compendium</a> for the wider Editor-surface map: what Designers can change, where to open it, why the boundary exists, and how the change should be validated.
   </p>
   <div class="handoff-toolbar" id="handoffToolbar">
     <span class="label">Show:</span>
@@ -670,7 +676,8 @@
     '(<code>have | partial | missing</code>) and its note, bump <code>updated</code>, reload. ' +
     'Keep the source doc and the fix log in sync. Host with <code>serve.ps1</code> ' +
     '(http://localhost:8765) or just open <code>index.html</code> directly. ' +
-    'Use <a href="compendium.html">compendium.html</a> for the full architecture reference. ' +
+    'Use <a href="compendium.html">compendium.html</a> for the full architecture reference and ' +
+    '<a href="designer-compendium.html">designer-compendium.html</a> for the Editor-surface atlas. ' +
     'The rune-circle hero uses three.js from a pinned CDN — without a connection the ' +
     'dashboard simply renders without it.';
 })();

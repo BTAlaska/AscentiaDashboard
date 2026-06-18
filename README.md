@@ -12,11 +12,15 @@ plan badge (P11/P12 phase plan, backlog, designed-in-xlsx, Landscry, unplanned).
 This is a **deploy mirror** — a dependency-free static site (no build step).
 Render serves the repo root; every push to `main` auto-deploys.
 
-The companion architecture reference is available as a separate static page:
+The companion references are available as separate static pages:
 
 - `index.html` - dashboard / status view
 - `compendium.html` - Ascentia Compendium with linked table of contents
+- `designer-compendium.html` - Designer Compendium with the current Editor
+  surface map, native-only stops, screenshot status, and custom tool candidates
 - `AAA_ARPG_Compendium.md` - source Markdown for the rendered compendium page
+- `Designer_Compendium.md` - source Markdown for the rendered Designer
+  Compendium page
 
 The status source of truth is shared:
 
@@ -24,6 +28,8 @@ The status source of truth is shared:
   `Docs/README.md`, `Docs/Ascentia_MVP_Phases.md`,
   `Docs/Ascentia_Designer_Systems_Plan.md`, and
   `Docs/Feature_Gap_Analysis_2026-06-12.md`
+- designer-surface docs in the Ascentia project under
+  `Docs/DesignerSurfaces` on the current Designer Compendium branch
 - this repo's `gap-data.js`, which is the deployable dashboard data
 
 The Ascentia project may also have an ignored local dashboard copy
@@ -50,7 +56,9 @@ Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
 |---|---|
 | `index.html` | The dashboard (vanilla HTML/CSS/JS, no dependencies) |
 | `compendium.html` | The rendered Ascentia Compendium, including anchored headings and a filterable table of contents |
+| `designer-compendium.html` | The rendered Designer Compendium, including Editor surface map, task routing, and custom tool candidates |
 | `AAA_ARPG_Compendium.md` | Source Markdown for the rendered compendium |
+| `Designer_Compendium.md` | Source Markdown for the rendered Designer Compendium |
 | `gap-data.js` | All feature statuses — the only file that changes routinely |
 | `serve.ps1` | Optional local server (TcpListener, no admin needed) |
 | `sync-from-ascentia.ps1` | Legacy helper for pulling an intentionally refreshed ignored local Ascentia dashboard copy |
