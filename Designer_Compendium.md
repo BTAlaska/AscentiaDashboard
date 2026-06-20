@@ -1,8 +1,9 @@
 # Ascentia Designer Compendium
 
-> Status: first dashboard-published atlas, 2026-06-18.
+> Status: first dashboard-published atlas, synchronized with endgame
+> itemization/economy source data on 2026-06-20.
 > Source: `Docs/DesignerSurfaces` on `BTAlaska/Ascentia`, branch
-> `codex/designer-compendium`, source commit `576ea8f`.
+> `codex/designer-compendium`, source commit `717b343`.
 > Scope: designer-facing map of Ascentia Editor surfaces, safe tuning paths,
 > native boundaries, placeholder image policy, evidence requirements, and future
 > custom tool needs.
@@ -16,6 +17,29 @@ should be validated.
 This page is intentionally conservative. It names source-visible surfaces and
 planned tool homes. Placeholder images are allowed until real tools or surfaces
 exist, but canonical Editor screenshots are still future work.
+
+## 2026-06-20 Itemization/Economy Sync
+
+The Designer-facing itemization entry points now point at implemented source
+data and runtime contracts, not a future-only affix plan:
+
+- Edit/review source rows under `Tools/data/item_affixes/` before treating
+  generated Unreal assets as truth.
+- Use `Tools/data/build_endgame_item_affix_pack.py` to regenerate the source
+  pack and `Tools/data/import_item_affix_data_assets.py` for generated data
+  asset imports.
+- Run `python Tools/data/validate_item_affix_data.py` after data edits. The
+  validator covers schema rows, rarity budgets, natural affix depth,
+  build-archetype coverage, loot profiles, curve bindings, crafting recipes,
+  unique-power fixtures, and source-contract hooks.
+- Runtime ownership is native: loot rolls through `UAscentiaLootSubsystem`,
+  reward grants through `UAscentiaRewardGrantSubsystem`, affix crafting through
+  `UAscentiaInventoryComponent` transaction helpers, and vendor purchases
+  through `AAscentiaVendorNPC` purchase transactions.
+- Designer gaps are now presentation and tooling: crafting/vendor/salvage UI,
+  unique-power tooltip/cue presentation, resolved-content provenance browser,
+  economy simulation board, canonical screenshots, and surface-to-evidence
+  bridge.
 
 ## What This Page Answers
 
@@ -47,7 +71,7 @@ exist, but canonical Editor screenshots are still future work.
 | Surface area | Open first | Designer-owned work | Boundary or next gap |
 | --- | --- | --- | --- |
 | Combat, GASP, dodge, combos, and weapon feel | `BP_AscentiaGaspPlayer` Class Defaults, `AvatarComponent` Details, weapon animation slots, root-motion and dodge categories | Assign animation assets, root-motion slots, dodge feel, trail/audio/contact presentation, weapon family overrides, and debug visualization | Gameplay authority, GAS cost/commit, damage, replication, save state, and action-window math stay native. Combat Feel Lab is still needed. |
-| Items, loot, affixes, spells, skills, and data content | Content Browser paths under `/Game/Ascentia/Design/Items`, `/Affixes`, `/LootTables`, `/Spells`, ability sets, and DataTables | Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, affix rules, loot weights, spell metadata, and row data | Registry resolution, fallback debt, grants, package gates, and migrations need validators plus a Content Registry Browser. |
+| Items, loot, affixes, spells, skills, and data content | Content Browser paths under `/Game/Ascentia/Design/Items`, `/Affixes`, `/LootTables`, `/Spells`, ability sets, DataTables, and source CSV/JSON under `Tools/data/item_affixes/` | Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, 209 affix rows, rarity budgets, unique-power metadata, loot profiles, spell metadata, and row data | Registry resolution, fallback debt, generated asset freshness, grants, package gates, and migrations need validators plus a Content Registry Browser. |
 | Magic, spellbook, Eth flask, targeting, and skill UI | Spell DataAssets, skill rows, `SpellbookComponent`, combat spell/Eth request nodes, and current input fallbacks | Assign starter spells, spell cost/display/cue fields, UI prompts, safe getters, and presentation events | Eth spend, unlocks, cooldown authority, targeting, damage, save state, and replication stay native. Skill/Spell Forge and replay labs are future. |
 | Inventory, equipment, menu, loot window, and progression UI | `WBP_AscentiaMenu`, inventory widget trees, `UAscentiaInventoryScreen`, `UAscentiaLootWindow`, progression bindings | Skin slots, tabs, detail panels, active inventory panels, footprint anchor and covered-cell states, stat allocation, passive readouts, and optional UMG trees | Mutations, footprint fit, item transactions, held cursor authority, passive activation, corpse-loot authority, and save state stay native. |
 | Narrative, dialogue, vendors, tutorial prompts, and world state | NPC/vendor actor Details, Blueprint graphs using `UAscentiaWorldStateSubsystem`, and tutorial prompt calls | Edit current dialogue arrays, vendor-facing text, stock references, prompt copy, map/memory tags, and presentation events | Branching dialogue, localization, VO, state simulation, and dependency graphs need Dialogue Graph and World State Tree Viewer tools. |
@@ -106,7 +130,7 @@ where those editors already handle the base authoring job.
 | AI Evidence Labs and Boss Move Matrix | Stock BT/BB editors do not show resolved enemy definitions, blackboard contracts, perception/threat decisions, reset policy, boss move quality, and latest evidence together | Reports and guarded profile updates only |
 | GameplayCue Coverage Matrix | Designers own VFX/audio/camera/UI payoff, but every emitted cue/event needs visible coverage and scenario evidence | Reports only |
 | Avatar Creator and Cosmetics Labs | Runtime assembly, stable save identity, hide-mask conflicts, PhysicsAsset/groom/cloth blockers, portrait drift, and stale evidence need a unified inspector | Guarded data/profile writes only |
-| Item Economy and Reward Labs | Atomic transactions, price balance, vendor persistence, crafting/salvage outcomes, item identity, Below rewards, and deterministic replay cannot be proven in stock panels | Guarded profile/data writes plus reports |
+| Item Economy and Reward Labs | Atomic vendor/crafting/reward transactions, price balance, vendor persistence, crafting/salvage outcomes, item identity, unique-power activation posture, Below rewards, and deterministic replay cannot be proven in stock panels | Guarded profile/data writes plus reports |
 | Save Progression and Migration Labs | Slot summaries, fragments, migration fixtures, async results, checkpoint identity, old-save compatibility, and release gates need visible proof | Reports and guarded profile changes only |
 | Skill/Spell Forge and Magic Replay Labs | Spell cost, cooldown, targeting, delivery, spellbook state, flask policy, cue coverage, UI prompts, and latest evidence need one relationship view | Guarded profile/data writes plus reports |
 | Performance Budget and Scenario Boards | Insights/stat tools diagnose runs, but Ascentia needs target profiles, scenario identity, artifacts, percentiles, asset weights, scalability policy, trend deltas, and blockers | Reports and guarded profile changes only |

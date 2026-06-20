@@ -89,7 +89,7 @@
     <div class="eyebrow">Ascentia production architecture</div>
     <h1>Ascentia Compendium</h1>
     <p class="lede">The living build manual for Ascentia systems: native ownership, designer surfaces, data contracts, runtime links, verification, and future phase guardrails.</p>
-    <div class="meta">Generated from <code>Docs/Architecture/AAA_ARPG_Compendium.md</code> on 2026-06-15. 398 anchored sections. Source SHA-256 prefix: <code>45267b285bea</code>.</div>
+    <div class="meta">Generated from <code>Docs/Architecture/AAA_ARPG_Compendium.md</code> on 2026-06-20. 398 anchored sections. Source commit <code>717b343</code>. Source SHA-256 prefix: <code>3a583779fd3e</code>.</div>
     <p class="companion">Need the Editor-facing what/where/why/how map? Open <a href="designer-compendium.html">Designer Compendium</a> for designer-owned surfaces, native-only stops, screenshot status, and definite custom tool candidates.</p>
   </div>
 </header>
@@ -500,7 +500,7 @@
   <section class="doc">
     <article>
 <h1 id="ascentia-aaa-open-world-arpg-architecture-compendium"><a class="anchor" href="#ascentia-aaa-open-world-arpg-architecture-compendium" aria-label="Link to this section">#</a>Ascentia AAA Open-World ARPG Architecture Compendium</h1>
-<blockquote><p>Status: draft 0.1, 2026-06-15. Scope: living production architecture for how each step of the Ascentia plan should be written, authored, validated, and connected. This is not a per-line code library. It is the near-code design contract that should make per-line implementation obvious.</p></blockquote>
+<blockquote><p>Status: draft 0.2, 2026-06-20. Scope: living production architecture for how each step of the Ascentia plan should be written, authored, validated, and connected. This is not a per-line code library. It is the near-code design contract that should make per-line implementation obvious.</p></blockquote>
 <h2 id="0-purpose"><a class="anchor" href="#0-purpose" aria-label="Link to this section">#</a>0. Purpose</h2>
 <p>Ascentia is currently a verified single-player vertical slice plus a fast-growing set of native systems. The next danger is not &quot;can the code do one more thing?&quot; The danger is that every new feature becomes a one-off path, every Blueprint surface drifts, every row format forks, and the eventual open world becomes a pile of local exceptions.</p>
 <p>This compendium exists to prevent that. It documents how Ascentia systems should exist at AAA scale:</p>
@@ -2669,16 +2669,9 @@ P11T-008 Dashboard and package gates
 <p>Items should be the long-term build engine. The player should compare base item, quality, affixes, requirements, weight, moveset, skill, damage schools, status, defense, and utility effects. Good gear should create choices, not only larger numbers.</p>
 <h3 id="7-2-current-ascentia-state"><a class="anchor" href="#7-2-current-ascentia-state" aria-label="Link to this section">#</a>7.2 Current Ascentia state</h3>
 <p>Working pieces:</p>
-<ul><li><code>UAscentiaItemDefinition</code>, <code>UAscentiaAffixDefinition</code>,</li></ul>
-<p><code>UAscentiaLootTableAsset</code> as PrimaryDataAssets.</p>
-<ul><li><code>UAscentiaItemRegistrySubsystem</code> registers native fallbacks and scans primary</li></ul>
-<p>assets.</p>
-<ul><li><code>UAscentiaLootSubsystem</code> rolls deterministic and weighted entries, applies</li></ul>
-<p>affixes, and generates item names.</p>
-<ul><li><code>UAscentiaInventoryComponent</code> owns item stacks and equipment slots.</li><li><code>UAscentiaInventoryScreen</code> provides native UI.</li><li><code>FAscentiaItemDefinitionRow</code>, <code>FAscentiaAffixRow</code>,</li></ul>
-<p><code>FAscentiaWeaponTypeRow</code>, <code>FAscentiaLootTableRow</code>, and related row types exist in <code>AscentiaTypes.h</code>.</p>
+<ul><li><code>UAscentiaItemDefinition</code>, <code>UAscentiaAffixDefinition</code>, <code>UAscentiaLootTableAsset</code>, <code>UAscentiaRarityBudgetTableAsset</code>, <code>UAscentiaAffixEffectPayloadProfileDefinition</code>, <code>UAscentiaAffixCraftingRecipeDefinition</code>, and <code>UAscentiaUniquePowerDefinition</code> exist as PrimaryDataAssets.</li><li><code>UAscentiaItemRegistrySubsystem</code> registers native fallbacks and scans primary assets, including generated rarity budgets, unique-power metadata, payload profiles, crafting recipes, and generated loot tables when imported.</li><li><code>UAscentiaLootSubsystem</code> rolls deterministic and weighted entries, applies affixes, generates item names, filters natural rolls by rarity budgets, item-power gates, allowed/blocked item tags, blocked affix groups, unique-roll posture, and loot-profile eligible affix groups, and validates source/world tier roll context before mutating reward output.</li><li><code>UAscentiaInventoryComponent</code> owns item stacks and equipment slots.</li><li><code>UAscentiaRewardGrantSubsystem</code> owns named currency and item reward grants, duplicate grant guards, and save-facing reward snapshots.</li><li><code>UAscentiaInventoryScreen</code> provides native UI.</li><li><code>AAscentiaVendorNPC</code> routes purchases through an explicit transaction path that validates stock, prechecks currency balances, stages inventory grants, spends named currency, records before/after balance data, rejects sold-out or insufficient-currency paths without mutation, and rolls inventory back if the final spend fails.</li><li><code>FAscentiaItemDefinitionRow</code>, <code>FAscentiaAffixRow</code>, <code>FAscentiaWeaponTypeRow</code>, <code>FAscentiaLootTableRow</code>, and related row types exist in <code>AscentiaTypes.h</code>.</li><li>The source-controlled endgame data pack under <code>Tools/data/item_affixes/</code> currently carries 209 affix rows, 16 mythic/unique item and power rows, 14 loot profiles, 8 affix-crafting recipes, 57 balance curve rows, 225 curve bindings, and generated audit/fixture tables for roll depth, eligibility, build archetype coverage, loot distribution, payload profiles, crafting transactions, unique-power activations, and unique-power behaviors.</li><li><code>Tools/data/validate_item_affix_data.py</code> is the current source-contract gate.</li></ul>
 <p>Core gap:</p>
-<ul><li>row structs and PrimaryDataAssets are not fully reconciled;</li><li>native fallback registry still carries too much content;</li><li>affix power is still too narrow;</li><li>equip effects exist in concept but are not yet the full source of item power.</li></ul>
+<ul><li>generated <code>.uasset</code> DataTables/DataAssets are still artifacts of import, not the only source of truth;</li><li>final Editor authoring surfaces for crafting, unique-power inspection, economy simulation, and resolved content provenance are still planned;</li><li>affix payload execution and full unique-power behavior materialization are not complete for every generated payload row;</li><li>item comparison, stash, salvage, selling/buyback, upgrade paths, lore text, icons/meshes, and full player-facing presentation remain P16 content/UI work;</li><li>native fallback content should keep shrinking as generated source data becomes the reviewed design source.</li></ul>
 <h3 id="7-3-aaa-target-behavior"><a class="anchor" href="#7-3-aaa-target-behavior" aria-label="Link to this section">#</a>7.3 AAA target behavior</h3>
 <p>The item system should be built as two linked truths:</p>
 <ol><li>Bulk numeric truth in DataTables.</li><li>Object/reference truth in PrimaryDataAssets.</li></ol>
@@ -2729,6 +2722,7 @@ Ascentia.Mod.Resource.Breath.Regen.Flat
 Ascentia.Mod.Weight.Reduction.Percent
 Ascentia.Mod.OnHit.Bleed.Chance</code></pre>
 <p>This directly supports Diablo-style meaningful choices: one item can be locally strong but globally awkward because its modifier tags do not support the current build threshold, resource loop, resistance plan, or skill identity.</p>
+<p><strong>Current implementation note:</strong> the source affix pack now has the shape of this target system. Natural prefix/suffix rolls are filtered by rarity budget, quality, item power, item tags, group exclusions, loot-profile eligible groups, and unique-roll posture. Crafted, implicit, corruption, and fixed unique layers are represented in source data and explicit application fixtures. Generated payload profile metadata and unique-power behavior rows are imported and validated, but the remaining work is to materialize every non-attribute payload into runtime combat/effect behavior and player-facing presentation.</p>
 <h3 id="7-5-equipment-to-combat-profile"><a class="anchor" href="#7-5-equipment-to-combat-profile" aria-label="Link to this section">#</a>7.5 Equipment to combat profile</h3>
 <p>Combat should not ask inventory for one damage bonus. Combat should ask for an effective profile.</p>
 <pre><code class="language-text">FAscentiaWeaponProfile

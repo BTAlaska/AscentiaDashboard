@@ -10,9 +10,9 @@
 const GAP_META = {
   title: 'Ascentia — AAA Gap Dashboard',
   benchmark: 'Benchmark: Elden Ring (open-world Soulslike) + PoE/D4 itemization',
-  updated: '2026-06-14',
-  sourceDoc: 'Docs/Feature_Gap_Analysis_2026-06-12.md',
-  reviewDoc: 'Docs/Code_Review_2026-06-11.md (fix log = live backlog)',
+  updated: '2026-06-20',
+  sourceDoc: 'Docs/Architecture/Item_Affix_Data_Contract.md',
+  reviewDoc: 'Docs/Architecture/AAA_ARPG_Compendium.md + Docs/DesignerSurfaces/README.md',
 };
 
 const PROGRESS_HISTORY = [
@@ -59,6 +59,7 @@ const PROGRESS_HISTORY = [
   { t: '2026-06-13 06:19', label: 'P15 Eth potion + flask pools', have: 18, partial: 58, missing: 58, verified: 44, note: 'Eth potion charges/restores/refills are native and verified; flask charge pools now exist, while allocation/upgrades remain designer/economy work.' },
   { t: '2026-06-14 04:00', label: 'GASP locomotion + AssassinGirl', have: 18, partial: 59, missing: 57, verified: 44, note: 'Architecture track (branch claude/phase2-mover-split, hand-validated in PIE — not the remote harness, so verified count unchanged): GASP motion-matching was hand-ported 5.7→5.8 across the Mover API break, AssassinGirl retargets through GASP’s VisualOverride costume system, and the player path is now re-based onto BP_AscentiaGaspPlayer + GM_GaspTest with Ascentia GAS/combat/HUD/input restored. Turn-in-place / start-stop / lean is partial through GASP; the active gate is now a P11 smoke/feel pass, not another pawn re-base.' },
   { t: '2026-06-14 14:17', label: 'GASP MVP stabilization docs', have: 18, partial: 59, missing: 57, verified: 44, note: 'Dashboard/doc sync pass: P14/P15 no longer marked future-only, local GASP fixes are reflected, and the next gate is hands-on PIE smoke for LMB attack trail/whoosh, E interact, I inventory, camera collision, no surprise boss spawn, and no Blueprint runtime errors.' },
+  { t: '2026-06-20 06:35', label: 'Endgame affix/economy spine', have: 18, partial: 61, missing: 55, verified: 48, note: 'P16 moved from future-only to active implementation: 209 source affixes, 16 mythic/unique powers, 14 loot profiles, 8 affix-crafting recipes, curve bindings, importer/validator/simulator coverage, native affix crafting transactions, named currency grants, vendor purchase rollback, item-power/world-tier loot context gates, and runtime automation/build validation. Remote playtest scenario count is still the next proof gap.' },
 ];
 
 const DESIGNER_HANDOFFS = [
@@ -434,24 +435,24 @@ const DESIGNER_HANDOFFS = [
   {
     phase: 'P16',
     title: 'Items, upgrades, crafting, and economy',
-    status: 'Future phase. Needs content pipeline pass.',
+    status: 'Data and runtime spine active. Needs UI/content pass.',
     tags: ['Blueprint', 'UI', 'Data', 'Balance', 'Settings'],
-    what: 'The item system exists, but the game needs many more items, upgrades, crafting choices, and economy sinks.',
+    what: 'The endgame affix pack now has hundreds of reviewed rows, mythic uniques, loot profiles, crafting recipes, curve bindings, and native transaction paths. Your job is to turn that power into readable loot, crafting, vendors, and upgrade UX.',
     why: 'Loot only feels good when players have reasons to compare, keep, upgrade, sell, craft, or replace items.',
-    where: 'Work in item DataAssets, affix tables, loot tables, crafting UI, vendor UI, upgrade UI, item icons, and balance sheets.',
+    where: 'Work in item DataAssets, affix CSV/Excel exports, generated DataTables/DataAssets, loot profiles, crafting UI, vendor UI, upgrade UI, item icons, balance curves, and validation reports.',
     how: [
-      'Create item families and rarity examples for each early zone.',
+      'Review the generated affix and unique-power catalog for build identity, naming, and dead rows.',
       'Design upgrade materials and cost curves.',
       'Add compare, sort, filter, sell, salvage, and stash flows.',
-      'Write short lore text for important items.'
+      'Write short lore text and tooltip copy for mythic unique items.'
     ],
     done: [
       'A player can find an item and understand if it is better.',
       'Upgrading or crafting has clear cost and benefit.',
-      'Vendors and loot tables support the first zone.'
+      'Vendors, crafting, loot profiles, and unique powers all show their costs, locks, and effects in UI.'
     ],
-    manual: 'Loot, compare, equip, sell, and upgrade items during a test run.',
-    verify: 'Existing support: Tools/remote_playtest.py vendor_trade. Needs P16 item economy scenarios.',
+    manual: 'Loot, compare, equip, craft, buy, sell, and preview a mythic unique during a test run.',
+    verify: 'python Tools/data/validate_item_affix_data.py; python Tools/data/simulate_affix_crafting_transactions.py; Unreal automation Ascentia.MVP.InventoryInteractionContract.',
     settings: ['Compare tooltip size', 'Sell confirmation', 'Loot beam intensity', 'Inventory text size']
   },
   {
@@ -531,14 +532,14 @@ const HEADLINES = [
   { rank: 2, title: 'Combat depth & feel',
     body: 'A native three-step light combo scaffold, native running/rolling/backstep attack verbs, guard-counter scaffold, airborne jump-attack scaffold, native weapon-skill / weapon-art scaffold, native weapon-category/moveset snapshot scaffold, native dual-wield / power-stance snapshot scaffold, native ranged/ammo slice, native throwable slice, and native Eth spell/flask slice now exist, alongside heavy/charged attack scaffolding, two-handing stance scaffold, dodge i-frames, parry timing, block economy, poise/stance-break, enemy attack resource gating, hit-reaction telemetry, single-action input buffering, target hit-stop, local-player rumble feedback, floating damage-number feedback, elemental resistance, armor mitigation, true-damage bypass, status buildup trigger telemetry, and native poison/frost status payloads. Still missing: execution payoff, authored camera-shake/status VFX assets, distinct heavy/charged/two-hand/combo/movement/counter/jump/weapon-skill/weapon-family/dual-wield/bow/throw/cast montages, real per-weapon skill content/UI, spellbook and ammo/quick-item presentation, projectile policies, and tuned build math. The active feel kernel is P11; damage model and build depth are P13; moveset breadth is P14; magic is P15.' },
   { rank: 3, title: 'Content volume',
-    body: '1 enemy, 1 boss, ~6 items, 5 affixes, 1 arena vs Elden Ring’s ~150 enemy types and ~240 weapons. The data-driven systems to multiply content cheaply exist now; the content arrives through P16 (items) and P18 (enemies/encounters).' },
+    body: '1 enemy, 1 boss, a small playable item set, and 1 arena are still the live playable content footprint. The source itemization catalog is no longer tiny: 209 affixes, 16 mythic/unique powers, 14 loot profiles, 8 crafting recipes, and 225 curve bindings now exist as tracked data. The next gap is authored in-game presentation and encounter/world content volume through P16, P17, and P18.' },
   { rank: 4, title: 'Shell & meta',
     body: 'No title screen, settings, remapping, pause, character creation, NPCs/quests/story, tutorial, or localization. Invisible in a slice, mandatory for AAA — shell and ship-readiness are P21, character/meta systems P19.' },
 ];
 
 const STRENGTHS = [
   'Full GAS: xlsx-matched attributes, damage/costs/regen as GameplayEffects, Blueprintable abilities + AbilitySet data assets, GameplayCue hooks',
-  'Data-asset itemization: items/affixes/loot tables as PrimaryDataAssets with rarities and quality-gated affix pools',
+  'Endgame itemization source pack: 209 affixes, 16 mythic unique powers, 14 loot profiles, crafting recipes, and curve-bound validation in tracked CSV/JSON',
   'PoE-style grid inventory + paper-doll equipment over a skinnable UMG shell',
   'Visible worn equipment on a modular body (leader-posed, cross-skeleton)',
   'Six-tier rarity corpse-loot presentation: beam + motes + shimmer + range boost (D4-grade, ahead of the ER bar)',
@@ -562,8 +563,8 @@ const PHASES = [
     body: 'First native slices complete: light combo chains, running/rolling/backstep attacks, guard counter, jump attacks, weapon skills, weapon-category snapshots, dual-wield/power-stance snapshots, ranged/ammo, and throwables are all remote-verified through Tools/remote_playtest.py scenarios. Remaining P14 work is mostly designer/editor content: distinct combo/movement/counter/jump/weapon-skill/weapon-family/dual-wield/bow/throw montages and cancel windows, weapon arts content/UI, bow draw/aim/release presentation, projectile actors or trace policy, ammo HUD, quick-item HUD, VFX/audio, and balance.' },
   { id: 'P15', s: 'open', title: 'Magic & resource depth',
     body: 'First native slices complete: Eth-spending spell ability, Spellbook/DataAsset authoring surface with Ether Spark fallback, and Eth potion charges/restores/refills are remote-verified. Remaining P15 work: Spellbook tab UI, authored spell rows/assets, input binding, cast and flask-use montages, projectile or trace policy, cooldown/resource HUD, flask upgrades/allocation, buff/debuff content, summon companions, VFX/audio, and balance.' },
-  { id: 'P16', s: 'future', title: 'Itemization depth & economy',
-    body: 'Weapon upgrade path, crafting revival + gathering/materials, unique/legendary effects, sockets-or-sets decision, accessory (talisman) content, item lore text, compare/sort/filter/salvage, stash bags, boss-specific drops, currency sinks.' },
+  { id: 'P16', s: 'open', title: 'Itemization depth & economy',
+    body: 'Endgame affix source data, rarity budgets, natural roll depth, unique-power metadata, loot-profile audits, balance curve bindings, affix crafting recipes, native crafting transaction semantics, named reward grants, and vendor purchase rollback now exist. Remaining P16 work: weapon upgrade path, gathering/material loops, crafting/vendor/salvage UI, unique-power presentation/materialization, sockets-or-sets decision, accessory content, item lore text, compare/sort/filter, stash bags, boss-specific drop presentation, and broader currency sinks.' },
   { id: 'P17', s: 'future', title: 'First world zone (Landscry integration) & traversal',
     body: 'World Partition/streaming readiness, import a Landscry-generated zone connecting arena ↔ Below, in-game map + markers + map-based fast travel, mount, day/night + weather, ladders/lifts/swimming/fall damage, hazards/traps, secrets/illusory walls, destructibles, chests, Below buildout, boss-adjacent respawn (stakes). Doubles as Landscry’s first consumer test.' },
   { id: 'P18', s: 'future', title: 'Enemies, AI & encounters',
@@ -623,18 +624,18 @@ const GAP_DATA = [
     { f: 'Summons / spirit ashes', s: 'missing', plan: 'P15', n: '' },
   ]},
   { id: 'items', name: 'Itemization (incl. PoE/D4 goal)', icon: '🎒', features: [
-    { f: 'Data-driven items / affixes / loot tables', s: 'have', plan: '—', n: 'PrimaryDataAssets, designer-authorable' },
-    { f: 'Rarities', s: 'have', plan: '—', n: 'Six tiers colored (Common/Magic/Rare/Legendary/Mythic/Unique) + quality-gated affix pools; inventory tints cover the middle three' },
-    { f: 'Affix rolls with magnitude ranges', s: 'have', plan: '—', n: 'Seeded, SetByCaller GEs' },
+    { f: 'Data-driven items / affixes / loot tables', s: 'have', plan: '—', n: 'PrimaryDataAssets plus tracked CSV/JSON source pack, importer, schema dictionary, 209 affixes, 16 unique powers, 14 loot profiles, and source validation.' },
+    { f: 'Rarities', s: 'have', plan: '—', n: 'Six rarity budgets (Common/Magic/Rare/Legendary/Mythic/Unique) now drive natural prefix/suffix budgets, fixed unique budgets, drop weights, item-power bands, and generated rarity budget assets.' },
+    { f: 'Affix rolls with magnitude ranges', s: 'have', plan: '—', n: 'Seeded natural affix rolls now use item power, rarity budgets, allowed/blocked item tags, loot-profile eligible groups, roll weights, blocked groups, magnitude ranges, and curve-bound metadata.' },
     { f: 'Loot drop presentation (beams, highlights)', s: 'have', plan: '—', n: 'Corpse-loot system: rarity beam + motes, shimmer overlay, in-range boost, loot window (per-row take / Take All) — D4-grade, ahead of the ER bar' },
     { f: 'Weapon upgrade path (+X / smithing stones)', s: 'missing', plan: 'P16', n: 'No item-level / upgrade mechanic at all' },
-    { f: 'Crafting', s: 'partial', plan: 'P16', n: 'Subsystem exists with zero call sites (dead); ER cookbook equivalent missing' },
+    { f: 'Crafting', s: 'partial', plan: 'P16', n: 'Affix crafting recipes, fixture coverage, native balance-snapshot transaction semantics, material/currency spend, inventory/progression/stash mutation, application gates, and ledger deltas now exist. Crafting UI, gathering loops, recipe discovery, upgrade/salvage flows, and final economy tuning remain.' },
     { f: 'Gathering / materials', s: 'missing', plan: 'P16', n: '' },
-    { f: 'Talisman-style accessories', s: 'partial', plan: 'P16', n: 'Neck/Ring1/Ring2/Codex slots exist; no accessory items/effects seeded' },
+    { f: 'Talisman-style accessories', s: 'partial', plan: 'P16', n: 'Neck/Ring1/Ring2/Codex slots exist, and affix/unique data now includes accessory-compatible rows. Final accessory item content, icons, tooltip presentation, equip VFX, and balance remain.' },
     { f: 'Armor as mitigation', s: 'partial', plan: 'P13 · D', n: 'Slots + worn meshes work, and the combat formula now consumes the Armor attribute for physical-family mitigation; verified by Tools/remote_playtest.py damage_model. Equipment-derived armor/resistance aggregation and balance curves remain.' },
-    { f: 'Unique / legendary special effects', s: 'missing', plan: 'P16', n: 'Tint only; no unique mechanics' },
+    { f: 'Unique / legendary special effects', s: 'partial', plan: 'P16', n: 'Sixteen mythic/unique item rows, matching unique-power metadata assets, behavior payload rows, build-archetype coverage, server-owned equipped unique-power activation state, cooldown/resource snapshots, and first combat trigger bridge telemetry now exist. Remaining work: full payload materialization, UI/tooltips, cue presentation, item icons/meshes, balance, and runtime scenarios for every power.' },
     { f: 'Set items, sockets / gems', s: 'missing', plan: 'P16', n: 'Not in design data either — sockets-or-sets decision in P16' },
-    { f: 'Vendors / trade / currency sinks', s: 'partial', plan: 'P12+P16', n: 'Native AAscentiaVendorNPC now exposes designer stock rows, buys items for Stones through TrySpendStones, grants inventory stacks, marks non-repeatable stock sold out, sets a world-state purchase flag, and records trade telemetry; verified by Tools/remote_playtest.py vendor_trade. Trade UI, selling/buyback, vendor DataAssets, pricing/balance, restock rules, item sinks, and broader economy sinks remain P16. Future Settings candidates: shop text scale, buy-confirm hold/confirmation, and affordability/readability cues.' },
+    { f: 'Vendors / trade / currency sinks', s: 'partial', plan: 'P12+P16', n: 'AAscentiaVendorNPC now has an explicit purchase transaction path: validates stock, prechecks named currency balances, stages inventory grant, spends currency, records before/after ledger data, rejects sold-out/insufficient-currency paths without mutation, and rolls back inventory if final spend fails. Trade UI, selling/buyback, vendor DataAssets, pricing/balance, restock rules, item sinks, and broader economy sinks remain P16.' },
     { f: 'Stash', s: 'partial', plan: 'P16', n: 'Bags 2–3 visual reservations' },
     { f: 'Item lore / flavor text', s: 'missing', plan: 'P16', n: 'Tooltips show stats/affixes only' },
     { f: 'Item compare / sort / filter / salvage', s: 'missing', plan: 'P16', n: '' },
@@ -666,7 +667,7 @@ const GAP_DATA = [
     { f: 'Group coordination / mob AI', s: 'missing', plan: 'P18', n: 'Also: AI only sees player 0' },
     { f: 'Ranged / caster enemies', s: 'missing', plan: 'P18', n: '' },
     { f: 'Enemy stamina / poise economy', s: 'partial', plan: 'P11', n: 'Enemy melee attacks now spend Breath, reject exhausted attacks, and replicate cost/before/after/fail telemetry; verified by Tools/remote_playtest.py enemy_resource. Full designer AI policy, enemy regen pacing, poise variance, and difficulty/accessibility settings candidates still need definition.' },
-    { f: 'Enemy stat / loot scaling by region tier', s: 'missing', plan: 'P18', n: 'Tiers gate doors, not stats' },
+    { f: 'Enemy stat / loot scaling by region tier', s: 'partial', plan: 'P18', n: 'Loot profiles now carry source/world-tier gates and roll-context fixtures, and enemy reward grants can route named currencies/items through validated systems. Enemy stat scaling, region-tier difficulty curves, and authored encounter reward tables remain.' },
   ]},
   { id: 'bosses', name: 'Bosses', icon: '💀', features: [
     { f: 'Boss with health bar + name', s: 'have', plan: '—', n: 'Bottom-center ER-style bar' },

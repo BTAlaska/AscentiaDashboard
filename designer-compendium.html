@@ -93,7 +93,7 @@
     <div class="eyebrow">Ascentia editor surfaces</div>
     <h1>Ascentia Designer Compendium</h1>
     <p class="lede">The designer-facing map of where Ascentia work belongs in the Unreal Editor: what can be tuned, where to open it, why it exists there, and how to validate it without bypassing native ownership.</p>
-    <div class="meta">Dashboard-published on 2026-06-18 from <code>Docs/DesignerSurfaces</code>, branch <code>codex/designer-compendium</code>, source commit <code>576ea8f</code>. Placeholder images are allowed while surfaces are unavailable; canonical Editor screenshots are still planned.</div>
+    <div class="meta">Dashboard-published on 2026-06-20 from <code>Docs/DesignerSurfaces</code>, branch <code>codex/designer-compendium</code>, source commit <code>717b343</code>. Endgame itemization/economy source data is synchronized; placeholder images are allowed while surfaces are unavailable; canonical Editor screenshots are still planned.</div>
     <div class="hero-links">
       <a href="https://github.com/BTAlaska/Ascentia/tree/codex/designer-compendium/Docs/DesignerSurfaces">Source atlas</a>
       <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Coverage_Matrix.md">Coverage matrix</a>
@@ -106,6 +106,7 @@
     <h2>On This Page</h2>
     <nav id="tocNav">
       <a href="#purpose">Purpose</a>
+      <a href="#itemization-sync">Itemization Sync</a>
       <a href="#status">Status Vocabulary</a>
       <a href="#surface-map">Surface Map</a>
       <a href="#tasks">Common Tasks</a>
@@ -126,6 +127,18 @@
         <div class="principle"><b>How</b><p>Safe edits, forbidden shortcuts, validation commands, and evidence paths that prove the change.</p></div>
       </div>
       <p class="callout"><b>Current honesty check:</b> this is a first dashboard-published atlas. It captures source-visible surfaces and future tool homes. Placeholder images can stand in until surfaces or tools exist, but canonical Editor screenshots have not been captured yet.</p>
+    </section>
+
+    <section class="panel" id="itemization-sync">
+      <h2>2026-06-20 Itemization/Economy Sync</h2>
+      <p>The Designer-facing itemization entry points now point at implemented source data and runtime contracts, not a future-only affix plan.</p>
+      <ul>
+        <li>Edit and review source rows under <code>Tools/data/item_affixes/</code> before treating generated Unreal assets as truth.</li>
+        <li>Use <code>Tools/data/build_endgame_item_affix_pack.py</code> to regenerate the source pack and <code>Tools/data/import_item_affix_data_assets.py</code> for generated data asset imports.</li>
+        <li>Run <code>python Tools/data/validate_item_affix_data.py</code> after data edits. The validator covers schema rows, rarity budgets, natural affix depth, build-archetype coverage, loot profiles, curve bindings, crafting recipes, unique-power fixtures, and source-contract hooks.</li>
+        <li>Runtime ownership is native: loot rolls through <code>UAscentiaLootSubsystem</code>, reward grants through <code>UAscentiaRewardGrantSubsystem</code>, affix crafting through <code>UAscentiaInventoryComponent</code> transaction helpers, and vendor purchases through <code>AAscentiaVendorNPC</code> purchase transactions.</li>
+        <li>Designer gaps are now presentation and tooling: crafting/vendor/salvage UI, unique-power tooltip/cue presentation, resolved-content provenance browser, economy simulation board, canonical screenshots, and surface-to-evidence bridge.</li>
+      </ul>
     </section>
 
     <section class="panel" id="status">
@@ -150,7 +163,7 @@
           <thead><tr><th>Surface area</th><th>Open first</th><th>Designer-owned work</th><th>Boundary or next gap</th></tr></thead>
           <tbody id="surfaceRows">
             <tr data-filter="combat gasp dodge combos weapon feel bp_ascentiagaspplayer avatarcomponent root motion animation trail audio contact native combat feel lab"><td>Combat, GASP, dodge, combos, and weapon feel</td><td><code>BP_AscentiaGaspPlayer</code> Class Defaults, <code>AvatarComponent</code> Details, weapon animation slots, root-motion and dodge categories</td><td>Assign animation assets, root-motion slots, dodge feel, trail/audio/contact presentation, weapon family overrides, and debug visualization.</td><td>Gameplay authority, GAS cost/commit, damage, replication, save state, and action-window math stay native. <span class="tag future">Combat Feel Lab needed</span></td></tr>
-            <tr data-filter="items loot affixes spells skills content data assets datatables registry provenance package content registry browser"><td>Items, loot, affixes, spells, skills, and data content</td><td>Content Browser paths under <code>/Game/Ascentia/Design/Items</code>, <code>/Affixes</code>, <code>/LootTables</code>, <code>/Spells</code>, ability sets, and DataTables</td><td>Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, affix rules, loot weights, spell metadata, and row data.</td><td>Registry resolution, fallback debt, grants, package gates, and migrations need validators plus a Content Registry Browser. <span class="tag source">stock editors stay primary</span></td></tr>
+            <tr data-filter="items loot affixes spells skills content data assets datatables registry provenance package content registry browser unique powers crafting recipes rarity budgets"><td>Items, loot, affixes, spells, skills, and data content</td><td>Content Browser paths under <code>/Game/Ascentia/Design/Items</code>, <code>/Affixes</code>, <code>/LootTables</code>, <code>/Spells</code>, ability sets, DataTables, and source CSV/JSON under <code>Tools/data/item_affixes/</code></td><td>Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, 209 affix rows, rarity budgets, unique-power metadata, loot profiles, spell metadata, and row data.</td><td>Registry resolution, fallback debt, generated asset freshness, grants, package gates, and migrations need validators plus a Content Registry Browser. <span class="tag source">stock editors stay primary</span></td></tr>
             <tr data-filter="magic spellbook eth flask targeting skill ui spell dataassets spellbookcomponent magic replay"><td>Magic, spellbook, Eth flask, targeting, and skill UI</td><td>Spell DataAssets, skill rows, <code>SpellbookComponent</code>, combat spell/Eth request nodes, and current input fallbacks</td><td>Assign starter spells, spell cost/display/cue fields, UI prompts, safe getters, and presentation events.</td><td>Eth spend, unlocks, cooldown authority, targeting, damage, save state, and replication stay native. <span class="tag future">Skill/Spell Forge future</span></td></tr>
             <tr data-filter="inventory equipment menu loot window progression ui wbp_ascentiamenu inventoryscreen lootwindow stat allocation passives"><td>Inventory, equipment, menu, loot window, and progression UI</td><td><code>WBP_AscentiaMenu</code>, inventory widget trees, <code>UAscentiaInventoryScreen</code>, <code>UAscentiaLootWindow</code>, progression bindings</td><td>Skin slots, tabs, detail panels, active inventory panels, footprint anchor and covered-cell states, stat allocation, passive readouts, and optional UMG trees.</td><td>Mutations, footprint fit, item transactions, held cursor authority, passive activation, corpse-loot authority, and save state stay native.</td></tr>
             <tr data-filter="narrative dialogue vendors tutorial prompts world state npc vendor worldstatesubsystem dialogue graph tree viewer"><td>Narrative, dialogue, vendors, tutorial prompts, and world state</td><td>NPC/vendor actor Details, Blueprint graphs using <code>UAscentiaWorldStateSubsystem</code>, and tutorial prompt calls</td><td>Edit current dialogue arrays, vendor-facing text, stock references, prompt copy, map/memory tags, and presentation events.</td><td>Branching dialogue, localization, VO, state simulation, and dependency graphs need Dialogue Graph and World State Tree Viewer tools.</td></tr>
@@ -212,7 +225,7 @@
             <tr><td>AI Evidence Labs and Boss Move Matrix</td><td>Stock BT/BB editors do not show resolved enemy definitions, blackboard contracts, perception/threat decisions, reset policy, boss move quality, and latest evidence together.</td><td>Reports and guarded profile updates only.</td></tr>
             <tr><td>GameplayCue Coverage Matrix</td><td>Designers own VFX/audio/camera/UI payoff, but every emitted cue/event needs visible coverage and scenario evidence.</td><td>Reports only.</td></tr>
             <tr><td>Avatar Creator and Cosmetics Labs</td><td>Runtime assembly, stable save identity, hide-mask conflicts, PhysicsAsset/groom/cloth blockers, portrait drift, and stale evidence need a unified inspector.</td><td>Guarded data/profile writes only.</td></tr>
-            <tr><td>Item Economy and Reward Labs</td><td>Atomic transactions, price balance, vendor persistence, crafting/salvage outcomes, item identity, Below rewards, and deterministic replay cannot be proven in stock panels.</td><td>Guarded profile/data writes plus reports.</td></tr>
+            <tr><td>Item Economy and Reward Labs</td><td>Atomic vendor/crafting/reward transactions, price balance, vendor persistence, crafting/salvage outcomes, item identity, unique-power activation posture, Below rewards, and deterministic replay cannot be proven in stock panels.</td><td>Guarded profile/data writes plus reports.</td></tr>
             <tr><td>Save Progression and Migration Labs</td><td>Slot summaries, fragments, migration fixtures, async results, checkpoint identity, old-save compatibility, and release gates need visible proof.</td><td>Reports and guarded profile changes only.</td></tr>
             <tr><td>Skill/Spell Forge and Magic Replay Labs</td><td>Spell cost, cooldown, targeting, delivery, spellbook state, flask policy, cue coverage, UI prompts, and latest evidence need one relationship view.</td><td>Guarded profile/data writes plus reports.</td></tr>
             <tr><td>Performance Budget and Scenario Boards</td><td>Insights/stat tools diagnose runs, but Ascentia needs target profiles, scenario identity, artifacts, percentiles, asset weights, scalability policy, trend deltas, and blockers.</td><td>Reports and guarded profile changes only.</td></tr>
