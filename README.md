@@ -16,7 +16,7 @@ Render serves the repo root; every push to `main` auto-deploys.
 
 The companion references are available as separate static pages:
 
-- `index.html` - dashboard / status view
+- `index.html` - coordination depot / status view
 - `compendium.html` - Ascentia Compendium with linked table of contents
 - `designer-compendium.html` - Designer Compendium with the current Editor
   surface map, native-only stops, screenshot status, and custom tool candidates
