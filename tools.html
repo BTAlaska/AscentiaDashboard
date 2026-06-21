@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ascentia Tools</title>
+<style>
+  :root {
+    --bg: #101216; --panel: #181b21; --panel2: #1e222a; --border: #2a303a;
+    --text: #e6e2d8; --muted: #9aa0ad; --faint: #6a7080;
+    --gold: #c9a55c; --blue: #5aa9e6; --teal: #4fd1c5; --warn: #e8b84b;
+    --danger: #e0584f; --good: #57d98c; --code: #11151b;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.62 "Segoe UI", system-ui, sans-serif;
+    background-image:
+      radial-gradient(ellipse 70% 46% at 50% -10%, rgba(201,165,92,0.08), transparent),
+      radial-gradient(ellipse 38% 42% at 100% 6%, rgba(79,209,197,0.06), transparent);
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: "Cascadia Mono", Consolas, monospace; background: var(--code); border: 1px solid #242a33; border-radius: 4px; padding: 1px 4px; font-size: 0.92em; color: #d9e7ff; }
+  .hero { border-bottom: 1px solid var(--border); background: linear-gradient(180deg, rgba(201,165,92,0.08), rgba(16,18,22,0)); }
+  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 24px 20px 30px; }
+  .topnav { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 26px; }
+  .topnav a { border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; color: var(--muted); background: rgba(255,255,255,0.02); font-size: 12px; }
+  .topnav a.active { color: var(--text); border-color: var(--gold); background: rgba(201,165,92,0.12); }
+  .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; font-size: 12px; margin-bottom: 8px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 38px; line-height: 1.12; color: var(--gold); margin: 0; }
+  .lede { max-width: 890px; margin: 10px 0 0; color: var(--muted); }
+  .meta { color: var(--faint); font-size: 12px; margin-top: 8px; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .hero-links a { border: 1px solid rgba(90,169,230,0.42); border-radius: 999px; padding: 5px 11px; font-size: 12px; background: rgba(90,169,230,0.09); }
+
+  .layout { max-width: 1180px; margin: 0 auto; padding: 22px 20px 70px; display: grid; grid-template-columns: 276px minmax(0, 1fr); gap: 24px; align-items: start; }
+  .toc { position: sticky; top: 14px; max-height: calc(100vh - 28px); overflow: auto; border: 1px solid var(--border); border-radius: 10px; background: rgba(24,27,33,0.96); padding: 14px; }
+  .toc h2 { font: 650 13px/1.2 "Segoe UI", system-ui, sans-serif; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+  .toc nav { display: grid; gap: 4px; }
+  .toc a { display: block; color: var(--muted); font-size: 12px; line-height: 1.3; padding: 4px 6px; border-radius: 6px; }
+  .toc a:hover, .toc a.active { color: var(--text); background: rgba(90,169,230,0.12); text-decoration: none; }
+  .doc { min-width: 0; }
+  section { scroll-margin-top: 20px; margin-bottom: 28px; }
+  .panel { background: rgba(24,27,33,0.62); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  h2 { font-family: Georgia, "Times New Roman", serif; color: var(--gold); font-size: 25px; line-height: 1.25; margin: 0 0 12px; }
+  p { margin: 9px 0; }
+  ul { margin: 8px 0 12px; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .rule { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+  .rule span { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; padding: 10px 11px; background: rgba(255,255,255,0.018); color: var(--muted); font-size: 12.5px; }
+  .rule b { display: block; color: var(--gold); font-size: 13px; }
+  .filterbox { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
+  .filterbox input { flex: 1; min-width: 220px; background: var(--panel2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 7px 10px; font-size: 13px; }
+  .chip { border: 1px solid var(--border); background: var(--panel2); color: var(--muted); border-radius: 999px; padding: 4px 11px; font-size: 12px; cursor: pointer; }
+  .chip.on { color: var(--text); border-color: var(--gold); background: rgba(201,165,92,0.12); }
+  .count { color: var(--faint); font-size: 12px; margin-left: auto; }
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 12px; }
+  .tool-card { border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 8px; padding: 14px 15px; background: var(--panel); }
+  .tool-card[data-kind="World"] { border-left-color: var(--teal); }
+  .tool-card[data-kind="Art"] { border-left-color: var(--warn); }
+  .tool-card[data-kind="UI"] { border-left-color: var(--blue); }
+  .tool-card[data-kind="Atmosphere"] { border-left-color: var(--good); }
+  .tool-card[data-kind="Intake"] { border-left-color: var(--danger); }
+  .tool-top { display: flex; gap: 10px; justify-content: space-between; align-items: start; margin-bottom: 8px; }
+  .tool-card h3 { margin: 0; font-size: 16px; line-height: 1.25; }
+  .kind { border: 1px solid rgba(90,169,230,0.38); border-radius: 999px; color: var(--blue); padding: 2px 8px; font-size: 11px; white-space: nowrap; }
+  .tool-card p { color: var(--muted); font-size: 12.5px; margin: 7px 0; }
+  .block { margin-top: 10px; }
+  .block b { display: block; color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .block span { color: var(--muted); font-size: 12.5px; }
+  .evidence { color: #d9e7ff; overflow-wrap: anywhere; }
+  .table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 8px; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; min-width: 900px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { color: var(--gold); background: rgba(201,165,92,0.08); font-weight: 650; font-size: 12.5px; }
+  td { color: var(--muted); font-size: 12.5px; }
+  td:first-child { color: var(--text); font-weight: 650; }
+  tr:last-child td { border-bottom: 0; }
+  .sources { display: grid; gap: 6px; }
+  .sources a { overflow-wrap: anywhere; }
+  .backtop { position: fixed; right: 18px; bottom: 16px; border: 1px solid var(--border); background: var(--panel2); color: var(--muted); border-radius: 999px; padding: 7px 11px; font-size: 12px; }
+  @media (max-width: 880px) {
+    .layout { display: block; padding-top: 12px; }
+    .toc { position: relative; top: auto; max-height: none; margin-bottom: 16px; }
+    h1 { font-size: 29px; }
+    h2 { font-size: 21px; }
+    .panel { padding: 15px 16px; }
+    .rule { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .rule { grid-template-columns: 1fr; }
+    .tool-grid { grid-template-columns: 1fr; }
+    .count { width: 100%; margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <nav class="topnav" aria-label="Primary">
+      <a href="index.html">Dashboard</a>
+      <a href="compendium.html">Compendium</a>
+      <a href="designer-compendium.html">Designer Compendium</a>
+      <a class="active" href="tools.html">Tools</a>
+    </nav>
+    <div class="eyebrow">Ascentia editor-external bridges</div>
+    <h1>Ascentia Tools</h1>
+    <p class="lede">The bridge map for external UI, art, world, atmosphere, and marketplace tooling. A provider is only production-useful after Ascentia wraps it with profiles, adapters, validators, evidence, and human review.</p>
+    <div class="meta">Dashboard-published on 2026-06-21 from <code>AAA_ARPG_Compendium.md</code> sections 8.8, 11.2, and 23.17, plus the Designer Compendium tooling surface.</div>
+    <div class="hero-links">
+      <a href="Tools_Compendium.md">Dashboard source Markdown</a>
+      <a href="compendium.html#11-2-10-build-buy-or-bridge">Build, buy, or bridge</a>
+      <a href="designer-compendium.html#custom-tools">Custom tool candidates</a>
+    </div>
+  </div>
+</header>
+<main class="layout">
+  <aside class="toc" aria-label="Table of contents">
+    <h2>On This Page</h2>
+    <nav id="tocNav">
+      <a href="#posture">Bridge Posture</a>
+      <a href="#bridges">Tool Bridges</a>
+      <a href="#matrix">Bridge Matrix</a>
+      <a href="#maturity">Maturity Ledger</a>
+      <a href="#evidence">Evidence Roots</a>
+      <a href="#sources">Source Links</a>
+    </nav>
+  </aside>
+  <section class="doc">
+    <section class="panel" id="posture">
+      <h2>Bridge Posture</h2>
+      <p>This page tracks the editor-external tools Ascentia expects to bridge: Landscry, Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic Sky, and Fab / Marketplace intake. The product decision is not whether these names are useful. The decision is whether Ascentia has an adapter, proof path, and promotion gate around their output.</p>
+      <div class="rule">
+        <span><b>Buy</b>Use the provider for the hard commodity problem.</span>
+        <span><b>Bridge</b>Convert provider output into Ascentia profiles and staging roots.</span>
+        <span><b>Build</b>Own the Ascentia-specific contract, validator, and editor surface.</span>
+        <span><b>Validate</b>Publish evidence before production promotion or cooked-build claims.</span>
+      </div>
+    </section>
+
+    <section class="panel" id="bridges">
+      <h2>Tool Bridges</h2>
+      <div class="filterbox" id="toolFilter">
+        <input id="toolSearch" type="search" placeholder="Filter tools, bridges, evidence, or gates...">
+        <button class="chip on" data-kind="all" type="button">All</button>
+        <button class="chip" data-kind="World" type="button">World</button>
+        <button class="chip" data-kind="Art" type="button">Art</button>
+        <button class="chip" data-kind="UI" type="button">UI</button>
+        <button class="chip" data-kind="Atmosphere" type="button">Atmosphere</button>
+        <button class="chip" data-kind="Intake" type="button">Intake</button>
+        <span class="count" id="toolCount">5 bridges</span>
+      </div>
+      <div class="tool-grid" id="toolGrid">
+        <article class="tool-card" data-kind="World" data-filter="land s cry landscry world director import audit pcg provenance gate world partition data layers hlod nav zone signoff">
+          <div class="tool-top"><h3>Landscry</h3><span class="kind">World</span></div>
+          <p>Landscry output is source material, not final game structure. It enters staging, then Ascentia classifies terrain, roads, cliffs, foliage, POIs, and props before any production promotion.</p>
+          <div class="block"><b>Ascentia bridge</b><span><code>EUW_AscentiaWorldDirector</code>, <code>EUW_AscentiaLandscryImportAudit</code>, <code>EUW_AscentiaPCGProvenanceGate</code>, <code>PDA_WorldZone</code>, <code>PDA_WorldGenerationProfile</code>.</span></div>
+          <div class="block"><b>Evidence posture</b><span>Staging import report, Data Layer/HLOD coverage, PCG seed/provenance, nav-affecting actor count, scale/bounds checks, zone signoff, and latest pass/fail dashboard card.</span></div>
+          <div class="block"><b>Promotion gate</b><span>No generated terrain, POI, enemy, loot, or gameplay actor becomes production structure until provenance, stable world identity, gameplay replacement, and human verdict pass.</span></div>
+          <div class="block"><b>Evidence root</b><span class="evidence"><code>Saved/AscentiaEvidence/P17/LandscryImport/{RunId}/report.json</code></span></div>
+        </article>
+
+        <article class="tool-card" data-kind="Art" data-filter="asset factory modular fit lab weapon mount lab lod collision doctor pack ingestor armor weapon socket clipping provenance license">
+          <div class="tool-top"><h3>Asset Factory</h3><span class="kind">Art</span></div>
+          <p>Asset Factory generates armor and weapon drafts. Ascentia owns fit, socket policy, collision, LOD/Nanite decisions, materials, provenance, and the Designer accept/reject verdict.</p>
+          <div class="block"><b>Ascentia bridge</b><span><code>EUW_AscentiaModularFitLab</code>, <code>EUW_AscentiaWeaponMountLab</code>, <code>EUW_AscentiaLODAndCollisionDoctor</code>, and <code>EUW_AscentiaPackIngestor</code>.</span></div>
+          <div class="block"><b>Evidence posture</b><span>Fit/clipping screenshot sheet, socket-profile draft, equip-preview variants, collision and LOD report, material policy check, source/license notes, and provenance report.</span></div>
+          <div class="block"><b>Promotion gate</b><span>Generated variants can draft socket profiles, but production item rows cannot reference them until Designer verdict and source/provenance evidence exist.</span></div>
+          <div class="block"><b>Evidence root</b><span class="evidence"><code>Saved/AscentiaEvidence/Tools/WeaponMountLab/{RunId}/report.json</code></span></div>
+        </article>
+
+        <article class="tool-card" data-kind="UI" data-filter="skin forge interfaceartforge interface art forge skin bridge commonui umg widget blueprint glyph localization accessibility contrast navigation">
+          <div class="tool-top"><h3>Skin Forge / InterfaceArtForge</h3><span class="kind">UI</span></div>
+          <p>Generated UI skins are visual direction, not UI authority. Ascentia keeps WidgetBlueprint bindings, CommonUI behavior, input glyphs, localization, navigation, and accessibility readable.</p>
+          <div class="block"><b>Ascentia bridge</b><span><code>EUW_AscentiaSkinForgeBridge</code>, UMGToolSet operations, CommonUI style assets, <code>EUW_AscentiaInputGlyphBinder</code>, and text-scale/contrast checks.</span></div>
+          <div class="block"><b>Evidence posture</b><span>WBP skin application report, missing widget binding warnings, style variance screenshots, controller/mouse navigation proof, pseudo-localization screenshots, and contrast report.</span></div>
+          <div class="block"><b>Promotion gate</b><span>No generated skin ships unless bindings, navigation, glyphs, localization, text scale, and contrast survive the bridge without breaking native UI state.</span></div>
+          <div class="block"><b>Evidence root</b><span class="evidence"><code>Saved/AscentiaEvidence/UX</code> and <code>Saved/AscentiaEvidence/Accessibility</code></span></div>
+        </article>
+
+        <article class="tool-card" data-kind="Atmosphere" data-filter="ultra dynamic sky uds atmosphere director weather time scenario lighting mood material surface lab provider adapter profile readability performance">
+          <div class="tool-top"><h3>Ultra Dynamic Sky</h3><span class="kind">Atmosphere</span></div>
+          <p>UDS is an art-direction provider behind Ascentia atmosphere profiles. Weather, time, mood, materials, audio, VFX, saves, performance, and readability must remain visible to Ascentia tools.</p>
+          <div class="block"><b>Ascentia bridge</b><span><code>EUW_AscentiaAtmosphereDirector</code>, <code>UAscentiaUDSAtmosphereAdapter</code>, <code>IAscentiaAtmosphereProvider</code>, <code>PDA_LightingMoodProfile</code>, <code>PDA_WeatherProfile</code>, and <code>PDA_TimeOfDayProfile</code>.</span></div>
+          <div class="block"><b>Evidence posture</b><span>Weather/time screenshot grid, lighting readability report, material/weather response check, audio/VFX budget rows, performance buckets, save/load transition proof, and gameplay opt-in rows.</span></div>
+          <div class="block"><b>Promotion gate</b><span>Raw UDS actor edits are prototype-only. Cooked builds should block profile bypasses when atmosphere touches gameplay, saves, readability, performance, or accessibility.</span></div>
+          <div class="block"><b>Evidence root</b><span class="evidence"><code>Saved/AscentiaEvidence/P17/{Atmosphere,WeatherTime,LightingReadability,AtmospherePerformance}</code></span></div>
+        </article>
+
+        <article class="tool-card" data-kind="Intake" data-filter="fab marketplace intake external content registry license compliance quarantine plugin descriptor doctor upgrade planner promotion gate attribution provenance source rows">
+          <div class="tool-top"><h3>Fab / Marketplace Intake</h3><span class="kind">Intake</span></div>
+          <p>Fab and Marketplace intake is governance, not drag-and-drop content. Ascentia records source, license, plugin risk, staging roots, approval state, attribution needs, and upgrade regressions.</p>
+          <div class="block"><b>Ascentia bridge</b><span><code>EUW_AscentiaExternalContentRegistry</code>, <code>EUW_AscentiaLicenseComplianceBoard</code>, <code>EUW_AscentiaExternalAssetQuarantine</code>, <code>EUW_AscentiaPluginDescriptorDoctor</code>, <code>EUW_AscentiaExternalUpgradePlanner</code>, and <code>EUW_AscentiaExternalContentPromotionGate</code>.</span></div>
+          <div class="block"><b>Evidence posture</b><span>Source rows, purchase/version dates, license policy, plugin descriptor risk, quarantine findings, promotion report, attribution/NoAI checks, and linked regression scenarios.</span></div>
+          <div class="block"><b>Promotion gate</b><span>Every promoted asset needs a source record. Unknown downloads, missing license rows, standalone redistribution risk, dangerous references, or unresolved plugin risk block promotion.</span></div>
+          <div class="block"><b>Evidence root</b><span class="evidence"><code>Saved/AscentiaEvidence/P23/{ExternalContent,LicenseCompliance,PluginDescriptors}</code></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="matrix">
+      <h2>Bridge Matrix</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Provider</th><th>Ascentia bridge</th><th>Evidence posture</th><th>Promotion gate</th></tr></thead>
+          <tbody>
+            <tr><td>Landscry</td><td>World Director, Landscry Import Audit, PCG Provenance Gate, world-zone profiles.</td><td>Staging import, classification, Data Layer/HLOD coverage, PCG seed/provenance, nav/scale checks, zone signoff.</td><td>Source material only until provenance, identity, gameplay replacement, and human verdict pass.</td></tr>
+            <tr><td>Asset Factory</td><td>Modular Fit Lab, Weapon Mount Lab, LOD/Collision Doctor, Pack Ingestor.</td><td>Fit/clipping screenshots, socket profiles, equip previews, LOD/collision/material report, provenance and license notes.</td><td>Draft variants cannot enter production rows without Designer verdict and source/provenance report.</td></tr>
+            <tr><td>Skin Forge / InterfaceArtForge</td><td>SkinForge Bridge, UMGToolSet, CommonUI styles, Input Glyph Binder, readability checks.</td><td>Skin application report, binding warnings, style screenshots, navigation proof, localization stress, contrast report.</td><td>Visual skins ship only after bindings, navigation, localization, glyphs, and accessibility proof pass.</td></tr>
+            <tr><td>Ultra Dynamic Sky</td><td>Atmosphere Director, UDS adapter, atmosphere provider interface, lighting/weather/time profiles.</td><td>Screenshot grid, readability warnings, weather material response, audio/VFX budgets, performance buckets, save/load opt-in proof.</td><td>Raw provider tuning stays prototype-only when profile bypass affects gameplay or release quality.</td></tr>
+            <tr><td>Fab / Marketplace intake</td><td>External Content Registry, License Compliance Board, Quarantine, Plugin Descriptor Doctor, Upgrade Planner, Promotion Gate.</td><td>Source/license/plugin rows, purchase/version dates, quarantine findings, promotion report, attribution and regression links.</td><td>Unknown source, missing license, redistribution risk, dangerous references, or unresolved plugin risk block promotion.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="maturity">
+      <h2>Tool Maturity Ledger</h2>
+      <p>Safety and evidence tools come before high-gloss authoring tools. Mutation starts at dry-run and earns production writes only after the descriptor, report schema, rollback path, and dashboard card are boringly repeatable.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tool ID</th><th>Owner</th><th>Maturity</th><th>Mutation level</th><th>Inputs</th><th>Outputs</th><th>CI / proof</th><th>Rollback path</th></tr></thead>
+          <tbody>
+            <tr><td>TOOL-SURF-001 Surface Manifest Validator + Evidence Bridge</td><td>Tools</td><td>P0 planned</td><td>Read/report only</td><td>Designer surface manifests, screenshots, source links, validation refs</td><td>Broken link/screenshot/proof report, dashboard card</td><td><code>./check-links.ps1</code> plus future Build Doctor commandlet</td><td>No mutation; report rows only</td></tr>
+            <tr><td>TOOL-BUILD-001 Build Doctor</td><td>Build + QA</td><td>P0 planned</td><td>Dry-run first</td><td>Project settings, asset registry, plugin descriptors, maps, validators</td><td>PIE/cook blocker report with fix links</td><td><code>AscentiaRunToolCommandlet -ToolId=BuildDoctor -DryRun</code></td><td>Only safe fix buttons after validated maturity</td></tr>
+            <tr><td>TOOL-CONTENT-001 Content Registry Browser / Fallback Debt Reporter</td><td>Tech Design</td><td>P0/P23 gate</td><td>Read/report, guarded import later</td><td>CSV/source rows, DataTables, PrimaryDataAssets, native fallbacks</td><td>Resolved-record report, fallback-debt report, stale generated asset list</td><td>Data validation plus source hash/freshness checks</td><td>Generated artifacts can be rebuilt from source rows</td></tr>
+            <tr><td>TOOL-SHOT-001 Screenshot Capture/Verification Queue</td><td>Design + QA</td><td>P0 planned</td><td>Capture only</td><td>Screenshot manifest, target assets, source commit, viewport profile</td><td>Captured/stale/verified screenshot report</td><td>Screenshot manifest validator and dashboard snapshot table</td><td>Recapture from manifest; placeholders never count as proof</td></tr>
+            <tr><td>TOOL-REL-001 Release Candidate / Artifact Board</td><td>Release</td><td>P21 planned</td><td>Report/waiver only</td><td>UAT logs, artifacts, public claims, waivers, package profiles</td><td>Release candidate report, claim-safety rows, artifact manifest</td><td>Package smoke plus public claim safety check</td><td>Candidate can be blocked or superseded; no content mutation</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="evidence">
+      <h2>Evidence Roots</h2>
+      <ul>
+        <li><code>Saved/AscentiaEvidence/P17/LandscryImport/{RunId}/report.json</code></li>
+        <li><code>Saved/AscentiaEvidence/P17/{Atmosphere,WeatherTime,LightingReadability,AtmospherePerformance}</code></li>
+        <li><code>Saved/AscentiaEvidence/Tools/{ContentProvenanceBrowser,WeaponMountLab,BuildDoctor}/{RunId}/report.json</code></li>
+        <li><code>Saved/AscentiaEvidence/P23/{ExternalContent,LicenseCompliance,PluginDescriptors}</code></li>
+        <li><code>Saved/AscentiaEvidence/P23/{ExternalAssetQuarantine,ExternalContentPromotion,ExternalUpgradePlan}</code></li>
+      </ul>
+    </section>
+
+    <section class="panel" id="sources">
+      <h2>Source Links</h2>
+      <div class="sources">
+        <a href="Tools_Compendium.md">Tools source Markdown</a>
+        <a href="compendium.html#11-2-accelerator-tool-catalog">Compendium: Accelerator tool catalog</a>
+        <a href="compendium.html#11-2-10-build-buy-or-bridge">Compendium: Build, buy, or bridge</a>
+        <a href="compendium.html#23-17-third-party-asset-plugin-license-provenance-and-upgrade-governance-package">Compendium: Third-party governance package</a>
+        <a href="designer-compendium.html#custom-tools">Designer Compendium: Custom tool candidates</a>
+      </div>
+    </section>
+  </section>
+</main>
+<a class="backtop" href="#top">Back to top</a>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const active = document.querySelector('#tocNav a.active');
+    if (active) active.classList.remove('active');
+    const next = document.querySelector('#tocNav a[href="#' + CSS.escape(visible.target.id) + '"]');
+    if (next) next.classList.add('active');
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: [0, 0.2, 0.5, 1] });
+  document.querySelectorAll('.doc section[id]').forEach(section => observer.observe(section));
+
+  const search = document.getElementById('toolSearch');
+  const count = document.getElementById('toolCount');
+  const cards = Array.from(document.querySelectorAll('.tool-card'));
+  const chips = Array.from(document.querySelectorAll('#toolFilter .chip'));
+  let kind = 'all';
+
+  function applyToolFilter() {
+    const q = search.value.trim().toLowerCase();
+    let visible = 0;
+    for (const card of cards) {
+      const matchesKind = kind === 'all' || card.dataset.kind === kind;
+      const text = (card.dataset.filter + ' ' + card.textContent).toLowerCase();
+      const matchesText = !q || text.includes(q);
+      const show = matchesKind && matchesText;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    }
+    count.textContent = visible + ' bridges';
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      kind = chip.dataset.kind;
+      chips.forEach(c => c.classList.toggle('on', c === chip));
+      applyToolFilter();
+    });
+  });
+  search.addEventListener('input', applyToolFilter);
+  applyToolFilter();
+</script>
+</body>
+</html>

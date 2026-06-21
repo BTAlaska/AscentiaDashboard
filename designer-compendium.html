@@ -89,15 +89,17 @@
       <a href="index.html">Dashboard</a>
       <a href="compendium.html">Compendium</a>
       <a class="active" href="designer-compendium.html">Designer Compendium</a>
+      <a href="tools.html">Tools</a>
     </nav>
     <div class="eyebrow">Ascentia editor surfaces</div>
     <h1>Ascentia Designer Compendium</h1>
     <p class="lede">The designer-facing map of where Ascentia work belongs in the Unreal Editor: what can be tuned, where to open it, why it exists there, and how to validate it without bypassing native ownership.</p>
     <div class="meta">Dashboard-published on 2026-06-20 from <code>Docs/DesignerSurfaces</code>, branch <code>codex/designer-compendium</code>, source commit <code>717b343</code>. Endgame itemization/economy source data is synchronized; placeholder images are allowed while surfaces are unavailable; canonical Editor screenshots are still planned.</div>
     <div class="hero-links">
-      <a href="https://github.com/BTAlaska/Ascentia/tree/codex/designer-compendium/Docs/DesignerSurfaces">Source atlas</a>
-      <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Coverage_Matrix.md">Coverage matrix</a>
-      <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Designer_Task_Index.md">Designer task index</a>
+      <a href="source-snapshots.html">Source snapshots</a>
+      <a href="DesignerSurface_Coverage_Matrix_Snapshot.md">Coverage matrix snapshot</a>
+      <a href="Designer_Task_Index_Snapshot.md">Designer task index snapshot</a>
+      <a href="tools.html">External tool bridges</a>
     </div>
   </div>
 </header>
@@ -214,7 +216,7 @@
 
     <section class="panel" id="custom-tools">
       <h2>Definite Custom Tool Candidates</h2>
-      <p>These tools are worth planning because stock Unreal Editor surfaces will not give Designers enough context by themselves. They should inspect, validate, preview, and produce evidence. They should not replace stock Unreal editors where those editors already handle the base authoring job.</p>
+      <p>These tools are worth planning because stock Unreal Editor surfaces will not give Designers enough context by themselves. They should inspect, validate, preview, and produce evidence. They should not replace stock Unreal editors where those editors already handle the base authoring job. Use <a href="tools.html">Tools</a> for the specific editor-external bridge posture around Landscry, Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic Sky, and Fab / Marketplace intake.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Tool</th><th>Why Ascentia needs it</th><th>First write policy</th></tr></thead>
@@ -241,16 +243,17 @@
       <p>The current Designer Compendium is not screenshot-complete. The source branch contains a screenshot runbook and P0 capture queue for 46 planned canonical Editor screenshots. Placeholder images are expected while custom tools, report boards, local content, or source-visible surfaces cannot be captured yet.</p>
       <p>Placeholders must be visibly labeled, must live outside canonical <code>screenshots</code> folders, and must not be listed in <code>canonical_screenshots</code>. They keep the UI capture layer navigable, but they do not count as proof and they must not change a shot to <code>captured</code>.</p>
       <p>Evidence screenshots under <code>Saved/Automation/Evidence</code> or <code>Saved/AscentiaEvidence</code> must not be copied into the compendium as if they were canonical UI documentation.</p>
+      <p>Dashboard screenshot status now uses: <code>missing</code>, <code>placeholder</code>, <code>captured</code>, <code>stale</code>, and <code>verified</code>. See <a href="DesignerSurface_Coverage_Matrix_Snapshot.md">Coverage matrix snapshot</a> for the current public surface status.</p>
     </section>
 
     <section class="panel" id="sources">
       <h2>Source Links</h2>
       <div class="sources">
-        <a href="https://github.com/BTAlaska/Ascentia/tree/codex/designer-compendium/Docs/DesignerSurfaces">Designer atlas source</a>
-        <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/README.md">Atlas entry point</a>
-        <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Coverage_Matrix.md">Coverage matrix</a>
-        <a href="https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Designer_Task_Index.md">Designer task index</a>
+        <a href="source-snapshots.html">Source snapshots</a>
+        <a href="DesignerSurface_Coverage_Matrix_Snapshot.md">Coverage matrix snapshot</a>
+        <a href="Designer_Task_Index_Snapshot.md">Designer task index snapshot</a>
         <a href="Designer_Compendium.md">Dashboard source Markdown</a>
+        <a href="Tools_Compendium.md">Tools source Markdown</a>
       </div>
     </section>
   </section>

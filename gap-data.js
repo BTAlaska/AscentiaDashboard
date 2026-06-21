@@ -10,10 +10,153 @@
 const GAP_META = {
   title: 'Ascentia — AAA Gap Dashboard',
   benchmark: 'Benchmark: Elden Ring (open-world Soulslike) + PoE/D4 itemization',
-  updated: '2026-06-20',
+  updated: '2026-06-21',
   sourceDoc: 'Docs/Architecture/Item_Affix_Data_Contract.md',
   reviewDoc: 'Docs/Architecture/AAA_ARPG_Compendium.md + Docs/DesignerSurfaces/README.md',
 };
+
+const DASHBOARD_SUMMARY = {
+  currentPhase: 'P0/P23 Content Spine gate, then P11 combat slices',
+  lastSourceCommit: '717b343 dashboard-published compendium snapshot',
+  lastEvidenceRun: '2026-06-20 endgame affix/economy validation spine',
+  blockingGates: [
+    'P0/P23 Content Spine: CSV/source -> generated DataTable -> PDA overlay -> resolved runtime record -> dashboard evidence',
+    'Decision Ledger: content authority, generated artifacts, fallback debt, mutation, and MCP policy signed before scale work',
+    'Proof Status: Have requires current proof; stale or missing proof creates publication debt',
+  ],
+  nextDecisions: [
+    'DEC-CONTENT-001: Confirm hybrid CSV/source plus PDA overlay authority',
+    'DEC-REGISTRY-001: Evolve item registry into resolved-record facade before broad registry generalization',
+    'DEC-FALLBACK-001: Limit native fallback content to editor/dev unless phase-approved',
+  ],
+};
+
+const PUBLICATION_GATES = [
+  {
+    id: 'P0/P23',
+    title: 'Content Spine Before More Content',
+    status: 'Blocking gate',
+    owner: 'Tech Design + Gameplay Systems',
+    body: 'Large P11-P18 content expansion should wait for a thin passing path: source workbook/CSV -> generated DataTable -> PrimaryDataAsset overlay -> resolved registry record -> runtime proof -> dashboard evidence.',
+  },
+  {
+    id: 'PROOF',
+    title: 'Evidence Is The Gate',
+    status: 'Active policy',
+    owner: 'QA + Build Doctor',
+    body: 'Implementation status and proof status are independent. A row can be native-scaffolded while its proof is stale, missing, or only a partial runtime slice.',
+  },
+  {
+    id: 'SHOTS',
+    title: 'Designer Screenshot Readiness',
+    status: 'Blocking designer handoff',
+    owner: 'Design + Tools',
+    body: 'Designer surfaces need screenshot status: missing, placeholder, captured, stale, or verified against commit. Placeholder images do not count as proof.',
+  },
+  {
+    id: 'WORLD',
+    title: 'World Import Preflight',
+    status: 'Blocks P17 scale',
+    owner: 'World + Tools',
+    body: 'Landscry/PCG world work needs zone identity, Data Layers, HLOD assignment, PCG provenance, persistent IDs, nav/smart-object builder pass, and cook-risk report before promotion.',
+  },
+  {
+    id: 'CLAIMS',
+    title: 'Public Claim Safety',
+    status: 'Blocks public claims',
+    owner: 'Release + Production',
+    body: 'Store, trailer, accessibility, platform, privacy, rating, and release-note claims need supporting evidence, last verified build, risk, and an explicit blocked/unblocked state.',
+  },
+];
+
+const DECISION_LEDGER = [
+  {
+    id: 'DEC-CONTENT-001',
+    area: 'Content source authority',
+    policy: 'Hybrid: CSV/sheet exports for bulk values; PrimaryDataAssets for object references and handcrafted overrides.',
+    rationale: 'Keeps reviewable bulk data separate from Unreal asset references while matching the resolved-record model.',
+    owner: 'Tech Design',
+    date: '2026-06-21',
+    revisit: 'When generated DataTables or PDA overlays become the active runtime source.',
+    blocks: 'P0/P23, P16, P17, P18',
+  },
+  {
+    id: 'DEC-REGISTRY-001',
+    area: 'Registry route',
+    policy: 'Evolve item registry into a resolved-record facade first; generalize after the first item/content proof passes.',
+    rationale: 'One proven vertical slice is safer than a broad abstract registry before schema pressure is known.',
+    owner: 'Gameplay Systems',
+    date: '2026-06-21',
+    revisit: 'After item rows, affixes, loot profiles, and fallback debt share one report.',
+    blocks: 'P0/P23, P16',
+  },
+  {
+    id: 'DEC-DATAREG-001',
+    area: 'UE Data Registry adoption',
+    policy: 'Shape toward ordered source/fallback/override behavior now; adopt plugin after schemas stabilize.',
+    rationale: 'Ascentia needs the behavior and reports before committing the whole project to plugin-level surface area.',
+    owner: 'Architecture',
+    date: '2026-06-21',
+    revisit: 'After resolved-record headers and field-source traces are stable.',
+    blocks: 'P0/P23',
+  },
+  {
+    id: 'DEC-GEN-001',
+    area: 'Generated asset policy',
+    policy: 'Generated assets may be committed for editor/cook convenience, but CI must verify source hashes and freshness.',
+    rationale: 'Generated Unreal assets are useful artifacts, not source truth.',
+    owner: 'Build + Tools',
+    date: '2026-06-21',
+    revisit: 'When importer output becomes large enough to create merge or cook churn.',
+    blocks: 'P0/P23, P16, P23',
+  },
+  {
+    id: 'DEC-FALLBACK-001',
+    area: 'Fallback debt',
+    policy: 'Native fallback content is editor/dev-only unless a phase gate explicitly approves it; relevant packaged gates block on unresolved fallback debt.',
+    rationale: 'Fallbacks unblock development but should not become invisible production authority.',
+    owner: 'Gameplay Systems + QA',
+    date: '2026-06-21',
+    revisit: 'When a fallback ships in a milestone candidate or appears in a public claim.',
+    blocks: 'P0/P23, P16, P21',
+  },
+  {
+    id: 'DEC-TOOLS-001',
+    area: 'Tool mutation',
+    policy: 'Dry-run first. No mutating production assets until the tool descriptor reaches validated mutation maturity.',
+    rationale: 'Reports and preview must become boring before safe repair buttons touch production content.',
+    owner: 'Tools',
+    date: '2026-06-21',
+    revisit: 'After Build Doctor and Surface Manifest Validator have passing evidence.',
+    blocks: 'Tools, P23',
+  },
+  {
+    id: 'DEC-MCP-001',
+    area: 'MCP/editor automation',
+    policy: 'Read-only until session guard, project path verification, and single-editor lock are proven stable.',
+    rationale: 'Automation should not mutate the wrong editor, dirty map, or active PIE session.',
+    owner: 'Tools + Build',
+    date: '2026-06-21',
+    revisit: 'After editor session guard evidence passes for repeated runs.',
+    blocks: 'Tools, P23',
+  },
+];
+
+const SCREENSHOT_STATUS = [
+  { surface: 'Designer Compendium canonical Editor screenshot set', status: 'missing', owner: 'Design', evidence: '46 planned captures remain queued; placeholders do not count as proof.' },
+  { surface: 'Content Registry Browser / Fallback Debt Reporter', status: 'missing', owner: 'Tools', evidence: 'Tool UI not yet implemented; needs first report-backed screenshot.' },
+  { surface: 'Build Doctor and Surface Manifest Validator', status: 'missing', owner: 'Tools', evidence: 'Must capture before these become dashboard gates.' },
+  { surface: 'P11 combat motion / targeting / animation surfaces', status: 'placeholder', owner: 'Combat Design', evidence: 'Runtime slices exist, but canonical Editor surfaces are not screenshot-verified.' },
+  { surface: 'P16 itemization/economy data surfaces', status: 'stale', owner: 'Tech Design', evidence: 'Data spine updated on 2026-06-20; screenshot proof has not caught up.' },
+];
+
+const PUBLIC_CLAIM_SAFETY = [
+  { claim: 'AAA progress score', evidence: 'gap-data.js weighted implementation score plus proof-status debt counts', build: 'Dashboard 2026-06-21', risk: 'Medium', state: 'Unblocked with caveat' },
+  { claim: 'Endgame affix/economy spine exists', evidence: 'Tools/data validators, generated source pack, native transaction paths, and dashboard evidence note', build: '2026-06-20 docs/evidence snapshot', risk: 'Medium', state: 'Blocked for player-facing claim until UI/proof expands' },
+  { claim: 'Designer Compendium is usable handoff documentation', evidence: 'Rendered page plus planned screenshot queue', build: '2026-06-21 dashboard snapshot', risk: 'High', state: 'Blocked until screenshot coverage begins' },
+  { claim: 'Landscry is the world build path', evidence: 'Architecture compendium and Tools bridge page', build: 'Dashboard 2026-06-21', risk: 'Medium', state: 'Blocked for production-zone claim until import preflight passes' },
+  { claim: 'External tools are production-safe bridges', evidence: 'Tools bridge posture and P23 external content governance', build: 'Dashboard 2026-06-21', risk: 'Medium', state: 'Blocked until registry/quarantine/proof reports exist' },
+];
 
 const PROGRESS_HISTORY = [
   { t: '2026-06-12 18:30', label: 'Gap baseline', have: 18, partial: 20, missing: 96, verified: 0, note: 'Feature matrix before the remote P11 evidence harness.' },
@@ -527,13 +670,15 @@ const DESIGNER_HANDOFFS = [
 ];
 
 const HEADLINES = [
-  { rank: 1, title: 'No open world yet — build path is Landscry',
+  { rank: 1, title: 'P0/P23 content spine now blocks content scale',
+    body: 'Before large P11-P18 content expansion, Ascentia needs one thin passing content pipeline: source CSV/sheet -> generated DataTable -> PrimaryDataAsset overlay -> resolved registry record -> runtime proof -> dashboard evidence. The default policy is reviewable CSV/source for bulk values, PDA overlays for object refs and handcrafted overrides, generated DataTables as artifacts, and runtime reads through resolved records instead of raw CSV or native fallback authority.' },
+  { rank: 2, title: 'No open world yet — build path is Landscry',
     body: 'One arena + the Below pocket. Terrain/biomes/POIs will be generated by the Landscry PCG pipeline (zip package → UE Importer + PCG Worldbuilder). The Ascentia side is integration — World Partition/streaming, wiring gameplay actors into generated zones, map UI, mount, day/night — planned as P17.' },
-  { rank: 2, title: 'Combat depth & feel',
+  { rank: 3, title: 'Combat depth & feel',
     body: 'A native three-step light combo scaffold, native running/rolling/backstep attack verbs, guard-counter scaffold, airborne jump-attack scaffold, native weapon-skill / weapon-art scaffold, native weapon-category/moveset snapshot scaffold, native dual-wield / power-stance snapshot scaffold, native ranged/ammo slice, native throwable slice, and native Eth spell/flask slice now exist, alongside heavy/charged attack scaffolding, two-handing stance scaffold, dodge i-frames, parry timing, block economy, poise/stance-break, enemy attack resource gating, hit-reaction telemetry, single-action input buffering, target hit-stop, local-player rumble feedback, floating damage-number feedback, elemental resistance, armor mitigation, true-damage bypass, status buildup trigger telemetry, and native poison/frost status payloads. Still missing: execution payoff, authored camera-shake/status VFX assets, distinct heavy/charged/two-hand/combo/movement/counter/jump/weapon-skill/weapon-family/dual-wield/bow/throw/cast montages, real per-weapon skill content/UI, spellbook and ammo/quick-item presentation, projectile policies, and tuned build math. The active feel kernel is P11; damage model and build depth are P13; moveset breadth is P14; magic is P15.' },
-  { rank: 3, title: 'Content volume',
+  { rank: 4, title: 'Content volume',
     body: '1 enemy, 1 boss, a small playable item set, and 1 arena are still the live playable content footprint. The source itemization catalog is no longer tiny: 209 affixes, 16 mythic/unique powers, 14 loot profiles, 8 crafting recipes, and 225 curve bindings now exist as tracked data. The next gap is authored in-game presentation and encounter/world content volume through P16, P17, and P18.' },
-  { rank: 4, title: 'Shell & meta',
+  { rank: 5, title: 'Shell & meta',
     body: 'No title screen, settings, remapping, pause, character creation, NPCs/quests/story, tutorial, or localization. Invisible in a slice, mandatory for AAA — shell and ship-readiness are P21, character/meta systems P19.' },
 ];
 
@@ -549,6 +694,8 @@ const STRENGTHS = [
 ];
 
 const PHASES = [
+  { id: 'P0/P23', s: 'open', title: 'Content spine and evidence gate before more content',
+    body: 'Blocking thin slice before P11-P18 content scale: source workbook/CSV -> generated DataTable -> PrimaryDataAsset overlay -> field-level resolved record -> runtime proof -> designer-readable and machine-readable dashboard evidence. Also owns fallback debt reports, generated asset freshness checks, source/license provenance, and proof-status rules.' },
   { id: 'P9', s: 'done', title: 'Abilities migration',
     body: 'Combat actions as GameplayAbilities with cost/cooldown GEs, AbilitySet data assets, GameplayCue hooks on damage/heal.' },
   { id: 'P10', s: 'done', title: 'Item / affix / loot data layer + inventory',
@@ -580,6 +727,19 @@ const PHASES = [
 ];
 
 const GAP_DATA = [
+  { id: 'content-spine', name: 'P0/P23 Content Spine & Publication Gates', icon: '#', features: [
+    { f: 'CSV/sheet source authority for bulk content values', s: 'partial', plan: 'P0/P23', n: 'Decision ledger now calls hybrid authority: CSV/sheet exports for reviewable bulk values and PrimaryDataAssets for object references and handcrafted overrides. Thin runtime proof still needs the full source -> DataTable -> PDA overlay -> resolved record path.' },
+    { f: 'Generated DataTable freshness gate', s: 'missing', plan: 'P0/P23', n: 'Generated DataTables may be committed for editor/cook convenience, but CI still needs source-hash and generated-artifact freshness checks.' },
+    { f: 'Resolved registry record facade', s: 'missing', plan: 'P0/P23', n: 'Runtime should read field-level resolved records with source traces, not raw CSV rows or native fallback authority. First target is item/content registry before generalizing.' },
+    { f: 'PrimaryDataAsset overlay reconciliation', s: 'partial', plan: 'P0/P23', n: 'PrimaryDataAssets already exist for items/affixes/loot, but overlay precedence and field-source reconciliation are not yet visible in one report.' },
+    { f: 'Fallback debt reporter', s: 'missing', plan: 'P0/P23', n: 'Native fallback content remains too authoritative. Need a machine-readable and Designer-readable fallback debt report that blocks relevant packaged phase gates.' },
+    { f: 'Implementation/proof status split', s: 'partial', plan: 'P0/P23', n: 'Dashboard rows now show independent proof status derived from evidence notes; next step is explicit per-row proof metadata with age, owner, and evidence path.' },
+    { f: 'Signed decision ledger', s: 'partial', plan: 'P0/P23', n: 'Dashboard now publishes content authority, registry route, Data Registry adoption, generated asset, fallback debt, mutation, and MCP automation decisions. Next step is source-controlled signatures and revisit workflow.' },
+    { f: 'Public source snapshots and link checker', s: 'partial', plan: 'P0/P23', n: 'Private Designer source links were replaced with static snapshot links, and check-links.ps1 validates local anchors/files. Public HTTP checking is available with -CheckPublic.' },
+    { f: 'Designer screenshot capture/verification queue', s: 'missing', plan: 'P0/P23', n: 'Screenshot status is now a dashboard gate, but capture automation, commit verification, stale detection, and canonical image inventory remain.' },
+    { f: 'Public claim safety board', s: 'partial', plan: 'P0/P23', n: 'Dashboard now lists claim, evidence, verified build, risk, and blocked/unblocked state. Needs structured release-board evidence and waiver workflow before public marketing claims.' },
+    { f: 'World import preflight gate', s: 'missing', plan: 'P0/P23+P17', n: 'Before serious Landscry/P17 content, require zone identity, Data Layers, HLOD layers, PCG provenance, persistent actor IDs, nav/smart-object builder pass, and cook-risk report.' },
+  ]},
   { id: 'moveset', name: 'Combat — Moveset', icon: '⚔', features: [
     { f: 'Light attack', s: 'have', plan: '—', n: 'One clip per character (1H player / 2H boss)' },
     { f: 'Heavy attack', s: 'partial', plan: 'P13 · D', n: 'Native UAscentiaAbility_HeavyAttack now commits Breath/cooldown through GAS, opens the contact-timed melee strike window, records heavy action/hit count, target, damage, poise, cost, and uses the existing physical damage packet path; verified by Tools/remote_playtest.py heavy_attack. Distinct input mapping, heavy montage, startup/recovery/cancel windows, tuning, and UX prompts remain. Future Settings candidate: hold/tap heavy input accessibility and charge indicator visibility.' },

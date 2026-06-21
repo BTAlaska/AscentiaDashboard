@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ascentia Source Snapshots</title>
+<style>
+  :root { --bg:#101216; --panel:#181b21; --border:#2a303a; --text:#e6e2d8; --muted:#9aa0ad; --gold:#c9a55c; --blue:#5aa9e6; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 28px 20px 70px; }
+  .topnav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .topnav a { border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; color: var(--muted); background: rgba(255,255,255,0.02); font-size: 12px; text-decoration: none; }
+  .topnav a.active { color: var(--text); border-color: var(--gold); background: rgba(201,165,92,0.12); }
+  h1, h2 { font-family: Georgia, "Times New Roman", serif; color: var(--gold); }
+  h1 { font-size: 36px; margin: 0 0 8px; }
+  h2 { font-size: 23px; margin: 26px 0 10px; }
+  p { color: var(--muted); }
+  .panel { border: 1px solid var(--border); border-radius: 10px; background: var(--panel); padding: 16px 18px; margin: 14px 0; }
+  .links { display: grid; gap: 8px; }
+  a { color: var(--blue); }
+  code { background: #11151b; border: 1px solid #242a33; border-radius: 4px; padding: 1px 4px; color: #d9e7ff; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="topnav" aria-label="Primary">
+    <a href="index.html">Dashboard</a>
+    <a href="compendium.html">Compendium</a>
+    <a href="designer-compendium.html">Designer Compendium</a>
+    <a href="tools.html">Tools</a>
+    <a class="active" href="source-snapshots.html">Source Snapshots</a>
+  </nav>
+  <h1>Ascentia Source Snapshots</h1>
+  <p>Static, deploy-local source artifacts for public dashboard readers. These replace private branch links that can 404 outside the development account.</p>
+
+  <section class="panel">
+    <h2>Published Sources</h2>
+    <div class="links">
+      <a href="AAA_ARPG_Compendium.md">Architecture compendium source Markdown</a>
+      <a href="Designer_Compendium.md">Designer Compendium source Markdown</a>
+      <a href="Tools_Compendium.md">Tools bridge source Markdown</a>
+      <a href="DesignerSurface_Coverage_Matrix_Snapshot.md">Designer surface coverage matrix snapshot</a>
+      <a href="Designer_Task_Index_Snapshot.md">Designer task index snapshot</a>
+      <a href="gap-data.js">Deployable dashboard data</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Publication Policy</h2>
+    <p>Private GitHub source links should not be the only public path for trust signals. Every dashboard-published source claim should have either a public URL that passes link check or a sanitized static snapshot in this deploy mirror.</p>
+    <p>Run <code>./check-links.ps1</code> before deploy. Use <code>./check-links.ps1 -CheckPublic</code> when network access is available and public HTTP links should be checked too.</p>
+  </section>
+</main>
+</body>
+</html>

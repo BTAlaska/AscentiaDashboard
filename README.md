@@ -2,8 +2,10 @@
 
 Live status board for **Ascentia** (UE 5.8 open-world Soulslike) measured against
 the AAA open-world ARPG bar (Elden Ring benchmark + PoE/D4 itemization goal).
-134 features across 12 categories, each rated have / partial / missing with a
-plan badge (P11/P12 phase plan, backlog, designed-in-xlsx, Landscry, unplanned).
+Tracked features across implementation categories, each rated have / partial /
+missing with a plan badge and an independent proof status. P0/P23 now gates
+content spine, evidence, screenshots, decisions, source links, and public claims
+before large P11-P18 content expansion.
 
 **Live:** https://ascentiadashboard.onrender.com
 
@@ -18,9 +20,14 @@ The companion references are available as separate static pages:
 - `compendium.html` - Ascentia Compendium with linked table of contents
 - `designer-compendium.html` - Designer Compendium with the current Editor
   surface map, native-only stops, screenshot status, and custom tool candidates
+- `tools.html` - Tools bridge map for Landscry, Asset Factory, Skin Forge /
+  InterfaceArtForge, Ultra Dynamic Sky, and Fab / Marketplace intake
+- `source-snapshots.html` - public static source snapshot index used instead
+  of private GitHub branch links
 - `AAA_ARPG_Compendium.md` - source Markdown for the rendered compendium page
 - `Designer_Compendium.md` - source Markdown for the rendered Designer
   Compendium page
+- `Tools_Compendium.md` - source Markdown for the rendered Tools bridge page
 
 The status source of truth is shared:
 
@@ -44,7 +51,9 @@ local serving, but those files are not tracked in the game repo.
    keep progress-history totals coherent.
 3. Optionally copy the dashboard files back into the ignored Ascentia local
    dashboard copy for local serving.
-4. Commit + push this repo; Render redeploys.
+4. Run `powershell -NoProfile -ExecutionPolicy Bypass -File .\check-links.ps1`
+   before committing. Add `-CheckPublic` when public HTTP links should be checked.
+5. Commit + push this repo; Render redeploys.
 
 ### Running locally
 
@@ -57,9 +66,15 @@ Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
 | `index.html` | The dashboard (vanilla HTML/CSS/JS, no dependencies) |
 | `compendium.html` | The rendered Ascentia Compendium, including anchored headings and a filterable table of contents |
 | `designer-compendium.html` | The rendered Designer Compendium, including Editor surface map, task routing, and custom tool candidates |
+| `tools.html` | The rendered Tools bridge map for editor-external tool posture, evidence, and promotion gates |
+| `source-snapshots.html` | Static public source snapshot index for dashboard trust links |
 | `AAA_ARPG_Compendium.md` | Source Markdown for the rendered compendium |
 | `Designer_Compendium.md` | Source Markdown for the rendered Designer Compendium |
+| `Tools_Compendium.md` | Source Markdown for the rendered Tools bridge page |
+| `DesignerSurface_Coverage_Matrix_Snapshot.md` | Static public snapshot of Designer surface coverage posture |
+| `Designer_Task_Index_Snapshot.md` | Static public snapshot of Designer task routes |
 | `gap-data.js` | All feature statuses — the only file that changes routinely |
 | `serve.ps1` | Optional local server (TcpListener, no admin needed) |
+| `check-links.ps1` | Local/static link checker, with optional public HTTP checking |
 | `sync-from-ascentia.ps1` | Legacy helper for pulling an intentionally refreshed ignored local Ascentia dashboard copy |
 | `render.yaml` | Render blueprint (static site, publish root) |

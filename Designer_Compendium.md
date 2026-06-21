@@ -122,6 +122,10 @@ Designers enough context by themselves. These tools should inspect, validate,
 preview, and produce evidence. They should not replace stock Unreal editors
 where those editors already handle the base authoring job.
 
+Use `tools.html` for the specific editor-external bridge posture around
+Landscry, Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic Sky, and
+Fab / Marketplace intake.
+
 | Tool | Why Ascentia needs it | First write policy |
 | --- | --- | --- |
 | Content Registry Browser | Shows resolved source, fallback debt, schema drift, source manifests, generated/external status, and package blockers across DataAssets, DataTables, registry rows, and fallbacks | Reports only until guarded import/promotion exists |
@@ -153,13 +157,17 @@ Evidence screenshots under `Saved/Automation/Evidence` or
 `Saved/AscentiaEvidence` must not be copied into the compendium as if they were
 canonical UI documentation.
 
+Dashboard screenshot status now uses `missing`, `placeholder`, `captured`,
+`stale`, and `verified`. See `DesignerSurface_Coverage_Matrix_Snapshot.md` for
+the current public surface status.
+
 ## Source Links
 
-- Designer atlas source:
-  https://github.com/BTAlaska/Ascentia/tree/codex/designer-compendium/Docs/DesignerSurfaces
-- Atlas entry point:
-  https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/README.md
-- Coverage matrix:
-  https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Coverage_Matrix.md
-- Designer task index:
-  https://github.com/BTAlaska/Ascentia/blob/codex/designer-compendium/Docs/DesignerSurfaces/Designer_Task_Index.md
+- Source snapshots:
+  source-snapshots.html
+- Coverage matrix snapshot:
+  DesignerSurface_Coverage_Matrix_Snapshot.md
+- Designer task index snapshot:
+  Designer_Task_Index_Snapshot.md
+- External tool bridges:
+  tools.html
