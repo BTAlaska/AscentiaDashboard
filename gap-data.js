@@ -8,11 +8,60 @@
 // Every gap carries a phase as of 2026-06-12 — nothing is unplanned.
 
 const GAP_META = {
-  title: 'Ascentia — AAA Gap Dashboard',
-  benchmark: 'Benchmark: Elden Ring (open-world Soulslike) + PoE/D4 itemization',
+  title: 'Ascentia - Coordination Depot',
+  benchmark: 'Central coordination depot for game, content, tooling, evidence, release, and decisions',
   updated: '2026-06-21',
   sourceDoc: 'Docs/Architecture/Item_Affix_Data_Contract.md',
   reviewDoc: 'Docs/Architecture/AAA_ARPG_Compendium.md + Docs/DesignerSurfaces/README.md',
+};
+
+const COORDINATION_DEPOT = {
+  purpose: 'One central coordination depot for Ascentia development: the actual game, content data, editor-external tooling, evidence, release readiness, and decision governance.',
+  operatingRule: 'Source work may live in Unreal, GitHub, docs, spreadsheets, tools, or generated artifacts, but this dashboard carries the current status, proof posture, blocking gate, and next coordination move.',
+  lanes: [
+    {
+      name: 'Game Implementation',
+      source: 'Unreal project gameplay code, Blueprints, maps, assets, and automation proofs.',
+      dashboard: 'Gap matrix, P11-P18 phase ladder, designer handoff cards, and progress history.',
+      next: 'Keep P11 combat slices moving, but do not let player-facing content outrun P0/P23 evidence gates.',
+      gate: 'Implementation status and proof status must both be visible before a public or milestone claim.',
+    },
+    {
+      name: 'Content Data',
+      source: 'CSV/sheet exports, generated DataTables, PrimaryDataAsset overlays, registry facades, and fallback reports.',
+      dashboard: 'P0/P23 Content Spine gate plus itemization/economy rows.',
+      next: 'Prove source -> generated table -> PDA overlay -> resolved runtime record -> evidence note.',
+      gate: 'Fallback debt and stale generated artifacts block packaged or public-facing content claims.',
+    },
+    {
+      name: 'Tools & Bridges',
+      source: 'Landscry, Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic Sky, Fab / Marketplace intake, Build Doctor, and validators.',
+      dashboard: 'Tools page bridge posture, maturity ledger, promotion gates, and quarantine rules.',
+      next: 'Promote bridges from catalog/preview to validated mutation only after dry-run evidence is repeatable.',
+      gate: 'Every external tool row must show Ascentia bridge posture, evidence owner, and mutation safety.',
+    },
+    {
+      name: 'Design Surfaces',
+      source: 'Designer Compendium, coverage matrix, task index, Editor screenshots, and handoff docs.',
+      dashboard: 'Designer Compendium, screenshot readiness gate, and source snapshots.',
+      next: 'Capture the canonical Editor screenshot set and mark stale/placeholders honestly.',
+      gate: 'Designer readiness is blocked until screenshots are captured or explicitly marked as missing/stale.',
+    },
+    {
+      name: 'Evidence & QA',
+      source: 'Remote playtest logs, validation scripts, screenshots, source snapshots, link checks, and build reports.',
+      dashboard: 'Proof badges, evidence gates, public source snapshots, and validation history.',
+      next: 'Move proof metadata toward explicit owner, age, evidence path, and verified commit per row.',
+      gate: 'CURRENT proof supports a claim; SCAFFOLD, STALE, PLANNED, or MISSING proof creates debt.',
+    },
+    {
+      name: 'Release & Claims',
+      source: 'Render deploys, GitHub history, release notes, store/trailer claims, compliance notes, and public artifacts.',
+      dashboard: 'Public claim safety board, decision ledger, publication gates, and README deployment notes.',
+      next: 'Require evidence, verified build, risk, and blocked/unblocked state before external messaging.',
+      gate: 'Store, trailer, accessibility, privacy, rating, and platform claims need explicit supporting evidence.',
+    },
+  ],
 };
 
 const DASHBOARD_SUMMARY = {

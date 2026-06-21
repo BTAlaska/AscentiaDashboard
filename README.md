@@ -1,11 +1,11 @@
-# Ascentia — AAA Gap Dashboard
+# Ascentia - Coordination Depot
 
-Live status board for **Ascentia** (UE 5.8 open-world Soulslike) measured against
-the AAA open-world ARPG bar (Elden Ring benchmark + PoE/D4 itemization goal).
-Tracked features across implementation categories, each rated have / partial /
-missing with a plan badge and an independent proof status. P0/P23 now gates
-content spine, evidence, screenshots, decisions, source links, and public claims
-before large P11-P18 content expansion.
+Central coordination depot for **Ascentia** (UE 5.8 open-world Soulslike):
+game implementation, content data, editor-external tooling, designer surfaces,
+evidence, release readiness, and decision governance all roll up here. Tracked
+features are rated have / partial / missing with a plan badge and an independent
+proof status. P0/P23 gates content spine, evidence, screenshots, decisions,
+source links, and public claims before large P11-P18 content expansion.
 
 **Live:** https://ascentiadashboard.onrender.com
 
@@ -28,6 +28,8 @@ The companion references are available as separate static pages:
 - `Designer_Compendium.md` - source Markdown for the rendered Designer
   Compendium page
 - `Tools_Compendium.md` - source Markdown for the rendered Tools bridge page
+- `AGENTS.md` - repo guidance directing agents to use this dashboard as the
+  central coordination depot
 
 The status source of truth is shared:
 
@@ -63,7 +65,7 @@ Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
 
 | File | Purpose |
 |---|---|
-| `index.html` | The dashboard (vanilla HTML/CSS/JS, no dependencies) |
+| `index.html` | The central coordination depot and status dashboard (vanilla HTML/CSS/JS, no dependencies) |
 | `compendium.html` | The rendered Ascentia Compendium, including anchored headings and a filterable table of contents |
 | `designer-compendium.html` | The rendered Designer Compendium, including Editor surface map, task routing, and custom tool candidates |
 | `tools.html` | The rendered Tools bridge map for editor-external tool posture, evidence, and promotion gates |
@@ -71,6 +73,7 @@ Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
 | `AAA_ARPG_Compendium.md` | Source Markdown for the rendered compendium |
 | `Designer_Compendium.md` | Source Markdown for the rendered Designer Compendium |
 | `Tools_Compendium.md` | Source Markdown for the rendered Tools bridge page |
+| `AGENTS.md` | Agent guidance for keeping dashboard coordination, evidence, and source posture aligned |
 | `DesignerSurface_Coverage_Matrix_Snapshot.md` | Static public snapshot of Designer surface coverage posture |
 | `Designer_Task_Index_Snapshot.md` | Static public snapshot of Designer task routes |
 | `gap-data.js` | All feature statuses — the only file that changes routinely |

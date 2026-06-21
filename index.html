@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ascentia — AAA Gap Dashboard</title>
+<title>Ascentia - Coordination Depot</title>
 <style>
   :root {
     --bg: #101216; --panel: #181b21; --panel2: #1e222a; --border: #2a303a;
@@ -97,6 +97,15 @@
   .summary-card p { margin: 0; color: var(--muted); font-size: 12.5px; }
   .summary-card ul { margin: 4px 0 0; padding-left: 17px; color: var(--muted); font-size: 12.5px; }
   .summary-card li { margin: 2px 0; }
+
+  .depot-band { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0 18px; margin: 24px 0 8px; }
+  .depot-copy { color: var(--muted); font-size: 13px; max-width: 900px; margin: 0 0 8px; }
+  .depot-copy strong { color: var(--text); font-weight: 650; }
+  .depot-lanes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin-top: 14px; }
+  .depot-lane { border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 8px; padding: 12px 13px; background: rgba(255,255,255,0.018); }
+  .depot-lane h3 { color: var(--gold); font-size: 14px; margin: 0 0 8px; }
+  .depot-field { margin: 7px 0 0; color: var(--muted); font-size: 12.5px; }
+  .depot-field b { display: block; color: var(--faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.55px; margin-bottom: 1px; }
 
   .table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
   .gate-table { width: 100%; border-collapse: collapse; min-width: 780px; }
@@ -247,6 +256,13 @@
     <div class="summary-grid" id="topSummary"></div>
   </div>
 
+  <h2>Coordination depot</h2>
+  <section class="depot-band" aria-label="Ascentia coordination depot">
+    <p class="depot-copy"><strong>Purpose:</strong> <span id="depotPurpose"></span></p>
+    <p class="depot-copy"><strong>Operating rule:</strong> <span id="depotRule"></span></p>
+    <div class="depot-lanes" id="coordinationLanes"></div>
+  </section>
+
   <h2>Overall AAA progress over time</h2>
   <div class="history-panel">
     <div class="history-top">
@@ -370,7 +386,9 @@
   const $ = (id) => document.getElementById(id);
 
   // ---- header / meta ----
-  $('title').textContent = GAP_META.title;
+  const depotTitle = typeof COORDINATION_DEPOT !== 'undefined' ? 'Ascentia - Coordination Depot' : GAP_META.title;
+  document.title = depotTitle;
+  $('title').textContent = depotTitle;
   $('benchmark').textContent = GAP_META.benchmark;
   $('meta').textContent = 'Updated ' + GAP_META.updated + ' · Source: ' + GAP_META.sourceDoc + ' · Backlog: ' + GAP_META.reviewDoc;
 
@@ -435,6 +453,14 @@
     td.textContent = text || '';
     row.appendChild(td);
   }
+  function appendDepotField(parent, label, value) {
+    const field = document.createElement('p');
+    field.className = 'depot-field';
+    const b = document.createElement('b');
+    b.textContent = label;
+    field.append(b, document.createTextNode(value || 'TBD'));
+    parent.appendChild(field);
+  }
 
   // ---- KPIs ----
   const all = GAP_DATA.flatMap(c => c.features);
@@ -476,6 +502,22 @@
     appendSummaryCard('Last evidence run', DASHBOARD_SUMMARY.lastEvidenceRun);
     appendSummaryCard('Blocking gates', DASHBOARD_SUMMARY.blockingGates, true);
     appendSummaryCard('Next decisions', DASHBOARD_SUMMARY.nextDecisions, true);
+  }
+  if (typeof COORDINATION_DEPOT !== 'undefined') {
+    $('depotPurpose').textContent = COORDINATION_DEPOT.purpose;
+    $('depotRule').textContent = COORDINATION_DEPOT.operatingRule;
+    for (const lane of COORDINATION_DEPOT.lanes || []) {
+      const card = document.createElement('article');
+      card.className = 'depot-lane';
+      const h = document.createElement('h3');
+      h.textContent = lane.name;
+      card.appendChild(h);
+      appendDepotField(card, 'Source systems', lane.source);
+      appendDepotField(card, 'Dashboard readout', lane.dashboard);
+      appendDepotField(card, 'Next coordination move', lane.next);
+      appendDepotField(card, 'Gate / proof posture', lane.gate);
+      $('coordinationLanes').appendChild(card);
+    }
   }
 
   // ---- historical overall progress ----
