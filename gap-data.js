@@ -10,7 +10,7 @@
 const GAP_META = {
   title: 'Ascentia - Coordination Depot',
   benchmark: 'Central coordination depot for game, content, tooling, evidence, release, and decisions',
-  updated: '2026-06-21',
+  updated: '2026-07-03',
   sourceDoc: 'Docs/Architecture/Item_Affix_Data_Contract.md',
   reviewDoc: 'Docs/Architecture/AAA_ARPG_Compendium.md + Docs/DesignerSurfaces/README.md',
 };
@@ -252,6 +252,7 @@ const PROGRESS_HISTORY = [
   { t: '2026-06-14 04:00', label: 'GASP locomotion + AssassinGirl', have: 18, partial: 59, missing: 57, verified: 44, note: 'Architecture track (branch claude/phase2-mover-split, hand-validated in PIE — not the remote harness, so verified count unchanged): GASP motion-matching was hand-ported 5.7→5.8 across the Mover API break, AssassinGirl retargets through GASP’s VisualOverride costume system, and the player path is now re-based onto BP_AscentiaGaspPlayer + GM_GaspTest with Ascentia GAS/combat/HUD/input restored. Turn-in-place / start-stop / lean is partial through GASP; the active gate is now a P11 smoke/feel pass, not another pawn re-base.' },
   { t: '2026-06-14 14:17', label: 'GASP MVP stabilization docs', have: 18, partial: 59, missing: 57, verified: 44, note: 'Dashboard/doc sync pass: P14/P15 no longer marked future-only, local GASP fixes are reflected, and the next gate is hands-on PIE smoke for LMB attack trail/whoosh, E interact, I inventory, camera collision, no surprise boss spawn, and no Blueprint runtime errors.' },
   { t: '2026-06-20 06:35', label: 'Endgame affix/economy spine', have: 18, partial: 61, missing: 55, verified: 48, note: 'P16 moved from future-only to active implementation: 209 source affixes, 16 mythic/unique powers, 14 loot profiles, 8 affix-crafting recipes, curve bindings, importer/validator/simulator coverage, native affix crafting transactions, named currency grants, vendor purchase rollback, item-power/world-tier loot context gates, and runtime automation/build validation. Remote playtest scenario count is still the next proof gap.' },
+  { t: '2026-07-03 10:35', label: 'Dedicated-server net evidence', have: 18, partial: 61, missing: 55, verified: 48, note: 'First RETAINED dedicated-server + two-client evidence run (previously listen-server only): personal corpse-loot piles proven per client over Iris, a listen-server assumption in the smoke’s own assertion caught and fixed, and the owed COND_OwnerOnly proof discharged — owner client receives owner-private combat state, remote proxy keeps defaults while all-client fields from the same mutation arrive. Matrix counts unchanged on purpose: this is networking evidence hardening (NET track / P22 groundwork), not a new feature slice. Evidence: Saved/AscentiaEvidence/Network/TwoClientLoot/20260703-102716-two_client_loot_smoke.' },
 ];
 
 const DESIGNER_HANDOFFS = [
