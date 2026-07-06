@@ -10,7 +10,7 @@
 const GAP_META = {
   title: 'Ascentia - Coordination Depot',
   benchmark: 'Central coordination depot for game, content, tooling, evidence, release, and decisions',
-  updated: '2026-07-03',
+  updated: '2026-07-05',
   sourceDoc: 'Docs/Architecture/Item_Affix_Data_Contract.md',
   reviewDoc: 'Docs/Architecture/AAA_ARPG_Compendium.md + Docs/DesignerSurfaces/README.md',
 };
@@ -253,6 +253,7 @@ const PROGRESS_HISTORY = [
   { t: '2026-06-14 14:17', label: 'GASP MVP stabilization docs', have: 18, partial: 59, missing: 57, verified: 44, note: 'Dashboard/doc sync pass: P14/P15 no longer marked future-only, local GASP fixes are reflected, and the next gate is hands-on PIE smoke for LMB attack trail/whoosh, E interact, I inventory, camera collision, no surprise boss spawn, and no Blueprint runtime errors.' },
   { t: '2026-06-20 06:35', label: 'Endgame affix/economy spine', have: 18, partial: 61, missing: 55, verified: 48, note: 'P16 moved from future-only to active implementation: 209 source affixes, 16 mythic/unique powers, 14 loot profiles, 8 affix-crafting recipes, curve bindings, importer/validator/simulator coverage, native affix crafting transactions, named currency grants, vendor purchase rollback, item-power/world-tier loot context gates, and runtime automation/build validation. Remote playtest scenario count is still the next proof gap.' },
   { t: '2026-07-03 10:35', label: 'Dedicated-server net evidence', have: 18, partial: 61, missing: 55, verified: 48, note: 'First RETAINED dedicated-server + two-client evidence run (previously listen-server only): personal corpse-loot piles proven per client over Iris, a listen-server assumption in the smoke’s own assertion caught and fixed, and the owed COND_OwnerOnly proof discharged — owner client receives owner-private combat state, remote proxy keeps defaults while all-client fields from the same mutation arrive. Matrix counts unchanged on purpose: this is networking evidence hardening (NET track / P22 groundwork), not a new feature slice. Evidence: Saved/AscentiaEvidence/Network/TwoClientLoot/20260703-102716-two_client_loot_smoke.' },
+  { t: '2026-07-05 21:30', label: 'Loot-race scenarios + fallback gate GREEN', have: 18, partial: 61, missing: 55, verified: 48, note: 'Two milestones: (1) loot-race/RPC-spam/invalid-target network scenarios PASS on the dedicated two-client fixture — client-driven ServerTakeAllLoot volleys, exactly-once transfers (8 per-stack grants under 12 RPCs per client), 35 out-of-range + 9 bad-index + 8 duplicate-take rejects, plus two engine facts retained (stock clients drop WithValidation-failing RPCs locally; OnRep visibility races late-join viewer resolution). (2) P23-002 executed: the 15 blocking fallback-debt records (14 MVP items + AshenCleave) now have authored assets generated from new value-exact source sheets via the guarded importer — the runtime fallback-debt production gate reports active=0 blocking=0 wouldFail=FALSE for the FIRST TIME, MVP suite 13/13 on authored assets, and the two-client regression passes with authored items owning loot end to end. All three 2026-06-30 next-step items are now done. Matrix counts unchanged: gate posture and evidence hardening, not new player-facing features.' },
 ];
 
 const DESIGNER_HANDOFFS = [
