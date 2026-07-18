@@ -1,6 +1,6 @@
-# Serves the gap dashboard at http://localhost:<Port>/ (Ctrl+C to stop).
+# Serves the portfolio control room at http://localhost:<Port>/ (Ctrl+C to stop).
 # TcpListener-based: no admin rights / URL ACLs needed, PowerShell 5.1 compatible.
-# The dashboard also works without any server - just open index.html directly.
+# The dashboard also works without any server - just open portfolio.html directly.
 param(
     [int]$Port = 8765,
     [switch]$NoBrowser
@@ -36,7 +36,7 @@ try {
 
             $path = '/'
             if ($requestLine -match '^(GET|HEAD)\s+(\S+)') { $path = $Matches[2].Split('?')[0] }
-            if ($path -eq '/') { $path = '/index.html' }
+            if ($path -eq '/') { $path = '/portfolio.html' }
             $file = Join-Path $root ([uri]::UnescapeDataString($path).TrimStart('/').Replace('/', '\'))
 
             $ok = Test-Path $file -PathType Leaf

@@ -6,6 +6,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $pages = @(
+    'portfolio.html',
     'index.html',
     'compendium.html',
     'designer-compendium.html',

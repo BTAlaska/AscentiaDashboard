@@ -11717,7 +11717,7 @@ Session manifest:
 
 ```json
 {
-  "projectPath": "C:/Users/TarrT/OneDrive/Documents/Unreal Projects/Ascentia/Ascentia.uproject",
+  "projectPath": "D:/Ascentia/repos/game/Ascentia.uproject",
   "editorProcessId": 12345,
   "loadedMapPackage": "/Game/Ascentia/Maps/MVP_Arena",
   "automationOwner": "EUW_AscentiaBuildDoctor",

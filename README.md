@@ -1,6 +1,8 @@
-# Ascentia - Coordination Depot
+# Mythic Systems / Ascentia - Coordination Depot
 
-Central coordination depot for **Ascentia** (UE 5.8 open-world Soulslike):
+Portfolio control room for **Ascentia**, Landscry v0.2, Worldheart, ARPG Asset
+Factory, and Interface Art Forge / MythicSkinForge, plus the detailed central
+coordination depot for **Ascentia** (UE 5.8 open-world Soulslike):
 game implementation, content data, editor-external tooling, designer surfaces,
 evidence, release readiness, and decision governance all roll up here. Tracked
 features are rated have / partial / missing with a plan badge and an independent
@@ -16,6 +18,8 @@ Render serves the repo root; every push to `main` auto-deploys.
 
 The companion references are available as separate static pages:
 
+- `portfolio.html` - portfolio-level authority, current focus, capability,
+  proof boundary, blockers, next actions, and narrow integration touchpoints
 - `index.html` - coordination depot / status view
 - `compendium.html` - Ascentia Compendium with linked table of contents
 - `designer-compendium.html` - Designer Compendium with the current Editor
@@ -30,6 +34,8 @@ The companion references are available as separate static pages:
 - `Tools_Compendium.md` - source Markdown for the rendered Tools bridge page
 - `AGENTS.md` - repo guidance directing agents to use this dashboard as the
   central coordination depot
+- `PORTFOLIO_UPDATE_PROTOCOL.md` - standing closeout instruction for material
+  work across the named project portfolio
 
 The status source of truth is shared:
 
@@ -59,12 +65,26 @@ local serving, but those files are not tracked in the game repo.
 
 ### Running locally
 
-Open `index.html` directly, or `.\serve.ps1` → http://localhost:8765.
+Open `portfolio.html` directly, or `.\serve.ps1` and visit
+http://localhost:8765/portfolio.html.
+
+To refresh machine-local Git pulse before opening the portfolio page:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\refresh-portfolio.ps1
+```
+
+The generated `portfolio-local.js` is ignored. It is observational local data,
+not capability or proof evidence.
 
 ## Files
 
 | File | Purpose |
 |---|---|
+| `portfolio.html` | Cross-project portfolio control room |
+| `portfolio-data.js` | Curated portfolio truth and survey baseline |
+| `refresh-portfolio.ps1` | Refreshes ignored local Git pulse for this machine |
+| `PORTFOLIO_UPDATE_PROTOCOL.md` | Standing portfolio update and handoff contract |
 | `index.html` | The central coordination depot and status dashboard (vanilla HTML/CSS/JS, no dependencies) |
 | `compendium.html` | The rendered Ascentia Compendium, including anchored headings and a filterable table of contents |
 | `designer-compendium.html` | The rendered Designer Compendium, including Editor surface map, task routing, and custom tool candidates |

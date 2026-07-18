@@ -2,7 +2,7 @@
 # into this deploy-mirror repo. Use only when that local copy was deliberately
 # refreshed. The tracked Ascentia docs plus this repo's gap-data.js are the
 # durable source of truth.
-$src = "C:\Users\TarrT\OneDrive\Documents\Unreal Projects\Ascentia\Docs\GapDashboard"
+$src = "D:\Ascentia\repos\game\Docs\GapDashboard"
 $dst = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 if (-not (Test-Path $src)) {

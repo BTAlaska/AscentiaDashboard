@@ -4,6 +4,14 @@ This repository is the central coordination depot for Ascentia development. Star
 
 ## Primary Orientation
 
+- `portfolio.html` is the cross-project control room for Ascentia, Landscry
+  v0.2, Worldheart, ARPG Asset Factory, Interface Art Forge / MythicSkinForge,
+  and this coordination depot.
+- `portfolio-data.js` is the curated portfolio truth. Keep activity,
+  capability, proof/review posture, blockers, authority, touchpoints, and next
+  action separate.
+- `PORTFOLIO_UPDATE_PROTOCOL.md` defines the standing closeout contract for
+  material work across the named portfolio.
 - `index.html` is the coordination depot: current status, workstream lanes, gates, proof posture, phase ladder, handoff cards, and gap matrix.
 - `gap-data.js` is the deployable status data source for the dashboard.
 - `compendium.html` and `AAA_ARPG_Compendium.md` carry broad game/design architecture.
@@ -34,17 +42,25 @@ Before editing, identify the lane the work belongs to:
 
 ## Update Pattern
 
-1. Update the source artifact that explains the change.
-2. Update `gap-data.js` if status, evidence posture, gates, decisions, workstream lanes, or claim safety changed.
-3. Update rendered pages or Markdown companions when navigation, source snapshots, or durable guidance changes.
-4. Run local validation before committing:
+1. Update the governed project source artifact that explains the change.
+2. Follow `PORTFOLIO_UPDATE_PROTOCOL.md` when material work changes a named
+   project's focus, capability, proof, blocker, authority, touchpoint, or next
+   decision. If cross-repo writing is not authorized, require its structured
+   handoff payload.
+3. Update `portfolio-data.js` for portfolio truth and run
+   `refresh-portfolio.ps1` for ignored local Git pulse. Never infer readiness
+   from Git activity.
+4. Update `gap-data.js` if Ascentia status, evidence posture, gates, decisions, workstream lanes, or claim safety changed.
+5. Update rendered pages or Markdown companions when navigation, source snapshots, or durable guidance changes.
+6. Run local validation before committing:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\check-links.ps1
 ```
 
-5. When JavaScript changes, also run a syntax/data smoke check with Node.
-6. Commit only the intended dashboard/depot files.
+7. When JavaScript changes, also run a syntax/data smoke check with Node.
+8. Commit only the intended dashboard/depot files. Never commit
+   `portfolio-local.js`; it contains machine-local observational data.
 
 ## GitHub / Deployment
 
