@@ -38,6 +38,12 @@ window.PORTFOLIO_DATA = {
       body: 'Safe IDs, approved-root path handling, file serving, reference reads, payload limits, and traversal smokes are the declared P0 gate. CharacterBase and fitting expansion wait behind it.',
       owner: 'ARPG Asset Factory',
     },
+    {
+      level: 'active',
+      title: 'Keep artifact hygiene visible',
+      body: 'Every project generates caches, review bundles, and scratch. The standing law (ops/ARTIFACT_HYGIENE.md) is: declared homes or date-stamped scratch, promote-or-delete at closeout, and the Hygiene panel below reports the measured weight. Nothing is auto-deleted.',
+      owner: 'All projects / Portfolio',
+    },
   ],
   projects: [
     {
@@ -73,7 +79,7 @@ window.PORTFOLIO_DATA = {
       state: 'attention',
       phase: 'Portfolio consolidation',
       summary: 'The existing coordination depot is the correct home for the portfolio view. Its detailed game matrix, Designer Compendium, tool bridge map, decisions, proof posture, and claim gates remain useful, but its source status has drifted behind the projects.',
-      focus: 'Add a portfolio-level control room, make authority and duplicate copies visible, and establish a repeatable update protocol.',
+      focus: 'Operate the portfolio control room v2: drift detection against curated records, disk/waste hygiene instrumentation, and migration/junction posture surfaced on the page.',
       capability: 'Dependency-free local/static browser dashboard with detailed Ascentia feature data, designer routes, evidence gates, and tool bridge pages.',
       proof: 'The canonical dashboard working tree was copied with exact hash and Git verification to D:/Ascentia/repos/dashboard. Unique commit 93a1b208 is preserved at D:/Ascentia/archives/dashboard-divergence/claude-clone and in dashboard-divergence-93a1b208.bundle; content reconciliation remains pending.',
       blockers: [

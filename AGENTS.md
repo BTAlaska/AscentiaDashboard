@@ -12,6 +12,11 @@ This repository is the central coordination depot for Ascentia development. Star
   action separate.
 - `PORTFOLIO_UPDATE_PROTOCOL.md` defines the standing closeout contract for
   material work across the named portfolio.
+- `refresh-portfolio.ps1` writes the gitignored `portfolio-local.js`: Git
+  pulse, volumes, per-project disk, and the artifact-hygiene sweep required by
+  `D:\Ascentia\ops\ARTIFACT_HYGIENE.md` (scratch TTLs, unindexed paths,
+  reclaimable caches). The Hygiene panel on `portfolio.html` renders it;
+  nothing is ever auto-deleted.
 - `index.html` is the coordination depot: current status, workstream lanes, gates, proof posture, phase ladder, handoff cards, and gap matrix.
 - `gap-data.js` is the deployable status data source for the dashboard.
 - `compendium.html` and `AAA_ARPG_Compendium.md` carry broad game/design architecture.

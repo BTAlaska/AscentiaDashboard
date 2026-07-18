@@ -15,8 +15,13 @@ blocker, authority, integration boundary, or next decision:
 3. Keep activity, capability, and proof separate. A commit, generated image,
    or passing local test does not by itself promote a gate or release claim.
 4. Set the review date and cite the exact evidence or signed record used.
-5. Run `refresh-portfolio.ps1` for current local Git pulse.
-6. Run `check-links.ps1` and a JavaScript syntax smoke before closeout.
+5. Sweep your own outputs per `D:\Ascentia\ops\ARTIFACT_HYGIENE.md`: promote
+   generated material to its declared home (and record it) or delete it.
+   Disposables belong in date-stamped `.scratch\YYYYMMDD-<purpose>\` folders.
+6. Run `refresh-portfolio.ps1` for current local Git pulse plus the disk and
+   hygiene sweep (`-SkipDisk` for a quick pulse-only pass), then check the
+   Hygiene panel for new weight, overdue scratch, or unindexed paths.
+7. Run `check-links.ps1` and a JavaScript syntax smoke before closeout.
 
 If the dashboard repo is unavailable or out of scope, the handoff must include
 this payload so the next dashboard session can apply it without guessing:
