@@ -155,6 +155,7 @@ $pluginSource = Join-Path $AscentiaRoot "repos\interface-forge"
 $pluginInstalled = Join-Path $AscentiaRoot "sandboxes\skin-forge\Plugins\InterfaceArtForge"
 $pluginCompared = 0
 $pluginDifferent = 0
+$pluginNewlineOnly = 0
 $pluginMissing = 0
 
 if ((Test-Path -LiteralPath $pluginSource) -and (Test-Path -LiteralPath $pluginInstalled)) {
@@ -173,6 +174,13 @@ if ((Test-Path -LiteralPath $pluginSource) -and (Test-Path -LiteralPath $pluginI
         if ((Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash -ne
             (Get-FileHash -LiteralPath $installedFile -Algorithm SHA256).Hash) {
             $pluginDifferent++
+            # Repo is LF, working copies are CRLF: distinguish newline-only
+            # drift from real content drift so the dashboard chip stays honest.
+            $sourceText = ([System.IO.File]::ReadAllText($sourceFile)) -replace "`r`n", "`n"
+            $installedText = ([System.IO.File]::ReadAllText($installedFile)) -replace "`r`n", "`n"
+            if ($sourceText.TrimEnd("`n") -eq $installedText.TrimEnd("`n")) {
+                $pluginNewlineOnly++
+            }
         }
     }
 }
@@ -323,7 +331,7 @@ if (-not $SkipDisk) {
 
     # Unindexed detector: strangers at the umbrella's top levels.
     $knownSets = @(
-        @{ Root = $AscentiaRoot; Known = @("repos", "sandboxes", "data", "archives", "libraries", "ops", "worktrees", "README.md", "AGENTS.md") },
+        @{ Root = $AscentiaRoot; Known = @("repos", "sandboxes", "data", "archives", "libraries", "ops", "worktrees", "README.md", "AGENTS.md", "CLAUDE.md") },
         @{ Root = (Join-Path $AscentiaRoot "repos"); Known = @("game", "dashboard", "landscry", "worldheart", "asset-factory", "interface-forge") },
         @{ Root = (Join-Path $AscentiaRoot "data"); Known = @("landscry-content", "landscry-saved", "worldheart-output") },
         @{ Root = (Join-Path $AscentiaRoot "sandboxes"); Known = @("skin-forge") },
@@ -415,6 +423,7 @@ $payload = [ordered]@{
             installed = $pluginInstalled
             compared = $pluginCompared
             different = $pluginDifferent
+            newlineOnly = $pluginNewlineOnly
             missing = $pluginMissing
         }
         legacyPaths = $legacyChecks

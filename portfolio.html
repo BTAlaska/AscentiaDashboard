@@ -675,14 +675,19 @@
           </details>`);
 
         const plugin = obs.interfacePluginCopy || {};
-        const inSync = plugin.compared > 0 && plugin.different === 0 && plugin.missing === 0;
+        const newlineOnly = Number(plugin.newlineOnly) || 0;
+        const contentDiff = Math.max(0, (Number(plugin.different) || 0) - newlineOnly);
+        const inSync = plugin.compared > 0 && contentDiff === 0 && plugin.missing === 0;
+        const syncLabel = inSync
+          ? (newlineOnly > 0 ? `in sync (${newlineOnly} newline-only diffs)` : 'in sync')
+          : `${contentDiff} differ / ${numberOrDash(plugin.missing)} missing`;
         blocks.push(`
           <details class="ops-block">
-            <summary>Interface Forge plugin copy <span class="chip ${inSync ? 'ok' : 'warn'}">${inSync ? 'in sync' : `${escapeHtml(numberOrDash(plugin.different))} differ / ${escapeHtml(numberOrDash(plugin.missing))} missing`}</span></summary>
+            <summary>Interface Forge plugin copy <span class="chip ${inSync ? 'ok' : 'warn'}">${escapeHtml(syncLabel)}</span></summary>
             <div class="ops-body">
               <div class="rowline"><span>Canonical</span><code>${escapeHtml(shortPath(plugin.source))}</code></div>
               <div class="rowline"><span>Installed (skin-forge)</span><code>${escapeHtml(shortPath(plugin.installed))}</code></div>
-              <div class="rowline"><span>Tracked files compared</span><span>${escapeHtml(numberOrDash(plugin.compared))}</span></div>
+              <div class="rowline"><span>Tracked files compared</span><span>${escapeHtml(numberOrDash(plugin.compared))} (raw-byte diffs: ${escapeHtml(numberOrDash(plugin.different))}, newline-only: ${escapeHtml(newlineOnly)})</span></div>
             </div>
           </details>`);
 

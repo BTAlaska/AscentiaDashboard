@@ -14,7 +14,11 @@ source links, and public claims before large P11-P18 content expansion.
 ## How this repo works
 
 This is a **deploy mirror** — a dependency-free static site (no build step).
-Render serves the repo root; every push to `main` auto-deploys.
+Render serves the repo root from `main`. Deploys are user-gated: in practice
+Render auto-deploy has been unreliable, so treat pushes as needing a manual
+deploy check (see AGENTS.md — the user deploys from committed changes unless
+a push/PR is explicitly requested). Portfolio work on side branches is not on
+the live site until merged to `main`.
 
 The companion references are available as separate static pages:
 
@@ -61,7 +65,9 @@ local serving, but those files are not tracked in the game repo.
    dashboard copy for local serving.
 4. Run `powershell -NoProfile -ExecutionPolicy Bypass -File .\check-links.ps1`
    before committing. Add `-CheckPublic` when public HTTP links should be checked.
-5. Commit + push this repo; Render redeploys.
+5. When JavaScript data files change, also run a Node syntax/data smoke
+   (e.g. `node --check gap-data.js portfolio-data.js`).
+6. Commit; the user gates push/deploy (Render redeploy is not assumed).
 
 ### Running locally
 
@@ -96,7 +102,8 @@ not capability or proof evidence.
 | `AGENTS.md` | Agent guidance for keeping dashboard coordination, evidence, and source posture aligned |
 | `DesignerSurface_Coverage_Matrix_Snapshot.md` | Static public snapshot of Designer surface coverage posture |
 | `Designer_Task_Index_Snapshot.md` | Static public snapshot of Designer task routes |
-| `gap-data.js` | All feature statuses — the only file that changes routinely |
+| `gap-data.js` | All Ascentia feature statuses — routinely curated |
+| `portfolio-data.js` | Cross-project portfolio truth — routinely curated (newer survey cadence than gap-data.js) |
 | `serve.ps1` | Optional local server (TcpListener, no admin needed) |
 | `check-links.ps1` | Local/static link checker, with optional public HTTP checking |
 | `sync-from-ascentia.ps1` | Legacy helper for pulling an intentionally refreshed ignored local Ascentia dashboard copy |
