@@ -16,8 +16,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'critical',
-      title: 'Restore one coordination truth',
-      body: 'The detailed Ascentia dashboard was last curated on July 5/6 while the game moved materially through network proof, P11 combat work, and a large Aether slice. The archived Designer Compendium divergence was reconciled on 2026-07-18; the remaining debt is current game-detail curation.',
+      title: 'Re-curate detailed Ascentia truth',
+      body: 'The portfolio control room is now on dashboard main and the archived Designer Compendium divergence is reconciled. The detailed Ascentia dashboard was last curated on July 5/6 while the game moved materially through network proof, P11 combat work, and a large Aether slice; current game-detail curation remains the debt.',
       owner: 'Portfolio / AscentiaDashboard',
     },
     {
@@ -64,16 +64,6 @@ Context: the local canonical repo D:\Ascentia\repos\interface-forge holds the li
 MY DECISION: [pick one — (A) the local line is truth: graft the remote release-prep additions on top of it; (B) remote b4dcfac is truth: replay the local docs/sync commits onto it; (C) inspect both and propose a merge plan for my review before changing anything]
 
 Steps: read AGENTS.md first. Diff the lines (git diff origin/main claude/docs-accuracy) and summarize what each uniquely contains before acting. Whichever direction applies, preserve BOTH lines: tag the non-chosen head (e.g. archive/pre-reconcile-20260718) and push the tag — never discard history. Build the reconciled branch, run descriptor/module/preset validation, run .\sync-vendored.ps1 -DryRun to preview vendored impact (note: a full source sync flips vendored files LF->CRLF — newline-only, but say so), push, and open a PR to main once histories connect. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the interfaceforge entry, prune this hand-off, refresh the pulse).`,
-    },
-    {
-      id: 'dashboard-merge-deploy',
-      title: 'Merge the control room to main; settle the deploy',
-      target: 'Any agent · D:\\Ascentia\\repos\\dashboard',
-      decision: false,
-      why: 'The portfolio lives on a pushed side branch; main is the Render deploy branch.',
-      prompt: String.raw`Merge the portfolio control room into main and settle the deploy.
-
-In D:\Ascentia\repos\dashboard (read AGENTS.md first): branch codex/portfolio-control-room (HEAD a477ef7 or later) holds portfolio control room v2.1 and is pushed with upstream; main is the Render deploy branch (live: https://ascentiadashboard.onrender.com). Task: merge codex/portfolio-control-room into main, run check-links.ps1 and node --check on gap-data.js + portfolio-data.js, confirm portfolio-local.js remains untracked, then push main. Afterwards verify honestly whether Render actually redeployed (auto-deploy has been unreliable — probe the live site; do not claim a deploy you did not observe). Expected on the LIVE site: the portfolio page shows "Snapshot only" because portfolio-local.js is machine-local — that is correct behavior, not a bug. Close out with the Portfolio Signal (update the dashboard entry, prune this hand-off, refresh).`,
     },
     {
       id: 'worldheart-lane-docs',
@@ -188,21 +178,23 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       state: 'attention',
       phase: 'Portfolio consolidation',
       summary: 'The existing coordination depot is the correct home for the portfolio view. Its detailed game matrix, Designer Compendium, tool bridge map, decisions, proof posture, and claim gates remain useful, but its source status has drifted behind the projects.',
-      focus: 'Operate the portfolio control room v2: drift detection against curated records, disk/waste hygiene instrumentation, and migration/junction posture surfaced on the page.',
+      focus: 'Operate portfolio control room v2 from main and re-curate the detailed Ascentia status against the current game evidence set.',
       capability: 'Dependency-free local/static browser dashboard with detailed Ascentia feature data, designer routes, evidence gates, and tool bridge pages.',
-      proof: 'The canonical dashboard working tree was copied with exact hash and Git verification to D:/Ascentia/repos/dashboard. Archived commit 93a1b208 was reviewed against the current line and remained additive, then was cherry-picked as 4fdcd49; the divergent clone and verified bundle remain preserved provenance.',
+      proof: 'Dashboard main was fast-forwarded through control-room closeout b6df952 on 2026-07-18 and the six-page link check plus Node syntax checks for gap-data.js and portfolio-data.js passed. Archived commit 93a1b208 remains preserved in the divergent clone and verified bundle after reconciliation as 4fdcd49. Render deployment was explicitly deferred to the user and was not probed or claimed in this round.',
       blockers: [
         'Curated status date was 2026-07-05 while major game work continued through 2026-07-17.',
+        'Render requires a user-triggered manual deployment; live status is unverified for this main update.',
         'The original C: sources remain retained because source retirement is not authorized.',
       ],
-      next: 'User decision: merge codex/portfolio-control-room to main (deploy gate); then re-curate gap-data.js.',
+      next: 'User: trigger and verify the Render deployment when ready. Portfolio: re-curate gap-data.js against the current game evidence set.',
       authority: 'D:/Ascentia/repos/dashboard',
       evidence: [
-        'Control room v2 commits b409531/660d15c/ab88cf0 (2026-07-18) on codex/portfolio-control-room',
+        'main fast-forward through control-room closeout b6df952; check-links.ps1 and Node syntax checks passed 2026-07-18',
         'Archived commit 93a1b208 (2026-07-07) reconciled as cherry-pick 4fdcd49 on 2026-07-18; clone + verified bundle preserved',
+        'Render deployment not attempted or verified by this round; user owns the manual deploy',
         'gap-data.js curated date 2026-07-05 (Ascentia detail lags; portfolio survey 2026-07-18 is current)',
       ],
-      snapshot: { branch: 'codex/portfolio-control-room', head: '4fdcd49', date: '2026-07-18', dirty: 0, ahead: null, behind: null },
+      snapshot: { branch: 'main', head: 'b6df952', date: '2026-07-18', dirty: 0, ahead: 0, behind: 0 },
     },
     {
       id: 'landscry',
