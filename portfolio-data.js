@@ -15,10 +15,10 @@ window.PORTFOLIO_DATA = {
       owner: 'User decision / Portfolio',
     },
     {
-      level: 'active',
-      title: 'Keep the game branch published and its record current',
-      body: 'codex/designer-compendium is pushed current (Aether replication proof plus the 2026-07-18 D: doc alignment), and the detailed Ascentia dashboard (gap-data.js) is re-curated to the 2026-07-18 evidence set — the July 6-18 curation debt is closed. The recorded continuation work has hand-off prompts below (P11/Aether continuation; residue self-refill decision). Remaining discipline: ignored Unreal Content changes still need explicit handoffs.',
-      owner: 'Ascentia',
+      level: 'review',
+      title: 'Publish the completed Aether continuation and settle residue behavior',
+      body: 'The node save-spine plus Magic Sight/cue continuation is complete at local commit 370a754e: the editor build passed 22/22, Aether automation passed 19/19, asset validation passed 6/6, all three Niagara systems audit UpToDate with the exact 12-field User.* contract, and the dedicated two-client fixture passed 33/33 at 120 ms / 5% loss. The branch is clean and one commit ahead of origin; pushing it requires explicit user approval. Six new ignored Content assets remain in local custody with exact byte counts and SHA-256 values plus tracked rebuild/audit tools. Residue self-refill remains the separate product decision carried by the hand-off below.',
+      owner: 'User decision (push approval + residue self-refill) / Ascentia',
     },
     {
       level: 'review',
@@ -27,10 +27,10 @@ window.PORTFOLIO_DATA = {
       owner: 'User decision (fly verdict + FREEZE) / Landscry + Worldheart',
     },
     {
-      level: 'blocked',
-      title: 'Do the Asset Factory security pass before expansion',
-      body: 'Safe IDs, approved-root path handling, file serving, reference reads, payload limits, and traversal smokes are the declared P0 gate. CharacterBase and fitting expansion wait behind it. A ready-to-run hand-off prompt is below — no user decision needed to start it.',
-      owner: 'ARPG Asset Factory',
+      level: 'review',
+      title: 'Publish the completed Asset Factory P0 security pass',
+      body: 'P0 is complete and locally verified: strict IDs, approved-root and opened-descriptor I/O, bounded contact sheets and request/reference payloads, symlink/junction/hard-link defenses, immutable locked approval snapshots, rollback-aware inbox-last publication, and expanded no-credit boundary/regression smokes. Local main is clean at f671a21, four commits ahead of origin/main b8b0522; pushing the shared default branch awaits explicit user approval. P1 paired-slot symmetry is now the next default priority; CharacterBase and fitting expansion remain later roadmap work.',
+      owner: 'User decision (push approval) / ARPG Asset Factory',
     },
     {
       level: 'review',
@@ -66,16 +66,6 @@ MY DECISION: [pick one — (A) the local line is truth: graft the remote release
 Steps: read AGENTS.md first. Diff the lines (git diff origin/main claude/docs-accuracy) and summarize what each uniquely contains before acting. Whichever direction applies, preserve BOTH lines: tag the non-chosen head (e.g. archive/pre-reconcile-20260718) and push the tag — never discard history. Build the reconciled branch, run descriptor/module/preset validation, run .\sync-vendored.ps1 -DryRun to preview vendored impact (note: a full source sync flips vendored files LF->CRLF — newline-only, but say so), push, and open a PR to main once histories connect. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the interfaceforge entry, prune this hand-off, refresh the pulse).`,
     },
     {
-      id: 'worldheart-lane-docs',
-      title: 'Worldheart lane: land the two portfolio doc edits',
-      target: 'Codex (Worldheart lane) · D:\\Ascentia\\repos\\worldheart',
-      decision: false,
-      why: 'Two doc-only edits from the portfolio pass sit uncommitted in the governed tree; only the Worldheart lane may commit there.',
-      prompt: String.raw`Worldheart lane: review and land two portfolio doc edits sitting uncommitted in the working tree.
-
-In D:\Ascentia\repos\worldheart, within WH-WO-0020's boundary (read AGENTS.md and the session protocol first; G01 stays RED; no gate, evidence, or acceptance changes): the 2026-07-18 portfolio pass left two doc-only edits uncommitted — docs/MIGRATION.md (a supersession banner recording the move to D:\Ascentia\repos\worldheart; the historical migration-#1 record below it is untouched) and AGENTS.md (a new "Portfolio signal" section, explicitly reporting-only and subordinate to governance). Review both diffs. If acceptable to the lane, commit them as their own doc-only commit with explicit paths (git add docs/MIGRATION.md AGENTS.md) — separate from the dressing_factory feature work, which you must not touch. Whether to push remains the lane's call. Close out with the Portfolio Signal payload in your handoff (a dashboard write is optional for this lane).`,
-    },
-    {
       id: 'retirement-approvals',
       title: 'Execute approved C: retirements',
       target: 'Any agent · D:\\Ascentia (umbrella)',
@@ -100,14 +90,16 @@ MY APPROVAL — delete exactly these cache-class paths: [list from the Hygiene p
 In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved cache-class paths. Laws: repos\landscry\unreal\Binaries is generated-state, NOT cache — if I listed it, first prove a clean rebuild of the winding-fixed importer DLLs; never touch evidence/artifact/generated-state classes under a cache approval; before deleting a tree's caches confirm no editor or build is running against it (any open UE 5.8 editor blocks builds repo-wide via the Live Coding mutex); UE recreates DDC/Intermediate on demand so the directories can go entirely. Afterwards run the full refresh (refresh-portfolio.ps1) and report the reclaimed GB from the Hygiene tiles, before/after. Close out with the Portfolio Signal (update this hand-off or prune it).`,
     },
     {
-      id: 'assetfactory-p0-security',
-      title: 'Run the Asset Factory P0 security pass',
+      id: 'assetfactory-p0-publish',
+      title: 'Approve publishing the completed Asset Factory P0 pass',
       target: 'Any agent · D:\\Ascentia\\repos\\asset-factory',
-      decision: false,
-      why: 'The declared blocking gate before any factory expansion; scope is written in the roadmap and needs no user decision to start.',
-      prompt: String.raw`Run the ARPG Asset Factory P0 security pass as one focused slice.
+      decision: true,
+      why: 'P0 is complete, committed, and locally verified; main is clean but four commits ahead, and pushing the shared default branch requires explicit user approval.',
+      prompt: String.raw`Publish the completed ARPG Asset Factory P0 security pass.
 
-In D:\Ascentia\repos\asset-factory (read AGENTS.md and docs/development-priority-roadmap.md first — P0 is the declared blocking gate): implement the P0 scope in one pass: uniform safe asset-set-ID sanitization everywhere IDs enter, approved-root path helpers replacing broad path-prefix checks, hardened file serving, bounded contact-sheet reference reads, and explicit request payload limits — then prove each guard with traversal and oversize smoke tests alongside the existing eight no-credit smokes (package build + local HTTP surface stay green; no paid provider calls are needed). Do NOT start CharacterBase, character-creator, image-configuration, base-body, or fitting expansion — they wait behind this gate. Commit to main per repo convention and push (GitHub-current direction 2026-07-18). Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (move the assetfactory entry off blocked to its evidenced state, prune this hand-off, keep the three portfolio sections in agreement).`,
+MY APPROVAL: [approve pushing local main at f671a21 to origin/main / do not push; leave the four commits local]
+
+In D:\Ascentia\repos\asset-factory, read AGENTS.md and docs\development-priority-roadmap.md first. Verify the working tree is clean, HEAD is exactly f671a21, origin/main is b8b0522, and local main is exactly four commits ahead: a6a2d97, f46c72e, 75e4e43, f671a21. Do not change P0 code or begin P1 during this publication pass. If approved, fetch origin and confirm the push remains a fast-forward; if origin moved, stop and report the divergence instead of merging by assumption. Push main, verify the remote head, then close out with the Portfolio Signal: prune this hand-off, record the pushed revision, and move Asset Factory to active P1 paired-slot symmetry posture.`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -143,16 +135,6 @@ MY DECISION: depleted residue pockets [slowly self-refill toward their authored 
 
 In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> Docs/COMPENDIUM_MAP.md -> the magic-lane rules): Aether is the REWARD layer — ETH is spell mana with Elden Ring rules; boss strikes deposit supersaturation residue; casts opportunistically consume charge for damage overcharge; the field drains toward the ambient norm; DepositSupersaturation energy is PER CELL (pool roughly 10x a per-cast request). Implement my decision in the field core and the designer surfaces described by Docs/Architecture/Aether_EnvironmentalMagic.md and Docs/DesignerSurfaces/AetherMagic_README.md, keep the Ascentia.Aether automation suite green and extend it to pin the new behavior, and verify multiplayer with the two-client fixture (-AscentiaNetAetherSmoke via Tools/network/run_two_client_aether_smoke.py; launch clients only after the driver prints START; the deplete sphere must stay wider than probe reach). Close out per Docs/rules/SOURCE_CONTROL.md (commit, push) plus the Portfolio Signal (update the ascentia entry, prune this hand-off).`,
     },
-    {
-      id: 'ascentia-p11-aether-continuation',
-      title: 'Continue the P11/Aether slice: save-spine + Magic Sight art',
-      target: 'Any agent · D:\\Ascentia\\repos\\game',
-      decision: false,
-      why: 'The game’s recorded continuation work after the 2026-07-18 re-curation: node save-spine wiring and the Magic Sight/cue art remainder.',
-      prompt: String.raw`Continue the P11/Aether slice: node save-spine wiring plus the Magic Sight/cue art remainder.
-
-In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> Docs/COMPENDIUM_MAP.md -> the magic and save/progression lane rules): two recorded remainders from the Aether reward-layer slice. (1) NODE SAVE-SPINE: wire Aether node persistence into the save spine per the "Node persistence" item in Docs/Architecture/Aether_EnvironmentalMagic.md — nodes must survive save/load with clear authoritative ownership, and the Ascentia.Aether automation suite (18/18 green at 413b5573) must stay green and grow to pin the behavior. (2) MAGIC SIGHT / CUE ART: replace the native debug-wisp fallback with the field-visualization Niagara plus the GameplayCue.Ascentia.MagicSight and GameplayCue.Ascentia.AetherDrain cue assets per Docs/DesignerSurfaces/AetherMagic_README.md — designer surfaces get real assets/tooling the proper way, with compendium docs updated. Gotchas: Niagara has NO python API — use the editor MCP (:8000/mcp call_tool via curl keep-alive; Get*=emitterRef/Set*=emitter asymmetry; NiagaraBool true=-1; edits are in-memory until save_asset; stop PIE around MCP surgery); building C++ with an editor open makes a stale patch DLL (close editors before headless builds; -NoHotReloadFromIDE). Verify multiplayer with the two-client fixture (-AscentiaNetAetherSmoke via Tools/network/run_two_client_aether_smoke.py; launch clients only after the driver prints START; the deplete sphere stays wider than probe reach). The residue self-refill question is a SEPARATE decision hand-off — do not decide it here. Close out per Docs/rules/SOURCE_CONTROL.md (commit, push) plus the Portfolio Signal (update the ascentia entry, prune or re-scope this hand-off, keep the three portfolio sections in agreement).`,
-    },
   ],
   projects: [
     {
@@ -160,23 +142,24 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       name: 'Ascentia',
       futureName: 'Planned product name: Mythic Core',
       role: 'Main game',
-      state: 'active',
-      phase: 'P11 combat / Aether vertical slice',
-      summary: 'The authoritative UE 5.8 open-world RPG. The detailed dashboard record now reflects the current evidence set: dedicated-server verb proof, packaged-profile proof, layered combat presentation, and the environmental Aether system with its replication fixture.',
-      focus: 'Aether field gameplay and presentation, Magic Sight, Breath-backed sprinting, ground-hugging tells, and current controller/game-mode work.',
-      capability: 'A live multiplayer-aware Unreal codebase with recorded network checklist passes and public-profile packaging proof. The new Aether field core has a committed deterministic automation suite, authoring volumes, HUD/castability surfaces, and world interactions.',
-      proof: 'Recorded evidence (Aether suite 18/18, two-client fixtures, NetworkEvidenceChecklist, packaged public-profile smoke) supports the network/Aether claims; the portfolio survey did not itself rebuild the project, and ignored Content assets require an exact handoff.',
+      state: 'review',
+      phase: 'P11/P15 — Aether continuation locally complete',
+      summary: 'The authoritative UE 5.8 open-world RPG. The completed Aether continuation adds a versioned owned save fragment for stable-GUID node activation plus authored Magic Sight and Aether Drain Niagara/GameplayCue presentation; publication is the remaining repository action.',
+      focus: 'Preserve the proven save/presentation state, publish local commit 370a754e after explicit approval, and resolve residue self-refill separately; broader P11/P15 UI, animation, audio, and content work remains.',
+      capability: 'The multiplayer-aware Aether field now includes durable node activation through Save.Fragment.WorldActors.AetherNodes, compiled typed Niagara presentation, and looping/burst GameplayCues. Tracked tools reconstruct and audit the six intentionally ignored Content assets.',
+      proof: 'Local 370a754e passed the full 22/22 editor build, final 6/6 incremental build, Ascentia.Aether 19/19, asset validation 6/6, Niagara audit 3/3 UpToDate with zero stack errors, and the dedicated-server two-client fixture 33/33 under 120 ms / 5% loss. The branch is not yet remote-published.',
       blockers: [
-        'Ignored Unreal Content changes can disappear from Git-based status reporting — handoffs must record asset state explicitly.',
+        'Local commit 370a754e is one commit ahead of origin/codex/designer-compendium; pushing awaits explicit user approval.',
+        'Six new Unreal Content assets are intentionally ignored. Their paths, bytes, SHA-256 custody, and tracked reconstruction/audit tools are recorded in AetherContinuationSummary.md; Git publication does not itself carry those binaries.',
       ],
-      next: 'Continue the P11/Aether slice: node save-spine wiring, Magic Sight/cue art remainder, and the residue self-refill decision.',
+      next: 'User: approve or decline pushing 370a754e; separately decide residue self-refill through the retained hand-off.',
       authority: 'D:/Ascentia/repos/game',
       evidence: [
-        'Git HEAD 413b5573 (2026-07-18), pushed; branch clean after the D: doc-alignment commit',
-        'Docs/Evidence/Latest and network/public-profile records',
-        'Docs/DesignerSurfaces/AetherMagic_README.md',
+        'Docs/Evidence/Latest/AetherContinuationSummary.md — tracked continuation proof and exact ignored-asset custody',
+        'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 33/33 dedicated two-client run',
+        'Git HEAD 370a754e; clean, ahead 1 of origin/codex/designer-compendium at 413b5573; push pending explicit approval',
       ],
-      snapshot: { branch: 'codex/designer-compendium', head: '413b5573', date: '2026-07-18', dirty: 0, ahead: 0, behind: 0 },
+      snapshot: { branch: 'codex/designer-compendium', head: '370a754e', date: '2026-07-18', dirty: 0, ahead: 1, behind: 0 },
     },
     {
       id: 'dashboard',
@@ -196,7 +179,7 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       authority: 'D:/Ascentia/repos/dashboard',
       evidence: [
         'gap-data.js re-curated to 2026-07-18 (commit eaade66); check-links.ps1 and Node syntax checks passed 2026-07-18',
-        'Curation sources: NetworkAetherSmokeSummary.md 33/33, Aether docs 18/18 suite, NetworkEvidenceChecklist 10/10 (scoped rows noted), PublicBuildProfile.md, Swing_Whoosh_Authoring.md 152/152 bake',
+        'Curation sources: AetherContinuationSummary.md 19/19 + exact ignored-asset custody, NetworkAetherSmokeSummary.md 33/33, NetworkEvidenceChecklist 10/10 (scoped rows noted), PublicBuildProfile.md, Swing_Whoosh_Authoring.md 152/152 bake',
         'Archived commit 93a1b208 (2026-07-07) reconciled as cherry-pick 4fdcd49 on 2026-07-18; clone + verified bundle preserved',
         'Render deployment not attempted or verified by this round; user owns the manual deploy',
       ],
@@ -243,40 +226,39 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'No Unreal consumption is authorized for the active work order.',
         'G01 remains RED and migration verification supplies no missing human acceptance.',
         'Current visual rounds are intentionally not claim-bearing evidence packs.',
-        'Branch intentionally has no upstream during R50+ visual rounds; the dressing_factory working tree and the 2026-07-18 doc edits (MIGRATION supersession note, Portfolio Signal section) await commit by the Worldheart lane.',
+        'Branch intentionally has no upstream during R50+ visual rounds; the WH-WO-0020 dressing-factory source and governed candidate records remain dirty/untracked and separate from the landed doc-only commit.',
       ],
       next: 'Continue WH-WO-0020 only within its focused-test boundary; do not run a full suite, rebuild evidence, resolve gates, or claim Unreal acceptance without a governing work order.',
       authority: 'D:/Ascentia/repos/worldheart',
       evidence: [
+        'Git HEAD 3938c0b: Portfolio Signal and D: migration docs committed separately without touching dressing-factory state',
         'WH-WO-0020_THEMATIC_DRESSING_ASSET_FACTORY_R0.md',
         'WH-HANDOFF-0020_MASTER_ARCHITECT_BUILDING_R49.md',
         'Ignored review outputs r50, r51, and r52 existed at survey time',
       ],
-      snapshot: { branch: 'codex/master-architect-visual-r50', head: 'd115798', date: '2026-07-18', dirty: 20, ahead: null, behind: null },
+      snapshot: { branch: 'codex/master-architect-visual-r50', head: '3938c0b', date: '2026-07-18', dirty: 18, ahead: null, behind: null },
     },
     {
       id: 'assetfactory',
       name: 'ARPG Asset Factory',
       role: 'Game-ready equipment pipeline',
-      state: 'blocked',
-      phase: 'P0 — security hardening',
-      summary: 'A standalone contact-sheet-to-Meshy-to-Blender equipment pipeline that writes review packages to ImportQueue rather than mutating Unreal Content.',
-      focus: 'Safe asset-set IDs, approved-root path helpers, file serving, local reference reads, request limits, and traversal/oversize smokes.',
-      capability: 'The MVP includes preview/create/inspect tools, contact-sheet planning and slicing, slot-aware prompts, Meshy adapters, approved Blender processing, QA previews, and a Fitting Room handoff.',
-      proof: 'The full working tree is preserved on D:. Its package build, eight no-credit smoke checks, and local HTTP surface pass from D:/Ascentia/repos/asset-factory; paid provider actions were not used. main is pushed current as of 2026-07-18 (P0 roadmap and restart scripts now tracked).',
+      state: 'review',
+      phase: 'P0 complete locally — publication approval',
+      summary: 'The standalone equipment pipeline now has a completed P0 boundary-hardening pass while preserving ImportQueue as the human-review boundary and never writing into Unreal Content.',
+      focus: 'Publish the four local P0 commits after explicit approval, then continue at P1 paired-slot symmetry.',
+      capability: 'Strict asset IDs, approved-root and same-descriptor file access, bounded image/request/reference handling, junction/symlink/hard-link rejection, exact Fitting Room evidence identity, per-asset locks, immutable approval snapshots, and rollback-aware inbox-last publication are implemented.',
+      proof: 'The P0 build and expanded security/no-credit regression suite passed locally, including traversal, external ImportQueue, decoded/encoded image limits, deterministic rollback, same-ID regeneration/reapproval, Blender development smoke, and Meshy official no-credit test mode. This is local proof; the four commits are not yet published.',
       blockers: [
-        'P0 identifies non-uniform set_id sanitization and broad path-prefix checks.',
-        'Contact-sheet reference reads and request bodies need explicit bounds.',
-        'CharacterBase, character creator, and fitting QA expansion are gated behind P0.',
+        'Local main is clean at f671a21 and four commits ahead of origin/main b8b0522; pushing the shared default branch awaits explicit user approval.',
       ],
-      next: 'Implement P0 as one focused pass with traversal and oversize smokes; only then resume paired-slot, image configuration, base-body, or fitting work.',
+      next: 'User: approve or decline the publication hand-off; after publication, start P1 paired-slot symmetry and do not skip to CharacterBase or fitting expansion.',
       authority: 'D:/Ascentia/repos/asset-factory',
       evidence: [
-        'docs/development-priority-roadmap.md',
-        'Git HEAD b1821de5; six working-tree paths at survey time',
-        'ImportQueue is a human-review boundary, not an Unreal import claim',
+        'docs/development-priority-roadmap.md — P0 completed/local verification record and P1 next-default declaration',
+        'P0 implementation commits a6a2d97 and f46c72e; scratch-hygiene follow-ups 75e4e43 and f671a21',
+        'Git HEAD f671a21; clean, ahead 4 of origin/main b8b0522; push pending explicit approval',
       ],
-      snapshot: { branch: 'main', head: 'b8b0522', date: '2026-07-18', dirty: 0, ahead: 0, behind: 0 },
+      snapshot: { branch: 'main', head: 'f671a21', date: '2026-07-18', dirty: 0, ahead: 4, behind: 0 },
     },
     {
       id: 'interfaceforge',
