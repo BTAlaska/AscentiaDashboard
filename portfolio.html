@@ -311,6 +311,14 @@
         <div id="hygieneRoot"></div>
       </section>
 
+      <section aria-labelledby="retire-title">
+        <div class="section-head">
+          <div><div class="eyebrow">Leaving C: behind</div><h2 id="retire-title">Retirement readiness</h2></div>
+          <p>The goal state is wholly D:\Ascentia + GitHub. Each old C: source is either retire-ready (junction-covered, D: verified — awaiting your per-entry approval) or blocked by a named reason. Nothing is retired automatically.</p>
+        </div>
+        <div id="retireRoot"></div>
+      </section>
+
       <section aria-labelledby="ops-title">
         <div class="section-head">
           <div><div class="eyebrow">Migration &amp; watchlist</div><h2 id="ops-title">Umbrella operations</h2></div>
@@ -428,6 +436,22 @@
         return (Date.now() - t) / 36e5;
       }
 
+      // GitHub posture from the live pulse: remote, upstream, ahead/behind,
+      // and dirty state collapse into one honest chip per repo.
+      function syncFor(project) {
+        const live = liveById().get(project.id);
+        if (!live || !live.git) return null;
+        const dirty = Number(live.dirty) || 0;
+        const ahead = Number(live.ahead) || 0;
+        const behind = Number(live.behind) || 0;
+        if (!live.remote) return { cls: 'paused', ok: false, label: 'local-only (no remote)' };
+        if (!live.upstream) return { cls: 'warn', ok: false, label: 'branch not pushed (no upstream)' };
+        if (behind > 0) return { cls: 'alarm', ok: false, label: `behind remote by ${behind}` };
+        if (ahead > 0) return { cls: 'warn', ok: false, label: `${ahead} unpushed commit${ahead === 1 ? '' : 's'}` };
+        if (dirty > 0) return { cls: 'warn', ok: false, label: `pushed · ${dirty} uncommitted path${dirty === 1 ? '' : 's'}` };
+        return { cls: 'ok', ok: true, label: 'GitHub current' };
+      }
+
       // The curated snapshot records HEAD at survey time; if the live pulse
       // disagrees, the curated judgment may lag the repo.
       function driftFor(project) {
@@ -470,14 +494,17 @@
         const hyg = l?.hygiene || null;
         const flags = hyg ? (hyg.unindexed?.length || 0) + (hyg.scratch?.filter((s) => s.overdue).length || 0) : null;
 
+        const syncs = data.projects.map(syncFor).filter(Boolean);
+        const synced = syncs.filter((s) => s.ok).length;
+
         const tiles = [
           { value: data.projects.length, label: 'project groups', note: 'plus coordination surfaces' },
           { value: counts.active || 0, label: 'actively moving', note: 'work, not completion', cls: 'ok' },
           { value: (counts.attention || 0) + (counts.blocked || 0), label: 'need decisions', note: 'coordination or a gate', cls: (counts.blocked || 0) > 0 ? 'warn' : '' },
+          { value: syncs.length ? `${synced}/${syncs.length}` : '—', label: 'GitHub current', note: 'pushed, clean, not behind', cls: syncs.length && synced === syncs.length ? 'ok' : 'warn' },
           { value: dirty, label: 'dirty working paths', note: l ? 'live observation' : 'survey snapshot' },
           { value: drifted, label: 'moved since review', note: 'repo HEAD past curated record', cls: drifted > 0 ? 'warn' : 'ok' },
           { value: hyg ? fmtBytes(hyg.totals?.cacheBytes) : '—', label: 'reclaimable cache', note: hyg ? 'delete needs approval' : 'run full refresh', cls: 'warn' },
-          { value: l?.volumes?.D ? fmtBytes(l.volumes.D.freeBytes) : '—', label: 'D: free', note: 'umbrella volume', cls: 'ok' },
           { value: flags === null ? '—' : flags, label: 'hygiene flags', note: 'unindexed + overdue scratch', cls: flags > 0 ? 'alarm' : 'ok' },
         ];
         document.getElementById('tileGrid').innerHTML = tiles.map((t) => `
@@ -505,6 +532,7 @@
         const live = liveById().has(project.id);
         const disk = diskFor(project);
         const drift = driftFor(project);
+        const sync = syncFor(project);
         const blockers = project.blockers.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
         const evidence = project.evidence.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
         const searchable = [project.name, project.role, project.phase, project.summary, project.focus, project.blockers.join(' ')].join(' ').toLowerCase();
@@ -536,6 +564,7 @@
                 <code>${escapeHtml(pulse.branch || 'no Git branch')}</code>
                 <code>${escapeHtml(pulse.head || '—')}</code>
                 <span>${escapeHtml(pulse.date || pulse.lastWrite || '—')}</span>
+                ${sync ? `<span class="chip ${escapeHtml(sync.cls)}">${escapeHtml(sync.label)}</span>` : ''}
               </div>
               <div>dirty ${escapeHtml(numberOrDash(pulse.dirty))} · ahead ${escapeHtml(numberOrDash(pulse.ahead))} · behind ${escapeHtml(numberOrDash(pulse.behind))}${disk ? ` · ${escapeHtml(fmtBytes(disk.bytes))}` : ''}</div>
             </div>
@@ -643,6 +672,61 @@
         root.innerHTML = parts.join('');
       }
 
+      // Retirement blockers stay curated: the migration ledger records the
+      // mechanical posture, these notes record WHY an entry is not ready.
+      const RETIREMENT_NOTES = {
+        'game': { ready: false, note: 'Old source retained: 2 offline .vs index files (rebuildable caches — trivial once accepted).' },
+        'dashboard': { ready: true, note: 'Junction installed; original at recorded rollback path.' },
+        'dashboard-divergent-clone': { ready: false, note: 'Unique commit 93a1b208 pending reconcile-or-retire decision (bundle preserved).' },
+        'landscry': { ready: false, note: 'Old root retained: reconstructed Content unaccepted while winding inspection fails.' },
+        'landscry-content-recovery': { ready: false, note: 'Destination-only junction; historical payload was lost, not recovered.' },
+        'landscry-saved-recovery': { ready: false, note: 'Former path no longer exists; generated state rebuilt on D:.' },
+        'worldheart': { ready: false, note: 'Old root retained: a file locker prevented rename; Worldheart lane owns the retry.' },
+        'worldheart-worktree-family': { ready: true, note: 'Parent junction installed; originals at recorded rollback path.' },
+        'worldheart-output-family': { ready: true, note: 'Eight junctions installed; originals at recorded rollback paths.' },
+        'asset-factory': { ready: true, note: 'Junction installed; original at recorded rollback path.' },
+        'interface-forge': { ready: true, note: 'Junction installed; original at recorded rollback path.' },
+        'skin-forge': { ready: false, note: '147 OneDrive-only Saved placeholders never copied — recall them or accept the loss first.' },
+        'themeforge': { ready: true, note: 'Junction installed; original at recorded rollback path.' },
+        'pcg-sheet-library': { ready: true, note: 'Junction installed; original at recorded rollback path.' },
+        'pcg-contact-sheets': { ready: true, note: 'Junction installed; original at recorded rollback path.' },
+        'legacy-landscry-family': { ready: false, note: 'Quarantine is incomplete (6,502 cloud placeholders omitted) — sources stay authoritative.' },
+        'legacy-mythiccore-quarantine': { ready: false, note: 'Placeholder-only family (64,350 cloud files) — cloud copies stay authoritative.' },
+        'ascentia-design-quarantine': { ready: false, note: '14 cloud placeholders omitted — source stays authoritative.' },
+      };
+
+      function renderRetirement() {
+        const root = document.getElementById('retireRoot');
+        const entries = local()?.observations?.migration?.entries || [];
+        if (!entries.length) {
+          root.innerHTML = '<div class="empty">Run the local refresh to populate the migration ledger.</div>';
+          return;
+        }
+        const rows = entries.map((e) => {
+          const meta = RETIREMENT_NOTES[e.id] || { ready: false, note: 'Unmapped entry — classify before any retirement.' };
+          return { ...e, ...meta };
+        }).sort((a, b) => Number(b.ready) - Number(a.ready) || a.id.localeCompare(b.id));
+        const readyCount = rows.filter((r) => r.ready).length;
+        root.innerHTML = `
+          <div class="tile-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="tile"><div class="value ok">${escapeHtml(readyCount)}</div><div class="label">retire-ready entries</div><div class="note">junction-covered; awaiting your per-entry approval</div></div>
+            <div class="tile"><div class="value warn">${escapeHtml(rows.length - readyCount)}</div><div class="label">blocked entries</div><div class="note">named blocker below</div></div>
+            <div class="tile"><div class="value">${escapeHtml(local()?.observations?.migration?.sourceRetirementAuthorized ? 'YES' : 'no')}</div><div class="label">retirement authorized</div><div class="note">flips only by your explicit call, per entry</div></div>
+          </div>
+          <div class="table-wrap" style="margin-top:12px;"><table class="grid">
+            <thead><tr><th>Entry</th><th>Readiness</th><th>Old-path posture</th><th>Why / what's needed</th></tr></thead>
+            <tbody>${rows.map((r) => `
+              <tr>
+                <td><strong>${escapeHtml(r.id)}</strong></td>
+                <td>${r.ready ? '<span class="chip ok">retire-ready</span>' : '<span class="chip warn">blocked</span>'}</td>
+                <td><span class="chip plain">${escapeHtml(String(r.compatibilityPathStatus || '').replaceAll('-', ' '))}</span></td>
+                <td>${escapeHtml(r.note)}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table></div>
+          <p class="hygiene-note">Retirement is a per-entry, user-approved, verified pass recorded in <code>ops\\migration-manifest.json</code> — never a bulk delete. Rollback-source names carry the <code>.rollback-source-20260718-*</code> stamp.</p>`;
+      }
+
       function renderOps() {
         const grid = document.getElementById('opsGrid');
         const obs = local()?.observations;
@@ -728,6 +812,7 @@
         renderPriorities();
         renderProjects();
         renderHygiene();
+        renderRetirement();
         renderOps();
         renderFlows();
         renderAuthority();

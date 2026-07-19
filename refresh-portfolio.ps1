@@ -80,6 +80,7 @@ function Get-PortfolioGitPulse {
     }
 
     $branch = Invoke-GitText -Repo $Path -Arguments @("branch", "--show-current")
+    $remote = Invoke-GitText -Repo $Path -Arguments @("remote", "get-url", "origin")
     $head = Invoke-GitText -Repo $Path -Arguments @("log", "-1", "--pretty=format:%h")
     $headFull = Invoke-GitText -Repo $Path -Arguments @("log", "-1", "--pretty=format:%H")
     $date = Invoke-GitText -Repo $Path -Arguments @("log", "-1", "--date=short", "--pretty=format:%ad")
@@ -106,6 +107,7 @@ function Get-PortfolioGitPulse {
         pathLabel = $PathLabel
         git = $true
         branch = $branch
+        remote = $remote
         head = $head
         headFull = $headFull
         date = $date
@@ -331,7 +333,7 @@ if (-not $SkipDisk) {
 
     # Unindexed detector: strangers at the umbrella's top levels.
     $knownSets = @(
-        @{ Root = $AscentiaRoot; Known = @("repos", "sandboxes", "data", "archives", "libraries", "ops", "worktrees", "README.md", "AGENTS.md", "CLAUDE.md") },
+        @{ Root = $AscentiaRoot; Known = @("repos", "sandboxes", "data", "archives", "libraries", "ops", "worktrees", "README.md", "AGENTS.md", "CLAUDE.md", "Portfolio.html") },
         @{ Root = (Join-Path $AscentiaRoot "repos"); Known = @("game", "dashboard", "landscry", "worldheart", "asset-factory", "interface-forge") },
         @{ Root = (Join-Path $AscentiaRoot "data"); Known = @("landscry-content", "landscry-saved", "worldheart-output") },
         @{ Root = (Join-Path $AscentiaRoot "sandboxes"); Known = @("skin-forge") },
