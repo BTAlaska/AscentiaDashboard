@@ -22,8 +22,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'S1 sediment lane: terrain now aggrades — SED-01 and SED-02 shipped',
-      body: 'Your GO activated S1 on 2026-07-19; SED-01 (exact-ledger sediment routing) and SED-02 (capacity-limited deposition) both shipped the same day. Terrain reshapes for the first time: on the 2048 rung, 19.44M m3 detached = 11.99M m3 deposited back onto 1.41M cells (fans at slope breaks, valley fills) + 4.52M exported + 2.93M into lakes, balanced exactly in integer units; the before/after height diff shows 1,409,418 cells lifted, zero lowered, max lift exactly the 1 m aggradation cap. Studio bundles carry sediment_flux and deposition_thickness layers, and their height rasters show the aggraded surface (disclosed in the manifest; the UE package path stays un-aggraded until the lane promotes). Next slice: SED-03 lake infill and deltas — the 2.93M m3 currently parked at lake entries becomes visible deltas.',
+      title: 'S1 sediment lane: three slices shipped in one day — deltas now grow in lakes',
+      body: 'Your GO activated S1 on 2026-07-19 and three slices shipped the same day: SED-01 exact-ledger sediment routing, SED-02 capacity-limited deposition (terrain aggrades: 11.99M m3 over 1.41M cells on the 2048 rung, max lift exactly the 1 m cap), and SED-03 subaqueous deposition — lakes now grow delta fronts and infill bounded by their water surface (0.81M m3 across 19,078 lake cells; 80.3% of strong deposition sits at or inside lakes; full lakes spill sediment downstream). Every ledger identity is integer-exact; flagship + 256-tile UE export are E2E green per slice. Next slice: SED-04 hillslope/talus coupling, feeding slopes into the same mass ledger',
       owner: 'Landscry S1 lane (agent/s1-sediment)',
     },
     {
@@ -113,13 +113,13 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'Continue S1: SED-03 lake infill and deltas',
-      target: 'Any agent · D:\\Ascentia\\repos\\landscry',
+      title: 'Continue S1: SED-04 hillslope and talus coupling',
+      target: 'Any agent · D:\Ascentia\repos\landscry',
       decision: false,
-      why: 'SED-01 and SED-02 are shipped (exact routing + terrain-reshaping deposition); SED-03 turns the mass parked at lake entries (2.93M m3 on the 2048 rung) into visible deltas and lake infill consistent with the T2 lake law.',
-      prompt: String.raw`Continue the ACTIVE S1 sediment lane: implement SED-03 lake infill and deltas.
+      why: 'SED-01..03 are shipped (exact routing, land deposition, lake deltas); SED-04 feeds hillslopes and talus into the same mass ledger so slopes supply the fluvial system instead of only channel detachment.',
+      prompt: String.raw`Continue the ACTIVE S1 sediment lane: implement SED-04 hillslope and talus coupling.
 
-In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md — SED-01 ee9049a and SED-02 573147d are recorded SHIPPED with proofs — and the terrain execution controls in docs\ROADMAP.md first): build SED-03 on the landscry_terrain_core::sediment spine. The ledger's lake_delivered mass currently stops at lake-entry cells; SED-03 deposits it INTO the lakes as delta fronts and infill consistent with the T2 level-lake law: fill from the entry cell along the subaqueous receiver path, never above the lake's water surface (water_surface_m bounds the fill), with per-cell bounded thickness like SED-02's aggradation cap; any mass a full lake cannot hold continues along the post-lake receiver path (the lake spills sediment downstream) and the ledger splits lake_delivered into lake_deposited + lake_passed_through, still exact in integer units. Acceptance: visible delta tongues at lake entries in the deposition layer and the aggraded surface (A/B against SED-02 bundles); no deposit ever exceeds the local water surface; ledger identity extends exactly; frozen gates stay green; budgets declared, wall/memory deltas reported per AGENTS section 8. Extend module tests: delta-at-entry shape, water-surface ceiling respected, full-lake spill-through, monotonicity in the fill cap, bitwise determinism. Follow-ups to leave recorded, not solve: SED-01b true-detachment instrumentation; tiled >8192-squared windows; SED-04 hillslope/talus coupling. Laws: any commit re-keys preview cache identities (sub-caches survive, ~1-2 min flagship re-derive); export flagship before committing further; verify through the local Studio (Landscry Studio.cmd; 2048 rung ~3 s warm) and leave before/after bundles for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to SED-04, keep the three portfolio sections in agreement).`,
+In D:\Ascentiaepos\landscry on branch agent/s1-sediment (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md — SED-01 ee9049a, SED-02 573147d, SED-03 934d02c are recorded SHIPPED with proofs — and the terrain execution controls in docs\ROADMAP.md first): build SED-04 on the landscry_terrain_core::sediment spine. Add a hillslope supply term to the detachment pass: a linear-diffusion-style flux proportional to local slope on NON-channel land cells (documented provisional constant, dimensionally explicit, capped like the stream-power term), so ridges and slopes shed mass into the same integer ledger and down the same receiver forest — detached splits into channel_detached + hillslope_detached diagnostics while the terminal identity stays detached = land-deposited + lake-deposited + exported + boundary, exact. Acceptance: hillslope supply increases total detachment with slopes contributing where channels are absent (visible as broader, softer flux coverage on the sediment_flux layer and thicker valley/delta deposits downstream); ledger exact; no double-counting with the channel term (document the split rule); frozen gates green; budgets declared, wall/memory deltas reported per AGENTS section 8. Extend module tests: hillslope-only fixture (no channel accumulation) still routes and balances, split accounting sums to total, monotonicity in the hillslope constant, bitwise determinism. Follow-ups to leave recorded, not solve: SED-01b true-detachment instrumentation; tiled >8192-squared windows; emergent-land reclassification when fill reaches a lake surface; SED-05 DEM calibration (the magnitude constants stay provisional until then). Laws: any commit re-keys preview cache identities (sub-caches survive, ~1 min flagship re-derive); export flagship before committing further; verify through the local Studio (Landscry Studio.cmd; 2048 rung ~3 s warm) and leave before/after bundles for me. Close out with the Portfolio Signal per D:\Ascentiaepos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to SED-05, keep the three portfolio sections in agreement).`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -221,18 +221,19 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'Nanite + far-field HLOD versus discrete LOD seam obligation needs a decision.',
         'Older strict-target promotion matrices remain blocked by GitHub billing/spending-limit execution failure.',
       ],
-      next: 'SED-02 capacity-limited deposition (fans, valley fills — first height changes); then the T4b remainder: materials, fly verdict, LOD decision, close audit.',
+      next: 'SED-04 hillslope/talus coupling (slopes feed the mass ledger); then SED-05 DEM calibration; alongside the T4b remainder: materials, fly verdict, LOD decision, close audit.',
       authority: 'D:/Ascentia/repos/landscry',
       evidence: [
         'S1/SED-01 shipped 2026-07-19 (agent/s1-sediment ee9049a, pushed): exact integer sediment ledger proven on the 2048 rung (19.44M m3 detached = 12.29M outlet-exported + 7.15M lake-delivered, balances_exactly true), sediment_flux layer in every new bundle, terrain-core 222 tests + engine 50 green, workspace pedantic clippy clean; detachment source documented provisional (SED-01b instruments true T1b erosion)',
         'S1/SED-02 shipped 2026-07-19 (agent/s1-sediment 573147d..4fd3549, pushed): capacity-limited deposition reshapes terrain — 2048 rung 11.99M m3 deposited on 1.41M cells, before/after diff 1,409,418 lifted / 0 lowered / max exactly the 1 m cap, f32 surface volume matches the integer ledger to 3 m3 in 12M; deposition_thickness layer + aggraded presentation surface disclosed in manifests; SED-02 flagship + 256-tile UE export E2E green at matching identity; terrain-core 224 tests + engine 50 green',
+        'S1/SED-03 shipped 2026-07-19 (agent/s1-sediment 934d02c..4245234, pushed): subaqueous deposition — delta fronts and lake infill bounded by the water surface (2048 rung: 0.81M m3 across 19,078 lake cells, 80.3% of strong deposition at/inside lakes; ceiling proven on a 1 cm lake; full lakes spill downstream); terminal ledger detached = land + lake + exported + boundary, exact; 12 sediment tests; flagship + 256-tile UE export E2E green at matching identity; bundle schema v3',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: '4fd3549', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: '4245234', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
