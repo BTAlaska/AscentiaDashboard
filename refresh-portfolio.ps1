@@ -25,6 +25,7 @@ $projects = @(
     @{ Id = "landscry"; Path = (Join-Path $AscentiaRoot "repos\landscry") },
     @{ Id = "worldheart"; Path = (Join-Path $AscentiaRoot "repos\worldheart") },
     @{ Id = "assetfactory"; Path = (Join-Path $AscentiaRoot "repos\asset-factory") },
+    @{ Id = "gameworldfactory"; Path = (Join-Path $AscentiaRoot "repos\game-world-asset-factory") },
     @{ Id = "interfaceforge"; Path = (Join-Path $AscentiaRoot "repos\interface-forge") },
     @{ Id = "skinforge"; Path = (Join-Path $AscentiaRoot "sandboxes\skin-forge") },
     @{ Id = "themeforge"; Path = (Join-Path $AscentiaRoot "libraries\themeforge\ThemeForge") },
@@ -285,6 +286,10 @@ if (-not $SkipDisk) {
         @{ Project = "assetfactory"; Rel = "repos\asset-factory\node_modules"; Class = "cache"; Note = "npm install cache" },
         @{ Project = "assetfactory"; Rel = "repos\asset-factory\generated"; Class = "evidence"; Note = "Evidence-bearing generation record" },
         @{ Project = "assetfactory"; Rel = "repos\asset-factory\ImportQueue"; Class = "evidence"; Note = "Human-review boundary packages" },
+        @{ Project = "gameworldfactory"; Rel = "repos\game-world-asset-factory\node_modules"; Class = "cache"; Note = "npm install cache" },
+        @{ Project = "gameworldfactory"; Rel = "repos\game-world-asset-factory\generated"; Class = "evidence"; Note = "Provider provenance, raw outputs, processed candidates, and logs" },
+        @{ Project = "gameworldfactory"; Rel = "repos\game-world-asset-factory\ImportQueue"; Class = "evidence"; Note = "World-static human-review boundary packages" },
+        @{ Project = "gameworldfactory"; Rel = "repos\game-world-asset-factory\PromptReviews"; Class = "evidence"; Note = "Prompt verdict and generation-approval evidence" },
         @{ Project = "worldheart"; Rel = "repos\worldheart\out"; Class = "evidence"; Note = "Governed append-only output; Worldheart lane only" },
         @{ Project = "worldheart"; Rel = "data\worldheart-output"; Class = "evidence"; Note = "Governed output corpus + detached snapshots" },
         @{ Project = "skinforge"; Rel = "sandboxes\skin-forge\Saved"; Class = "generated-state"; Note = "UE Saved state (147 source placeholders remain on C:)" },
@@ -334,7 +339,7 @@ if (-not $SkipDisk) {
     # Unindexed detector: strangers at the umbrella's top levels.
     $knownSets = @(
         @{ Root = $AscentiaRoot; Known = @("repos", "sandboxes", "data", "archives", "libraries", "ops", "worktrees", "README.md", "AGENTS.md", "CLAUDE.md", "Portfolio.html") },
-        @{ Root = (Join-Path $AscentiaRoot "repos"); Known = @("game", "dashboard", "landscry", "worldheart", "asset-factory", "interface-forge") },
+        @{ Root = (Join-Path $AscentiaRoot "repos"); Known = @("game", "dashboard", "landscry", "worldheart", "asset-factory", "game-world-asset-factory", "interface-forge") },
         @{ Root = (Join-Path $AscentiaRoot "data"); Known = @("landscry-content", "landscry-saved", "worldheart-output") },
         @{ Root = (Join-Path $AscentiaRoot "sandboxes"); Known = @("skin-forge") },
         @{ Root = (Join-Path $AscentiaRoot "archives"); Known = @("dashboard-divergence", "quarantine") }

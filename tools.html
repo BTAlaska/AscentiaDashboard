@@ -132,7 +132,7 @@
   <section class="doc">
     <section class="panel" id="posture">
       <h2>Bridge Posture</h2>
-      <p>This page tracks the editor-external tools Ascentia expects to bridge: Landscry, Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic Sky, and Fab / Marketplace intake. The product decision is not whether these names are useful. The decision is whether Ascentia has an adapter, proof path, and promotion gate around their output.</p>
+      <p>This page tracks the editor-external tools Ascentia expects to bridge: Landscry, ARPG Asset Factory, Game World Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic Sky, and Fab / Marketplace intake. The product decision is not whether these names are useful. The decision is whether Ascentia has an adapter, proof path, and promotion gate around their output.</p>
       <div class="rule">
         <span><b>Buy</b>Use the provider for the hard commodity problem.</span>
         <span><b>Bridge</b>Convert provider output into Ascentia profiles and staging roots.</span>
@@ -172,6 +172,15 @@
           <div class="block"><b>Evidence root</b><span class="evidence"><code>Saved/AscentiaEvidence/Tools/WeaponMountLab/{RunId}/report.json</code></span></div>
         </article>
 
+        <article class="tool-card" data-kind="World" data-filter="game world asset factory nanite pcg meshy images 2 blender import queue quarantine static mesh environment provenance">
+          <div class="tool-top"><h3>Game World Asset Factory</h3><span class="kind">World</span></div>
+          <p>The standalone factory plans thematic static-world candidates for Nanite, PCG, and manual dressing. Its current maturity is prompt review: provider generation is locked, and passing local tests do not prove a production mesh.</p>
+          <div class="block"><b>Ascentia bridge</b><span>Future P17/P23 world-asset quarantine intake, <code>EUW_AscentiaLODAndCollisionDoctor</code>, PCG provenance tags, and world-zone review.</span></div>
+          <div class="block"><b>Evidence posture</b><span>Prompt/catalog hash, Images 2 request, Meshy task IDs and downloads, deterministic Blender scale/pivot/topology/material QA, four inspection views, Unreal recipe, and human Nanite/PCG verdict. Provider output and Unreal proof are currently absent.</span></div>
+          <div class="block"><b>Promotion gate</b><span>No mesh bypasses <code>ImportQueue/WorldAssets</code>. The first paid pilot requires an explicit user asset list and credit cap; Unreal quarantine, collision, Nanite, PCG placement, and human review remain separate gates.</span></div>
+          <div class="block"><b>Evidence root</b><span class="evidence"><code>D:/Ascentia/repos/game-world-asset-factory/{generated,ImportQueue/WorldAssets,PromptReviews}</code></span></div>
+        </article>
+
         <article class="tool-card" data-kind="UI" data-filter="skin forge interfaceartforge interface art forge skin bridge commonui umg widget blueprint glyph localization accessibility contrast navigation">
           <div class="tool-top"><h3>Skin Forge / InterfaceArtForge</h3><span class="kind">UI</span></div>
           <p>Generated UI skins are visual direction, not UI authority. Ascentia keeps WidgetBlueprint bindings, CommonUI behavior, input glyphs, localization, navigation, and accessibility readable.</p>
@@ -209,6 +218,7 @@
           <tbody>
             <tr><td>Landscry</td><td>World Director, Landscry Import Audit, PCG Provenance Gate, world-zone profiles.</td><td>Staging import, classification, Data Layer/HLOD coverage, PCG seed/provenance, nav/scale checks, zone signoff.</td><td>Source material only until provenance, identity, gameplay replacement, and human verdict pass.</td></tr>
             <tr><td>Asset Factory</td><td>Modular Fit Lab, Weapon Mount Lab, LOD/Collision Doctor, Pack Ingestor.</td><td>Fit/clipping screenshots, socket profiles, equip previews, LOD/collision/material report, provenance and license notes.</td><td>Draft variants cannot enter production rows without Designer verdict and source/provenance report.</td></tr>
+            <tr><td>Game World Asset Factory</td><td>Future P17/P23 world-asset quarantine intake, LOD/Collision Doctor, PCG provenance tags, world-zone review.</td><td>Prompt/catalog hash, provider task evidence, Blender scale/pivot/topology/material QA, inspection views, Unreal recipe, and human Nanite/PCG verdict.</td><td>Review-only source material; no paid run without exact user scope and no production use before Unreal quarantine evidence.</td></tr>
             <tr><td>Skin Forge / InterfaceArtForge</td><td>SkinForge Bridge, UMGToolSet, CommonUI styles, Input Glyph Binder, readability checks.</td><td>Skin application report, binding warnings, style screenshots, navigation proof, localization stress, contrast report.</td><td>Visual skins ship only after bindings, navigation, localization, glyphs, and accessibility proof pass.</td></tr>
             <tr><td>Ultra Dynamic Sky</td><td>Atmosphere Director, UDS adapter, atmosphere provider interface, lighting/weather/time profiles.</td><td>Screenshot grid, readability warnings, weather material response, audio/VFX budgets, performance buckets, save/load opt-in proof.</td><td>Raw provider tuning stays prototype-only when profile bypass affects gameplay or release quality.</td></tr>
             <tr><td>Fab / Marketplace intake</td><td>External Content Registry, License Compliance Board, Quarantine, Plugin Descriptor Doctor, Upgrade Planner, Promotion Gate.</td><td>Source/license/plugin rows, purchase/version dates, quarantine findings, promotion report, attribution and regression links.</td><td>Unknown source, missing license, redistribution risk, dangerous references, or unresolved plugin risk block promotion.</td></tr>

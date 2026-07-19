@@ -1,8 +1,8 @@
 # Ascentia Tools
 
 > Status: dashboard-published bridge map for editor-external production tools.
-> Scope: Landscry, Asset Factory, Skin Forge / InterfaceArtForge, Ultra Dynamic
-> Sky, and Fab / Marketplace intake.
+> Scope: Landscry, ARPG Asset Factory, Game World Asset Factory, Skin Forge /
+> InterfaceArtForge, Ultra Dynamic Sky, and Fab / Marketplace intake.
 
 The Tools page is not a list of things to buy or install. It is the bridge map
 for external UI, art, world, and intake tools that can accelerate Ascentia only
@@ -24,6 +24,7 @@ Validate the result.
 | --- | --- | --- | --- |
 | Landscry | `EUW_AscentiaWorldDirector`, `EUW_AscentiaLandscryImportAudit`, `EUW_AscentiaPCGProvenanceGate`, `PDA_WorldZone`, `PDA_WorldGenerationProfile` | Landscry output is source material. Evidence must show staging import, classification, Data Layer/HLOD coverage, PCG seed/provenance, nav and scale checks, and zone signoff under `Saved/AscentiaEvidence/P17/LandscryImport/{RunId}/report.json` plus zone delivery reports. | Generated terrain or POIs do not become production world structure until provenance, stable world identity, gameplay replacement, and human verdict pass. |
 | Asset Factory | `EUW_AscentiaModularFitLab`, `EUW_AscentiaWeaponMountLab`, `EUW_AscentiaLODAndCollisionDoctor`, `EUW_AscentiaPackIngestor` | Generated armor and weapon variants are drafts. Evidence must include fit/clipping screenshots, socket profiles, LOD/collision/material reports, provenance, license notes, and equip-preview results. | Asset Factory output may create socket-profile drafts, but production rows cannot reference variants until a Designer verdict and source/provenance report exist. |
+| Game World Asset Factory | Future P17/P23 world-asset quarantine intake, `EUW_AscentiaLODAndCollisionDoctor`, PCG provenance tags, and world-zone review | Generated static meshes remain external source material. Current proof is prompt/gate/browser/Blender-contract only; provider output, hidden-side reconstruction, Nanite, collision, PCG placement, and Unreal import evidence are absent. | No generated mesh may bypass `ImportQueue/WorldAssets`, source/task provenance, Blender QA, Unreal quarantine, and a human Nanite/PCG verdict. The first paid pilot waits on an explicit user asset list and credit cap. |
 | Skin Forge / InterfaceArtForge | `EUW_AscentiaSkinForgeBridge`, UMGToolSet operations, CommonUI style assets, `EUW_AscentiaInputGlyphBinder`, text-scale/contrast checks | UI skin output is art direction and WBP styling, not UI authority. Evidence must include WBP skin application reports, missing binding warnings, style variance screenshots, keyboard/mouse/gamepad navigation proof, localization stress, and accessibility contrast results. | No generated skin ships unless CommonUI behavior, widget bindings, glyphs, localization, and readability proof survive the bridge. |
 | Ultra Dynamic Sky | `EUW_AscentiaAtmosphereDirector`, `UAscentiaUDSAtmosphereAdapter`, `IAscentiaAtmosphereProvider`, `PDA_LightingMoodProfile`, `PDA_WeatherProfile`, `PDA_TimeOfDayProfile`, `EUW_AscentiaWeatherTimeScenarioLab` | UDS is an art-direction provider behind Ascentia atmosphere profiles. Evidence must include weather/time screenshot grids, lighting readability warnings, material/weather response checks, audio/VFX budget rows, performance buckets, and explicit gameplay opt-in proof. | Raw UDS actor edits are prototype-only. Cooked builds should block profile bypasses when atmosphere affects saves, gameplay, readability, performance, or accessibility. |
 | Fab / Marketplace intake | `EUW_AscentiaExternalContentRegistry`, `EUW_AscentiaLicenseComplianceBoard`, `EUW_AscentiaExternalAssetQuarantine`, `EUW_AscentiaPluginDescriptorDoctor`, `EUW_AscentiaExternalUpgradePlanner`, `EUW_AscentiaExternalContentPromotionGate` | Intake is governance. Evidence must include source rows, license policy, purchase/version date, staging and production roots, plugin risk, attribution needs, quarantine findings, promotion report, and upgrade regression links. | Every promoted asset needs a source record. Unknown downloads, standalone redistribution risk, missing license rows, dangerous references, and unresolved plugin risk block promotion. |
@@ -70,10 +71,13 @@ Saved/AscentiaEvidence/P23/{ExternalAssetQuarantine,ExternalContentPromotion,Ext
    import audit, and publish a no-promotion evidence card.
 2. Asset Factory: ingest two armor/weapon variants, run fit/socket/LOD/collision
    checks, and require a Designer accept/reject verdict.
-3. Skin Forge / InterfaceArtForge: apply one UI skin to inventory, loot window,
+3. Game World Asset Factory: review the eight proposed Images 2 prompts, run
+   only the explicitly approved 150-credit pilot, and keep every result in
+   external quarantine until Blender and Unreal Nanite/PCG verdicts exist.
+4. Skin Forge / InterfaceArtForge: apply one UI skin to inventory, loot window,
    HUD, and settings, then prove bindings, navigation, text scale, and contrast.
-4. Ultra Dynamic Sky: wrap clear, rain, storm, dusk, night, and snow profiles in
+5. Ultra Dynamic Sky: wrap clear, rain, storm, dusk, night, and snow profiles in
    Ascentia atmosphere data and capture screenshot/performance/readability proof.
-5. Fab / Marketplace: quarantine one pack, record source/license/plugin rows,
+6. Fab / Marketplace: quarantine one pack, record source/license/plugin rows,
    generate a promotion plan, and block production use until the evidence is
    accepted.

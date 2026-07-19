@@ -797,7 +797,7 @@ const GAP_DATA = [
     { f: 'Public source snapshots and link checker', s: 'partial', plan: 'P0/P23', n: 'Private Designer source links were replaced with static snapshot links, and check-links.ps1 validates local anchors/files. Public HTTP checking is available with -CheckPublic.' },
     { f: 'Designer screenshot capture/verification queue', s: 'missing', plan: 'P0/P23', n: 'Screenshot status is now a dashboard gate, but capture automation, commit verification, stale detection, and canonical image inventory remain.' },
     { f: 'Public claim safety board', s: 'partial', plan: 'P0/P23', n: 'Dashboard now lists claim, evidence, verified build, risk, and blocked/unblocked state. Needs structured release-board evidence and waiver workflow before public marketing claims.' },
-    { f: 'World import preflight gate', s: 'missing', plan: 'P0/P23+P17', n: 'Before serious Landscry/P17 content, require zone identity, Data Layers, HLOD layers, PCG provenance, persistent actor IDs, nav/smart-object builder pass, and cook-risk report.' },
+    { f: 'World import preflight gate', s: 'missing', plan: 'P0/P23+P17', n: 'Before serious Landscry/P17 content, require zone identity, Data Layers, HLOD layers, PCG provenance, persistent actor IDs, nav/smart-object builder pass, and cook-risk report. The new Game World Asset Factory is locked at prompt-review maturity and supplies no missing Unreal/Nanite/PCG import proof.' },
   ]},
   { id: 'moveset', name: 'Combat — Moveset', icon: '⚔', features: [
     { f: 'Light attack', s: 'have', plan: '—', n: 'One clip per character (1H player / 2H boss)' },
