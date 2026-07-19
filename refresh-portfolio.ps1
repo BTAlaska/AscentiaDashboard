@@ -337,7 +337,7 @@ if (-not $SkipDisk) {
         @{ Root = (Join-Path $AscentiaRoot "repos"); Known = @("game", "dashboard", "landscry", "worldheart", "asset-factory", "interface-forge") },
         @{ Root = (Join-Path $AscentiaRoot "data"); Known = @("landscry-content", "landscry-saved", "worldheart-output") },
         @{ Root = (Join-Path $AscentiaRoot "sandboxes"); Known = @("skin-forge") },
-        @{ Root = (Join-Path $AscentiaRoot "archives"); Known = @("dashboard-divergence", "quarantine", "game-staged-latest", "samples-parking") }
+        @{ Root = (Join-Path $AscentiaRoot "archives"); Known = @("dashboard-divergence", "quarantine") }
     )
     $unindexed = @()
     foreach ($set in $knownSets) {
@@ -359,21 +359,6 @@ if (-not $SkipDisk) {
             }
         }
     }
-    # Manifest-recorded but unaudited provenance: keep them visible until an owner call.
-    foreach ($recorded in @("archives\game-staged-latest", "archives\samples-parking")) {
-        $full = Join-Path $AscentiaRoot $recorded
-        $stat = Get-TreeStat -Path $full
-        if ($null -ne $stat) {
-            $unindexed += [ordered]@{
-                path = $full
-                bytes = $stat.bytes
-                files = $stat.files
-                lastWrite = $stat.lastWrite
-                note = "Recorded in migration manifest as pre-existing provenance, not audited - needs an owner call"
-            }
-        }
-    }
-
     # Legacy C:\tmp pipeline roots (v0.1-era session tooling; user decision to retire).
     $legacyTmp = @()
     foreach ($tmpPath in @("C:\tmp\worldgen", "C:\tmp\biomes", "C:\tmp\geo", "C:\tmp\themes")) {
