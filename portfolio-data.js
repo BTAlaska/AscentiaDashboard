@@ -17,7 +17,7 @@ window.PORTFOLIO_DATA = {
     {
       level: 'critical',
       title: 'Restore one coordination truth',
-      body: 'The detailed Ascentia dashboard was last curated on July 5/6 while the game moved materially through network proof, P11 combat work, and a large Aether slice. A second dashboard clone also contains one unmerged Designer Compendium commit.',
+      body: 'The detailed Ascentia dashboard was last curated on July 5/6 while the game moved materially through network proof, P11 combat work, and a large Aether slice. The archived Designer Compendium divergence was reconciled on 2026-07-18; the remaining debt is current game-detail curation.',
       owner: 'Portfolio / AscentiaDashboard',
     },
     {
@@ -74,16 +74,6 @@ Steps: read AGENTS.md first. Diff the lines (git diff origin/main claude/docs-ac
       prompt: String.raw`Merge the portfolio control room into main and settle the deploy.
 
 In D:\Ascentia\repos\dashboard (read AGENTS.md first): branch codex/portfolio-control-room (HEAD a477ef7 or later) holds portfolio control room v2.1 and is pushed with upstream; main is the Render deploy branch (live: https://ascentiadashboard.onrender.com). Task: merge codex/portfolio-control-room into main, run check-links.ps1 and node --check on gap-data.js + portfolio-data.js, confirm portfolio-local.js remains untracked, then push main. Afterwards verify honestly whether Render actually redeployed (auto-deploy has been unreliable — probe the live site; do not claim a deploy you did not observe). Expected on the LIVE site: the portfolio page shows "Snapshot only" because portfolio-local.js is machine-local — that is correct behavior, not a bug. Close out with the Portfolio Signal (update the dashboard entry, prune this hand-off, refresh).`,
-    },
-    {
-      id: 'dashboard-93a1b208',
-      title: 'Reconcile archived dashboard commit 93a1b208',
-      target: 'Any agent · D:\\Ascentia\\repos\\dashboard',
-      decision: false,
-      why: 'One Designer Compendium commit from a divergent clone is preserved in the archive but neither merged nor formally retired.',
-      prompt: String.raw`Reconcile the archived dashboard commit 93a1b208.
-
-In D:\Ascentia\repos\dashboard (read AGENTS.md first): the archived divergent clone at D:\Ascentia\archives\dashboard-divergence\claude-clone (plus its verified git bundle) preserves commit 93a1b208 (2026-07-07) — one unmerged Designer Compendium change. Task: show me the commit's diff against the current line (git -C D:\Ascentia\archives\dashboard-divergence\claude-clone show 93a1b208). If it still adds value, cherry-pick it onto the current branch and validate (check-links.ps1 + node syntax smoke); if later compendium work superseded it, record "intentionally retired" in the dashboard entry's evidence in portfolio-data.js and note it against the dashboard-divergent-clone entry in D:\Ascentia\ops\portfolio-manifest.json. Either way the archive itself stays — provenance is never deleted by reconciliation. Close out with the Portfolio Signal (prune this hand-off).`,
     },
     {
       id: 'worldheart-lane-docs',
@@ -200,20 +190,19 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       summary: 'The existing coordination depot is the correct home for the portfolio view. Its detailed game matrix, Designer Compendium, tool bridge map, decisions, proof posture, and claim gates remain useful, but its source status has drifted behind the projects.',
       focus: 'Operate the portfolio control room v2: drift detection against curated records, disk/waste hygiene instrumentation, and migration/junction posture surfaced on the page.',
       capability: 'Dependency-free local/static browser dashboard with detailed Ascentia feature data, designer routes, evidence gates, and tool bridge pages.',
-      proof: 'The canonical dashboard working tree was copied with exact hash and Git verification to D:/Ascentia/repos/dashboard. Unique commit 93a1b208 is preserved at D:/Ascentia/archives/dashboard-divergence/claude-clone and in dashboard-divergence-93a1b208.bundle; content reconciliation remains pending.',
+      proof: 'The canonical dashboard working tree was copied with exact hash and Git verification to D:/Ascentia/repos/dashboard. Archived commit 93a1b208 was reviewed against the current line and remained additive, then was cherry-picked as 4fdcd49; the divergent clone and verified bundle remain preserved provenance.',
       blockers: [
         'Curated status date was 2026-07-05 while major game work continued through 2026-07-17.',
-        'Archived unique commit 93a1b208 remains intentionally unmerged.',
         'The original C: sources remain retained because source retirement is not authorized.',
       ],
-      next: 'User decisions: merge codex/portfolio-control-room to main (deploy gate) and reconcile or retire archived commit 93a1b208; then re-curate gap-data.js.',
+      next: 'User decision: merge codex/portfolio-control-room to main (deploy gate); then re-curate gap-data.js.',
       authority: 'D:/Ascentia/repos/dashboard',
       evidence: [
         'Control room v2 commits b409531/660d15c/ab88cf0 (2026-07-18) on codex/portfolio-control-room',
-        'Alternate clone commit 93a1b208 (2026-07-07) preserved in archive + bundle',
+        'Archived commit 93a1b208 (2026-07-07) reconciled as cherry-pick 4fdcd49 on 2026-07-18; clone + verified bundle preserved',
         'gap-data.js curated date 2026-07-05 (Ascentia detail lags; portfolio survey 2026-07-18 is current)',
       ],
-      snapshot: { branch: 'codex/portfolio-control-room', head: 'ab88cf0', date: '2026-07-18', dirty: 0, ahead: null, behind: null },
+      snapshot: { branch: 'codex/portfolio-control-room', head: '4fdcd49', date: '2026-07-18', dirty: 0, ahead: null, behind: null },
     },
     {
       id: 'landscry',
