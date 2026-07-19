@@ -41,7 +41,7 @@ window.PORTFOLIO_DATA = {
     {
       level: 'active',
       title: 'Keep artifact hygiene visible',
-      body: 'Every project generates caches, review bundles, and scratch. The standing law (ops/ARTIFACT_HYGIENE.md) is: declared homes or date-stamped scratch, promote-or-delete at closeout, and the Hygiene panel below reports the measured weight. Nothing is auto-deleted — the cache-reclaim and archive-classification hand-offs below carry your approval slots.',
+      body: 'Every project generates caches, review bundles, and scratch. The standing law (ops/ARTIFACT_HYGIENE.md) is: declared homes or date-stamped scratch, promote-or-delete at closeout, and the Hygiene panel below reports the measured weight. Nothing is auto-deleted — the cache-reclaim hand-off below carries your approval slot.',
       owner: 'All projects / Portfolio',
     },
   ],
@@ -100,18 +100,6 @@ MY APPROVAL — delete exactly these cache-class paths: [list from the Hygiene p
 In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved cache-class paths. Laws: repos\landscry\unreal\Binaries is generated-state, NOT cache — if I listed it, first prove a clean rebuild of the winding-fixed importer DLLs; never touch evidence/artifact/generated-state classes under a cache approval; before deleting a tree's caches confirm no editor or build is running against it (any open UE 5.8 editor blocks builds repo-wide via the Live Coding mutex); UE recreates DDC/Intermediate on demand so the directories can go entirely. Afterwards run the full refresh (refresh-portfolio.ps1) and report the reclaimed GB from the Hygiene tiles, before/after. Close out with the Portfolio Signal (update this hand-off or prune it).`,
     },
     {
-      id: 'unindexed-archives',
-      title: 'Classify the two unindexed archive folders',
-      target: 'Any agent · D:\\Ascentia (umbrella)',
-      decision: true,
-      why: 'archives\\game-staged-latest (5.4 GB) and archives\\samples-parking (5.9 GB) predate the migration goal and have no owner call.',
-      prompt: String.raw`Classify the two unindexed archive folders flagged on the Portfolio Hygiene panel.
-
-MY DECISION: archives\game-staged-latest (5.4 GB, ~90 files) -> [keep-and-index / delete / inspect-first]; archives\samples-parking (5.9 GB, ~3,166 files) -> [keep-and-index / delete / inspect-first]
-
-In D:\Ascentia (read AGENTS.md first): both folders predate the migration goal and are recorded as "pre-existing provenance, not audited". For keep-and-index: add a proper archives[] entry to ops\portfolio-manifest.json describing origin and purpose, then remove that folder from the always-flag list in repos\dashboard\refresh-portfolio.ps1 so the Hygiene panel stops flagging it. For delete: first enumerate contents and confirm nothing references them, then delete and record the action in ops\migration-manifest.json notes. For inspect-first: produce a sized listing and a one-paragraph origin hypothesis, then stop and report back. Close out with the Portfolio Signal.`,
-    },
-    {
       id: 'assetfactory-p0-security',
       title: 'Run the Asset Factory P0 security pass',
       target: 'Any agent · D:\\Ascentia\\repos\\asset-factory',
@@ -129,7 +117,7 @@ In D:\Ascentia\repos\asset-factory (read AGENTS.md and docs/development-priority
       why: 'T4b’s open presentation gate; ends with a lit flyable level so the user can record the complete-world fly verdict.',
       prompt: String.raw`Author the T4b terrain/water material presentation and deliver the owner fly build.
 
-In D:\Ascentia\repos\landscry (read AGENTS.md and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): T4b slice 04's canonical streamed world is shipped (branch agent/t1b-a-declared-boundary); the open presentation gate is the terrain/water MATERIAL pass. Task: author final terrain and water materials for the canonical streamed World Partition map. Laws and gotchas: build materials BEFORE load_level in scripted passes; REUSE existing assets — never delete+recreate; cross-section UV seams are solved with WORLD-POSITION UVs (worldXY/worldSize+0.5); keep the winding gate green when inspecting section geometry (get_section_from_static_mesh dot-product convention, CONV=-1); do not edit crates/ + Cargo + fixtures mid-build (execution identity hashes them — it forks the engine cache key); close editors before headless builds (Live Coding patch-DLL law; bypass flag is -NoHotReloadFromIDE). While in there, gather evidence and a recommendation for the open Nanite far-field HLOD vs discrete-LOD seam obligation (the decision itself stays with the owner). DELIVER: a lit, flyable level plus its path for me to fly myself — renders are internal verification only; my fly verdict is the T4b owner gate. Close out with the Portfolio Signal (update the landscry entry; keep this hand-off open, re-scoped to the fly verdict, until my verdict is recorded).`,
+In D:\Ascentia\repos\landscry (read AGENTS.md and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): T4b slice 04's canonical streamed world is shipped (branch agent/t1b-a-declared-boundary); the open presentation gate is the terrain/water MATERIAL pass. Task: author final terrain and water materials for the canonical streamed World Partition map. Laws and gotchas: build materials BEFORE load_level in scripted passes; REUSE existing assets — never delete+recreate; cross-section UV seams are solved with WORLD-POSITION UVs (worldXY/worldSize+0.5); keep the winding gate green when inspecting section geometry (get_section_from_static_mesh dot-product convention, CONV=-1); do not edit crates/ + Cargo + fixtures mid-build (execution identity hashes them — it forks the engine cache key); close editors before headless builds (Live Coding patch-DLL law; bypass flag is -NoHotReloadFromIDE). While in there, gather evidence and a recommendation for the open Nanite far-field HLOD vs discrete-LOD seam obligation (the decision itself stays with the owner). ALSO: your lane's untracked scripts\ue\*.py and .scratch\20260718-t4b-materials python currently FAIL scripts\verify-clean-room.mjs ("Python/Java production source"; Python is research/calibration-only per AGENTS §4) — disposition them (relocate to a dated .scratch, ledger, or reimplement) so the root gate is green. For quick terrain/water raster comparisons the browser preview loop is available (docs\PREVIEW.md; scripts\preview-world.ps1 + scripts\preview-server.ps1 on :4970). DELIVER: a lit, flyable level plus its path for me to fly myself — renders are internal verification only; my fly verdict is the T4b owner gate. Close out with the Portfolio Signal (update the landscry entry; keep this hand-off open, re-scoped to the fly verdict, until my verdict is recorded).`,
     },
     {
       id: 'mountain-region-import',
@@ -221,9 +209,9 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       state: 'active',
       phase: 'T4b — first composed world',
       summary: 'The clean-room local-first terrain compiler has crossed from contracts and native terrain proof into a canonical streamed UE 5.8 world package and an exercised packaged build.',
-      focus: 'Final terrain/water presentation, native-detail complete-world review, and the remaining T4b checkpoint decisions.',
-      capability: 'One World Partition map with 16 partitions, 256 compiled sections, Nanite input topology, 64 far-field HLOD actors, collision, packaging, and a seven-station runtime streaming proof.',
-      proof: 'The D: repo passes Git, Rust, TypeScript, UE editor build, retained-package validation, and all ten junction checks. New recovery evidence rebuilt 256 sections and 64 HLODs, but two current inspections repeatably failed winding validation; cook/proof were intentionally not run.',
+      focus: 'Final terrain/water presentation, native-detail complete-world review, and the remaining T4b checkpoint decisions — now with a repeatable browser preview loop for terrain iteration.',
+      capability: 'One World Partition map with 16 partitions, 256 compiled sections, Nanite input topology, 64 far-field HLOD actors, collision, packaging, and a seven-station runtime streaming proof. New: a documented browser preview loop (scripts/preview-world.ps1 + apps/terrain-preview on loopback :4970) with a smoke ~1 s / overview ~2 min / flagship ~34 min mode ladder, A/B compare, and browser-triggered rebuilds.',
+      proof: 'The D: repo passes Git, Rust, TypeScript, UE editor build, retained-package validation, and all ten junction checks. New recovery evidence rebuilt 256 sections and 64 HLODs, but two current inspections repeatably failed winding validation; cook/proof were intentionally not run. The preview loop is browser-verified end to end (build-from-browser, SSE refresh, A/B panes) and is presentation tooling only — it promotes no fidelity gate.',
       blockers: [
         'The reconstructed Content is new recovery evidence, not historical byte recovery, and currently fails winding inspection.',
         'Owner complete-world visual acceptance is absent.',
@@ -236,8 +224,9 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
+        'docs/PREVIEW.md + commit f728d50 (agent/preview-loop, pushed 2026-07-18): preview loop, 7/7 app tests, browser-verified cycle',
       ],
-      snapshot: { branch: 'agent/t1b-a-declared-boundary', head: 'c4e3979', date: '2026-07-18', dirty: 0, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/preview-loop', head: 'f728d50', date: '2026-07-18', dirty: 2, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
