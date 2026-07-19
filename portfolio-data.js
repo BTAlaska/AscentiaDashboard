@@ -22,6 +22,12 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'review',
+      title: 'Activate S1: real sediment transport/deposition (your standing ask)',
+      body: 'You have repeatedly asked for full geological-process terrain modeling; the roadmap already defines the queue (S1 sediment first, S1..S12 total) and honestly labels today\'s valley/plain/fan filling as statistical imitation with eroded mass destroyed rather than conserved. S1\'s entry conditions are met and a slice-laddered work order is now PROPOSED at repos/landscry/docs/S1_SEDIMENT_WORK_ORDER.md — nothing was activated without you. Say GO (hand-off below) and S1 slices become the default overnight terrain work, reviewable per-iteration in the local Studio.',
+      owner: 'User decision (GO / not yet) / Landscry',
+    },
+    {
+      level: 'review',
       title: 'Close the two human-facing world gates',
       body: 'Landscry T4b needs final terrain/water material presentation (hand-off prompt below), then YOUR complete-world fly verdict — the deliverable is a lit flyable level for you to fly yourself. The validated mountain-region 4 km window package also waits on your water re-confirm and consumer-project choice (import prompt below). Worldheart stays in lean R50+ visual exploration until YOU (as Program Steward) call FREEZE; no prompt can close that gate.',
       owner: 'User decision (fly verdict + FREEZE) / Landscry + Worldheart',
@@ -104,6 +110,18 @@ In D:\Ascentia (read AGENTS.md, ops\ARTIFACT_HYGIENE.md, and the safety block in
 MY APPROVAL — delete exactly these cache-class paths: [list from the Hygiene panel, e.g. data\landscry-saved\DDC, repos\landscry\unreal\Intermediate, repos\game\.vs, repos\landscry\target — or write "all cache-class entries"]
 
 In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved cache-class paths. Laws: repos\landscry\unreal\Binaries is generated-state, NOT cache — if I listed it, first prove a clean rebuild of the winding-fixed importer DLLs; never touch evidence/artifact/generated-state classes under a cache approval; before deleting a tree's caches confirm no editor or build is running against it (any open UE 5.8 editor blocks builds repo-wide via the Live Coding mutex); UE recreates DDC/Intermediate on demand so the directories can go entirely. Afterwards run the full refresh (refresh-portfolio.ps1) and report the reclaimed GB from the Hygiene tiles, before/after. Close out with the Portfolio Signal (update this hand-off or prune it).`,
+    },
+    {
+      id: 'landscry-s1-sediment',
+      title: 'GO: start S1 sediment transport/deposition slices',
+      target: 'Any agent · D:\\Ascentia\\repos\\landscry',
+      decision: true,
+      why: 'The owner\'s standing ask for real geological-process modeling; S1 is first in the roadmap\'s process queue, entry conditions are met, and the PROPOSED work order awaits activation.',
+      prompt: String.raw`Activate and begin the S1 sediment transport/deposition lane.
+
+MY DECISION: GO — activate docs\S1_SEDIMENT_WORK_ORDER.md as written [optionally: with these changes — ...]
+
+In D:\Ascentia\repos\landscry (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md, and the process-expansion queue + terrain execution controls in docs\ROADMAP.md first): record my GO in the work order's Activation section, update the board lane row, branch agent/s1-sediment from the current preview-loop head, and execute the slice ladder starting at SED-01 (conservative flux accounting: route detachment-derived sediment down the existing receiver network with EXACT mass balance — detached = in-transit + deposited + exported — deterministic and tile-order-independent, no height change yet), then SED-02 (capacity-limited deposition; fans and valley aggradation must appear in review bundles). Satisfy the entry contract before mechanism code merges: provenance/ledger admission for anything admitted, reuse the T3 fluvial DEM family for calibration windows, declare invariants and budgets per AGENTS section 8, and follow the integration overlay's physical-process entry contract. Laws: frozen characterization gates stay green (run the root cargo/pnpm verifications); do not edit crates/ + Cargo + fixtures while an engine build runs; any commit re-keys preview cache identities (sub-caches survive, ~2 min flagship re-derive); no new public control without its section-6 contract; report wall/memory deltas per slice honestly; stop and surface per the roadmap's terrain execution controls before weakening any boundary. Verify each slice visually through the local Studio (Landscry Studio.cmd; 2048 rung ~30 s iterations) and leave review bundles for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to the next slice, keep the three portfolio sections in agreement).`,
     },
     {
       id: 'landscry-t4b-materials',
