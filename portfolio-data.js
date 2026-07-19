@@ -17,25 +17,31 @@ window.PORTFOLIO_DATA = {
     {
       level: 'active',
       title: 'Keep the game branch published and its record current',
-      body: 'codex/designer-compendium is pushed current (Aether replication proof plus the 2026-07-18 D: doc alignment), and the detailed Ascentia dashboard (gap-data.js) is re-curated to the 2026-07-18 evidence set — the July 6-18 curation debt is closed. Remaining discipline: ignored Unreal Content changes still need explicit handoffs.',
+      body: 'codex/designer-compendium is pushed current (Aether replication proof plus the 2026-07-18 D: doc alignment), and the detailed Ascentia dashboard (gap-data.js) is re-curated to the 2026-07-18 evidence set — the July 6-18 curation debt is closed. The recorded continuation work has hand-off prompts below (P11/Aether continuation; residue self-refill decision). Remaining discipline: ignored Unreal Content changes still need explicit handoffs.',
       owner: 'Ascentia',
     },
     {
       level: 'review',
       title: 'Close the two human-facing world gates',
-      body: 'Landscry T4b needs final terrain/water presentation plus the owner complete-world verdict. Worldheart is intentionally in lean R50+ visual exploration until the Program Steward says FREEZE.',
-      owner: 'Landscry + Worldheart',
+      body: 'Landscry T4b needs final terrain/water material presentation (hand-off prompt below), then YOUR complete-world fly verdict — the deliverable is a lit flyable level for you to fly yourself. Worldheart stays in lean R50+ visual exploration until YOU (as Program Steward) call FREEZE; no prompt can close that gate.',
+      owner: 'User decision (fly verdict + FREEZE) / Landscry + Worldheart',
     },
     {
       level: 'blocked',
       title: 'Do the Asset Factory security pass before expansion',
-      body: 'Safe IDs, approved-root path handling, file serving, reference reads, payload limits, and traversal smokes are the declared P0 gate. CharacterBase and fitting expansion wait behind it.',
+      body: 'Safe IDs, approved-root path handling, file serving, reference reads, payload limits, and traversal smokes are the declared P0 gate. CharacterBase and fitting expansion wait behind it. A ready-to-run hand-off prompt is below — no user decision needed to start it.',
       owner: 'ARPG Asset Factory',
+    },
+    {
+      level: 'review',
+      title: 'Reconcile the InterfaceArtForge history split',
+      body: 'GitHub main was force-replaced with a release-prep commit sharing no history with the local line that is actually vendored into the game and skin-forge — PRs are impossible until YOU pick the truth line. The hand-off prompt below carries the decision slot (A: local line is truth / B: remote release-prep is truth / C: propose a merge plan first).',
+      owner: 'User decision / Interface Art Forge',
     },
     {
       level: 'active',
       title: 'Keep artifact hygiene visible',
-      body: 'Every project generates caches, review bundles, and scratch. The standing law (ops/ARTIFACT_HYGIENE.md) is: declared homes or date-stamped scratch, promote-or-delete at closeout, and the Hygiene panel below reports the measured weight. Nothing is auto-deleted.',
+      body: 'Every project generates caches, review bundles, and scratch. The standing law (ops/ARTIFACT_HYGIENE.md) is: declared homes or date-stamped scratch, promote-or-delete at closeout, and the Hygiene panel below reports the measured weight. Nothing is auto-deleted — the cache-reclaim and archive-classification hand-offs below carry your approval slots.',
       owner: 'All projects / Portfolio',
     },
   ],
@@ -106,6 +112,26 @@ MY DECISION: archives\game-staged-latest (5.4 GB, ~90 files) -> [keep-and-index 
 In D:\Ascentia (read AGENTS.md first): both folders predate the migration goal and are recorded as "pre-existing provenance, not audited". For keep-and-index: add a proper archives[] entry to ops\portfolio-manifest.json describing origin and purpose, then remove that folder from the always-flag list in repos\dashboard\refresh-portfolio.ps1 so the Hygiene panel stops flagging it. For delete: first enumerate contents and confirm nothing references them, then delete and record the action in ops\migration-manifest.json notes. For inspect-first: produce a sized listing and a one-paragraph origin hypothesis, then stop and report back. Close out with the Portfolio Signal.`,
     },
     {
+      id: 'assetfactory-p0-security',
+      title: 'Run the Asset Factory P0 security pass',
+      target: 'Any agent · D:\\Ascentia\\repos\\asset-factory',
+      decision: false,
+      why: 'The declared blocking gate before any factory expansion; scope is written in the roadmap and needs no user decision to start.',
+      prompt: String.raw`Run the ARPG Asset Factory P0 security pass as one focused slice.
+
+In D:\Ascentia\repos\asset-factory (read AGENTS.md and docs/development-priority-roadmap.md first — P0 is the declared blocking gate): implement the P0 scope in one pass: uniform safe asset-set-ID sanitization everywhere IDs enter, approved-root path helpers replacing broad path-prefix checks, hardened file serving, bounded contact-sheet reference reads, and explicit request payload limits — then prove each guard with traversal and oversize smoke tests alongside the existing eight no-credit smokes (package build + local HTTP surface stay green; no paid provider calls are needed). Do NOT start CharacterBase, character-creator, image-configuration, base-body, or fitting expansion — they wait behind this gate. Commit to main per repo convention and push (GitHub-current direction 2026-07-18). Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (move the assetfactory entry off blocked to its evidenced state, prune this hand-off, keep the three portfolio sections in agreement).`,
+    },
+    {
+      id: 'landscry-t4b-materials',
+      title: 'Author T4b terrain/water materials; deliver the owner fly build',
+      target: 'Any agent · D:\\Ascentia\\repos\\landscry',
+      decision: false,
+      why: 'T4b’s open presentation gate; ends with a lit flyable level so the user can record the complete-world fly verdict.',
+      prompt: String.raw`Author the T4b terrain/water material presentation and deliver the owner fly build.
+
+In D:\Ascentia\repos\landscry (read AGENTS.md and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): T4b slice 04's canonical streamed world is shipped (branch agent/t1b-a-declared-boundary); the open presentation gate is the terrain/water MATERIAL pass. Task: author final terrain and water materials for the canonical streamed World Partition map. Laws and gotchas: build materials BEFORE load_level in scripted passes; REUSE existing assets — never delete+recreate; cross-section UV seams are solved with WORLD-POSITION UVs (worldXY/worldSize+0.5); keep the winding gate green when inspecting section geometry (get_section_from_static_mesh dot-product convention, CONV=-1); do not edit crates/ + Cargo + fixtures mid-build (execution identity hashes them — it forks the engine cache key); close editors before headless builds (Live Coding patch-DLL law; bypass flag is -NoHotReloadFromIDE). While in there, gather evidence and a recommendation for the open Nanite far-field HLOD vs discrete-LOD seam obligation (the decision itself stays with the owner). DELIVER: a lit, flyable level plus its path for me to fly myself — renders are internal verification only; my fly verdict is the T4b owner gate. Close out with the Portfolio Signal (update the landscry entry; keep this hand-off open, re-scoped to the fly verdict, until my verdict is recorded).`,
+    },
+    {
       id: 'mountain-region-import',
       title: 'Mountain-region 4 km: confirm and import into UE',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
@@ -128,6 +154,16 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
 MY DECISION: depleted residue pockets [slowly self-refill toward their authored ambient / stay depleted until boss events re-deposit / hybrid — describe]
 
 In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> Docs/COMPENDIUM_MAP.md -> the magic-lane rules): Aether is the REWARD layer — ETH is spell mana with Elden Ring rules; boss strikes deposit supersaturation residue; casts opportunistically consume charge for damage overcharge; the field drains toward the ambient norm; DepositSupersaturation energy is PER CELL (pool roughly 10x a per-cast request). Implement my decision in the field core and the designer surfaces described by Docs/Architecture/Aether_EnvironmentalMagic.md and Docs/DesignerSurfaces/AetherMagic_README.md, keep the Ascentia.Aether automation suite green and extend it to pin the new behavior, and verify multiplayer with the two-client fixture (-AscentiaNetAetherSmoke via Tools/network/run_two_client_aether_smoke.py; launch clients only after the driver prints START; the deplete sphere must stay wider than probe reach). Close out per Docs/rules/SOURCE_CONTROL.md (commit, push) plus the Portfolio Signal (update the ascentia entry, prune this hand-off).`,
+    },
+    {
+      id: 'ascentia-p11-aether-continuation',
+      title: 'Continue the P11/Aether slice: save-spine + Magic Sight art',
+      target: 'Any agent · D:\\Ascentia\\repos\\game',
+      decision: false,
+      why: 'The game’s recorded continuation work after the 2026-07-18 re-curation: node save-spine wiring and the Magic Sight/cue art remainder.',
+      prompt: String.raw`Continue the P11/Aether slice: node save-spine wiring plus the Magic Sight/cue art remainder.
+
+In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> Docs/COMPENDIUM_MAP.md -> the magic and save/progression lane rules): two recorded remainders from the Aether reward-layer slice. (1) NODE SAVE-SPINE: wire Aether node persistence into the save spine per the "Node persistence" item in Docs/Architecture/Aether_EnvironmentalMagic.md — nodes must survive save/load with clear authoritative ownership, and the Ascentia.Aether automation suite (18/18 green at 413b5573) must stay green and grow to pin the behavior. (2) MAGIC SIGHT / CUE ART: replace the native debug-wisp fallback with the field-visualization Niagara plus the GameplayCue.Ascentia.MagicSight and GameplayCue.Ascentia.AetherDrain cue assets per Docs/DesignerSurfaces/AetherMagic_README.md — designer surfaces get real assets/tooling the proper way, with compendium docs updated. Gotchas: Niagara has NO python API — use the editor MCP (:8000/mcp call_tool via curl keep-alive; Get*=emitterRef/Set*=emitter asymmetry; NiagaraBool true=-1; edits are in-memory until save_asset; stop PIE around MCP surgery); building C++ with an editor open makes a stale patch DLL (close editors before headless builds; -NoHotReloadFromIDE). Verify multiplayer with the two-client fixture (-AscentiaNetAetherSmoke via Tools/network/run_two_client_aether_smoke.py; launch clients only after the driver prints START; the deplete sphere stays wider than probe reach). The residue self-refill question is a SEPARATE decision hand-off — do not decide it here. Close out per Docs/rules/SOURCE_CONTROL.md (commit, push) plus the Portfolio Signal (update the ascentia entry, prune or re-scope this hand-off, keep the three portfolio sections in agreement).`,
     },
   ],
   projects: [

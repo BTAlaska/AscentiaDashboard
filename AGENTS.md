@@ -12,6 +12,11 @@ This repository is the central coordination depot for Ascentia development. Star
   action separate. Its `handoffs` array is the dispatch queue: one
   ready-to-paste prompt per outstanding concern, authored by the closing
   agent (protocol step 6) and rendered with copy buttons on `portfolio.html`.
+  Consistency contract (user law, 2026-07-18): after every update the
+  `priorities` ("Right now"), `handoffs` ("Hand-off prompts"), and `projects`
+  ("Status without false precision") sections must agree — each
+  needs-attention item either has a hand-off prompt or explicitly names the
+  user decision it waits on, and project next/blockers carry no stale echoes.
 - `PORTFOLIO_UPDATE_PROTOCOL.md` defines the standing closeout contract for
   material work across the named portfolio.
 - `refresh-portfolio.ps1` writes the gitignored `portfolio-local.js`: Git

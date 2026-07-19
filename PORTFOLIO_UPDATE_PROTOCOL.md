@@ -25,6 +25,19 @@ blocker, authority, integration boundary, or next decision:
    alone: target agent + start directory, context, the task, `[BRACKETED]`
    slots for any user decision, governance/gotcha pointers, validation, and
    the Portfolio Signal closeout. Use `String.raw` so Windows paths survive.
+
+   **Consistency contract (user law, 2026-07-18 — check before closeout):**
+   the three portfolio surfaces must agree after every update: `priorities`
+   ("Right now" / Needs attention), `handoffs` (Hand-off prompts), and
+   `projects` ("Status without false precision"). Concretely:
+   - Every needs-attention concern either carries a ready hand-off prompt in
+     `handoffs`, or its entry explicitly names the user authority/decision it
+     waits on (in `owner` or body). No orphaned concerns.
+   - Project `next`/`blockers` must reference the same concerns — when one
+     section resolves or reframes a concern, sweep the other two for stale
+     echoes in the same pass.
+   - A prompt with no matching concern, or a concern with no prompt and no
+     named user decision, is a closeout failure.
 7. Run `refresh-portfolio.ps1` for current local Git pulse plus the disk and
    hygiene sweep (`-SkipDisk` for a quick pulse-only pass), then check the
    Hygiene panel for new weight, overdue scratch, or unindexed paths.
