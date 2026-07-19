@@ -21,10 +21,10 @@ window.PORTFOLIO_DATA = {
       owner: 'User decision (residue self-refill) / Ascentia',
     },
     {
-      level: 'active',
-      title: 'S1 sediment lane: six slices in one day — the landscape now evolves through time',
-      body: 'Six slices since your GO: exact routing, capacity deposition, lake deltas, hillslope creep, thresholds + banded strata, and SED-04c — the whole system now runs 25 compounding intervals over an evolving surface. On the 2048 rung that moved 3.05 billion m3: trunk gorges incised up to 259 m, talus aprons up to 24 m thick, 80 percent of the landscape lowered, every interval integer-exact and bitwise deterministic (routing stays fixed at the hydrology solution — the documented approximation). Honest finding: the steep-slope tail held at 14.8 percent, so interval magnitudes are now THE calibration question. Next: SED-05 DEM calibration against the real-DEM families, ending at your imitation-retirement decision',
-      owner: 'Landscry S1 lane (agent/s1-sediment)',
+      level: 'review',
+      title: 'S1 sediment lane: seven slices — calibrated against real DEMs, your retirement call is next',
+      body: 'SED-05 closed the day: a calibration instrument now evolves the full world and measures every run with the exact T3 corpus metric code against the frozen DEM families. Verdict: evolution moves the landscape TOWARD its own alpine family on every axis sediment can own (both movable baseline failures become warns; the one left is gross relief — a composition axis), valley floors sit inside the fluvial envelope, and the 32-128 m spectrum matches best exactly at the shipped 25 intervals. The honest headline: fluvial concavity degrades with deeper evolution — the fixed-routing approximation is now the measured binding constraint, so all seven constants stay as shipped and re-routing is the top follow-up. Recommendation on your desk: do NOT retire imitation labels yet (decision prompt below)',
+      owner: 'User decision (retirement A/B/C) / Landscry S1 lane',
     },
     {
       level: 'review',
@@ -113,13 +113,20 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'Continue S1: SED-05 DEM calibration of the sediment laws',
-      target: 'Any agent · D:\\Ascentia\\repos\\landscry',
-      decision: false,
-      why: 'SED-01..04 are shipped with provisional constants; SED-05 calibrates them against the real-DEM fluvial family and carries the imitation-retirement decision to the owner.',
-      prompt: String.raw`Continue the ACTIVE S1 sediment lane: run SED-05, the DEM-calibration pass.
+      title: 'S1 owner decision: imitation-retirement + next sediment slice',
+      target: 'You (decision) · then any agent · D:\\Ascentia\\repos\\landscry',
+      decision: true,
+      why: 'SED-05 delivered the calibration report; retirement is owner-only per the roadmap terrain execution controls. Recommendation: do not retire yet — land re-routing first.',
+      prompt: String.raw`S1 sediment lane — owner decision on imitation-retirement and the next slice.
 
-In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md — SED-01..04 recorded SHIPPED with proofs — the T3 calibration method in the docs and memory landscry-dem-calibration-lane, and the terrain execution controls in docs\ROADMAP.md first): calibrate the four provisional sediment constants (detachment K, hillslope KD, capacity K, deposit cap) against the T3 DEM corpus fluvial family using the T3 discipline: multi-seed medians are the bar, mechanism-per-axis (one constant at a time where separable), gate v2 percentile rules. Define the depositional metrics first (valley-floor aggradation width/relief, fan area fraction at slope breaks, delta presence at lake entries) and measure them on DEM windows before touching constants; if the fluvial family under-constrains deposition, propose additional depositional windows through the admission process rather than stretching claims. Deliver: a calibration report with before/after metric tables per constant, the chosen constants with uncertainty notes, honest claims-ledger language for what S1 can now assert, and the imitation-retirement RECOMMENDATION (the decision itself goes to the owner per the roadmap terrain execution controls — do not retire labels yourself). Constants move from provisional to calibrated only where the medians clear the bar; report failures honestly and leave failing constants provisional. Laws: frozen characterization gates stay green; budgets and wall/memory per AGENTS section 8; any commit re-keys preview identities (sub-caches survive); export flagship before committing further; leave before/after bundles in the Studio for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to the owner retirement decision or SED-01b, keep the three sections in agreement).`,
+Context (read docs\S1_SED05_CALIBRATION.md in D:\Ascentia\repos\landscry, branch agent/s1-sediment @ ff4813c, for the full tables): SED-01..04c shipped; SED-05 measured the system against the frozen T3 DEM families with the T3 metric code itself. Evolution moves the world TOWARD its alpine family on every sediment-ownable envelope axis; valley floors sit inside the fluvial envelope; the 32-128 m spectrum matches best at the shipped 25 intervals. The binding constraint is no longer any constant: fluvial concavity degrades with deeper evolution because routing stays fixed at the hydrology solution. All seven constants retained (hillslope KD x2 is the best single-change candidate, re-test after re-routing). RECOMMENDATION: do NOT retire imitation labels yet; conditions = re-routing lands, interval axis re-swept, multi-seed medians clear the envelopes.
+
+Choose one and paste this prompt with your letter:
+A) Accept recommendation (RECOMMENDED): keep labels provisional, GO the re-routing slice (SED-06: recompute receivers + accumulation between evolution intervals, then re-sweep intervals and KD with the committed s1_sediment_calibration instrument).
+B) Keep labels, pause S1 here; agents re-scope to other lanes until you re-open it.
+C) Retire labels anyway: record the owner override verbatim in docs\S1_SEDIMENT_WORK_ORDER.md and the claims ledger (against recommendation).
+
+Executing agent: read AGENTS.md + the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first; apply the choice; frozen gates stay green; any commit re-keys preview identities (sub-caches survive) — export flagship before committing further; close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off to the chosen path.`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -230,13 +237,14 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'S1/SED-04 shipped 2026-07-19 (agent/s1-sediment 8153998..df9bd93, pushed): hillslope creep V=KD*S*cell*T joins the ledger with an exact channel/hillslope split (2048 rung: 120.3M m3 = 19.4M + 100.8M; 97.1M land-deposited over 3.43M cells; deltas 2.7x); 14 sediment tests; flagship + export E2E green; bundle schema v4',
         'S1/SED-04b shipped 2026-07-19 (agent/s1-sediment 045d368..90423b1, pushed): repose-gated deposition + threshold rockfall (three-way exact split; land mantling -31 percent, exports 3x) + elevation-banded erodibility proxy on bedrock terms (owner-requested spatial variation; real lithology deferred to S8, disclosed); 17 sediment tests; flagship + 256-tile export E2E green; bundle schema v5',
         'S1/SED-04c shipped 2026-07-19 (agent/s1-sediment b0f4f89.., pushed): 25-interval evolution over an evolving surface (fixed routing, documented); 2048 rung moved 3,045M m3, gorges -259.5 m, aprons +24 m, 80 percent of cells lowered; cumulative ledger exact; 19 sediment tests; evolved surface published with heights_include_erosion + evolution_intervals (schema v6); flagship + export E2E green',
+        'S1/SED-05 measured 2026-07-19 (agent/s1-sediment ff4813c, pushed): calibration instrument s1_sediment_calibration (T3 metric code, 18-run sweep: interval ladder + one-law x0.5/x2) + report docs/S1_SED05_CALIBRATION.md; toward-family on all sediment-ownable axes, fluvial valley floors in-envelope, fixed routing = measured binding constraint; constants retained; laws promoted as documented instrumentation only (product outputs bit-identical, 228 tests green); retirement recommendation to owner',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: 'b0f4f89', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: 'ff4813c', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
