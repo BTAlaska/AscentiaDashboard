@@ -121,6 +121,30 @@
     .priority p { color: var(--muted); margin: 0; font-size: 12.5px; }
     .priority .owner { color: var(--faint); font-size: 11px; white-space: nowrap; }
 
+    .handoff-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .handoff { border: 1px solid var(--line); background: var(--panel); padding: 15px 17px; display: grid; gap: 9px; align-content: start; }
+    .handoff-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .handoff h3 { margin: 0; font-size: 16.5px; font-family: "Segoe UI", system-ui, sans-serif; }
+    .handoff .target { color: var(--faint); font-size: 11px; }
+    .handoff .target code { color: var(--muted); }
+    .handoff .why { color: var(--muted); font-size: 12.5px; margin: 0; }
+    .handoff .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .copy-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--gold); background: var(--gold-dim); color: var(--text);
+      padding: 7px 12px; font-size: 12.5px; cursor: pointer;
+    }
+    .copy-btn:hover { background: rgba(216,181,106,.22); }
+    .copy-btn svg { width: 13px; height: 13px; fill: none; stroke: var(--gold); stroke-width: 1.6; }
+    .copy-done { color: var(--green); font-size: 12px; min-height: 16px; }
+    pre.prompt {
+      margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; overflow-y: auto; max-height: 300px;
+      background: #07090d; border: 1px solid var(--line-soft); padding: 12px;
+      color: #cbd8e7; font: 11.5px/1.55 "Cascadia Mono", Consolas, monospace;
+    }
+    details.prompt-preview summary { color: var(--blue); cursor: pointer; font-size: 12px; }
+    details.prompt-preview[open] summary { margin-bottom: 8px; }
+
     .toolbar {
       display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
       padding: 10px 12px; border: 1px solid var(--line); background: var(--panel); margin-bottom: 12px;
@@ -233,7 +257,7 @@
     @media (max-width: 1000px) {
       .command { grid-template-columns: 1fr; }
       .chips { justify-content: flex-start; max-width: none; }
-      .project-grid, .ops-grid { grid-template-columns: 1fr; }
+      .project-grid, .ops-grid, .handoff-grid { grid-template-columns: 1fr; }
       .flow-row { grid-template-columns: 1fr; }
       .flow-arrow { height: 26px; transform: rotate(90deg); }
       .flow-contract { border: 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
@@ -285,6 +309,14 @@
         <div class="tile-grid" id="tileGrid"></div>
         <div class="subhead"><h3>Needs attention</h3><span class="hint">portfolio-level coordination pressure, not project law</span></div>
         <div class="priority-list" id="priorityList"></div>
+      </section>
+
+      <section aria-labelledby="handoffs-title">
+        <div class="section-head">
+          <div><div class="eyebrow">Dispatch</div><h2 id="handoffs-title">Hand-off prompts</h2></div>
+          <p>One ready-to-paste prompt per outstanding concern, authored by the agent that closed the last round. Copy, fill any [BRACKETED] decision slots, and feed it to the named agent. Closing agents prune finished items and write the next round's prompts.</p>
+        </div>
+        <div class="handoff-grid" id="handoffGrid"></div>
       </section>
 
       <section aria-labelledby="projects-title">
@@ -513,6 +545,57 @@
             <div class="label">${escapeHtml(t.label)}</div>
             <div class="note">${escapeHtml(t.note)}</div>
           </div>`).join('');
+      }
+
+      const COPY_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/></svg>';
+
+      function renderHandoffs() {
+        const grid = document.getElementById('handoffGrid');
+        const handoffs = data.handoffs || [];
+        if (!handoffs.length) {
+          grid.innerHTML = '<div class="empty">No outstanding hand-offs — the last closing agent left nothing queued.</div>';
+          return;
+        }
+        grid.innerHTML = handoffs.map((h, i) => `
+          <article class="handoff" id="handoff-${escapeHtml(h.id)}">
+            <div class="handoff-head">
+              <h3>${escapeHtml(h.title)}</h3>
+              ${h.decision ? '<span class="chip review">needs your decision</span>' : '<span class="chip active">ready to run</span>'}
+            </div>
+            <div class="target">Feed to: <code>${escapeHtml(h.target)}</code></div>
+            <p class="why">${escapeHtml(h.why)}</p>
+            <div class="row">
+              <button class="copy-btn" type="button" data-copy-index="${i}">${COPY_ICON}Copy prompt</button>
+              <span class="copy-done" data-copy-status="${i}"></span>
+            </div>
+            <details class="prompt-preview">
+              <summary>Preview prompt (${escapeHtml(String(h.prompt.length))} chars)</summary>
+              <pre class="prompt" data-prompt-index="${i}">${escapeHtml(h.prompt)}</pre>
+            </details>
+          </article>`).join('');
+
+        grid.querySelectorAll('.copy-btn').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            const i = Number(btn.dataset.copyIndex);
+            const status = grid.querySelector(`[data-copy-status="${i}"]`);
+            try {
+              await navigator.clipboard.writeText(handoffs[i].prompt);
+              status.textContent = 'Copied — paste it to the named agent.';
+            } catch {
+              // Clipboard blocked (permissions/context): open the preview and
+              // select the text so Ctrl+C finishes the job.
+              const details = btn.closest('.handoff').querySelector('details.prompt-preview');
+              details.open = true;
+              const pre = grid.querySelector(`[data-prompt-index="${i}"]`);
+              const range = document.createRange();
+              range.selectNodeContents(pre);
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+              status.textContent = 'Clipboard blocked — text selected below, press Ctrl+C.';
+            }
+          });
+        });
       }
 
       function renderPriorities() {
@@ -810,6 +893,7 @@
         renderHeader();
         renderTiles();
         renderPriorities();
+        renderHandoffs();
         renderProjects();
         renderHygiene();
         renderRetirement();

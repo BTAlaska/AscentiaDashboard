@@ -45,6 +45,127 @@ window.PORTFOLIO_DATA = {
       owner: 'All projects / Portfolio',
     },
   ],
+  // Hand-off prompts: one ready-to-paste prompt per outstanding concern,
+  // written by the agent that closed the previous round. Maintenance law
+  // (PORTFOLIO_UPDATE_PROTOCOL.md): at closeout, prune finished concerns and
+  // author a prompt for each new one. [BRACKETED SLOTS] are for the user to
+  // fill before pasting. Use String.raw so Windows paths survive verbatim.
+  handoffs: [
+    {
+      id: 'interfaceforge-history-split',
+      title: 'Resolve the InterfaceArtForge history split',
+      target: 'Any agent · D:\\Ascentia\\repos\\interface-forge',
+      decision: true,
+      why: 'GitHub main was force-replaced with release-prep work sharing no history with the local vendored line — no PR is possible until one line is chosen.',
+      prompt: String.raw`Resolve the InterfaceArtForge history split (found 2026-07-18).
+
+Context: the local canonical repo D:\Ascentia\repos\interface-forge holds the line e59c0db -> 8a23b83 -> 34471dc -> 6370b66 (branch claude/docs-accuracy, pushed to origin). This line's plugin files are the ones actually vendored into D:\Ascentia\repos\game\Plugins\InterfaceArtForge and D:\Ascentia\sandboxes\skin-forge\Plugins\InterfaceArtForge (content-identical after newline normalization, verified 2026-07-18). But GitHub main (BTAlaska/InterfaceArtForge) was force-replaced at some point with the single commit b4dcfac "Initial Interface Art Forge plugin release prep", which adds Marketplace/, Tools/BuildFabPackage.ps1, and a ~374-line-larger Source/InterfaceArtForgeEditor/Private/InterfaceArtForgeEditor.cpp. The two histories share no common ancestor ("no history in common"), so PRs are impossible until reconciled. origin/main is already fetched locally.
+
+MY DECISION: [pick one — (A) the local line is truth: graft the remote release-prep additions on top of it; (B) remote b4dcfac is truth: replay the local docs/sync commits onto it; (C) inspect both and propose a merge plan for my review before changing anything]
+
+Steps: read AGENTS.md first. Diff the lines (git diff origin/main claude/docs-accuracy) and summarize what each uniquely contains before acting. Whichever direction applies, preserve BOTH lines: tag the non-chosen head (e.g. archive/pre-reconcile-20260718) and push the tag — never discard history. Build the reconciled branch, run descriptor/module/preset validation, run .\sync-vendored.ps1 -DryRun to preview vendored impact (note: a full source sync flips vendored files LF->CRLF — newline-only, but say so), push, and open a PR to main once histories connect. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the interfaceforge entry, prune this hand-off, refresh the pulse).`,
+    },
+    {
+      id: 'dashboard-merge-deploy',
+      title: 'Merge the control room to main; settle the deploy',
+      target: 'Any agent · D:\\Ascentia\\repos\\dashboard',
+      decision: false,
+      why: 'The portfolio lives on a pushed side branch; main is the Render deploy branch.',
+      prompt: String.raw`Merge the portfolio control room into main and settle the deploy.
+
+In D:\Ascentia\repos\dashboard (read AGENTS.md first): branch codex/portfolio-control-room (HEAD a477ef7 or later) holds portfolio control room v2.1 and is pushed with upstream; main is the Render deploy branch (live: https://ascentiadashboard.onrender.com). Task: merge codex/portfolio-control-room into main, run check-links.ps1 and node --check on gap-data.js + portfolio-data.js, confirm portfolio-local.js remains untracked, then push main. Afterwards verify honestly whether Render actually redeployed (auto-deploy has been unreliable — probe the live site; do not claim a deploy you did not observe). Expected on the LIVE site: the portfolio page shows "Snapshot only" because portfolio-local.js is machine-local — that is correct behavior, not a bug. Close out with the Portfolio Signal (update the dashboard entry, prune this hand-off, refresh).`,
+    },
+    {
+      id: 'dashboard-93a1b208',
+      title: 'Reconcile archived dashboard commit 93a1b208',
+      target: 'Any agent · D:\\Ascentia\\repos\\dashboard',
+      decision: false,
+      why: 'One Designer Compendium commit from a divergent clone is preserved in the archive but neither merged nor formally retired.',
+      prompt: String.raw`Reconcile the archived dashboard commit 93a1b208.
+
+In D:\Ascentia\repos\dashboard (read AGENTS.md first): the archived divergent clone at D:\Ascentia\archives\dashboard-divergence\claude-clone (plus its verified git bundle) preserves commit 93a1b208 (2026-07-07) — one unmerged Designer Compendium change. Task: show me the commit's diff against the current line (git -C D:\Ascentia\archives\dashboard-divergence\claude-clone show 93a1b208). If it still adds value, cherry-pick it onto the current branch and validate (check-links.ps1 + node syntax smoke); if later compendium work superseded it, record "intentionally retired" in the dashboard entry's evidence in portfolio-data.js and note it against the dashboard-divergent-clone entry in D:\Ascentia\ops\portfolio-manifest.json. Either way the archive itself stays — provenance is never deleted by reconciliation. Close out with the Portfolio Signal (prune this hand-off).`,
+    },
+    {
+      id: 'worldheart-lane-docs',
+      title: 'Worldheart lane: land the two portfolio doc edits',
+      target: 'Codex (Worldheart lane) · D:\\Ascentia\\repos\\worldheart',
+      decision: false,
+      why: 'Two doc-only edits from the portfolio pass sit uncommitted in the governed tree; only the Worldheart lane may commit there.',
+      prompt: String.raw`Worldheart lane: review and land two portfolio doc edits sitting uncommitted in the working tree.
+
+In D:\Ascentia\repos\worldheart, within WH-WO-0020's boundary (read AGENTS.md and the session protocol first; G01 stays RED; no gate, evidence, or acceptance changes): the 2026-07-18 portfolio pass left two doc-only edits uncommitted — docs/MIGRATION.md (a supersession banner recording the move to D:\Ascentia\repos\worldheart; the historical migration-#1 record below it is untouched) and AGENTS.md (a new "Portfolio signal" section, explicitly reporting-only and subordinate to governance). Review both diffs. If acceptable to the lane, commit them as their own doc-only commit with explicit paths (git add docs/MIGRATION.md AGENTS.md) — separate from the dressing_factory feature work, which you must not touch. Whether to push remains the lane's call. Close out with the Portfolio Signal payload in your handoff (a dashboard write is optional for this lane).`,
+    },
+    {
+      id: 'retirement-approvals',
+      title: 'Execute approved C: retirements',
+      target: 'Any agent · D:\\Ascentia (umbrella)',
+      decision: true,
+      why: '8 entries are retire-ready pending your per-entry approval; retirement is verified, recorded, and never bulk.',
+      prompt: String.raw`Execute approved C: source retirements (per-entry, verified, recorded).
+
+MY APPROVAL — retire exactly these entries from the Portfolio's Retirement readiness panel: [list entry ids, e.g. dashboard, asset-factory, interface-forge, themeforge, pcg-sheet-library, pcg-contact-sheets, worldheart-worktree-family, worldheart-output-family — or write "none yet"]
+
+In D:\Ascentia (read AGENTS.md, ops\ARTIFACT_HYGIENE.md, and the safety block in ops\migration-manifest.json first): for EACH approved entry and only those: (1) re-open its verificationReport and confirm the D: target still satisfies its recorded verify; (2) confirm the old-path junction still resolves to the D: target; (3) the retained bytes live at the recorded rollbackSourcePath (*.rollback-source-20260718-*) — delete only that directory; leave the junction in place as a path alias; (4) HAZARD to confirm per entry: these sources sit under OneDrive with sync disabled — a local deletion can propagate to the cloud if sync is ever re-enabled; never touch placeholder-bearing (cloud-only) trees, they are not in the ready set; (5) record the execution in ops\migration-manifest.json (per-entry status + note; keep the global flags truthful) and the matching ops\rollback\<entry>.json; (6) run the dashboard refresh and confirm the Retirement panel reflects the new state. Entries not in my list stay untouched. Close out with the Portfolio Signal (update this hand-off's remaining scope or prune it).`,
+    },
+    {
+      id: 'cache-cleanup',
+      title: 'Reclaim approved cache space (~37 GB measured)',
+      target: 'Any agent · D:\\Ascentia (umbrella)',
+      decision: true,
+      why: 'The Hygiene panel measures the reclaimable caches; deletion runs only on your named approval.',
+      prompt: String.raw`Reclaim approved cache space from the Portfolio Hygiene panel.
+
+MY APPROVAL — delete exactly these cache-class paths: [list from the Hygiene panel, e.g. data\landscry-saved\DDC, repos\landscry\unreal\Intermediate, repos\game\.vs, repos\landscry\target — or write "all cache-class entries"]
+
+In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved cache-class paths. Laws: repos\landscry\unreal\Binaries is generated-state, NOT cache — if I listed it, first prove a clean rebuild of the winding-fixed importer DLLs; never touch evidence/artifact/generated-state classes under a cache approval; before deleting a tree's caches confirm no editor or build is running against it (any open UE 5.8 editor blocks builds repo-wide via the Live Coding mutex); UE recreates DDC/Intermediate on demand so the directories can go entirely. Afterwards run the full refresh (refresh-portfolio.ps1) and report the reclaimed GB from the Hygiene tiles, before/after. Close out with the Portfolio Signal (update this hand-off or prune it).`,
+    },
+    {
+      id: 'unindexed-archives',
+      title: 'Classify the two unindexed archive folders',
+      target: 'Any agent · D:\\Ascentia (umbrella)',
+      decision: true,
+      why: 'archives\\game-staged-latest (5.4 GB) and archives\\samples-parking (5.9 GB) predate the migration goal and have no owner call.',
+      prompt: String.raw`Classify the two unindexed archive folders flagged on the Portfolio Hygiene panel.
+
+MY DECISION: archives\game-staged-latest (5.4 GB, ~90 files) -> [keep-and-index / delete / inspect-first]; archives\samples-parking (5.9 GB, ~3,166 files) -> [keep-and-index / delete / inspect-first]
+
+In D:\Ascentia (read AGENTS.md first): both folders predate the migration goal and are recorded as "pre-existing provenance, not audited". For keep-and-index: add a proper archives[] entry to ops\portfolio-manifest.json describing origin and purpose, then remove that folder from the always-flag list in repos\dashboard\refresh-portfolio.ps1 so the Hygiene panel stops flagging it. For delete: first enumerate contents and confirm nothing references them, then delete and record the action in ops\migration-manifest.json notes. For inspect-first: produce a sized listing and a one-paragraph origin hypothesis, then stop and report back. Close out with the Portfolio Signal.`,
+    },
+    {
+      id: 'gapdata-recuration',
+      title: 'Re-curate the Ascentia detail dashboard (gap-data.js)',
+      target: 'Any agent · D:\\Ascentia\\repos\\dashboard (+ game repo reads)',
+      decision: false,
+      why: 'The detailed Ascentia record is curated 2026-07-05 while the game shipped network proof, P11 combat, and the Aether slice since.',
+      prompt: String.raw`Re-curate the Ascentia detail dashboard (gap-data.js) against current evidence.
+
+In D:\Ascentia\repos\dashboard (read AGENTS.md; for game-repo reads follow ITS bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> COMPENDIUM_MAP): gap-data.js is curated 2026-07-05, but the game has since recorded the dedicated-server network evidence checklist 10/10, packaged public-profile proof, P11 combat/montage work, and the Aether reward-layer slice with a 33/33 two-client replication fixture (2026-07-18, HEAD 413b5573). Task: walk D:\Ascentia\repos\game\Docs\Evidence\Latest plus the network/public-profile records and Aether docs, update gap-data.js feature statuses, notes, and progress history to the evidenced state — keep implementation status and proof status separate and never promote a claim past its evidence — then bump GAP_META.updated. Validate with check-links.ps1 and node --check gap-data.js; update index.html only if the data shape changed. Commit per AGENTS. Close out with the Portfolio Signal (update the ascentia and dashboard entries, prune this hand-off).`,
+    },
+    {
+      id: 'mountain-region-import',
+      title: 'Mountain-region 4 km: confirm and import into UE',
+      target: 'Any agent · D:\\Ascentia\\repos\\landscry',
+      decision: true,
+      why: 'The validated 16-tile UE window package awaits your water re-confirm and a consumer-project choice.',
+      prompt: String.raw`Mountain-region 4 km: import the validated window package into a UE project.
+
+MY CONFIRMATION: the water question is settled (the chat previews were the untinted views; water_overlay shows the finger lakes). Import into: [Worldheart_Test / the landscry unreal host project / another project path]
+
+In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): the validated 16-tile UE window package t4b-native-de1c19affdbe624b sits in artifacts\mountain-region-20260718 (225 MB, 80 artifacts, all checks green, same source identity as the review bundle). Run the import: one source round of 16 tiles + the WP MeshPartition builder with ByPackageHash reuse (verify-don't-resave definition assets) + optional HLOD pass as ONE BUILDER PROCESS PER HLOD ACTOR via -BuildSingleHLOD (labels carry the <HLODLayer>/ prefix) + inspect with the winding gate. Gotchas: editing anything under crates/ + Cargo + fixtures mid-build forks the engine cache identity; close editors before headless builds (Live Coding patch-DLL law; bypass flag is -NoHotReloadFromIDE); the terrain/water MATERIAL is still the open T4b presentation gate — this import proves geometry and streaming, not final look. Deliver a lit, flyable level plus its path for me to fly myself — renders are internal verification only. Close out with the Portfolio Signal.`,
+    },
+    {
+      id: 'aether-residue-refill',
+      title: 'Decide and implement Aether residue self-refill',
+      target: 'Any agent · D:\\Ascentia\\repos\\game',
+      decision: true,
+      why: 'The reward-layer design left one open question: whether depleted residue pockets replenish without boss events.',
+      prompt: String.raw`Decide the Aether residue self-refill behavior and implement it.
+
+MY DECISION: depleted residue pockets [slowly self-refill toward their authored ambient / stay depleted until boss events re-deposit / hybrid — describe]
+
+In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> Docs/COMPENDIUM_MAP.md -> the magic-lane rules): Aether is the REWARD layer — ETH is spell mana with Elden Ring rules; boss strikes deposit supersaturation residue; casts opportunistically consume charge for damage overcharge; the field drains toward the ambient norm; DepositSupersaturation energy is PER CELL (pool roughly 10x a per-cast request). Implement my decision in the field core and the designer surfaces described by Docs/Architecture/Aether_EnvironmentalMagic.md and Docs/DesignerSurfaces/AetherMagic_README.md, keep the Ascentia.Aether automation suite green and extend it to pin the new behavior, and verify multiplayer with the two-client fixture (-AscentiaNetAetherSmoke via Tools/network/run_two_client_aether_smoke.py; launch clients only after the driver prints START; the deplete sphere must stay wider than probe reach). Close out per Docs/rules/SOURCE_CONTROL.md (commit, push) plus the Portfolio Signal (update the ascentia entry, prune this hand-off).`,
+    },
+  ],
   projects: [
     {
       id: 'ascentia',

@@ -18,10 +18,17 @@ blocker, authority, integration boundary, or next decision:
 5. Sweep your own outputs per `D:\Ascentia\ops\ARTIFACT_HYGIENE.md`: promote
    generated material to its declared home (and record it) or delete it.
    Disposables belong in date-stamped `.scratch\YYYYMMDD-<purpose>\` folders.
-6. Run `refresh-portfolio.ps1` for current local Git pulse plus the disk and
+6. **Rewrite the hand-off prompts** (`handoffs` in `portfolio-data.js`):
+   prune concerns your round finished, and author a complete, ready-to-paste
+   prompt for each concern your round leaves open or creates. You closed the
+   round, so you write the next round's dispatch. Each prompt must stand
+   alone: target agent + start directory, context, the task, `[BRACKETED]`
+   slots for any user decision, governance/gotcha pointers, validation, and
+   the Portfolio Signal closeout. Use `String.raw` so Windows paths survive.
+7. Run `refresh-portfolio.ps1` for current local Git pulse plus the disk and
    hygiene sweep (`-SkipDisk` for a quick pulse-only pass), then check the
    Hygiene panel for new weight, overdue scratch, or unindexed paths.
-7. Run `check-links.ps1` and a JavaScript syntax smoke before closeout.
+8. Run `check-links.ps1` and a JavaScript syntax smoke before closeout.
 
 If the dashboard repo is unavailable or out of scope, the handoff must include
 this payload so the next dashboard session can apply it without guessing:

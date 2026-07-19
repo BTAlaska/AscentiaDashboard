@@ -9,7 +9,9 @@ This repository is the central coordination depot for Ascentia development. Star
   and this coordination depot.
 - `portfolio-data.js` is the curated portfolio truth. Keep activity,
   capability, proof/review posture, blockers, authority, touchpoints, and next
-  action separate.
+  action separate. Its `handoffs` array is the dispatch queue: one
+  ready-to-paste prompt per outstanding concern, authored by the closing
+  agent (protocol step 6) and rendered with copy buttons on `portfolio.html`.
 - `PORTFOLIO_UPDATE_PROTOCOL.md` defines the standing closeout contract for
   material work across the named portfolio.
 - `refresh-portfolio.ps1` writes the gitignored `portfolio-local.js`: Git
