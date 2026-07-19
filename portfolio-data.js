@@ -34,8 +34,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'review',
-      title: 'Monitor the approved Game World Asset Factory batch',
-      body: 'The human owner explicitly approved all 120 Physical, Magical, and Chilled plans with the audited 4K-base/2K-PBR limits, Meshy 6 hero path, and a hard cumulative 2,295-credit ceiling. Two hash-bound jobs are active. The first Physical Hero Boulder completed the Images 2 → Meshy → Blender → ImportQueue route with complete provenance and previews; Blender flagged 3,491 non-manifold/boundary edges and 194 disconnected islands, so this remains external quarantine evidence rather than Nanite/PCG acceptance.',
+      title: 'Monitor the resumed Game World Asset Factory batch',
+      body: 'The first attempt landed 8 complete packages and consumed 150 Meshy credits before Images 2 rejected the other 112 plans with billing_hard_limit_reached. The human owner confirmed billing was fixed and explicitly resumed those exact 112 plans. The first resumed asset is complete end to end, the 100-item queue is running, and the 11-item queue follows; their 2,145-credit estimate keeps the unchanged cumulative ceiling at 2,295. Nine packages are now browser-visible as 3D READY, but all remain external quarantine evidence rather than Nanite/PCG acceptance.',
       owner: 'Game World Asset Factory / human review after batch completion',
     },
     {
@@ -59,13 +59,13 @@ window.PORTFOLIO_DATA = {
   handoffs: [
     {
       id: 'game-world-factory-batch-review',
-      title: 'Finish and review the approved world-asset batch',
+      title: 'Finish and review the resumed world-asset batch',
       target: 'User + any agent · D:\\Ascentia\\repos\\game-world-asset-factory',
       decision: false,
-      why: 'Exactly 120 assets and 2,295 estimated Meshy credits are already authorized and running; the remaining task is completion monitoring, evidence integrity, failure accounting, and human quarantine review without any scope or credit expansion.',
-      prompt: String.raw`Continue monitoring the approved Game World Asset Factory batch.
+      why: 'The billing block is cleared and the exact 112-asset remainder is now resumed under the original 120-ID approval and 2,295-credit ceiling; the remaining task is completion monitoring, evidence integrity, failure accounting, and human quarantine review without scope, retry, or credit expansion.',
+      prompt: String.raw`Continue monitoring the resumed Game World Asset Factory batch.
 
-Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\project-status.md, docs\generation-go-no-go.md, and docs\provider-capability-audit.md. Inspect http://127.0.0.1:8790/api/jobs and the ignored PromptReviews\generation-approval.json. The only authorized scope is all 120 Physical, Magical, and Chilled assets, catalog hash b63ff4566d035346fd5a8f4c5b67c31b22abad78365c720262816d81621829eb, with a cumulative 2,295-Meshy-credit ceiling split across jobs world_1784437429752_e3a513a882 and world_1784437430818_f07420098f. Do not add assets, retry paid tasks, raise the cap, or write into Unreal Content. Let the hidden worker continue; preserve generated\ provider evidence and ImportQueue\WorldAssets review packages. When jobs stop, report exact success/failure/credit totals, inspect representative Images 2 references and Blender previews, summarize QA warnings by type, verify every successful package has prompts, task IDs, models, textures, previews, QA, and Unreal/PCG quarantine recipes, then lock generation again. Keep provider success separate from Nanite, collision, PCG, Unreal-import, or production acceptance. Run the factory no-credit smokes, update docs\project-status.md, follow the dashboard PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
+Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\project-status.md, docs\generation-go-no-go.md, and docs\provider-capability-audit.md. Inspect http://127.0.0.1:8790/api/jobs and the ignored PromptReviews\generation-approval.json. The only authorized scope remains all 120 Physical, Magical, and Chilled assets at catalog hash b63ff4566d035346fd5a8f4c5b67c31b22abad78365c720262816d81621829eb with a cumulative 2,295-Meshy-credit ceiling. The first run completed 8 assets for 150 credits before billing_hard_limit_reached. The owner then resumed the exact 112-item remainder for an estimated 2,145 credits in jobs world_1784469518252_1ec9a83179, world_1784469751837_f703575bbc, and world_1784469752461_f7182c7a8d; the first of those is already needs_review and the second is running. Do not add assets, retry paid tasks, raise the cap, or write into Unreal Content. Keep the hidden worker and three-job watcher alive; preserve generated\ provider evidence and ImportQueue\WorldAssets review packages. The watcher should restart the browser server in locked mode only after all three resumed jobs become terminal. When jobs stop, report exact success/failure/credit totals, inspect representative Images 2 references and Blender previews, summarize QA warnings by type, verify every successful package has prompts, task IDs, models, textures, previews, QA, and Unreal/PCG quarantine recipes, then confirm generation is locked. Use the browser Asset availability → 3D models only filter for human review. Keep provider success separate from Nanite, collision, PCG, Unreal-import, or production acceptance. Run the factory no-credit smokes, update docs\project-status.md, follow the dashboard PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
     },
     {
       id: 'interfaceforge-history-split',
@@ -269,24 +269,24 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       role: 'Thematic Nanite / PCG static-world mesh pipeline',
       state: 'active',
       phase: 'P1 — approved paid generation and external quarantine',
-      summary: 'The standalone thematic world-mesh factory is running a hash-bound 120-asset Physical/Magical/Chilled batch while preserving provenance, Blender QA, ImportQueue quarantine, human-verdict, and no-direct-Unreal-write boundaries.',
-      focus: 'Complete the two authorized jobs within the 2,295-credit ceiling, preserve every evidence package, and expose results for human geometry/material review.',
-      capability: '45 governed themes combine with 40 explicit geology, vegetation, architecture, ruin, prop, and landmark archetypes into 1,800 deterministic plans. The local browser exposes full GPT Image 2 prompts, exact Smart Topology/Retexture or higher-face Meshy 6 recipes, Unreal/PCG metadata, verdict capture, thumbnails, and GLB orbit previews. The checked-in Blender processor normalizes scale/pivot, inspects topology/materials, exports GLB/FBX, and renders four QA views.',
-      proof: 'Commit 8ec9e05 remains the code baseline on codex/game-world-factory; the governed status record is now dirty for this live batch. TypeScript build plus catalog, all-1,800 prompt, fail-closed generation-lock/path, and Blender-contract smokes passed immediately before dispatch. The first Physical Hero Boulder completed GPT Image 2, Meshy Smart Topology (5 credits), Meshy 6 retexture (10 credits), model/texture download, Blender processing, four previews, and an ImportQueue package. Its Blender verdict is warn, not acceptance.',
+      summary: 'The standalone thematic world-mesh factory resumed the exact 112 assets left by an Images 2 billing interruption. Together with the original 8 completions, this remains the same hash-bound 120-asset Physical/Magical/Chilled scope, with provenance, Blender QA, ImportQueue quarantine, human-verdict, and no-direct-Unreal-write boundaries intact.',
+      focus: 'Complete the three resumed jobs within the unchanged 2,295-credit cumulative ceiling, preserve every evidence package, and expose results for human geometry/material review.',
+      capability: '45 governed themes combine with 40 explicit geology, vegetation, architecture, ruin, prop, and landmark archetypes into 1,800 deterministic plans. The local browser exposes full GPT Image 2 prompts, exact Smart Topology/Retexture or higher-face Meshy 6 recipes, Unreal/PCG metadata, verdict capture, thumbnails, and working GLB previews. An Asset availability filter now isolates 3D-ready models, reference-only images, or prompt-only plans. The checked-in Blender processor normalizes scale/pivot, inspects topology/materials, exports GLB/FBX, and renders four QA views.',
+      proof: 'Commit 51eebaa on codex/game-world-factory adds and browser-verifies the 3D-ready filter plus repaired Three.js dependency routes. TypeScript build plus catalog, all-1,800 prompt, fail-closed generation-lock/path, and Blender-contract smokes pass. The first run completed 8 packages for 150 Meshy credits before billing_hard_limit_reached. The first exact-rerun plan, Chilled Cliff Outcrop, then completed GPT Image 2, Meshy, download, Blender processing, previews, and ImportQueue packaging with no job error, proving the billing recovery and bringing the browser-visible 3D count to 9. These are provider/Blender proofs, not acceptance.',
       blockers: [
-        'The 120-asset batch is serial and still running; complete success/failure and consumed-credit totals do not exist yet.',
+        'The 112-asset resumed remainder is serial and still running/queued; complete success/failure and consumed-credit totals do not exist yet.',
         'The first mesh has 3,491 non-manifold/boundary edges and 194 disconnected islands, requiring human geometry review before any Unreal intake.',
         'No completed batch result has Nanite, collision, PCG placement, Unreal quarantine-import, or production proof.',
       ],
-      next: 'Let the two exact-scope jobs finish, verify every landed evidence package, account for failures without paid retries or cap expansion, lock generation again, then ask the human owner for quarantine accept/reject decisions.',
+      next: 'Let the three resumed jobs finish, verify every landed evidence package through the 3D-only browser view and ImportQueue, account for failures without paid retries or cap expansion, confirm the watcher locks generation again, then ask the human owner for quarantine accept/reject decisions.',
       authority: 'D:/Ascentia/repos/game-world-asset-factory',
       evidence: [
         'docs/project-status.md — governed authority, capability, proof posture, and next decision',
         'docs/images2-prompt-review.md — technical review, risks, and recommended eight-asset pilot',
         'docs/provider-capability-audit.md — official GPT Image 2 and Meshy contract audit (4K base color / 2K PBR; no native 8K claim)',
-        'Git HEAD 8ec9e05; catalog hash b63ff4566d035346fd5a8f4c5b67c31b22abad78365c720262816d81621829eb',
+        'Git HEAD 51eebaa; catalog hash b63ff4566d035346fd5a8f4c5b67c31b22abad78365c720262816d81621829eb; resumed jobs world_1784469518252_1ec9a83179, world_1784469751837_f703575bbc, and world_1784469752461_f7182c7a8d',
       ],
-      snapshot: { branch: 'codex/game-world-factory', head: '8ec9e05', date: '2026-07-18', dirty: 1, ahead: null, behind: null },
+      snapshot: { branch: 'codex/game-world-factory', head: '51eebaa', date: '2026-07-19', dirty: 0, ahead: null, behind: null },
     },
     {
       id: 'interfaceforge',
@@ -366,7 +366,7 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       contract: 'Prompt-reviewed reference + Meshy/Blender evidence package',
       to: 'ImportQueue world-asset quarantine',
       then: 'Human Nanite/PCG review → guarded Ascentia intake',
-      posture: 'Exact 120-asset paid batch active in external quarantine; no direct Content writes or Unreal/Nanite/PCG acceptance claims',
+      posture: 'Exact 112-item remainder resumed under the original 120-ID/2,295-credit approval; 9 packages are 3D-ready in external quarantine, with no direct Content writes or Unreal/Nanite/PCG acceptance claims',
     },
     {
       from: 'Interface Art Forge',
