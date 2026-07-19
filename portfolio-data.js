@@ -4,7 +4,7 @@ window.PORTFOLIO_DATA = {
   meta: {
     title: 'Mythic Systems',
     subtitle: 'Portfolio control room for Ascentia and its independent creation tools',
-    surveyed: '2026-07-18',
+    surveyed: '2026-07-19',
     rule: 'No global completion percentage. Report activity, capability, proof, blockers, and the next decision separately.',
   },
   priorities: [
@@ -40,9 +40,9 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'review',
-      title: 'Monitor the resumed Game World Asset Factory batch',
-      body: 'The first attempt landed 8 complete packages and consumed 150 Meshy credits before Images 2 rejected the other 112 plans with billing_hard_limit_reached. The human owner confirmed billing was fixed and explicitly resumed those exact 112 plans. The first resumed asset is complete end to end, the 100-item queue is running, and the 11-item queue follows; their 2,145-credit estimate keeps the unchanged cumulative ceiling at 2,295. Nine packages are now browser-visible as 3D READY, but all remain external quarantine evidence rather than Nanite/PCG acceptance.',
-      owner: 'Game World Asset Factory / human review after batch completion',
+      title: 'Review the non-structural Game World Asset Factory results',
+      body: 'Owner correction (2026-07-19): Meshy owns terrain/PCG meshes, props, and decorative attachments; Worldheart owns buildings and structural meshes. Generation was stopped, 36 queued/running pieces were interrupted, and the browser now exposes a locked v3 catalog of 25 archetypes × 45 themes = 1,125 plans. Of 79 completed packages, 50 remain current non-structural candidates and 29 structural packages are historical quarantine evidence only. The next decision is human review of the 50 retained packages and, separately, whether to approve an exact v3 remainder.',
+      owner: 'User decision (v3 remainder + candidate review) / Game World Asset Factory',
     },
     {
       level: 'review',
@@ -65,13 +65,17 @@ window.PORTFOLIO_DATA = {
   handoffs: [
     {
       id: 'game-world-factory-batch-review',
-      title: 'Finish and review the resumed world-asset batch',
+      title: 'Review retained world assets and decide the v3 remainder',
       target: 'User + any agent · D:\\Ascentia\\repos\\game-world-asset-factory',
-      decision: false,
-      why: 'The billing block is cleared and the exact 112-asset remainder is now resumed under the original 120-ID approval and 2,295-credit ceiling; the remaining task is completion monitoring, evidence integrity, failure accounting, and human quarantine review without scope, retry, or credit expansion.',
-      prompt: String.raw`Continue monitoring the resumed Game World Asset Factory batch.
+      decision: true,
+      why: 'The old 120-ID/v2 approval is invalid and no provider work is running. Fifty completed packages still belong to the corrected non-structural catalog; the user must review those and decide whether any exact v3 remainder should be authorized. Structural output stays quarantined and never re-enters Meshy scope.',
+      prompt: String.raw`Review the retained Game World Asset Factory candidates and decide whether to authorize a v3 remainder.
 
-Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\project-status.md, docs\generation-go-no-go.md, and docs\provider-capability-audit.md. Inspect http://127.0.0.1:8790/api/jobs and the ignored PromptReviews\generation-approval.json. The only authorized scope remains all 120 Physical, Magical, and Chilled assets at catalog hash b63ff4566d035346fd5a8f4c5b67c31b22abad78365c720262816d81621829eb with a cumulative 2,295-Meshy-credit ceiling. The first run completed 8 assets for 150 credits before billing_hard_limit_reached. The owner then resumed the exact 112-item remainder for an estimated 2,145 credits in jobs world_1784469518252_1ec9a83179, world_1784469751837_f703575bbc, and world_1784469752461_f7182c7a8d; the first of those is already needs_review and the second is running. Do not add assets, retry paid tasks, raise the cap, or write into Unreal Content. Keep the hidden worker and three-job watcher alive; preserve generated\ provider evidence and ImportQueue\WorldAssets review packages. The watcher should restart the browser server in locked mode only after all three resumed jobs become terminal. When jobs stop, report exact success/failure/credit totals, inspect representative Images 2 references and Blender previews, summarize QA warnings by type, verify every successful package has prompts, task IDs, models, textures, previews, QA, and Unreal/PCG quarantine recipes, then confirm generation is locked. Use Asset availability → 3D models only, switch between the separate 3D model and Reference image modes, use Unlit texture for base-color/hue review, compare Neutral studio for form, and use Full screen for detail. Each landed card provides a working Open GLB link and an exact Folder path link that copies the canonical package path when the embedded browser blocks file navigation. Keep provider success separate from Nanite, collision, PCG, Unreal-import, or production acceptance. Run the factory no-credit smokes, update docs\project-status.md, follow the dashboard PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
+MY DECISION: [choose one — (A) review only, no new generation; (B) prepare an exact non-structural Physical/Magical/Chilled remainder and credit estimate for my approval; (C) define decorative-attachment archetypes first, without provider calls]
+
+Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\project-status.md, docs\worldheart-structural-boundary.md, docs\images2-prompt-review.md, and docs\generation-go-no-go.md. Commit 30567c0 establishes the ownership boundary: Meshy may create terrain/PCG meshes, freestanding props, and reviewed decorative attachments; Worldheart owns all buildings, structural shells, load-bearing elements, traversal modules, and modular construction pieces. The v3 catalog hash is 99b25c0dca8f7b747adca8d8ac480092766353c7a3f61b29e6ad52b81893d916 with 25 archetypes and 1,125 plans. The browser at http://127.0.0.1:8790 is intentionally locked. Legacy jobs contain 79 needs_review, 117 failed, and 36 interrupted pieces; there are 50 completed packages that still match current non-structural scope and 29 structural packages retained only as historical quarantine evidence. Do not delete evidence, revive old jobs, reuse the v2 approval, call providers, write into Unreal Content, or promote structural results.
+
+For option A, use Asset availability → 3D models only and inspect only current-catalog cards, including Unlit texture, Neutral studio, Full screen, Open GLB, and Folder path. Record accept/reject/revise evidence without claiming Nanite, collision, PCG, Worldheart mounting, Unreal import, or production readiness. For option B, derive the exact current-catalog remainder only after subtracting successful current-scope packages; list IDs and estimated credits for user approval, then stop before creating an approval or calling providers. For option C, write a small explicit library of non-load-bearing, Worldheart-mountable attachments, add ownership tests and v3 prompts, and stop for prompt review before any approval. Run all no-credit smokes, update docs\project-status.md first, follow D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
     },
     {
       id: 'interfaceforge-history-split',
@@ -300,26 +304,28 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       id: 'gameworldfactory',
       name: 'Game World Asset Factory',
       role: 'Thematic Nanite / PCG static-world mesh pipeline',
-      state: 'active',
-      phase: 'P1 — approved paid generation and external quarantine',
-      summary: 'The standalone thematic world-mesh factory resumed the exact 112 assets left by an Images 2 billing interruption. Together with the original 8 completions, this remains the same hash-bound 120-asset Physical/Magical/Chilled scope, with provenance, Blender QA, ImportQueue quarantine, human-verdict, and no-direct-Unreal-write boundaries intact.',
-      focus: 'Complete the three resumed jobs within the unchanged 2,295-credit cumulative ceiling, preserve every evidence package, and expose results for human geometry/material review.',
-      capability: '45 governed themes combine with 40 explicit geology, vegetation, architecture, ruin, prop, and landmark archetypes into 1,800 deterministic plans. The local browser exposes full GPT Image 2 prompts, exact Smart Topology/Retexture or higher-face Meshy 6 recipes, Unreal/PCG metadata, verdict capture, thumbnails, and working GLB previews. An Asset availability filter isolates 3D-ready models, reference-only images, or prompt-only plans. Asset details provide separate 3D model and complete Images 2 reference modes plus full-screen review. Three-dimensional review defaults to an unlit base-color texture audit and offers a reduced-intensity all-white neutral studio comparison for form. Each landed card links to the served GLB and exact canonical ImportQueue package path; prompt-only cards show a pending state. The checked-in Blender processor normalizes scale/pivot, inspects topology/materials, exports GLB/FBX, and renders four QA views.',
-      proof: 'Commit e698f84 on codex/game-world-factory adds per-card Open GLB and Folder path controls on top of the unlit/neutral/full-screen review surface. Browser verification opened a real served GLB in a new tab, confirmed exact file URLs, and copied the canonical Windows package path when Chromium blocked direct file-folder navigation. TypeScript build, JavaScript syntax, catalog smoke, and diff checks pass. The resumed provider output remains external quarantine evidence, not Nanite/PCG/Unreal acceptance.',
+      state: 'review',
+      phase: 'P1 — corrected non-structural catalog / external quarantine',
+      summary: 'The owner assigned buildings and structural meshes to Worldheart. Game World Asset Factory stopped paid work and now exposes a locked v3 catalog containing only terrain/PCG meshes and freestanding props. Decorative attachments remain an allowed but currently empty reviewed lane. Existing structural provider output is preserved strictly as historical quarantine evidence.',
+      focus: 'Review the 50 landed current-scope packages, keep 29 structural packages quarantined, and obtain a new explicit user decision before preparing any v3 remainder or attachment library.',
+      capability: '45 governed themes combine with 25 Meshy-owned archetypes—16 terrain/PCG meshes and 9 props—into 1,125 deterministic v3 plans. Fifteen former structural archetypes are removed and regression-tested as Worldheart-owned. Prompts declare Meshy responsibility and exclude buildings, structural shells, traversal geometry, and modular construction pieces. The local browser exposes responsibility metadata, full prompts and recipes, current-catalog availability filters, separate reference/GLB modes, unlit and neutral-studio review, full screen, and direct GLB/package links. The Blender processor still normalizes scale/pivot, inspects topology/materials, exports GLB/FBX, and renders four QA views.',
+      proof: 'Commit 30567c0 on codex/game-world-factory implements the ownership boundary and restart safety. Build plus catalog, prompt, generation-lock, Blender-contract, and JavaScript syntax smokes pass. The live API reports 25 archetypes, 1,125 plans, v3 hash 99b25c0dca8f7b747adca8d8ac480092766353c7a3f61b29e6ad52b81893d916, and generation locked. Even with the environment flag enabled, the preserved v2 approval fails closed. Disk audit found 79 complete packages: 50 current non-structural candidates and 29 historical structural quarantines.',
       blockers: [
-        'The 112-asset resumed remainder is serial and still running/queued; complete success/failure and consumed-credit totals do not exist yet.',
+        'The old 120-ID/2,295-credit v2 approval is invalid; any v3 remainder requires a new exact user decision, ID list, hash, and cap.',
+        'Twenty-nine completed structural packages plus incomplete structural evidence remain quarantined and must never be promoted as Meshy-owned content.',
         'The first mesh has 3,491 non-manifold/boundary edges and 194 disconnected islands, requiring human geometry review before any Unreal intake.',
-        'No completed batch result has Nanite, collision, PCG placement, Unreal quarantine-import, or production proof.',
+        'No completed result has Nanite, collision, PCG placement, Worldheart mounting, Unreal quarantine-import, or production proof.',
       ],
-      next: 'Let the three resumed jobs finish, verify every landed evidence package through the 3D-only browser view and ImportQueue, account for failures without paid retries or cap expansion, confirm the watcher locks generation again, then ask the human owner for quarantine accept/reject decisions.',
+      next: 'User chooses review-only, preparation of an exact non-structural v3 remainder for later approval, or a prompt-only decorative-attachment design pass. No old job resumes automatically.',
       authority: 'D:/Ascentia/repos/game-world-asset-factory',
       evidence: [
         'docs/project-status.md — governed authority, capability, proof posture, and next decision',
-        'docs/images2-prompt-review.md — technical review, risks, and recommended eight-asset pilot',
+        'docs/worldheart-structural-boundary.md — Meshy/Worldheart ownership contract and exact removed-ID regression list',
+        'docs/images2-prompt-review.md — v3 technical review and current scope',
         'docs/provider-capability-audit.md — official GPT Image 2 and Meshy contract audit (4K base color / 2K PBR; no native 8K claim)',
-        'Git HEAD e698f84; catalog hash b63ff4566d035346fd5a8f4c5b67c31b22abad78365c720262816d81621829eb; resumed jobs world_1784469518252_1ec9a83179, world_1784469751837_f703575bbc, and world_1784469752461_f7182c7a8d',
+        'Git HEAD 30567c0; catalog hash 99b25c0dca8f7b747adca8d8ac480092766353c7a3f61b29e6ad52b81893d916; jobs total 79 needs_review / 117 failed / 36 interrupted',
       ],
-      snapshot: { branch: 'codex/game-world-factory', head: 'e698f84', date: '2026-07-19', dirty: 0, ahead: null, behind: null },
+      snapshot: { branch: 'codex/game-world-factory', head: '30567c0', date: '2026-07-19', dirty: 0, ahead: null, behind: null },
     },
     {
       id: 'interfaceforge',
@@ -396,10 +402,10 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
     },
     {
       from: 'Game World Asset Factory',
-      contract: 'Prompt-reviewed reference + Meshy/Blender evidence package',
+      contract: 'Non-structural prompt-reviewed reference + Meshy/Blender evidence package',
       to: 'ImportQueue world-asset quarantine',
-      then: 'Human Nanite/PCG review → guarded Ascentia intake',
-      posture: 'Exact 112-item remainder resumed under the original 120-ID/2,295-credit approval; 9 packages are 3D-ready in external quarantine, with no direct Content writes or Unreal/Nanite/PCG acceptance claims',
+      then: 'Human Nanite/PCG/Worldheart-mount review → guarded Ascentia intake',
+      posture: 'Generation stopped and locked on v3 ownership correction; 50 current-scope packages await review while 29 structural packages remain historical quarantine only, with no direct Content writes or Unreal/Nanite/PCG acceptance claims',
     },
     {
       from: 'Interface Art Forge',
