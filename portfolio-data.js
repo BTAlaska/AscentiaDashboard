@@ -22,8 +22,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'S1 sediment lane: five slices in one day — thresholds and strata end the smoothing monopoly',
-      body: 'Five slices shipped since your GO: exact routing (SED-01), capacity deposition (SED-02), lake deltas (SED-03), hillslope creep (SED-04), and SED-04b — your homogeneity and uniform-erodibility observations turned into physics: deposition now refuses slopes above the angle of repose (rock faces stay clean, talus aprons build), a threshold rockfall term sheds over-critical faces (8.13M m3 on the 2048 rung), and a banded-strata erodibility proxy modulates bedrock detachment (the disclosed stand-in until S8 real lithology, which you have explicitly asked for). Redistribution proof: land mantling fell 31 percent while exports tripled. All ledgers integer-exact; flagship + UE export green per slice. Next: SED-05 DEM calibration, ending at your imitation-retirement decision',
+      title: 'S1 sediment lane: six slices in one day — the landscape now evolves through time',
+      body: 'Six slices since your GO: exact routing, capacity deposition, lake deltas, hillslope creep, thresholds + banded strata, and SED-04c — the whole system now runs 25 compounding intervals over an evolving surface. On the 2048 rung that moved 3.05 billion m3: trunk gorges incised up to 259 m, talus aprons up to 24 m thick, 80 percent of the landscape lowered, every interval integer-exact and bitwise deterministic (routing stays fixed at the hydrology solution — the documented approximation). Honest finding: the steep-slope tail held at 14.8 percent, so interval magnitudes are now THE calibration question. Next: SED-05 DEM calibration against the real-DEM families, ending at your imitation-retirement decision',
       owner: 'Landscry S1 lane (agent/s1-sediment)',
     },
     {
@@ -229,13 +229,14 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'S1/SED-03 shipped 2026-07-19 (agent/s1-sediment 934d02c..4245234, pushed): subaqueous deposition — delta fronts and lake infill bounded by the water surface (2048 rung: 0.81M m3 across 19,078 lake cells, 80.3% of strong deposition at/inside lakes; ceiling proven on a 1 cm lake; full lakes spill downstream); terminal ledger detached = land + lake + exported + boundary, exact; 12 sediment tests; flagship + 256-tile UE export E2E green at matching identity; bundle schema v3',
         'S1/SED-04 shipped 2026-07-19 (agent/s1-sediment 8153998..df9bd93, pushed): hillslope creep V=KD*S*cell*T joins the ledger with an exact channel/hillslope split (2048 rung: 120.3M m3 = 19.4M + 100.8M; 97.1M land-deposited over 3.43M cells; deltas 2.7x); 14 sediment tests; flagship + export E2E green; bundle schema v4',
         'S1/SED-04b shipped 2026-07-19 (agent/s1-sediment 045d368..90423b1, pushed): repose-gated deposition + threshold rockfall (three-way exact split; land mantling -31 percent, exports 3x) + elevation-banded erodibility proxy on bedrock terms (owner-requested spatial variation; real lithology deferred to S8, disclosed); 17 sediment tests; flagship + 256-tile export E2E green; bundle schema v5',
+        'S1/SED-04c shipped 2026-07-19 (agent/s1-sediment b0f4f89.., pushed): 25-interval evolution over an evolving surface (fixed routing, documented); 2048 rung moved 3,045M m3, gorges -259.5 m, aprons +24 m, 80 percent of cells lowered; cumulative ledger exact; 19 sediment tests; evolved surface published with heights_include_erosion + evolution_intervals (schema v6); flagship + export E2E green',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: '90423b1', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: 'b0f4f89', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
