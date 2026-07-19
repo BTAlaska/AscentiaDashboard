@@ -21,10 +21,10 @@ window.PORTFOLIO_DATA = {
       owner: 'User decision (residue self-refill) / Ascentia',
     },
     {
-      level: 'review',
-      title: 'Activate S1: real sediment transport/deposition (your standing ask)',
-      body: 'You have repeatedly asked for full geological-process terrain modeling; the roadmap already defines the queue (S1 sediment first, S1..S12 total) and honestly labels today\'s valley/plain/fan filling as statistical imitation with eroded mass destroyed rather than conserved. S1\'s entry conditions are met and a slice-laddered work order is now PROPOSED at repos/landscry/docs/S1_SEDIMENT_WORK_ORDER.md — nothing was activated without you. Say GO (hand-off below) and S1 slices become the default overnight terrain work, reviewable per-iteration in the local Studio.',
-      owner: 'User decision (GO / not yet) / Landscry',
+      level: 'active',
+      title: 'S1 sediment lane is live — first real geological process shipped',
+      body: 'Your GO activated S1 on 2026-07-19 and SED-01 shipped the same day: sediment detached from the terrain is now routed down the real drainage network under an integer-exact conservation ledger (2048-rung proof: 19.44M m3 detached = 12.29M exported at outlets + 7.15M delivered into lakes, balanced exactly), and every new Studio bundle carries a sediment_flux layer showing mass moving through the valleys. No terrain is reshaped yet — that is SED-02 (capacity-limited deposition: real fans, valley fills), the active next slice. S1 slices are the default overnight terrain work.',
+      owner: 'Landscry S1 lane (agent/s1-sediment)',
     },
     {
       level: 'review',
@@ -113,15 +113,13 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'GO: start S1 sediment transport/deposition slices',
+      title: 'Continue S1: SED-02 capacity-limited deposition (fans, valley fills)',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
-      decision: true,
-      why: 'The owner\'s standing ask for real geological-process modeling; S1 is first in the roadmap\'s process queue, entry conditions are met, and the PROPOSED work order awaits activation.',
-      prompt: String.raw`Activate and begin the S1 sediment transport/deposition lane.
+      decision: false,
+      why: 'S1 is ACTIVE (owner GO 2026-07-19) and SED-01 shipped the exact-ledger flux spine the same day; SED-02 is the slice that finally reshapes terrain with deposited mass.',
+      prompt: String.raw`Continue the ACTIVE S1 sediment lane: implement SED-02 capacity-limited deposition.
 
-MY DECISION: GO — activate docs\S1_SEDIMENT_WORK_ORDER.md as written [optionally: with these changes — ...]
-
-In D:\Ascentia\repos\landscry (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md, and the process-expansion queue + terrain execution controls in docs\ROADMAP.md first): record my GO in the work order's Activation section, update the board lane row, branch agent/s1-sediment from the current preview-loop head, and execute the slice ladder starting at SED-01 (conservative flux accounting: route detachment-derived sediment down the existing receiver network with EXACT mass balance — detached = in-transit + deposited + exported — deterministic and tile-order-independent, no height change yet), then SED-02 (capacity-limited deposition; fans and valley aggradation must appear in review bundles). Satisfy the entry contract before mechanism code merges: provenance/ledger admission for anything admitted, reuse the T3 fluvial DEM family for calibration windows, declare invariants and budgets per AGENTS section 8, and follow the integration overlay's physical-process entry contract. Laws: frozen characterization gates stay green (run the root cargo/pnpm verifications); do not edit crates/ + Cargo + fixtures while an engine build runs; any commit re-keys preview cache identities (sub-caches survive, ~2 min flagship re-derive); no new public control without its section-6 contract; report wall/memory deltas per slice honestly; stop and surface per the roadmap's terrain execution controls before weakening any boundary. Verify each slice visually through the local Studio (Landscry Studio.cmd; 2048 rung ~30 s iterations) and leave review bundles for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to the next slice, keep the three portfolio sections in agreement).`,
+In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md — SED-01 is recorded SHIPPED at ee9049a — and the terrain execution controls in docs\ROADMAP.md first): build SED-02 on the existing landscry_terrain_core::sediment spine. Introduce a transport-capacity law along the receiver forest; carry SED-01's detached mass as in-transit load; deposit the surplus where capacity drops; heights change for the first time (bed + deposited thickness), with the ledger extended to detached = deposited + outlet-exported + lake-delivered + window-boundary-exported and still exact in integer units. Acceptance: fans visibly appear at slope breaks and valley floors aggrade in review bundles (compare against pre-SED-02 bundles in the Studio A/B view); no negative-thickness or non-finite cells; frozen characterization gates stay green (the composed input bed is untouched — deposition is applied at the same T2-boundary presentation stage as the flux field until SED-01b instruments true detachment); budgets declared and wall/memory deltas reported per AGENTS section 8. Extend the module tests (capacity monotonicity, deposition mass exactness, determinism) and publish a deposition_thickness layer alongside sediment_flux in the bundles. Known follow-ups to leave recorded, not solve: SED-01b true-detachment instrumentation; tiled >8192-squared windows. Laws: any commit re-keys preview cache identities (sub-caches survive); export flagship before committing; verify visually through the local Studio (Landscry Studio.cmd; 2048 rung ~3 s warm iterations) and leave the before/after bundles for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to SED-03, keep the three portfolio sections in agreement).`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -212,9 +210,9 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       name: 'Landscry v0.2',
       role: 'Authoritative initial terrain',
       state: 'active',
-      phase: 'T4b — first composed world',
-      summary: 'The clean-room local-first terrain compiler has crossed from contracts and native terrain proof into a canonical streamed UE 5.8 world package and an exercised packaged build.',
-      focus: 'Final terrain/water presentation, native-detail complete-world review, and the remaining T4b checkpoint decisions — now iterated through the local Studio web app.',
+      phase: 'S1 sediment lane (ACTIVE) + T4b first composed world',
+      summary: 'The clean-room local-first terrain compiler has crossed from contracts and native terrain proof into a canonical streamed UE 5.8 world package, an exercised packaged build, and — as of the owner\'s 2026-07-19 GO — its first real geological process lane: conservatively routed sediment with an integer-exact mass ledger.',
+      focus: 'S1 sediment slices (SED-02 capacity-limited deposition next — the first terrain-reshaping slice) as the default terrain work, alongside the open T4b presentation gates, all iterated through the local Studio web app.',
       capability: 'One World Partition map with 16 partitions, 256 compiled sections, Nanite input topology, 64 far-field HLOD actors, collision, packaging, and a seven-station runtime streaming proof. New: the local Studio (apps/studio-web, loopback :4970) — size-ladder terrain builds (512..16,384 bodies + centered windows over the fixed 16,384 m world; engine custom review mode) requested from the browser, each validated as a direct offline no-model WorldRequestV2 through the canonical Rust validator, built deterministically, published with request/intent/transcript provenance, with A/B review, an orbiting 3D relief view (true-metre WebGL heightfield with draped review layers), and flagship-only Unreal package export.',
       proof: 'The D: repo passes Git, Rust, TypeScript, UE editor build, retained-package validation, and all ten junction checks. New recovery evidence rebuilt 256 sections and 64 HLODs, but two current inspections repeatably failed winding validation; cook/proof were intentionally not run. The Studio flow is browser-verified end to end (compose -> canonical validation PASS x4 -> build -> provenance served; rejection paths and traversal guards exercised); the full 512/1024/2048/4096/8192 ladder plus a 2 m window built clean. Preview sizes are presentation tooling only — custom mode carries authority custom_preview_non_fidelity and can never claim native detail or a package.',
       blockers: [
@@ -223,16 +221,17 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'Nanite + far-field HLOD versus discrete LOD seam obligation needs a decision.',
         'Older strict-target promotion matrices remain blocked by GitHub billing/spending-limit execution failure.',
       ],
-      next: 'Author and inspect final materials, fly the canonical streamed world, record the owner verdict, resolve the LOD obligation, then run the T4b close audit.',
+      next: 'SED-02 capacity-limited deposition (fans, valley fills — first height changes); then the T4b remainder: materials, fly verdict, LOD decision, close audit.',
       authority: 'D:/Ascentia/repos/landscry',
       evidence: [
+        'S1/SED-01 shipped 2026-07-19 (agent/s1-sediment ee9049a, pushed): exact integer sediment ledger proven on the 2048 rung (19.44M m3 detached = 12.29M outlet-exported + 7.15M lake-delivered, balances_exactly true), sediment_flux layer in every new bundle, terrain-core 222 tests + engine 50 green, workspace pedantic clippy clean; detachment source documented provisional (SED-01b instruments true T1b erosion)',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/preview-loop', head: 'bea1785', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: 'ee9049a+', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
