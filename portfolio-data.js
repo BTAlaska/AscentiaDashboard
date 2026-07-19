@@ -22,8 +22,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'S1 sediment lane is live — first real geological process shipped',
-      body: 'Your GO activated S1 on 2026-07-19 and SED-01 shipped the same day: sediment detached from the terrain is now routed down the real drainage network under an integer-exact conservation ledger (2048-rung proof: 19.44M m3 detached = 12.29M exported at outlets + 7.15M delivered into lakes, balanced exactly), and every new Studio bundle carries a sediment_flux layer showing mass moving through the valleys. No terrain is reshaped yet — that is SED-02 (capacity-limited deposition: real fans, valley fills), the active next slice. S1 slices are the default overnight terrain work.',
+      title: 'S1 sediment lane: terrain now aggrades — SED-01 and SED-02 shipped',
+      body: 'Your GO activated S1 on 2026-07-19; SED-01 (exact-ledger sediment routing) and SED-02 (capacity-limited deposition) both shipped the same day. Terrain reshapes for the first time: on the 2048 rung, 19.44M m3 detached = 11.99M m3 deposited back onto 1.41M cells (fans at slope breaks, valley fills) + 4.52M exported + 2.93M into lakes, balanced exactly in integer units; the before/after height diff shows 1,409,418 cells lifted, zero lowered, max lift exactly the 1 m aggradation cap. Studio bundles carry sediment_flux and deposition_thickness layers, and their height rasters show the aggraded surface (disclosed in the manifest; the UE package path stays un-aggraded until the lane promotes). Next slice: SED-03 lake infill and deltas — the 2.93M m3 currently parked at lake entries becomes visible deltas.',
       owner: 'Landscry S1 lane (agent/s1-sediment)',
     },
     {
@@ -113,13 +113,13 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'Continue S1: SED-02 capacity-limited deposition (fans, valley fills)',
+      title: 'Continue S1: SED-03 lake infill and deltas',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
       decision: false,
-      why: 'S1 is ACTIVE (owner GO 2026-07-19) and SED-01 shipped the exact-ledger flux spine the same day; SED-02 is the slice that finally reshapes terrain with deposited mass.',
-      prompt: String.raw`Continue the ACTIVE S1 sediment lane: implement SED-02 capacity-limited deposition.
+      why: 'SED-01 and SED-02 are shipped (exact routing + terrain-reshaping deposition); SED-03 turns the mass parked at lake entries (2.93M m3 on the 2048 rung) into visible deltas and lake infill consistent with the T2 lake law.',
+      prompt: String.raw`Continue the ACTIVE S1 sediment lane: implement SED-03 lake infill and deltas.
 
-In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md — SED-01 is recorded SHIPPED at ee9049a — and the terrain execution controls in docs\ROADMAP.md first): build SED-02 on the existing landscry_terrain_core::sediment spine. Introduce a transport-capacity law along the receiver forest; carry SED-01's detached mass as in-transit load; deposit the surplus where capacity drops; heights change for the first time (bed + deposited thickness), with the ledger extended to detached = deposited + outlet-exported + lake-delivered + window-boundary-exported and still exact in integer units. Acceptance: fans visibly appear at slope breaks and valley floors aggrade in review bundles (compare against pre-SED-02 bundles in the Studio A/B view); no negative-thickness or non-finite cells; frozen characterization gates stay green (the composed input bed is untouched — deposition is applied at the same T2-boundary presentation stage as the flux field until SED-01b instruments true detachment); budgets declared and wall/memory deltas reported per AGENTS section 8. Extend the module tests (capacity monotonicity, deposition mass exactness, determinism) and publish a deposition_thickness layer alongside sediment_flux in the bundles. Known follow-ups to leave recorded, not solve: SED-01b true-detachment instrumentation; tiled >8192-squared windows. Laws: any commit re-keys preview cache identities (sub-caches survive); export flagship before committing; verify visually through the local Studio (Landscry Studio.cmd; 2048 rung ~3 s warm iterations) and leave the before/after bundles for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to SED-03, keep the three portfolio sections in agreement).`,
+In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, docs\S1_SEDIMENT_WORK_ORDER.md — SED-01 ee9049a and SED-02 573147d are recorded SHIPPED with proofs — and the terrain execution controls in docs\ROADMAP.md first): build SED-03 on the landscry_terrain_core::sediment spine. The ledger's lake_delivered mass currently stops at lake-entry cells; SED-03 deposits it INTO the lakes as delta fronts and infill consistent with the T2 level-lake law: fill from the entry cell along the subaqueous receiver path, never above the lake's water surface (water_surface_m bounds the fill), with per-cell bounded thickness like SED-02's aggradation cap; any mass a full lake cannot hold continues along the post-lake receiver path (the lake spills sediment downstream) and the ledger splits lake_delivered into lake_deposited + lake_passed_through, still exact in integer units. Acceptance: visible delta tongues at lake entries in the deposition layer and the aggraded surface (A/B against SED-02 bundles); no deposit ever exceeds the local water surface; ledger identity extends exactly; frozen gates stay green; budgets declared, wall/memory deltas reported per AGENTS section 8. Extend module tests: delta-at-entry shape, water-surface ceiling respected, full-lake spill-through, monotonicity in the fill cap, bitwise determinism. Follow-ups to leave recorded, not solve: SED-01b true-detachment instrumentation; tiled >8192-squared windows; SED-04 hillslope/talus coupling. Laws: any commit re-keys preview cache identities (sub-caches survive, ~1-2 min flagship re-derive); export flagship before committing further; verify through the local Studio (Landscry Studio.cmd; 2048 rung ~3 s warm) and leave before/after bundles for me. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the landscry entry, re-scope this hand-off to SED-04, keep the three portfolio sections in agreement).`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -225,13 +225,14 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       authority: 'D:/Ascentia/repos/landscry',
       evidence: [
         'S1/SED-01 shipped 2026-07-19 (agent/s1-sediment ee9049a, pushed): exact integer sediment ledger proven on the 2048 rung (19.44M m3 detached = 12.29M outlet-exported + 7.15M lake-delivered, balances_exactly true), sediment_flux layer in every new bundle, terrain-core 222 tests + engine 50 green, workspace pedantic clippy clean; detachment source documented provisional (SED-01b instruments true T1b erosion)',
+        'S1/SED-02 shipped 2026-07-19 (agent/s1-sediment 573147d..4fd3549, pushed): capacity-limited deposition reshapes terrain — 2048 rung 11.99M m3 deposited on 1.41M cells, before/after diff 1,409,418 lifted / 0 lowered / max exactly the 1 m cap, f32 surface volume matches the integer ledger to 3 m3 in 12M; deposition_thickness layer + aggraded presentation surface disclosed in manifests; SED-02 flagship + 256-tile UE export E2E green at matching identity; terrain-core 224 tests + engine 50 green',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: 'ee9049a+', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: '4fd3549', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
