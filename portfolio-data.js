@@ -195,9 +195,10 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
-        'docs/PREVIEW.md + agent/preview-loop commits f728d50, 124ae57, 0512412, 3800f07 (pushed 2026-07-18/19): local Studio, custom review mode, 18/18 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
+        'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
+        'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/preview-loop', head: '3800f07', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/preview-loop', head: 'a25e5cf', date: '2026-07-19', dirty: 2, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
