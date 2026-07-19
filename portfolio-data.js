@@ -23,7 +23,7 @@ window.PORTFOLIO_DATA = {
     {
       level: 'review',
       title: 'Close the two human-facing world gates',
-      body: 'Landscry T4b needs final terrain/water material presentation (hand-off prompt below), then YOUR complete-world fly verdict — the deliverable is a lit flyable level for you to fly yourself. Worldheart stays in lean R50+ visual exploration until YOU (as Program Steward) call FREEZE; no prompt can close that gate.',
+      body: 'Landscry T4b needs final terrain/water material presentation (hand-off prompt below), then YOUR complete-world fly verdict — the deliverable is a lit flyable level for you to fly yourself. The validated mountain-region 4 km window package also waits on your water re-confirm and consumer-project choice (import prompt below). Worldheart stays in lean R50+ visual exploration until YOU (as Program Steward) call FREEZE; no prompt can close that gate.',
       owner: 'User decision (fly verdict + FREEZE) / Landscry + Worldheart',
     },
     {
