@@ -15,15 +15,9 @@ window.PORTFOLIO_DATA = {
       owner: 'User decision / Portfolio',
     },
     {
-      level: 'review',
-      title: 'Decide Aether residue self-refill',
-      body: 'The node save-spine plus Magic Sight/cue continuation is published and GitHub-current at 370a754e: the editor build passed 22/22, Aether automation passed 19/19, asset validation passed 6/6, all three Niagara systems audit UpToDate with the exact 12-field User.* contract, and the dedicated two-client fixture passed 33/33 at 120 ms / 5% loss. Six new ignored Content assets remain in exact local custody with byte counts, SHA-256 values, and tracked rebuild/audit tools. The only Aether concern queued here is the separate residue self-refill product decision carried by the hand-off below.',
-      owner: 'User decision (residue self-refill) / Ascentia',
-    },
-    {
-      level: 'review',
-      title: 'S1 sediment lane: ten slices — rivers migrate, ponds overtop, and nothing vanishes',
-      body: 'Ten slices in one day, ending with SED-06b: channels migrate between evolution intervals and full ponds now overtop along their pre-incision valley — conservation is closed (pit-overflow export fell from 966 million m3 of vanishing mass to zero). The re-run DEM calibration keeps SED-05 verdict: the fixed-routing concavity divergence is resolved (0.91 FAIL to 0.59 warn at the shipped depth under full conservation — the prettier 0.32 PASS of the interim variant was earned by deleting mass, and the honest number is the conserving one), the alpine family improves on every axis, and the steep-tail runaway was a fixed-routing artifact. All constants stay as shipped. Your A/B/C retirement decision remains open below — recommendation still not-yet: re-solved spill graph, depth-domain concavity, and multi-seed medians are the named gaps',
+      level: 'active',
+      title: 'S1 sediment lane: eleven slices — your call landed, and the rock is real now',
+      body: 'You chose A with S8 before SED-07 — your sequencing argument was right and is recorded. S8 v1 is shipped: a real structural lithology model (dipping, folded strata anchored in world space, eight rock classes from cliff-formers to shales) replaces the elevation-band stand-in, so hard and soft units now cut across contours and differential erosion carves benches and cliff-formers. Honest verdict from the re-run calibration: family-envelope medians are statistically unchanged — real lithology is calibration-neutral at defaults, its value is the structural texture itself (and a larger rockfall share as faces steepen). Labels stay provisional per your A. The remaining A-item is SED-07 tiled flagship (prompt below)',
       owner: 'User decision (retirement A/B/C) / Landscry S1 lane',
     },
     {
@@ -117,20 +111,13 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'S1 owner decision: imitation-retirement + what the lane does next',
-      target: 'You (decision) · then any agent · D:\\Ascentia\\repos\\landscry',
-      decision: true,
-      why: 'SED-05 calibrated the system and SED-06 re-routing resolved its measured binding constraint; retirement is owner-only per the roadmap terrain execution controls. Recommendation: not yet — two named gaps remain.',
-      prompt: String.raw`S1 sediment lane — owner decision on imitation-retirement and the next slice.
+      title: 'Continue S1 (choice A): SED-07 tiled flagship sediment',
+      target: 'Any agent · D:\\Ascentia\\repos\\landscry',
+      decision: false,
+      why: 'Owner chose A (2026-07-19) with S8 before SED-07; S8 is shipped, so the tiled flagship is the remaining A-item. Retirement labels stay provisional; that decision re-opens when the spill graph and multi-seed conditions mature.',
+      prompt: String.raw`Continue the ACTIVE S1 sediment lane under the owner's recorded choice A: run SED-07, tiled >8192-cell sediment windows.
 
-Context (read docs\S1_SED05_CALIBRATION.md including its Post-SED-06/06b section, in D:\Ascentia\repos\landscry, branch agent/s1-sediment @ 32fc336): nine slices shipped 2026-07-19 under your GO, ending with SED-06 re-routing — channels migrate between evolution intervals, and the re-run DEM calibration shows the fluvial concavity divergence RESOLVED (evolution now improves it at the shipped 25 intervals), deep-time relief inside the envelope, and the steep-tail runaway exposed as a fixed-routing artifact. All seven constants retained. SED-06b then closed the conservation hole (pit-overflow export 0.0 m3 — ponds overtop along their pre-incision valley). RECOMMENDATION: do NOT retire imitation labels yet — remaining gaps: the spill path follows the pre-incision valley rather than a re-solved spill graph (disclosed), fluvial concavity sits at warn in the depth domain, and multi-seed medians need seeds as a product control.
-
-Choose one and paste this prompt with your letter:
-A) Accept (RECOMMENDED): keep labels provisional, lane continues — next slice by default is SED-07 tiled flagship (design sized in the work order: 4096-cell tiles + boundary-export coupling), or S8 real lithology if you prefer the axis you explicitly asked for.
-B) Pause S1 here; agents re-scope to other lanes until you re-open it.
-C) Retire labels now: record the owner override verbatim in docs\S1_SEDIMENT_WORK_ORDER.md and the claims ledger (against recommendation — the two gaps stay disclosed).
-
-Executing agent: read AGENTS.md + the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first; apply the choice; frozen gates stay green; any commit re-keys preview identities (sub-caches survive) — export flagship before committing further; close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off to the chosen path.`,
+In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, and docs\S1_SEDIMENT_WORK_ORDER.md entries 6-7 first): the 16,384-cell full-world rung carries no sediment (manifest defers it honestly); a single pass needs ~20 GB, so the sized design is 4,096-cell tiles coupled through the EXISTING boundary-export mechanism — receivers cross tile edges along drainage, so tiles route in topological order per interval and each downstream tile ingests its upstream neighbors' per-edge-cell exports as injected supply; the summed ledger stays exact by construction (per-tile identity gains an injected term). Mind the SED-06/06b machinery: re-routing and spill receivers are per-window state — rebuild within tiles, keep the window edge ring pinned per tile, and prove the tiled 8,192 window matches the untiled one EXACTLY before touching 16,384. Laws: frozen gates green; wall/memory reported per AGENTS section 8; any commit re-keys preview identities (sub-caches survive) — export flagship before committing further; leave before/after bundles in the Studio. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off (next: true spill graph re-solve, or the retirement re-visit when its conditions mature).`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -154,18 +141,6 @@ MY CONFIRMATION: the water question is settled (the chat previews were the untin
 
 In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): the validated 16-tile UE window package t4b-native-de1c19affdbe624b sits in artifacts\mountain-region-20260718 (225 MB, 80 artifacts, all checks green, same source identity as the review bundle). Run the import: one source round of 16 tiles + the WP MeshPartition builder with ByPackageHash reuse (verify-don't-resave definition assets) + optional HLOD pass as ONE BUILDER PROCESS PER HLOD ACTOR via -BuildSingleHLOD (labels carry the <HLODLayer>/ prefix) + inspect with the winding gate. Gotchas: editing anything under crates/ + Cargo + fixtures mid-build forks the engine cache identity; close editors before headless builds (Live Coding patch-DLL law; bypass flag is -NoHotReloadFromIDE); the terrain/water MATERIAL is still the open T4b presentation gate — this import proves geometry and streaming, not final look. Deliver a lit, flyable level plus its path for me to fly myself — renders are internal verification only. Close out with the Portfolio Signal.`,
     },
-    {
-      id: 'aether-residue-refill',
-      title: 'Decide and implement Aether residue self-refill',
-      target: 'Any agent · D:\\Ascentia\\repos\\game',
-      decision: true,
-      why: 'The reward-layer design left one open question: whether depleted residue pockets replenish without boss events.',
-      prompt: String.raw`Decide the Aether residue self-refill behavior and implement it.
-
-MY DECISION: depleted residue pockets [slowly self-refill toward their authored ambient / stay depleted until boss events re-deposit / hybrid — describe]
-
-In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SESSION_BOOTSTRAP.md -> Docs/COMPENDIUM_MAP.md -> the magic-lane rules): Aether is the REWARD layer — ETH is spell mana with Elden Ring rules; boss strikes deposit supersaturation residue; casts opportunistically consume charge for damage overcharge; the field drains toward the ambient norm; DepositSupersaturation energy is PER CELL (pool roughly 10x a per-cast request). Implement my decision in the field core and the designer surfaces described by Docs/Architecture/Aether_EnvironmentalMagic.md and Docs/DesignerSurfaces/AetherMagic_README.md, keep the Ascentia.Aether automation suite green and extend it to pin the new behavior, and verify multiplayer with the two-client fixture (-AscentiaNetAetherSmoke via Tools/network/run_two_client_aether_smoke.py; launch clients only after the driver prints START; the deplete sphere must stay wider than probe reach). Close out per Docs/rules/SOURCE_CONTROL.md (commit, push) plus the Portfolio Signal (update the ascentia entry, prune this hand-off).`,
-    },
   ],
   projects: [
     {
@@ -174,23 +149,25 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       futureName: 'Planned product name: Mythic Core',
       role: 'Main game',
       state: 'active',
-      phase: 'P11/P15 — Aether continuation published',
-      summary: 'The authoritative UE 5.8 open-world RPG. The published Aether continuation adds a versioned owned save fragment for stable-GUID node activation plus authored Magic Sight and Aether Drain Niagara/GameplayCue presentation.',
-      focus: 'Preserve the proven save/presentation state, resolve residue self-refill separately, and continue broader P11/P15 UI, animation, audio, and content work.',
-      capability: 'The multiplayer-aware Aether field now includes durable node activation through Save.Fragment.WorldActors.AetherNodes, compiled typed Niagara presentation, and looping/burst GameplayCues. Tracked tools reconstruct and audit the six intentionally ignored Content assets.',
-      proof: 'Commit 370a754e is pushed and matches origin/codex/designer-compendium. It passed the full 22/22 editor build, final 6/6 incremental build, Ascentia.Aether 19/19, asset validation 6/6, Niagara audit 3/3 UpToDate with zero stack errors, and the dedicated-server two-client fixture 33/33 under 120 ms / 5% loss.',
+      phase: 'P11/P15 — Aether external-only residue refill implemented',
+      summary: 'The authoritative UE 5.8 open-world RPG. Aether remains the reward layer: ETH is spell mana, enemy attacks deposit per-cell supersaturation, casts consume charge for overcharge, and depleted residue never refills through passive field time.',
+      focus: 'Preserve the proven Aether save/presentation/refill behavior and continue broader P11/P15 UI, animation, audio, and content work.',
+      capability: 'The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling, so authored baseline energy can recover while transient residue stays spent. Ordinary enemies and bosses share the deposit path; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future specific environmental generators.',
+      proof: 'Local game commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss, including a four-second no-refill hold after two concurrent draws. External-origin publication awaits informed approval after the repository export safeguard blocked the requested push.',
       blockers: [
         'Six new Unreal Content assets are intentionally ignored. Their paths, bytes, SHA-256 custody, and tracked reconstruction/audit tools are recorded in AetherContinuationSummary.md; Git publication does not itself carry those binaries.',
-        'Residue self-refill remains a separate user product/balance decision; the published continuation does not choose it.',
+        'Specific environmental generator content does not exist yet; the authority-only regeneration hook is intentionally present for later authored integration.',
+        'Commit db4d8b7 is one commit ahead of origin/codex/designer-compendium because the external-export safeguard requires informed approval before pushing to GitHub.',
       ],
-      next: 'User: decide residue self-refill through the retained hand-off; otherwise continue the broader P11/P15 designer-content remainder.',
+      next: 'Approve the named GitHub destination if publication is intended; otherwise continue the broader P11/P15 designer-content remainder and implement environmental generators only when their authored design exists.',
       authority: 'D:/Ascentia/repos/game',
       evidence: [
+        'Docs/Evidence/Latest/AetherResidueRefillSummary.md — external-only refill decision, implementation, and validation proof',
         'Docs/Evidence/Latest/AetherContinuationSummary.md — tracked continuation proof and exact ignored-asset custody',
-        'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 33/33 dedicated two-client run',
-        'Git HEAD 370a754e; clean and even with origin/codex/designer-compendium at the verified publication closeout',
+        'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 34/34 dedicated two-client run',
+        'Git HEAD db4d8b7; clean, one ahead of origin/codex/designer-compendium pending external-origin approval',
       ],
-      snapshot: { branch: 'codex/designer-compendium', head: '370a754e', date: '2026-07-18', dirty: 0, ahead: 0, behind: 0 },
+      snapshot: { branch: 'codex/designer-compendium', head: 'db4d8b7', date: '2026-07-19', dirty: 0, ahead: 1, behind: 0 },
     },
     {
       id: 'dashboard',
@@ -198,7 +175,7 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       role: 'Portfolio coordination',
       state: 'review',
       phase: 'Portfolio consolidation',
-      summary: 'The existing coordination depot is the correct home for the portfolio view. Its detailed game matrix, Designer Compendium, tool bridge map, decisions, proof posture, and claim gates are current again: the detailed Ascentia record was re-curated to the 2026-07-18 evidence set.',
+      summary: 'The existing coordination depot is the correct home for the portfolio view. Its detailed game matrix, Designer Compendium, tool bridge map, decisions, proof posture, and claim gates are current again: the detailed Ascentia record was re-curated through the 2026-07-19 Aether residue decision evidence.',
       focus: 'Operate portfolio control room v2 from main with the detailed Ascentia record current; the open dashboard decision is the user-triggered Render deploy.',
       capability: 'Dependency-free local/static browser dashboard with detailed Ascentia feature data, designer routes, evidence gates, and tool bridge pages.',
       proof: 'gap-data.js was re-curated to the 2026-07-18 evidence set (commit eaade66: Aether field row, montage/layering moves, fallback-gate correction, two progress entries) with the six-page link check and Node syntax checks passing. Archived commit 93a1b208 remains preserved in the divergent clone and verified bundle after reconciliation as 4fdcd49. Render deployment remains user-owned and was not probed or claimed in this round.',
@@ -210,7 +187,7 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
       authority: 'D:/Ascentia/repos/dashboard',
       evidence: [
         'gap-data.js re-curated to 2026-07-18 (commit eaade66); check-links.ps1 and Node syntax checks passed 2026-07-18',
-        'Curation sources: AetherContinuationSummary.md 19/19 + exact ignored-asset custody, NetworkAetherSmokeSummary.md 33/33, NetworkEvidenceChecklist 10/10 (scoped rows noted), PublicBuildProfile.md, Swing_Whoosh_Authoring.md 152/152 bake',
+        'Curation sources: AetherResidueRefillSummary.md 20/20 + external-only refill proof, NetworkAetherSmokeSummary.md 34/34, AetherContinuationSummary.md exact ignored-asset custody, NetworkEvidenceChecklist 10/10 (scoped rows noted), PublicBuildProfile.md, Swing_Whoosh_Authoring.md 152/152 bake',
         'Archived commit 93a1b208 (2026-07-07) reconciled as cherry-pick 4fdcd49 on 2026-07-18; clone + verified bundle preserved',
         'Render deployment not attempted or verified by this round; user owns the manual deploy',
       ],
@@ -246,13 +223,14 @@ In D:\Ascentia\repos\game (follow the full bootstrap: AGENTS.md -> Docs/rules/SE
         'S1/SED-03b shipped 2026-07-19 (agent/s1-sediment 58f071e, pushed): emergent-land reclassification — filled lake cells evolve as land, deltas emerge and prograde above the waterline (2048: lake deposition 46.0 to 41.3M m3, land deposition 1,778 to 1,800M, exports 1,221 to 1,203M); 20 sediment tests; flagship + 256-tile export E2E green at matching identity',
         'S1/SED-06 shipped 2026-07-19 (agent/s1-sediment 35116c8, pushed): re-routing between evolution intervals — land receivers re-point to the steepest lower neighbor on the evolved surface, accumulation recomputed exactly; lakes/outlets/edge pinned; sill-bounded pit ponds with overflow to the export bucket (disclosed, 966M of 1,205M m3 exports); cycle members revert to hydrology receivers; 234 core tests; schema v7; flagship + 256-tile export E2E green. Re-sweep: fluvial concavity improves at 25 intervals (0.32 vs 0.39 baseline; was 0.91 FAIL under fixed routing), fluvial local relief PASS at depth, steep-tail growth reverses',
         'S1/SED-06b shipped 2026-07-19 (agent/s1-sediment 32fc336, pushed): true spill routing — full ponds overtop along their original hydrology path, conservation closed (pit-overflow export 0.0 m3, was 966M vanishing; ponds sill-bounded 2.4M; cycle reverts 0.26 percent disclosed); 235 core tests; manifest schema v8 (pit_spilled_volume_m3); flagship + 256-tile export E2E green; final sweep: conserving concavity 0.59 warn at 25 intervals vs 0.91 FAIL under fixed routing',
+        'S1/S8 v1 shipped 2026-07-19 (agent/s1-sediment af5b1c2, pushed; owner choice A recorded, S8-first sequencing accepted): structural strata erodibility — 18/205 dipping folded stack sampled in world space (windows see the same rock as the full world), 8 hash-selected rock classes, supersedes the elevation-band proxy; strata cut across contours (rockfall 216M m3 as faces steepen); manifest schema v9 (structural_strata_v1 + dip/azimuth); 236 core tests; calibration-neutral on family medians (disclosed, not overclaimed); flagship + 256-tile export E2E green',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: '32fc336', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: 'af5b1c2', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
