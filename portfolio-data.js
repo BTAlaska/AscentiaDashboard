@@ -16,8 +16,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'S1 sediment lane: eleven slices — your call landed, and the rock is real now',
-      body: 'You chose A with S8 before SED-07 — your sequencing argument was right and is recorded. S8 v1 is shipped: a real structural lithology model (dipping, folded strata anchored in world space, eight rock classes from cliff-formers to shales) replaces the elevation-band stand-in, so hard and soft units now cut across contours and differential erosion carves benches and cliff-formers. Honest verdict from the re-run calibration: family-envelope medians are statistically unchanged — real lithology is calibration-neutral at defaults, its value is the structural texture itself (and a larger rockfall share as faces steepen). Labels stay provisional per your A. The remaining A-item is SED-07 tiled flagship (prompt below)',
+      title: 'Text-to-world lane opened: one world just became a world space',
+      body: 'Your GO opened the M3 direct-intent lane and SEED-01 is shipped: the engine now generates a WORLD SPACE, not a world. The seed guards are open (macro layout stays the ratified northern-range realization; the seed varies anatomy, drainage and detail), seeded worlds are custom-rung previews with honest authority, and the proof ladder ran 10/10: same seed twice is bit-identical, the T3 triplet gives three genuinely different mountains, arbitrary seeds compose cleanly. The first true multi-seed calibration medians show tight per-axis seed spreads — randomization stays inside the family character, which is exactly what prompt-adherent-but-randomizable needs. The planner-tier strategy (frontier SaaS default + distillation to the offline model) is recorded in the roadmap. Next: SEED-02 makes the seed a public contract with the M3 ADR and a Studio reroll button',
       owner: 'User decision (retirement A/B/C) / Landscry S1 lane',
     },
     {
@@ -111,13 +111,13 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'Continue S1 (choice A): SED-07 tiled flagship sediment',
+      title: 'Continue M3 direct intent: SEED-02 public seed contract + ADR',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
       decision: false,
-      why: 'Owner chose A (2026-07-19) with S8 before SED-07; S8 is shipped, so the tiled flagship is the remaining A-item. Retirement labels stay provisional; that decision re-opens when the spill graph and multi-seed conditions mature.',
-      prompt: String.raw`Continue the ACTIVE S1 sediment lane under the owner's recorded choice A: run SED-07, tiled >8192-cell sediment windows.
+      why: 'Owner GO opened the text-to-world lane; SEED-01 (internal capability) is shipped and proven. SEED-02 makes the seed a public control the M3 way. SED-07 tiling remains queued behind the M3 lane.',
+      prompt: String.raw`Continue the ACTIVE M3 direct-intent lane: run SEED-02, the public seed contract.
 
-In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md, and docs\S1_SEDIMENT_WORK_ORDER.md entries 6-7 first): the 16,384-cell full-world rung carries no sediment (manifest defers it honestly); a single pass needs ~20 GB, so the sized design is 4,096-cell tiles coupled through the EXISTING boundary-export mechanism — receivers cross tile edges along drainage, so tiles route in topological order per interval and each downstream tile ingests its upstream neighbors' per-edge-cell exports as injected supply; the summed ledger stays exact by construction (per-tile identity gains an injected term). Mind the SED-06/06b machinery: re-routing and spill receivers are per-window state — rebuild within tiles, keep the window edge ring pinned per tile, and prove the tiled 8,192 window matches the untiled one EXACTLY before touching 16,384. Laws: frozen gates green; wall/memory reported per AGENTS section 8; any commit re-keys preview identities (sub-caches survive) — export flagship before committing further; leave before/after bundles in the Studio. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off (next: true spill graph re-solve, or the retirement re-visit when its conditions mature).`,
+In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, docs\M3_DIRECT_INTENT_WORK_ORDER.md — SEED-01 record has the proven internal capability — the M3 section of docs\ROADMAP.md including the recorded planner-tier direction, and the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): make world_seed a public control per the §6 discipline — WorldRequestV2 schema field (versioned schemas law: closed versions, visible rejection of unsupported controls), TS SDK + cross-language fixtures round-trip, canonical Rust validator arm, Studio request composer + seed input + reroll button (seeded builds land as custom-rung previews with their seed visible on the bundle card), and the M3 control-surface ADR that SEED-01 deferred. Laws: internal-only-knobs boundary ends exactly at the ADR; seeded worlds keep preview authority (no accepted-reference claims); frozen gates stay green; any commit re-keys preview identities (sub-caches survive) — export flagship before committing further. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off to CTRL-01 (first calibrated control) or the owner's next word.`,
     },
     {
       id: 'landscry-t4b-materials',
@@ -224,13 +224,14 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'S1/SED-06 shipped 2026-07-19 (agent/s1-sediment 35116c8, pushed): re-routing between evolution intervals — land receivers re-point to the steepest lower neighbor on the evolved surface, accumulation recomputed exactly; lakes/outlets/edge pinned; sill-bounded pit ponds with overflow to the export bucket (disclosed, 966M of 1,205M m3 exports); cycle members revert to hydrology receivers; 234 core tests; schema v7; flagship + 256-tile export E2E green. Re-sweep: fluvial concavity improves at 25 intervals (0.32 vs 0.39 baseline; was 0.91 FAIL under fixed routing), fluvial local relief PASS at depth, steep-tail growth reverses',
         'S1/SED-06b shipped 2026-07-19 (agent/s1-sediment 32fc336, pushed): true spill routing — full ponds overtop along their original hydrology path, conservation closed (pit-overflow export 0.0 m3, was 966M vanishing; ponds sill-bounded 2.4M; cycle reverts 0.26 percent disclosed); 235 core tests; manifest schema v8 (pit_spilled_volume_m3); flagship + 256-tile export E2E green; final sweep: conserving concavity 0.59 warn at 25 intervals vs 0.91 FAIL under fixed routing',
         'S1/S8 v1 shipped 2026-07-19 (agent/s1-sediment af5b1c2, pushed; owner choice A recorded, S8-first sequencing accepted): structural strata erodibility — 18/205 dipping folded stack sampled in world space (windows see the same rock as the full world), 8 hash-selected rock classes, supersedes the elevation-band proxy; strata cut across contours (rockfall 216M m3 as faces steepen); manifest schema v9 (structural_strata_v1 + dip/azimuth); 236 core tests; calibration-neutral on family medians (disclosed, not overclaimed); flagship + 256-tile export E2E green',
+        'M3/SEED-01 shipped 2026-07-20 (agent/s1-sediment b85715a, pushed; lane opened under owner GO with planner-tier direction in ROADMAP M3): world_seed through the reference request (fixed modes self-reject seeded variants; custom_seeded preview authority); composition fingerprint re-pinned after review, 236 frozen tests green; 512 proof ladder 10/10 (determinism/variation/robustness); first multi-seed medians at T3 seeds 620/719/818 with tight spreads 0.01-0.33; retirement conditions honestly still not-yet at 25 intervals',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: 'af5b1c2', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: 'b85715a', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
