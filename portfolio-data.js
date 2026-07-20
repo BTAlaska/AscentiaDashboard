@@ -157,7 +157,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       blockers: [
         'Six new Unreal Content assets are intentionally ignored. Their paths, bytes, SHA-256 custody, and tracked reconstruction/audit tools are recorded in AetherContinuationSummary.md; Git publication does not itself carry those binaries.',
         'Specific environmental generator content does not exist yet; the authority-only regeneration hook is intentionally present for later authored integration.',
-        'Commit db4d8b7 is one commit ahead of origin/codex/designer-compendium because tenant export policy denied the Codex push even after explicit user approval; publication requires the user-owned Git client.',
+        'Tenant export policy denied the Codex push of db4d8b7 even after explicit user approval; publication requires the user-owned Git client.',
       ],
       next: 'User: run `git push origin codex/designer-compendium` from D:/Ascentia/repos/game to publish db4d8b7; otherwise continue the broader P11/P15 designer-content remainder and implement environmental generators only when their authored design exists.',
       authority: 'D:/Ascentia/repos/game',
@@ -165,7 +165,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'Docs/Evidence/Latest/AetherResidueRefillSummary.md — external-only refill decision, implementation, and validation proof',
         'Docs/Evidence/Latest/AetherContinuationSummary.md — tracked continuation proof and exact ignored-asset custody',
         'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 34/34 dedicated two-client run',
-        'Git HEAD db4d8b7; clean, one ahead of origin/codex/designer-compendium after the Codex push was policy-blocked',
+        'Git HEAD db4d8b7; clean at closeout; the Codex push was policy-blocked and the user publication command is recorded',
       ],
       snapshot: { branch: 'codex/designer-compendium', head: 'db4d8b7', date: '2026-07-19', dirty: 0, ahead: 1, behind: 0 },
     },
