@@ -16,8 +16,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'Text-to-world lane opened: one world just became a world space',
-      body: 'Your GO opened the M3 direct-intent lane and SEED-01 is shipped: the engine now generates a WORLD SPACE, not a world. The seed guards are open (macro layout stays the ratified northern-range realization; the seed varies anatomy, drainage and detail), seeded worlds are custom-rung previews with honest authority, and the proof ladder ran 10/10: same seed twice is bit-identical, the T3 triplet gives three genuinely different mountains, arbitrary seeds compose cleanly. The first true multi-seed calibration medians show tight per-axis seed spreads — randomization stays inside the family character, which is exactly what prompt-adherent-but-randomizable needs. The planner-tier strategy (frontier SaaS default + distillation to the offline model) is recorded in the roadmap. Next: SEED-02 makes the seed a public contract with the M3 ADR and a Studio reroll button',
+      title: 'Text-to-world: the seed is live in the Studio — reroll a new world any time',
+      body: 'SEED-02 is shipped on top of SEED-01: the world seed is the first PUBLIC control (ADR-0025). The Studio build card now has a seed box and a Reroll button — type or roll a seed on any custom size and you get a genuinely different mountain world, deterministically reproducible forever; bundle cards wear a seed badge from request provenance. The contract needed no schema change (it was seed-ready since M1); fixed modes stay the ratified reference world and visibly reject seeds at every layer. Proven live end to end: a seeded build flowed through the canonical validator and engine and published in three seconds off the proof ladder cache. Next per the ADR pattern: CTRL-01, the first calibrated control (relief scale or lake density), then the rules planner and measured acceptance',
       owner: 'User decision (retirement A/B/C) / Landscry S1 lane',
     },
     {
@@ -34,9 +34,9 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'review',
-      title: 'Review the non-structural Game World Asset Factory results',
-      body: 'Owner correction (2026-07-19): Meshy owns terrain/PCG meshes, props, and decorative attachments; Worldheart owns buildings and structural meshes. Generation is stopped and locked. The review UI now separates prompt Go from final Meshy-result acceptance: all 50 landed current-scope packages start at RESULT · NEEDS REVIEW and require an explicit Keep or Reject; the old 120-prompt go approves none of them. Twenty-nine structural packages remain historical quarantine evidence only. After the 50 result verdicts, the separate next decision is whether to prepare an exact v3 remainder.',
-      owner: 'User decision (v3 remainder + candidate review) / Game World Asset Factory',
+      title: 'Review retained world assets and the new Physical geology library',
+      body: 'Generation remains stopped and locked. The v4 photoreal-Nanite policy is now implemented: T2 is selective simple-background topology, Meshy 6 controlled high detail serves foreground assets, and unremeshed Meshy 6 maximum detail serves hero/close assets. PCG owns rubble/debris composition. The catalog preserves all landed review subjects while marking four composite archetypes review-only across every theme. Physical now has 57 active entries, including 36 new atomic stone, boulder, cliff, edge, vein, mineral, and decorative-attachment forms. Existing review stands at 6 Keep / 0 Reject / 44 awaiting review.',
+      owner: 'User decision (candidate + v4 Physical prompt review) / Game World Asset Factory',
     },
     {
       level: 'review',
@@ -59,17 +59,17 @@ window.PORTFOLIO_DATA = {
   handoffs: [
     {
       id: 'game-world-factory-batch-review',
-      title: 'Review retained world assets and decide the v3 remainder',
+      title: 'Review retained world assets and the v4 Physical geology pilot',
       target: 'User + any agent · D:\\Ascentia\\repos\\game-world-asset-factory',
       decision: true,
-      why: 'The old 120-ID/v2 approval is invalid and no provider work is running. Fifty completed packages still belong to the corrected non-structural catalog, but prompt Go never accepted their final Meshy output. Each now requires a separate hash-bound Keep or Reject before the user considers any exact v3 remainder. Structural output stays quarantined and never re-enters Meshy scope.',
-      prompt: String.raw`Review the retained Game World Asset Factory candidates and decide whether to authorize a v3 remainder.
+      why: 'No provider work is running. Fifty completed packages remain exact-output review subjects at 6 Keep / 0 Reject / 44 awaiting review. Separately, the locked v4 catalog adds 36 Physical-only atomic geology forms and retires provider-authored rubble/debris composition. The next decision is prompt review and, only afterward, an explicit small pilot ID list and cap.',
+      prompt: String.raw`Review the retained Game World Asset Factory candidates and the v4 Physical geology expansion.
 
-MY DECISION: [choose one — (A) review only, no new generation; (B) prepare an exact non-structural Physical/Magical/Chilled remainder and credit estimate for my approval; (C) define decorative-attachment archetypes first, without provider calls]
+MY DECISION: [choose one — (A) continue result review only, no new generation; (B) review/revise the 36 new Physical prompts and topology assignments, without provider calls; (C) after prompt review, prepare an exact small Physical pilot ID list and credit cap for my approval]
 
-Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\project-status.md, docs\generated-asset-review.md, docs\worldheart-structural-boundary.md, docs\images2-prompt-review.md, and docs\generation-go-no-go.md. Commit e2ef05d separates prompt verdicts from generated-result verdicts; commit 30567c0 establishes the ownership boundary. Meshy may create terrain/PCG meshes, freestanding props, and reviewed decorative attachments; Worldheart owns all buildings and structural modules. The v3 catalog hash is 99b25c0dca8f7b747adca8d8ac480092766353c7a3f61b29e6ad52b81893d916 with 25 archetypes and 1,125 plans. The browser at http://127.0.0.1:8790 is intentionally locked. There are 50 completed current-scope packages awaiting result review and 29 structural packages retained only as historical quarantine evidence. Prompt Go or batch approval never accepts a result. Do not delete evidence, revive old jobs, reuse the v2 approval, call providers, write into Unreal Content, or promote structural results.
+Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\project-status.md, docs\generated-asset-review.md, docs\photoreal-nanite-topology-policy.md, docs\physical-geology-library.md, docs\worldheart-structural-boundary.md, docs\images2-prompt-review.md, and docs\generation-go-no-go.md. Commit 6d7d28c implements the v4 policy and catalog. Meshy may create one atomic terrain/PCG mesh, prop, or reviewed decorative attachment per asset; PCG or manual placement owns piles, fields, clusters, and environmental composition; Worldheart owns buildings and structural modules. The v4 catalog hash is 9b063d5e4b748ecdbad3e43a0291f312cc9cd60c5c13962964772b34b40fc8be with 61 archetypes and 1,161 review-compatible plans: 981 forward-active and 180 historical review-only. Physical has 57 active plans, including 36 new Physical-only geology forms. The browser at http://127.0.0.1:8790 is intentionally locked. Fifty completed packages remain available for exact-result review at 6 Keep / 0 Reject / 44 awaiting review; 29 structural packages remain historical quarantine evidence. Prompt Go or batch approval never accepts a result. Do not delete evidence, revive old jobs, reuse an old approval, call providers, write into Unreal Content, or promote structural results.
 
-For option A, select Generated result → Needs human review and Asset availability → 3D models only. Inspect Unlit texture, Neutral studio, Full screen, Open GLB, and Folder path, then record Keep or Reject plus notes. Keep means retain this exact hash-bound GLB/package as a candidate only; it does not approve Nanite, collision, PCG, Worldheart mounting, Unreal import, or production use. For option B, complete or explicitly defer that result review, then derive the exact current-catalog remainder only after subtracting successful current-scope packages; list IDs and estimated credits for user approval, then stop before creating an approval or calling providers. For option C, write a small explicit library of non-load-bearing, Worldheart-mountable attachments, add ownership tests and v3 prompts, and stop for prompt review before any approval. Run all no-credit smokes, update docs\project-status.md first, follow D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
+For option A, select Generated result → Needs human review and Asset availability → 3D models only. Inspect Unlit texture, Neutral studio, Full screen, Open GLB, and Folder path, then record Keep or Reject plus notes. Keep means retain this exact hash-bound GLB/package as a candidate only; it does not approve Nanite, collision, PCG, Worldheart mounting, Unreal import, or production use. For option B, use Theme → Physical and Forward generation scope → Active forward catalog, inspect the 36 forms and their Images 2 prompts, and record only prompt-level Revise/No-go notes; do not create an approval. Confirm T2 appears only on intentionally simple background assets, controlled Meshy 6 on foreground forms, and unremeshed maximum-detail Meshy 6 on hero/close forms. For option C, derive an exact pilot only from prompt-reviewed active atomic forms, list IDs and estimated credits, and stop for user approval before creating an approval record or calling providers. Run all no-credit smokes, update docs\project-status.md first, follow D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
     },
     {
       id: 'interfaceforge-history-split',
@@ -111,13 +111,13 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
     },
     {
       id: 'landscry-s1-sediment',
-      title: 'Continue M3 direct intent: SEED-02 public seed contract + ADR',
+      title: 'Continue M3 direct intent: CTRL-01, the first calibrated control',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
       decision: false,
-      why: 'Owner GO opened the text-to-world lane; SEED-01 (internal capability) is shipped and proven. SEED-02 makes the seed a public control the M3 way. SED-07 tiling remains queued behind the M3 lane.',
-      prompt: String.raw`Continue the ACTIVE M3 direct-intent lane: run SEED-02, the public seed contract.
+      why: 'Seeds are public (ADR-0025); the next rung of the text-to-world ladder is the first calibrated control, following the recorded ADR pattern. SED-07 tiling remains queued behind the M3 lane.',
+      prompt: String.raw`Continue the ACTIVE M3 direct-intent lane: run CTRL-01, the first calibrated public control.
 
-In D:\Ascentia\repos\landscry on branch agent/s1-sediment (read AGENTS.md, docs\M3_DIRECT_INTENT_WORK_ORDER.md — SEED-01 record has the proven internal capability — the M3 section of docs\ROADMAP.md including the recorded planner-tier direction, and the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): make world_seed a public control per the §6 discipline — WorldRequestV2 schema field (versioned schemas law: closed versions, visible rejection of unsupported controls), TS SDK + cross-language fixtures round-trip, canonical Rust validator arm, Studio request composer + seed input + reroll button (seeded builds land as custom-rung previews with their seed visible on the bundle card), and the M3 control-surface ADR that SEED-01 deferred. Laws: internal-only-knobs boundary ends exactly at the ADR; seeded worlds keep preview authority (no accepted-reference claims); frozen gates stay green; any commit re-keys preview identities (sub-caches survive) — export flagship before committing further. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off to CTRL-01 (first calibrated control) or the owner's next word.`,
+In D:\Ascentiaepos\landscry on branch agent/s1-sediment (read AGENTS.md, docs\M3_DIRECT_INTENT_WORK_ORDER.md — SEED-01/02 records — docsdr5-world-seed-as-first-public-control.md for the control-surface pattern, and the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): pick the highest-leverage first control (relief scale or lake/drainage density are the leading candidates — choose with a one-paragraph rationale), then follow the ADR-0025 pattern end to end: engine capability behind honest authority (internal first if the composition needs opening), request contract carrier (prefer existing fields/registry; version bump only if unavoidable), Studio surface, canonical validation at every layer, and the MEASURED AXIS: prove with the s1_sediment_calibration instrument (multi-seed, T3 triplet) that the control moves its intended envelope axis monotonically and discloses its range. Laws: mechanism-per-axis; seeded/controlled worlds stay custom-rung preview authority; frozen gates green; export flagship before committing further. Close out with the Portfolio Signal per D:\Ascentiaepos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off to the next control or PLAN-01 (rules planner).``,
     },
     {
       id: 'landscry-t4b-materials',
@@ -225,13 +225,14 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'S1/SED-06b shipped 2026-07-19 (agent/s1-sediment 32fc336, pushed): true spill routing — full ponds overtop along their original hydrology path, conservation closed (pit-overflow export 0.0 m3, was 966M vanishing; ponds sill-bounded 2.4M; cycle reverts 0.26 percent disclosed); 235 core tests; manifest schema v8 (pit_spilled_volume_m3); flagship + 256-tile export E2E green; final sweep: conserving concavity 0.59 warn at 25 intervals vs 0.91 FAIL under fixed routing',
         'S1/S8 v1 shipped 2026-07-19 (agent/s1-sediment af5b1c2, pushed; owner choice A recorded, S8-first sequencing accepted): structural strata erodibility — 18/205 dipping folded stack sampled in world space (windows see the same rock as the full world), 8 hash-selected rock classes, supersedes the elevation-band proxy; strata cut across contours (rockfall 216M m3 as faces steepen); manifest schema v9 (structural_strata_v1 + dip/azimuth); 236 core tests; calibration-neutral on family medians (disclosed, not overclaimed); flagship + 256-tile export E2E green',
         'M3/SEED-01 shipped 2026-07-20 (agent/s1-sediment b85715a, pushed; lane opened under owner GO with planner-tier direction in ROADMAP M3): world_seed through the reference request (fixed modes self-reject seeded variants; custom_seeded preview authority); composition fingerprint re-pinned after review, 236 frozen tests green; 512 proof ladder 10/10 (determinism/variation/robustness); first multi-seed medians at T3 seeds 620/719/818 with tight spreads 0.01-0.33; retirement conditions honestly still not-yet at 25 intervals',
+        'M3/SEED-02 shipped 2026-07-20 (agent/s1-sediment c8d136a, pushed; ADR-0025): world seed public — Studio seed input + crypto Reroll, canonical u64 validation mirroring the contracts rule (fixed modes visibly reject; reference value normalizes to unseeded; seed enters the request id), -WorldSeed script passthrough to custom_seeded, seed badge on bundle cards from request/world_request.v2.json; 29 studio tests; live E2E: seeded 512 published in 3 s with worldSeed on the listing and card',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
         'Packaged proof: 7/7 stations, streaming/collision report passed',
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: 'b85715a', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: 'c8d136a', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
@@ -285,29 +286,31 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'Game World Asset Factory',
       role: 'Thematic Nanite / PCG static-world mesh pipeline',
       state: 'review',
-      phase: 'P1 — corrected non-structural catalog / external quarantine',
-      summary: 'The owner assigned buildings and structural meshes to Worldheart. Game World Asset Factory stopped paid work and now exposes a locked v3 catalog containing only terrain/PCG meshes and freestanding props. Decorative attachments remain an allowed but currently empty reviewed lane. Existing structural provider output is preserved strictly as historical quarantine evidence.',
-      focus: 'Record a separate Keep or Reject for each of the 50 landed current-scope packages, keep 29 structural packages quarantined, and only then obtain a new explicit user decision before preparing any v3 remainder or attachment library.',
-      capability: '45 governed themes combine with 25 Meshy-owned archetypes—16 terrain/PCG meshes and 9 props—into 1,125 deterministic v3 plans. Fifteen former structural archetypes are removed and regression-tested as Worldheart-owned. Prompts declare Meshy responsibility and exclude buildings and structural modules. The browser now separates prompt Go/Revise/No-go from generated-result Keep/Reject: generated cards show RESULT · NEEDS REVIEW/KEEP/REJECT, distinct filters isolate the 50 landed results, and result verdicts bind to SHA-256 values for the exact GLB and package manifest. Keep retains a candidate only and does not approve Unreal import. Existing reference/GLB, unlit/studio, full-screen, direct-link, and Blender QA features remain.',
-      proof: 'Commit e2ef05d on codex/game-world-factory implements separate prompt and result review on top of ownership commit 30567c0. Build, six no-credit factory smokes, and JavaScript syntax checks pass. The result-review smoke reports 50 eligible / 0 keep / 0 reject / 50 awaiting review; a prompt Go sent to the result endpoint returns HTTP 400 and writes nothing. In-app browser verification showed 0 / 50 generated decisions, exactly 50 assets under Needs human review + 3D models only, Keep/Reject/Clear on a generated card, and Go/Revise/No-go/Clear only on a prompt-only card. Generation remains locked.',
+      phase: 'P1 — photoreal Nanite policy / Physical geology expansion',
+      summary: 'The locked v4 factory now treats Meshy as an atomic source-mesh author and PCG/manual placement as the composition owner. Buildings and structural meshes remain Worldheart-owned. T2 is a selective simple-background path; foreground and hero assets use higher-detail Meshy 6 triangle recipes. Landed results and their hash-bound Keep/Reject evidence remain intact while four composite archetypes are retired from future generation across every theme.',
+      focus: 'Continue exact-result review at 6 Keep / 0 Reject / 44 awaiting review, then separately review the 36 new Physical-only atomic geology prompts and topology assignments before considering a small explicit v4 pilot.',
+      capability: '45 governed themes combine with 61 addressable archetypes into 1,161 deterministic v4 plans: 981 forward-active and 180 historical review-only. Physical has 57 active entries, including 36 new forms spanning individual stones/boulders/slabs, cliff/edge/ledge/bedrock pieces, veins/minerals, and seven flat-backed decorative attachments. Prompts require one reusable atomic source mesh and prohibit piles, fields, clusters, scatter, and pre-dressed compositions. Meshy 6 controlled high detail is the foreground tier; Meshy 6 unremeshed maximum detail is the hero/close tier; T2 is reserved for deliberately simple background assets. The browser separates forward scope, prompt verdicts, and exact-result Keep/Reject, and shows preserved actual generation evidence separately from the forward recipe.',
+      proof: 'Commit 6d7d28c on codex/game-world-factory implements the v4 catalog, topology policy, PCG boundary, Physical library, review-only generation gates, actual-versus-forward evidence, mount-center attachment processing, and browser filters. Build, six no-credit factory smokes, and JavaScript syntax validation pass. Catalog and prompt smokes validate all 1,161 plans; result-review smoke reports 50 eligible / 6 keep / 0 reject / 44 awaiting review; provider and review gates fail closed. In-app browser verification showed 45 themes, 61 archetypes, 1,161 plans, 981 active / 180 historical, 57 active Physical entries, generation locked, and no review write.',
       blockers: [
-        'The old 120-ID/2,295-credit v2 approval is invalid; any v3 remainder requires a new exact user decision, ID list, hash, and cap.',
-        'All 50 current completed packages still require an explicit generated-result Keep or Reject; prior prompt Go approved none of their final output.',
+        'The old 120-ID/2,295-credit approval is invalid; any v4 pilot requires a new exact user decision, ID list, hash, and cap.',
+        'Forty-four of 50 current completed packages still require an explicit generated-result Keep or Reject; prior prompt Go approved none of their final output.',
         'Twenty-nine completed structural packages plus incomplete structural evidence remain quarantined and must never be promoted as Meshy-owned content.',
         'The first mesh has 3,491 non-manifold/boundary edges and 194 disconnected islands, requiring human geometry review before any Unreal intake.',
         'No completed result has Nanite, collision, PCG placement, Worldheart mounting, Unreal quarantine-import, or production proof.',
       ],
-      next: 'Use Generated result → Needs human review plus 3D models only to record Keep or Reject for the 50 landed packages, then choose preparation of an exact non-structural v3 remainder or a prompt-only decorative-attachment design pass. No old job resumes automatically.',
+      next: 'Continue Keep/Reject review for landed packages. Separately review the 36 new Physical atomic prompts and controlled-versus-maximum-detail assignments, then authorize only a small exact v4 pilot ID list and cap. No old job resumes automatically.',
       authority: 'D:/Ascentia/repos/game-world-asset-factory',
       evidence: [
         'docs/project-status.md — governed authority, capability, proof posture, and next decision',
         'docs/generated-asset-review.md — prompt/result decision separation and exact-output hash binding',
         'docs/worldheart-structural-boundary.md — Meshy/Worldheart ownership contract and exact removed-ID regression list',
-        'docs/images2-prompt-review.md — v3 technical review and current scope',
+        'docs/photoreal-nanite-topology-policy.md — forward T2, controlled high-detail, and unremeshed maximum-detail rules',
+        'docs/physical-geology-library.md — 36-form Physical-only atomic geology and decorative-attachment expansion',
+        'docs/images2-prompt-review.md — v4 technical review and current scope',
         'docs/provider-capability-audit.md — official GPT Image 2 and Meshy contract audit (4K base color / 2K PBR; no native 8K claim)',
-        'Git HEAD e2ef05d; catalog hash 99b25c0dca8f7b747adca8d8ac480092766353c7a3f61b29e6ad52b81893d916; generated verdicts 0 keep / 0 reject / 50 awaiting review',
+        'Git HEAD 6d7d28c; catalog hash 9b063d5e4b748ecdbad3e43a0291f312cc9cd60c5c13962964772b34b40fc8be; generated verdicts 6 keep / 0 reject / 44 awaiting review',
       ],
-      snapshot: { branch: 'codex/game-world-factory', head: 'e2ef05d', date: '2026-07-19', dirty: 0, ahead: null, behind: null },
+      snapshot: { branch: 'codex/game-world-factory', head: '6d7d28c', date: '2026-07-19', dirty: 0, ahead: null, behind: null },
     },
     {
       id: 'interfaceforge',
@@ -384,10 +387,10 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
     },
     {
       from: 'Game World Asset Factory',
-      contract: 'Non-structural prompt-reviewed reference + Meshy/Blender evidence package',
+      contract: 'Atomic non-structural prompt-reviewed source mesh + Meshy/Blender evidence package',
       to: 'ImportQueue world-asset quarantine',
-      then: 'Human Nanite/PCG/Worldheart-mount review → guarded Ascentia intake',
-      posture: 'Generation stopped and locked; 50 current-scope packages require separate hash-bound Keep/Reject verdicts while 29 structural packages remain historical quarantine only, with no direct Content writes or Unreal/Nanite/PCG acceptance claims',
+      then: 'PCG/manual composition plus human Nanite/Worldheart-mount review → guarded Ascentia intake',
+      posture: 'Generation stopped and locked; 6 of 50 landed candidates are retained, 44 await hash-bound Keep/Reject, four composite archetypes are review-only across all themes, and the 36-form Physical expansion remains prompt-only with no direct Content writes or Unreal/Nanite/PCG acceptance claims',
     },
     {
       from: 'Interface Art Forge',
