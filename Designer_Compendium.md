@@ -1,7 +1,7 @@
 # Ascentia Designer Compendium
 
-> Status: first dashboard-published atlas, synchronized with endgame
-> itemization/economy source data on 2026-06-20.
+> Status: dashboard-published atlas, synchronized with the Title Screen and
+> current MVP arena music designer surfaces on 2026-07-21.
 > Source: `Docs/DesignerSurfaces` on `BTAlaska/Ascentia`, branch
 > `codex/designer-compendium`, source commit `717b343`.
 > Scope: designer-facing map of Ascentia Editor surfaces, safe tuning paths,
@@ -70,6 +70,8 @@ data and runtime contracts, not a future-only affix plan:
 
 | Surface area | Open first | Designer-owned work | Boundary or next gap |
 | --- | --- | --- | --- |
+| Title screen and front-end presentation | `/Game/Ascentia/TitleScreen/DA_TitleScreen`; PIE `/Game/Ascentia/TitleScreen/L_TitleScreen` | Set background/logo/wordmark, menu rows and Play destination, font/colors/spacing/cursor, title music, UI sounds, flow timing, and ambient motion | Layout, navigation/focus/cursor ownership, validation, level travel, and quit stay native. Settings, remapping, pause, loading, and localization remain P21 work. See `Docs/DesignerSurfaces/TitleScreen_README.md`. |
+| Current `MVP_Arena` level music | Open `/Game/Ascentia/MVP/Maps/MVP_Arena`, select the placed `BP_MVPArenaMusic`, then use Details > `Ascentia|Audio`; reusable defaults live at `/Game/Ascentia/MVP/Blueprints/BP_MVPArenaMusic` | Assign the `Music` asset and tune volume, auto-start, restart/loop, and GameMode-fallback handoff | Keep `GM_GaspTest`; arena music is owned by the placed ambient actor, not the GameMode. Dynamic music states, mix/accessibility policy, and conflict evidence remain future P20 work. |
 | Combat, GASP, dodge, combos, and weapon feel | `BP_AscentiaGaspPlayer` Class Defaults, `AvatarComponent` Details, weapon animation slots, root-motion and dodge categories, `Ascentia Swing Whoosh` notifies on attack AnimSequences | Assign animation assets, root-motion slots, dodge feel, trail/audio/contact presentation, authored swing-whoosh timing per attack animation, weapon family overrides, and debug visualization | Gameplay authority, GAS cost/commit, damage, replication, save state, and action-window math stay native. Combat Feel Lab is still needed. |
 | Items, loot, affixes, spells, skills, and data content | Content Browser paths under `/Game/Ascentia/Design/Items`, `/Affixes`, `/LootTables`, `/Spells`, ability sets, DataTables, and source CSV/JSON under `Tools/data/item_affixes/` | Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, 209 affix rows, rarity budgets, unique-power metadata, loot profiles, spell metadata, and row data | Registry resolution, fallback debt, generated asset freshness, grants, package gates, and migrations need validators plus a Content Registry Browser. |
 | Magic, spellbook, Eth flask, targeting, and skill UI | Spell DataAssets, skill rows, `SpellbookComponent`, combat spell/Eth request nodes, and current input fallbacks | Assign starter spells, spell cost/display/cue fields, UI prompts, safe getters, and presentation events | Eth spend, unlocks, cooldown authority, targeting, damage, save state, and replication stay native. Skill/Spell Forge and replay labs are future. |
@@ -87,6 +89,8 @@ data and runtime contracts, not a future-only affix plan:
 
 | Task | Open first | Validate with |
 | --- | --- | --- |
+| Reskin or tune the Title Screen | `/Game/Ascentia/TitleScreen/DA_TitleScreen`; preview `/Game/Ascentia/TitleScreen/L_TitleScreen` | Asset Actions > Validate Assets, `Ascentia.UI.TitleScreen.SettingsValidation`, and `Tools/titlescreen_pie_probe.py` |
+| Change `MVP_Arena` level music | Select placed `BP_MVPArenaMusic` in `/Game/Ascentia/MVP/Maps/MVP_Arena` > Details > `Ascentia|Audio` | `Tools/remote_playtest.py ascentia_content_contract --project Ascentia`, plus a PIE listen check for track/content changes |
 | Tune dodge, root motion, weapon animation, or combat feel | `BP_AscentiaGaspPlayer` Class Defaults and `AvatarComponent` Details | `Tools/gasp_controls_surface.py`, `Tools/remote_playtest.py gasp_dodge_motion`, `Tools/remote_playtest.py gasp_attack_dodge_cancel` |
 | Author swing-whoosh timing on attack animations | The AnimSequence Notifies panel: `AscentiaSwingAudio` track, `Ascentia Swing Whoosh` notify (per-marker volume/pitch/override/lock knobs); bulk-stamp new packs with the token-guarded `Tools/animation/bake_swing_whoosh_notifies.py` | PIE log prints `authored swing whoosh` per attack; `NATIVE FALLBACK - no authored swing notify` lines are the remaining debt list; atlas doc `Docs/DesignerSurfaces/Audio_Music/Swing_Whoosh_Authoring.md` |
 | Add items, affixes, loot, lore, spells, abilities, or row content | Content Browser design paths and DataTables | Equipment/stat audits, inventory lifecycle audit, relevant remote playtest, and future Data Validation reports |
