@@ -155,6 +155,12 @@
       </div>
     </section>
 
+    <section class="panel" id="surface-gate">
+      <h2>Mandatory Surface Completion Gate</h2>
+      <div class="callout"><b>Editor-facing implementation is not complete until Designers can find and use it safely.</b> A qualifying change must include the guarded surface or an explicit <code>native_only</code> decision, an owning <code>Docs/DesignerSurfaces/</code> page with the exact Editor path, safe controls, native boundary, and validation, plus an updated <code>surfaces.json</code> row. Update screenshot routing and this dashboard when the visible or published posture changes.</div>
+      <p>Run <code>python Tools/governance/check_designer_surface_contract.py</code>. Review-range checks use <code>--git-diff &lt;base&gt;..&lt;head&gt;</code>; implementation-only change sets fail. Governing rule: <code>Docs/rules/DESIGNER_SURFACES.md</code>.</p>
+    </section>
+
     <section class="panel" id="surface-map">
       <h2>Current Editor Surface Map</h2>
       <div class="filterbox">

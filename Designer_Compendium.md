@@ -66,6 +66,26 @@ data and runtime contracts, not a future-only affix plan:
 - `native_only`: Designers may read reports or telemetry, but should not author
   behavior there.
 
+## Mandatory Surface Completion Gate
+
+Editor-facing implementation is not complete until Designers can find and use
+it safely. Any change that adds or materially changes an editable DataAsset,
+DataTable, Blueprint/Class Default, actor/component Details category, Project
+Setting, Editor Utility, commandlet, Blueprint authoring API, asset slot,
+preview, report, or evidence readout must land with:
+
+- the guarded Designer surface, or an explicit `native_only` decision;
+- an owning page under `Docs/DesignerSurfaces/` naming the exact Editor path,
+  safe controls, native boundary, and validation/evidence route;
+- an added or updated `Docs/DesignerSurfaces/surfaces.json` row;
+- screenshot routing when the visible surface changes; and
+- this dashboard compendium and `gap-data.js` updated when published routing or
+  implementation/proof posture changes.
+
+Run `python Tools/governance/check_designer_surface_contract.py`. Review-range
+checks use `--git-diff <base>..<head>`; implementation-only change sets fail.
+The governing rule is `Docs/rules/DESIGNER_SURFACES.md`.
+
 ## Current Editor Surface Map
 
 | Surface area | Open first | Designer-owned work | Boundary or next gap |
