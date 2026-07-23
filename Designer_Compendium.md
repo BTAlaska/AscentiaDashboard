@@ -1,9 +1,10 @@
 # Ascentia Designer Compendium
 
-> Status: dashboard-published atlas, synchronized with the Title Screen and
-> current MVP arena music designer surfaces on 2026-07-21.
+> Status: dashboard-published atlas, synchronized with the 2026-07-23
+> designer-surface hardening pass (audit-driven: Aether registration, HUD
+> theme + UMG skin seam, tuning profile consolidation, hardened checker).
 > Source: `Docs/DesignerSurfaces` on `BTAlaska/Ascentia`, branch
-> `codex/designer-compendium`, source commit `717b343`.
+> `codex/designer-compendium`, source commit `5a9e389`.
 > Scope: designer-facing map of Ascentia Editor surfaces, safe tuning paths,
 > native boundaries, placeholder image policy, evidence requirements, and future
 > custom tool needs.
@@ -40,6 +41,35 @@ data and runtime contracts, not a future-only affix plan:
   unique-power tooltip/cue presentation, resolved-content provenance browser,
   economy simulation board, canonical screenshots, and surface-to-evidence
   bridge.
+
+## 2026-07-23 Designer-Surface Hardening Sync
+
+A full code-vs-compendium audit drove a hardening pass; the manifest grew from
+97 to 119 rows and every audit-flagged gap was closed:
+
+- **Aether environmental magic is registered** (eight `aether.*` rows): the
+  Ascentia Aether Project Settings page, the five authoring volumes, node +
+  arena director, pocket-field seeding, the spell `Ascentia|Aether` cost
+  profile, ability class knobs, weapon magic profiles, and the sight/tell
+  presentation stack (rebuild scripts are content source of truth).
+- **The production HUD is a designer surface**: `DA_HUDTheme` owns the glass
+  palette, fonts, bar styles, feedback colors, and the interact prompt format;
+  a `UAscentiaHUDScreen` WBP subclass set as `Ascentia Presentation >
+  HUDScreenClass` replaces the Slate chrome with a skinnable UMG tree
+  (InterfaceArtForge-ready). Legacy Slate HUD remains the default until the
+  class is set.
+- **Tuning is profile-driven**: `DA_CombatTuning` (attack/defense/recovery/
+  feel/impact-spark/swing-whoosh), `DA_ResourceTuning` (Eth pool/regen, flask
+  charges), shared `DA_RarityPalette` (inventory + corpse beam colors), and
+  editable progression level-cost/stat-point fields - all with class defaults
+  mirroring shipped constants, so an unconfigured project is unchanged.
+- **Data lies fixed**: authored spell cooldown/cost now drive the GAS commit;
+  spell assets validate (free-cast warning); light-attack Breath cost is
+  single-sourced; enemy archetype DataAssets resolve onto the pawn; the
+  fallback spells and AetherCatalyst are authored content.
+- **The contract checker got teeth**: source-backing paths must exist, a
+  reverse scan flags any UDeveloperSettings/UPrimaryDataAsset/Config class
+  the compendium never mentions, and the manifest stamp must stay fresh.
 
 ## What This Page Answers
 
@@ -94,7 +124,8 @@ The governing rule is `Docs/rules/DESIGNER_SURFACES.md`.
 | Current `MVP_Arena` level music | Open `/Game/Ascentia/MVP/Maps/MVP_Arena`, select the placed `BP_MVPArenaMusic`, then use Details > `Ascentia|Audio`; reusable defaults live at `/Game/Ascentia/MVP/Blueprints/BP_MVPArenaMusic` | Assign the `Music` asset and tune volume, auto-start, restart/loop, and GameMode-fallback handoff | Keep `GM_GaspTest`; arena music is owned by the placed ambient actor, not the GameMode. Dynamic music states, mix/accessibility policy, and conflict evidence remain future P20 work. |
 | Combat, GASP, dodge, combos, and weapon feel | `BP_AscentiaGaspPlayer` Class Defaults, `AvatarComponent` Details, weapon animation slots, root-motion and dodge categories, `Ascentia Swing Whoosh` notifies on attack AnimSequences | Assign animation assets, root-motion slots, dodge feel, trail/audio/contact presentation, authored swing-whoosh timing per attack animation, weapon family overrides, and debug visualization | Gameplay authority, GAS cost/commit, damage, replication, save state, and action-window math stay native. Combat Feel Lab is still needed. |
 | Items, loot, affixes, spells, skills, and data content | Content Browser paths under `/Game/Ascentia/Design/Items`, `/Affixes`, `/LootTables`, `/Spells`, ability sets, DataTables, and source CSV/JSON under `Tools/data/item_affixes/` | Author stable tags, display/lore/source text, stats, visuals, footprints, expansion-bag grants, 209 affix rows, rarity budgets, unique-power metadata, loot profiles, spell metadata, and row data | Registry resolution, fallback debt, generated asset freshness, grants, package gates, and migrations need validators plus a Content Registry Browser. |
-| Magic, spellbook, Eth flask, targeting, and skill UI | Spell DataAssets, skill rows, `SpellbookComponent`, combat spell/Eth request nodes, and current input fallbacks | Assign starter spells, spell cost/display/cue fields, UI prompts, safe getters, and presentation events | Eth spend, unlocks, cooldown authority, targeting, damage, save state, and replication stay native. Skill/Spell Forge and replay labs are future. |
+| Magic, spellbook, Eth flask, targeting, and skill UI | Spell DataAssets (incl. the `Ascentia\|Aether` cost/residue profile), skill rows, `SpellbookComponent`, combat spell/Eth/MagicSight/Catalyst request nodes, and current input fallbacks | Assign starter spells, spell cost/cooldown/display/cue fields (authored values drive the GAS commit since 2026-07-23), UI prompts, safe getters, and presentation events | Eth spend, unlocks, targeting, damage, save state, and replication stay native. Skill/Spell Forge and replay labs are future. |
+| Aether environmental magic authoring | Project Settings > Game > Ascentia Aether; placed Aether biome/source/nullifier/theme/barrier volumes, nodes, arena directors, pocket fields; spell Aether profiles; weapon magic profiles; sight/tell VFX rebuild scripts | Author world-field baselines, harvest gates, arena choreography, ambient pockets, residue-bonus spell knobs, and per-weapon conduit identities | Field authority, lazy chunk baking, replication deltas, drain transactions, and node save persistence stay native. See `Docs/DesignerSurfaces/AetherMagic_README.md` and the `aether.*` manifest rows. |
 | Inventory, equipment, menu, loot window, and progression UI | `WBP_AscentiaMenu`, inventory widget trees, `UAscentiaInventoryScreen`, `UAscentiaLootWindow`, progression bindings | Skin slots, tabs, detail panels, active inventory panels, footprint anchor and covered-cell states, stat allocation, passive readouts, and optional UMG trees | Mutations, footprint fit, item transactions, held cursor authority, passive activation, corpse-loot authority, and save state stay native. |
 | Narrative, dialogue, vendors, tutorial prompts, and world state | NPC/vendor actor Details, Blueprint graphs using `UAscentiaWorldStateSubsystem`, and tutorial prompt calls | Edit current dialogue arrays, vendor-facing text, stock references, prompt copy, map/memory tags, and presentation events | Branching dialogue, localization, VO, state simulation, and dependency graphs need Dialogue Graph and World State Tree Viewer tools. |
 | Enemy AI, boss behavior, encounters, and fog walls | Enemy Blueprint/Class Defaults, stock Behavior Tree and Blackboard editors, `UAscentiaBossDefinition`, encounter and fog-wall actors | Assign Behavior Trees, Blackboard assets, AI tuning fields, boss phase thresholds, ability sets, music states, fog-wall links, and presentation hooks | Target choice, damage, rewards, phase authority, fog-wall runtime state, encounter state, and save state stay native/evidence-owned. |
