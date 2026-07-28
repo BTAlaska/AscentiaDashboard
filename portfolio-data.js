@@ -4,7 +4,7 @@ window.PORTFOLIO_DATA = {
   meta: {
     title: 'Mythic Systems',
     subtitle: 'Portfolio control room for Ascentia and its independent creation tools',
-    surveyed: '2026-07-19',
+    surveyed: '2026-07-28',
     rule: 'No global completion percentage. Report activity, capability, proof, blockers, and the next decision separately.',
   },
   priorities: [
@@ -15,16 +15,22 @@ window.PORTFOLIO_DATA = {
       owner: 'User decision / Portfolio',
     },
     {
+      level: 'review',
+      title: 'Landscry: decide what makes text-to-world real',
+      body: 'Owner call (2026-07-28): text-to-world is the defining feature to sell Landscry, and it is not ready. The deterministic planner works and refuses to guess, but it can map prompts onto only one geology family and one control axis (relief_scale), so a prompt has almost nothing it can meaningfully say. Widening it hits your own freeze — CTRL-02+ needs authorization to touch the read-only core terrain DEM package. OFF-G4 has no named local model and OFF-G5 consent machinery does not exist, so no planner tier above the rules planner can ship either. The hand-off prompt below carries the decision (A: authorize CTRL-02+ / B: widen the planner over the existing surface only / C: M4 second geology first / D: pause text-to-world and close the revenue gates instead).',
+      owner: 'User decision (text-to-world path) / Landscry',
+    },
+    {
       level: 'active',
-      title: 'Text-to-world: the seed is live in the Studio — reroll a new world any time',
-      body: 'SEED-02 is shipped on top of SEED-01: the world seed is the first PUBLIC control (ADR-0025). The Studio build card now has a seed box and a Reroll button — type or roll a seed on any custom size and you get a genuinely different mountain world, deterministically reproducible forever; bundle cards wear a seed badge from request provenance. The contract needed no schema change (it was seed-ready since M1); fixed modes stay the ratified reference world and visibly reject seeds at every layer. Proven live end to end: a seeded build flowed through the canonical validator and engine and published in three seconds off the proof ladder cache. Next per the ADR pattern: CTRL-01, the first calibrated control (relief scale or lake density), then the rules planner and measured acceptance',
-      owner: 'User decision (retirement A/B/C) / Landscry S1 lane',
+      title: 'Landscry: the M3 lane is committed, pushed, and finally under CI',
+      body: 'Two weeks of M3 work — CTRL-01 relief scale, the PLAN-01 rules planner, ACC-01 measured acceptance, the practical-offline harness, and four ADRs — had been sitting uncommitted in a shared working tree on a single drive since 2026-07-20. It is now five attributed commits on agent/s1-sediment, pushed, with the tree clean; the shelved T4b materials lane was preserved in its own commit rather than left at risk. PR #2 is open as the first CI this lane has ever had, because CI triggers only on main and pull requests. Separately, the GitHub Actions billing block that six documents still blamed for stalled gate promotion cleared on 2026-07-18 — BC-G6, HY-G7, T1b, T1, T2, and M1 now need only a claim-bearing revision run, not an external unblock.',
+      owner: 'Landscry lane',
     },
     {
       level: 'review',
-      title: 'Close the two human-facing world gates',
-      body: 'Landscry T4b needs final terrain/water material presentation (hand-off prompt below), then YOUR complete-world fly verdict — the deliverable is a lit flyable level for you to fly yourself. The validated mountain-region 4 km window package also waits on your water re-confirm and consumer-project choice (import prompt below). Worldheart stays in lean R50+ visual exploration until YOU (as Program Steward) call FREEZE; no prompt can close that gate.',
-      owner: 'User decision (fly verdict + FREEZE) / Landscry + Worldheart',
+      title: 'Review three Worldheart Reliquary keeps, then pause',
+      body: 'WH-WO-0052 has frozen three complete orbitable R7 structural-family candidates: Reliquary Wound, Cinder Cloister, and Black Aperture. The loopback reviewer is restored at http://127.0.0.1:8765/: all three exact GLBs load with corrected glTF Y-up cameras and no browser errors. Native admission, prepared-grade validation, exact replay, clean Blender import, focused tests, and reproducible clean builds pass. They are proportional variants of one family, not independent prompt commissions, and no professional, AAA, Unreal, or green-gate claim has been made. YOU now judge each pass/fail with visible reasons.',
+      owner: 'User decision (three visual verdicts + goal pause) / Worldheart',
     },
     {
       level: 'active',
@@ -57,6 +63,23 @@ window.PORTFOLIO_DATA = {
   // author a prompt for each new one. [BRACKETED SLOTS] are for the user to
   // fill before pasting. Use String.raw so Windows paths survive verbatim.
   handoffs: [
+    {
+      id: 'worldheart-reliquary-r7-review',
+      title: 'Judge three Worldheart Reliquary keeps, then pause the AAA goal',
+      target: 'User + Codex - D:\\Ascentia\\repos\\worldheart',
+      decision: true,
+      why: 'WH-WO-0052 produced the requested three complete structural-family candidates and stopped. Their technical manufacture passes, and the repaired loopback reviewer now loads every exact GLB with correctly oriented cameras, but direct Program Steward visual acceptance is deliberately blank. The candidates share one proportional family, and Unreal, performance, gameplay, and general prompt breadth remain unproven.',
+      prompt: String.raw`Review the three frozen WORLDHEART Reliquary R7 structural candidates and then pause the long-running AAA goal.
+
+MY VERDICTS:
+- Reliquary Wound: [PASS / FAIL] - [visible reason]
+- Cinder Cloister: [PASS / FAIL] - [visible reason]
+- Black Aperture: [PASS / FAIL] - [visible reason]
+
+Start in D:\Ascentia\repos\worldheart. Read AGENTS.md, docs\worldheart\README.md, docs\worldheart\08_workorders\WH-WO-0052_RELIQUARY_COMPLETE_KEEP_COMPOSITION_R7.md, docs\worldheart\09_reviews\master_architect_skill\WH-REV-0056_RELIQUARY_COMPLETE_KEEP_FAMILY_R7.md, docs\worldheart\11_handoffs\WH-HANDOFF-0054_RELIQUARY_COMPLETE_KEEP_FAMILY_R7.md, and docs\worldheart\11_handoffs\WH-HANDOFF-0055_RELIQUARY_R7_WEB_REVIEW_SERVICE_REPAIR.md. Open http://127.0.0.1:8765/ while the loopback review service is running; if it is not, relaunch a loopback-only static HTTP server rooted at D:\Ascentia\data\worldheart-output\master_architect_structural_family_r7. Do not open the reviewer through file:// because module-relative GLB fetches will fail. For each candidate, orbit the exterior and inspect front, rear, both flanks, roof, court, gate, sanctum, sacrificial chamber, section, and siteworks. Judge architecture and geometry, especially whole-mass hierarchy, terrain/foundation separation, ritual consequence, sacrificial-chamber resolution, intersections, and whether the result genuinely looks professional and superbly modeled. Native admission is technical only and must not influence the visual verdict.
+
+Record the exact three verdicts without promoting any unreviewed claim. Keep all affected gates red unless a later signed record satisfies their own criteria. Do not mutate Unreal, start a fourth candidate, call a provider, or begin another geometry iteration. The three candidates are controlled proportional variants of one family, not proof of arbitrary prompt-derived architecture. Preserve all attempts append-only under WORLDHEART_OUTPUT_PARENT. After recording the verdicts, pause the active long-running AAA goal as the user requested. Update the governed Worldheart record first, reconcile Portfolio priorities/handoff/project surfaces, run refresh-portfolio.ps1, check-links.ps1, and a JavaScript syntax smoke, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+    },
     {
       id: 'game-world-factory-batch-review',
       title: 'Review retained world assets and the v4 Physical geology pilot',
@@ -110,17 +133,51 @@ MY APPROVAL — delete exactly these cache-class paths: [list from the Hygiene p
 In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved cache-class paths. Laws: repos\landscry\unreal\Binaries is generated-state, NOT cache — if I listed it, first prove a clean rebuild of the winding-fixed importer DLLs; never touch evidence/artifact/generated-state classes under a cache approval; before deleting a tree's caches confirm no editor or build is running against it (any open UE 5.8 editor blocks builds repo-wide via the Live Coding mutex); UE recreates DDC/Intermediate on demand so the directories can go entirely. Afterwards run the full refresh (refresh-portfolio.ps1) and report the reclaimed GB from the Hygiene tiles, before/after. Close out with the Portfolio Signal (update this hand-off or prune it).`,
     },
     {
-      id: 'landscry-s1-sediment',
-      title: 'Continue M3 direct intent: CTRL-01, the first calibrated control',
+      id: 'landscry-text-to-world-path',
+      title: 'Decide what unblocks a real prompt-to-world path in Landscry',
+      target: 'User decision · D:\\Ascentia\\repos\\landscry',
+      decision: true,
+      why: 'You called it on 2026-07-28: text-to-world is the defining feature to sell Landscry, and it is not ready. The deterministic planner works, but it can only map prompts onto one geology family and one control axis, so there is almost nothing for a prompt to say. Widening it runs straight into your own freeze — CTRL-02+ needs authorization to touch the read-only core terrain DEM package. That authorization, or an explicit alternative, is the decision.',
+      prompt: String.raw`Open the path to real prompt-to-world in Landscry.
+
+MY DECISION: [pick one — (A) authorize CTRL-02+ and the core terrain DEM changes it needs, building the control vector the planner can actually speak to (massif fraction, drainage/lake density, erosion time-depth, lithology character); (B) keep the DEM frozen and widen the planner only over the existing seed + relief_scale surface, accepting that prompts stay nearly meaningless; (C) do M4 first — add a second geology family so the planner gains a family axis before it gains more control axes; (D) pause text-to-world entirely and close the revenue-blocking gates instead — T4b materials, my complete-world fly verdict, and a LICENSE]
+
+Start in D:\Ascentia\repos\landscry on branch agent/s1-sediment (PR #2). Read AGENTS.md, docs\PRODUCT_CONSTITUTION.md, docs\ROADMAP.md (M3 and M4), docs\M3_DIRECT_INTENT_WORK_ORDER.md, docs\adr\0025 through 0029, and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md before proposing anything.
+
+Ground truth as of 2026-07-28: PLAN-01 ships landscry-rules@1.0.0, an offline deterministic planner emitting prompt-digest-bound validated intent, but only for the registered mountain family and the relief axis; unsupported or ambiguous prompts fail visibly rather than guessing. CTRL-01 (relief_scale) is the only public terrain-shaping control. ACC-01 emits landscry.acceptance_report.v1 against one metric on one axis. OFF-G4 has no named supported local model or weights; OFF-G5 consent machinery does not exist; apps\control-plane\src holds a single health.ts. The constitution's honest-claims rule and OFF-G8 mean none of this may be described as text-to-world capability until its own gates pass, and "AI-native" is explicitly not an acceptable unqualified claim.
+
+For whichever option I pick, do not start implementing until you have written the smallest coherent slice plan for it and named its measured axis, its claim boundary, and the gate it would satisfy — the mechanism-per-axis law applies, and every new public control needs its section 6 contract plus boundary, sensitivity, and conformance tests before it exists. For option A specifically, treat my authorization as scoped to the named control slice only, not as blanket permission on the terrain core, and export the flagship before committing further because the review identity re-keys on every commit.
+
+Note that the OFF-G3 fail-closed handoff below remains valid, unblocked work and is a reasonable thing for a second agent to run in parallel; it is simply no longer the lane's priority.
+
+Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, refresh the tracker, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+    },
+    {
+      id: 'landscry-m3-offline-failclosed',
+      title: 'Complete Landscry practical-offline fail-closed evidence',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
       decision: false,
-      why: 'Seeds are public (ADR-0025); the next rung of the text-to-world ladder is the first calibrated control, following the recorded ADR pattern. SED-07 tiling remains queued behind the M3 lane.',
-      prompt: String.raw`Continue the ACTIVE M3 direct-intent lane: run CTRL-01, the first calibrated public control.
+      why: 'Still valid, unblocked work, but DEPRIORITIZED on 2026-07-28 when the owner refocused the lane on revenue readiness — it hardens a tier that has no customer yet. Good parallel work for a second agent. ADR-0029 and the retained proof close the baseline controlled-client concern; the remaining non-Unreal gap is OFF-G3, where worker death and bounded resource exhaustion must fail locally without partial publication or remote fallback, with restart/rebuild as the next OFF-G1 slice.',
+      /* Superseded CTRL-01 dispatch retained only as source-history context.
+      legacyPrompt: String.raw`Continue the ACTIVE M3 direct-intent lane: run CTRL-01, the first calibrated public control.
 
 In D:\Ascentia
 epos\landscry on branch agent/s1-sediment (read AGENTS.md, docs\M3_DIRECT_INTENT_WORK_ORDER.md — SEED-01/02 records — docsdr5-world-seed-as-first-public-control.md for the control-surface pattern, and the lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): pick the highest-leverage first control (relief scale or lake/drainage density are the leading candidates — choose with a one-paragraph rationale), then follow the ADR-0025 pattern end to end: engine capability behind honest authority (internal first if the composition needs opening), request contract carrier (prefer existing fields/registry; version bump only if unavoidable), Studio surface, canonical validation at every layer, and the MEASURED AXIS: prove with the s1_sediment_calibration instrument (multi-seed, T3 triplet) that the control moves its intended envelope axis monotonically and discloses its range. Laws: mechanism-per-axis; seeded/controlled worlds stay custom-rung preview authority; frozen gates green; export flagship before committing further. Close out with the Portfolio Signal per D:\Ascentia
 epos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md and re-scope this hand-off to the next control or PLAN-01 (rules planner).`,
+      */
+      prompt: String.raw`Continue the ACTIVE Landscry M3 practical-offline lane with fail-closed evidence.
+
+[NO USER DECISION REQUIRED. Do not modify crates\landscry-terrain-core or the reference DEM/height/hydrology/sediment implementation; the owner requires explicit authorization for any such change. Do not reopen Unreal.]
+
+Start in D:\Ascentia\repos\landscry on branch agent/s1-sediment. Read AGENTS.md, docs\PRODUCT_CONSTITUTION.md, docs\adr\0015-local-first-offline-and-optional-model-intent.md, docs\adr\0029-practical-offline-availability.md, docs\M3_DIRECT_INTENT_WORK_ORDER.md, docs\M3_OFFLINE_WORKFLOW_READINESS_2026-07-20.md, and the newest Landscry decision in D:\Ascentia\ops\PIPELINE_STATUS.md. ADR-0029 defines the baseline: after provisioning, the local workflow keeps working when public connectivity is unavailable; it requires no cloud service and never silently falls back. It does not require the host/browser to make zero background connection attempts. Retained proof off-20260720-105007-21ff41b0 PASSes the current non-Unreal practical-offline slice. The Chromium IPv6 reachability probe is a disclosed, non-blocking runtime diagnostic; strict WFP/zero-egress proof is optional and not this handoff.
+
+Task: extend the bounded offline harness with two OFF-G3 cases: terminate the in-use local worker during a build, and exhaust one declared local resource budget. Each must produce an actionable local error, leave no partial published bundle or target mutation, and make no cloud request, upload, or remote retry. Restore/clean exact test state in finally blocks. Then, if the cases are stable and still non-Unreal, add a restart/rebuild exercise proving the persisted request/spec/seed rebuilds through the same provisioned local path. Do not change terrain behavior to manufacture a failure case.
+
+Claims boundary: this can close the tested non-Unreal OFF-G3 cases and advance the restart/rebuild portion of OFF-G1. It cannot complete the full OFF-G1 while the owner-shelved Unreal leg is out of scope. It does not prove OFF-G4: there is no supported named local model or weights. A strict network-silent/air-gap profile is separate optional work under ADR-0029. No cloud account, remote model, Unreal, or terrain-mechanism work is in scope.
+
+Validation: exercise both fail-closed cases and any restart/rebuild slice through the provisioned local Studio path; retain exact process, error, bundle-count, publication, and policy evidence. Run cargo fmt --all -- --check; cargo check --locked --workspace --all-targets; cargo clippy --locked --workspace --all-targets -- -D warnings; cargo test --locked --workspace; corepack pnpm check; git diff --check. Verify crates\landscry-terrain-core has no diff. Update governed Landscry evidence first, then reconcile Portfolio priorities, this hand-off, and the Landscry project record; run refresh-portfolio.ps1, check-links.ps1, and a JavaScript syntax smoke; sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
+    /* Shelved by owner direction on 2026-07-20; intentionally not dispatched.
     {
       id: 'landscry-t4b-materials',
       title: 'Author T4b terrain/water materials; deliver the owner fly build',
@@ -143,6 +200,7 @@ MY CONFIRMATION: the water question is settled (the chat previews were the untin
 
 In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row in D:\Ascentia\ops\PIPELINE_STATUS.md first): the validated 16-tile UE window package t4b-native-de1c19affdbe624b sits in artifacts\mountain-region-20260718 (225 MB, 80 artifacts, all checks green, same source identity as the review bundle). Run the import: one source round of 16 tiles + the WP MeshPartition builder with ByPackageHash reuse (verify-don't-resave definition assets) + optional HLOD pass as ONE BUILDER PROCESS PER HLOD ACTOR via -BuildSingleHLOD (labels carry the <HLODLayer>/ prefix) + inspect with the winding gate. Gotchas: editing anything under crates/ + Cargo + fixtures mid-build forks the engine cache identity; close editors before headless builds (Live Coding patch-DLL law; bypass flag is -NoHotReloadFromIDE); the terrain/water MATERIAL is still the open T4b presentation gate — this import proves geometry and streaming, not final look. Deliver a lit, flyable level plus its path for me to fly myself — renders are internal verification only. Close out with the Portfolio Signal.`,
     },
+    */
   ],
   projects: [
     {
@@ -200,20 +258,29 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'Landscry v0.2',
       role: 'Authoritative initial terrain',
       state: 'active',
-      phase: 'S1 sediment lane (ACTIVE) + T4b first composed world',
-      summary: 'The clean-room local-first terrain compiler has crossed from contracts and native terrain proof into a canonical streamed UE 5.8 world package, an exercised packaged build, and — as of the owner\'s 2026-07-19 GO — its first real geological process lane: conservatively routed sediment with an integer-exact mass ledger.',
-      focus: 'S1 sediment slices (SED-02 capacity-limited deposition next — the first terrain-reshaping slice) as the default terrain work, alongside the open T4b presentation gates, all iterated through the local Studio web app.',
-      capability: 'One World Partition map with 16 partitions, 256 compiled sections, Nanite input topology, 64 far-field HLOD actors, collision, packaging, and a seven-station runtime streaming proof. New: the local Studio (apps/studio-web, loopback :4970) — size-ladder terrain builds (512..16,384 bodies + centered windows over the fixed 16,384 m world; engine custom review mode) requested from the browser, each validated as a direct offline no-model WorldRequestV2 through the canonical Rust validator, built deterministically, published with request/intent/transcript provenance, with A/B review, an orbiting 3D relief view (true-metre WebGL heightfield with draped review layers), and flagship-only Unreal package export.',
-      proof: 'The D: repo passes Git, Rust, TypeScript, UE editor build, retained-package validation, and all ten junction checks. New recovery evidence rebuilt 256 sections and 64 HLODs, but two current inspections repeatably failed winding validation; cook/proof were intentionally not run. The Studio flow is browser-verified end to end (compose -> canonical validation PASS x4 -> build -> provenance served; rejection paths and traversal guards exercised); the full 512/1024/2048/4096/8192 ladder plus a 2 m window built clean. Preview sizes are presentation tooling only — custom mode carries authority custom_preview_non_fidelity and can never claim native detail or a package.',
+      phase: 'M3 direct intent landed and under CI — refocused on revenue readiness',
+      summary: 'The clean-room local-first terrain compiler now has deterministic seeds, calibrated relief, bounded deterministic prompt planning, versioned measured acceptance, and a provisioned Studio workflow that keeps working without public connectivity or cloud services. ADR-0029 separates that practical promise from optional strict host containment.',
+      focus: 'Owner refocused this lane on revenue readiness on 2026-07-28 and confirmed text-to-world is not ready to sell. The uncommitted M3 work is now committed, pushed, and in PR #2 for its first CI. Next is the owner decision on what unblocks a real prompt-to-world path. The core terrain DEM stays read-only; CTRL-02+ and all Unreal work remain paused.',
+      capability: 'The provisioned local Studio runs direct/no-model and landscry-rules@1.0.0 requests through canonical validation, local terrain execution, measured acceptance, artifact publication, and visible inspection without Cargo, pnpm, dependency resolution, or cloud fallback. ADR-0029 requires survival of lost connectivity, not network silence from the whole host/browser. Strict containment remains an optional profile.',
+      proof: 'ADR-0029 reclassifies proof off-20260720-105007-21ff41b0 as PASS for the practical-offline non-Unreal workflow slice: direct/no-model and deterministic-rules builds, visible relief acceptance/report linkage, Node local-write guards, one blocked TEST-NET canary, and missing-planner exit -1 with no partial bundle all pass. Chromium NetLog contains no application remote URL or DNS request; its generic IPv6 reachability probe is disclosed and did not affect the workflow or carry Landscry data. Full Rust fmt/check/strict Clippy/tests, pnpm check, script syntax, and diff checks pass; terrain-core remains 236 pass / 2 intentional manual derivations ignored with no source diff.',
       blockers: [
-        'The reconstructed Content is new recovery evidence, not historical byte recovery, and currently fails winding inspection.',
-        'Owner complete-world visual acceptance is absent.',
-        'Nanite + far-field HLOD versus discrete LOD seam obligation needs a decision.',
-        'Older strict-target promotion matrices remain blocked by GitHub billing/spending-limit execution failure.',
+        'OFF-G3 is partial: missing-planner passes, but local-worker termination and bounded resource exhaustion are untested.',
+        'Complete OFF-G1 is partial: restart/rebuild is untested in this slice, and the Unreal leg is intentionally shelved.',
+        'CTRL-02+ requires explicit owner authorization because the core terrain DEM package is read-only.',
+        'T4b presentation, owner fly acceptance, LOD, and mountain-region Unreal work are intentionally shelved by owner direction.',
+        'Text-to-world is not sellable: the rules planner covers one family and one axis, OFF-G4 (a named supported local model) and OFF-G5 (cloud consent) do not exist, and the control plane is a single health.ts.',
+        'Nothing legally defines what a customer would buy: there is no LICENSE, EULA, or NOTICE file anywhere in the repository.',
+        'No entitlement mechanism exists in code or design. M6 is unstarted and the constitution forbids the usual shortcut of an online licence heartbeat.',
+        'Delivery is not yet a product: a 3.6 GB unarchived folder plus a source-only experimental UE 5.8 plugin that needs private engine headers and a bespoke multi-process import.',
+        'Owner complete-world visual acceptance, the primary fidelity gate under ADR-0021, has still never been given.',
       ],
-      next: 'SED-05 DEM calibration (provisional constants -> calibrated; imitation-retirement recommendation to the owner); alongside the T4b remainder: materials, fly verdict, LOD decision, close audit.',
+      next: 'Owner decision on what unblocks a real prompt-to-world path — most directly, whether CTRL-02+ may proceed, which requires authorizing changes to the read-only core terrain DEM package.',
       authority: 'D:/Ascentia/repos/landscry',
       evidence: [
+        'M3 lane committed and pushed 2026-07-28 (agent/s1-sediment c1f232a, 4826b4a, 4607bc9, 8af3296, 3cc86ad): CTRL-01/PLAN-01/ACC-01 implementation, the offline harness, governance and evidence docs, the preserved T4b materials lane, and the stale-CI doc corrections. Two weeks of work had been sitting uncommitted in a shared tree on one drive; the tree is now clean. All Windows gates green: cargo fmt/check/clippy -D warnings/test, pnpm check exit 0 (clean-room 1985 files, 37/37 studio tests), git diff --check.',
+        'PR #2 opened 2026-07-28 as the first CI this lane has ever had — CI triggers only on main and pull requests, so every agent/* push had produced zero CI. The typescript job, carrying the clean-room guard that fails on main at 5bf0bb6, passes on this branch.',
+        'The GitHub Actions billing/spending-limit block cleared on 2026-07-18 and the strict three-target matrix passed run 29666672925 on 07-19. README, ROADMAP, ARCHITECTURE, benchmarks/README, ADR-0014, and ADR-0015 had all still claimed BC-G6/HY-G7/T1b/T1/T2/M1 were externally blocked; corrected 2026-07-28. Those gates now need only a claim-bearing revision run.',
+        'DEM licensing reviewed clean 2026-07-28: all six T3 corpus sources are CC-BY-4.0 from pinned Zenodo records, no raw DEM bytes are committed or redistributed, and the calibration crate never enters the product runtime or an exported package. The Rust dependency tree is likewise commercially clean — twelve permissive direct dependencies, unsafe_code forbidden.',
         'S1/SED-01 shipped 2026-07-19 (agent/s1-sediment ee9049a, pushed): exact integer sediment ledger proven on the 2048 rung (19.44M m3 detached = 12.29M outlet-exported + 7.15M lake-delivered, balances_exactly true), sediment_flux layer in every new bundle, terrain-core 222 tests + engine 50 green, workspace pedantic clippy clean; detachment source documented provisional (SED-01b instruments true T1b erosion)',
         'S1/SED-02 shipped 2026-07-19 (agent/s1-sediment 573147d..4fd3549, pushed): capacity-limited deposition reshapes terrain — 2048 rung 11.99M m3 deposited on 1.41M cells, before/after diff 1,409,418 lifted / 0 lowered / max exactly the 1 m cap, f32 surface volume matches the integer ledger to 3 m3 in 12M; deposition_thickness layer + aggraded presentation surface disclosed in manifests; SED-02 flagship + 256-tile UE export E2E green at matching identity; terrain-core 224 tests + engine 50 green',
         'S1/SED-03 shipped 2026-07-19 (agent/s1-sediment 934d02c..4245234, pushed): subaqueous deposition — delta fronts and lake infill bounded by the water surface (2048 rung: 0.81M m3 across 19,078 lake cells, 80.3% of strong deposition at/inside lakes; ceiling proven on a 1 cm lake; full lakes spill downstream); terminal ledger detached = land + lake + exported + boundary, exact; 12 sediment tests; flagship + 256-tile UE export E2E green at matching identity; bundle schema v3',
@@ -228,6 +295,10 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'S1/S8 v1 shipped 2026-07-19 (agent/s1-sediment af5b1c2, pushed; owner choice A recorded, S8-first sequencing accepted): structural strata erodibility — 18/205 dipping folded stack sampled in world space (windows see the same rock as the full world), 8 hash-selected rock classes, supersedes the elevation-band proxy; strata cut across contours (rockfall 216M m3 as faces steepen); manifest schema v9 (structural_strata_v1 + dip/azimuth); 236 core tests; calibration-neutral on family medians (disclosed, not overclaimed); flagship + 256-tile export E2E green',
         'M3/SEED-01 shipped 2026-07-20 (agent/s1-sediment b85715a, pushed; lane opened under owner GO with planner-tier direction in ROADMAP M3): world_seed through the reference request (fixed modes self-reject seeded variants; custom_seeded preview authority); composition fingerprint re-pinned after review, 236 frozen tests green; 512 proof ladder 10/10 (determinism/variation/robustness); first multi-seed medians at T3 seeds 620/719/818 with tight spreads 0.01-0.33; retirement conditions honestly still not-yet at 25 intervals',
         'M3/SEED-02 shipped 2026-07-20 (agent/s1-sediment c8d136a, pushed; ADR-0025): world seed public — Studio seed input + crypto Reroll, canonical u64 validation mirroring the contracts rule (fixed modes visibly reject; reference value normalizes to unseeded; seed enters the request id), -WorldSeed script passthrough to custom_seeded, seed badge on bundle cards from request/world_request.v2.json; 29 studio tests; live E2E: seeded 512 published in 3 s with worldSeed on the listing and card',
+        'M3/CTRL-01 implemented 2026-07-20 (working tree; ADR-0026): canonical relief_scale 0.5..1.5 across registry, validator, Studio, and deterministic terrain path; 512 boundary ladder gross relief 2482.523 / 4965.046 / 7447.569 m at 0.5 / 1.0 / 1.5; default source-height and terrain-bed hashes preserved exactly; docs/M3_CTRL01_RELIEF_SCALE_2026-07-20.md',
+        'M3/PLAN-01 implemented and live-proven 2026-07-20 (working tree; ADR-0027): separate landscry-intent-planner crate, exact rules planner/provenance contract, fail-closed bounded vocabulary, explicit-control precedence, Studio prompt orchestration; seed-620 high-relief prompt -> 1.25 -> t4b-custom-d08a052d3b9fc98f in 2.4 s; unsupported island exit 1/no partial output; full workspace gates green; docs/M3_PLAN01_RULES_PLANNER_2026-07-20.md',
+        'M3/ACC-01 implemented and live-proven 2026-07-20 (working tree; ADR-0028): landscry.acceptance_report.v1 plus deterministic post-build evaluator, calibrated relief pass/warn/fail/unavailable outcomes, conservative missing/invalid/stale handling, explicit-user precedence, and Studio display; seed-818 low-relief prompt -> 3827.221 m -> acc-1d5e29bea20900dae78f2e13 PASS; repeated reports byte-identical; full workspace gates green; docs/M3_ACC01_MEASURED_ACCEPTANCE_2026-07-20.md',
+        'M3/OFF-READINESS-01 + ADR-0029 implemented and measured 2026-07-20 (working tree): proof off-20260720-105007-21ff41b0 PASSes the practical-offline non-Unreal direct/no-model + deterministic-rules workflow with visible acceptance, local-write guards, blocked TEST-NET canary, and missing planner/no partial bundle; generic Chromium reachability probe disclosed but non-blocking; complete OFF-G1 and OFF-G3 remain partial; docs/M3_OFFLINE_WORKFLOW_READINESS_2026-07-20.md + docs/adr/0029-practical-offline-availability.md',
         'Studio launcher hardened 2026-07-20 (1c55b48, pushed): 10-minute cold-start patience with progress dots (engine-rebuild days exceeded the old 120 s window), port-occupied-but-starting wait instead of racing a second server, cheap /api/status probe; reuse and cold paths both verified end to end (exit 0, server 200)',
         'T4B_FIRST_COMPOSED_WORLD_SLICE_04_2026-07-17.md',
         'Git HEAD 0d129822 at survey time',
@@ -235,34 +306,39 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: '1c55b48', date: '2026-07-19', dirty: 6, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: '1c55b48', date: '2026-07-20', dirty: 1, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
       name: 'Worldheart',
       role: 'World composition + architecture',
-      state: 'active',
-      phase: 'WH-WO-0020 — thematic dressing asset factory R0',
-      summary: 'Worldheart is now actively producing deterministic non-Unreal Master Architect building previews. R49 froze the first bounded synthetic technical witness; R50+ is a deliberately fast visual-development sequence, not a gate-acceptance sequence.',
-      focus: 'Strengthen visible Mythic Core architectural identity through exact generated mesh while keeping typed non-AI inputs and lightweight catastrophic-integrity checks.',
-      capability: 'Frozen R49 produced a 244-component semantic civic-hall mesh, pack, receipt, and four exact-mesh reviews. Its focused tests, independent replay, and 333/333 full suite passed at the recorded revision.',
-      proof: 'The governed D: migration preserved the exact dirty/untracked state, worktrees, output, seven detached snapshots, and append-only evidence. The 13 focused WH-WO-0020 tests, local HTTP smoke, Node syntax, and diff check pass; no full suite or gate promotion was performed and G01 remains RED.',
+      state: 'review',
+      phase: 'WH-WO-0052 - Reliquary complete keep family R7',
+      summary: 'Worldheart has frozen three complete orbitable dark-fantasy structural candidates for direct Program Steward review. They materially exceed the former blockout/facade state, but remain human-review candidates rather than self-certified professional or AAA assets.',
+      focus: 'Review Reliquary Wound, Cinder Cloister, and Black Aperture; record pass/fail with visible reasons; then pause the long-running AAA goal before any fourth candidate or further geometry pass.',
+      capability: 'The native C++ plan owns one complete occupied Reliquary keep plus an exact three-variant family selector. The bounded Blender adapter manufactures prepared siteworks, full exterior, inhabited wards, heavy buttresses, roofs, ritual sanctum, surrounding sacrificial chambers, drainage, LODs, collision, editable scenes, exact GLBs, and twelve diagnostic views. The native reviewer now maps Blender Z-up cameras/lights into glTF Y-up coordinates and places its floor from imported bounds; the live service switches among all three exact assets.',
+      proof: 'All three selected candidates are natively admitted with prepared-grade validation. Reliquary Wound exact replay is byte-identical for plan, GLB, report, reviewer, and artifact identity; independent Blender 5.1.2 import reports 1,289 meshes and zero errors. The restored loopback service delivers each 97-98 MB GLB through HTTP 200, all three report loaded under corrected hero views, and browser console errors are zero. Clean warnings-as-errors Release build and focused native tests pass. Professional, AAA, Unreal, and all affected gate claims remain false or red.',
       blockers: [
-        'Human architecture, aesthetic, culture, engineering, and production acceptance are absent.',
-        'No Unreal consumption is authorized for the active work order.',
-        'G01 remains RED and migration verification supplies no missing human acceptance.',
-        'Current visual rounds are intentionally not claim-bearing evidence packs.',
-        'Branch intentionally has no upstream during R50+ visual rounds; the WH-WO-0020 dressing-factory source and governed candidate records remain dirty/untracked and separate from the landed doc-only commit.',
+        'Program Steward pass/fail verdict is absent for all three candidates.',
+        'The candidates are controlled proportional variants of one family, not independent prompt-derived designs.',
+        'Rear/service and sacrificial close-view resolution is less developed than the gate and sanctum.',
+        'No general plain-language compiler, Unreal import, performance, navigation, accessibility, gameplay, final-material, engineering, canon, awe, or wonder proof exists.',
+        'G01 and every affected architecture/acceptance gate remain RED; inherited verifier failures remain unwaived.',
       ],
-      next: 'Continue WH-WO-0020 only within its focused-test boundary; do not run a full suite, rebuild evidence, resolve gates, or claim Unreal acceptance without a governing work order.',
+      next: 'Open the R7 family reviewer, record three exact visual verdicts, and then pause the AAA goal. Do not start a fourth candidate, another geometry pass, provider work, or Unreal mutation until the goal is resumed under authority.',
       authority: 'D:/Ascentia/repos/worldheart',
       evidence: [
-        'Git HEAD 3938c0b: Portfolio Signal and D: migration docs committed separately without touching dressing-factory state',
-        'WH-WO-0020_THEMATIC_DRESSING_ASSET_FACTORY_R0.md',
-        'WH-HANDOFF-0020_MASTER_ARCHITECT_BUILDING_R49.md',
-        'Ignored review outputs r50, r51, and r52 existed at survey time',
+        'Git implementation revision d761cd1: native Reliquary complete-keep family',
+        'Git closeout revision 44a1c41: R7 review, gate attempt, handoff, and index routing',
+        'Git implementation revision 0527f7b: glTF Y-up native web-reviewer repair',
+        'Git closeout revision 4fb9916: governed web-review repair worklog, handoff, and routing',
+        'WH-WO-0052_RELIQUARY_COMPLETE_KEEP_COMPOSITION_R7.md',
+        'WH-REV-0056_RELIQUARY_COMPLETE_KEEP_FAMILY_R7.md',
+        'WH-HANDOFF-0054_RELIQUARY_COMPLETE_KEEP_FAMILY_R7.md',
+        'WH-HANDOFF-0055_RELIQUARY_R7_WEB_REVIEW_SERVICE_REPAIR.md',
+        'http://127.0.0.1:8765/ live three-candidate exact-GLB reviewer',
       ],
-      snapshot: { branch: 'codex/master-architect-visual-r50', head: '3938c0b', date: '2026-07-18', dirty: 18, ahead: null, behind: null },
+      snapshot: { branch: 'codex/master-architect-visual-r50', head: '4fb9916', date: '2026-07-28', dirty: null, ahead: null, behind: null },
     },
     {
       id: 'assetfactory',
