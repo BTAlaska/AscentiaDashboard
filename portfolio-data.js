@@ -28,6 +28,12 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'review',
+      title: 'Ascentia: pick the attack-recovery feel target',
+      body: 'Measured 2026-07-28, no code moved. Swinging locks the hero in place for the entire attack clip, because the attack hands Mover the montage for its full play length and nothing releases it early. The default light attack is 2.67 s long with the blade apex at 0.75 s, so 1.92 s (72%) is the animation pack’s settle-to-idle tail with no root motion; sword+shield is 86% tail. Only a dodge or a follow-up attack escapes it — both explicitly tear down the Mover root-motion feature — while movement input has no such path and sprint is hard-blocked for the whole window. The fix shape is known and fits existing patterns (per-clip authored recovery-release and move-cancel points, global defaults in DA_CombatTuning, authored like the shipped swing-whoosh lane). What is missing is YOUR feel target: how long recovery should last and whether walking should cancel it at all.',
+      owner: 'User decision (recovery length + move-cancel policy) / Ascentia',
+    },
+    {
+      level: 'review',
       title: 'Review three Worldheart Reliquary keeps, then pause',
       body: 'WH-WO-0052 has frozen three complete orbitable R7 structural-family candidates: Reliquary Wound, Cinder Cloister, and Black Aperture. The loopback reviewer is restored at http://127.0.0.1:8765/: all three exact GLBs load with corrected glTF Y-up cameras and no browser errors. Native admission, prepared-grade validation, exact replay, clean Blender import, focused tests, and reproducible clean builds pass. They are proportional variants of one family, not independent prompt commissions, and no professional, AAA, Unreal, or green-gate claim has been made. YOU now judge each pass/fail with visible reasons.',
       owner: 'User decision (three visual verdicts + goal pause) / Worldheart',
@@ -63,6 +69,30 @@ window.PORTFOLIO_DATA = {
   // author a prompt for each new one. [BRACKETED SLOTS] are for the user to
   // fill before pasting. Use String.raw so Windows paths survive verbatim.
   handoffs: [
+    {
+      id: 'ascentia-attack-recovery',
+      title: 'Give the hero an attack recovery instead of a full-clip lock',
+      target: 'Any agent · D:\\Ascentia\\repos\\game',
+      decision: true,
+      why: 'Diagnosed and measured 2026-07-28 with no code moved, on owner instruction. The mechanism, the numbers, and the fix shape are all settled; only the feel target is open, and it is the owner\u2019s call because it defines how the game plays.',
+      prompt: String.raw`Give the Ascentia hero a real attack recovery instead of a full-clip movement lock.
+
+MY FEEL TARGET:
+- Total lock from swing input until I can move again: [e.g. 1.0 s for light, 1.4 s for heavy — or "match Elden Ring one-handed"]
+- Should movement input cancel the tail early? [YES, walking/running cancels once the window opens / NO, only dodge and follow-up attack cancel — just shorten the recovery]
+- Sprint during recovery: [allow once the window opens / keep blocked until recovery ends]
+- Scope for this bite: [(A) global tuning knobs only / (B) global knobs + the per-clip authored notify lane and bake tool]
+
+Start in D:\Ascentia\repos\game. Read AGENTS.md, then Docs\rules\SESSION_BOOTSTRAP.md, then route through Docs\COMPENDIUM_MAP.md — this is the "Combat Motion, Movesets, Weapons, Or Feel" lane (Docs\rules\GAMEPLAY_SYSTEMS.md, MULTIPLAYER_AND_WORLD_STATE.md, TESTING_AND_VALIDATION.md). Apply Docs\CHANGE_CHECKLIST.md in the summary. Branch is codex/designer-compendium at 5a9e3890.
+
+MEASURED DIAGNOSIS (do not re-derive): the hero is AAscentiaPlayerPathCharacter (Mover/GASP pawn, NOT AAscentiaCharacterBase, which plays attacks as an upper-body slot montage and never locks). TryPlayMoverAttackRootMotion wraps the attack AnimSequence into a dynamic montage and hands Mover's Mover_AnimRootMotion_Montage feature movement authority for MontageToPlay->GetPlayLength() / AttackRootMotionPlayRate seconds (Source\Ascentia\Private\Core\AscentiaPlayerPathCharacter.cpp:1975). Nothing releases it early. From the existing P11 whoosh bake report Saved\AscentiaEvidence\P11\SwingAudio\20260707-081157-bake_swing_whoosh_notifies\swing_whoosh_notify_bake.json (length + measured hand-speed apex per clip): UE5_1H_Attack_01_Seq 2.67 s / apex 0.75 s (72% tail), UE5_2H_Attack_01_Seq 2.67 / 0.72, UE5_2H_Attack_05_Seq 3.00 / 0.77, UE5_2H_Attack_Charge_03_Seq 3.00 / 0.87, SpearShield UE5_Attack_01_Seq 1.67 / 0.24 (86% tail). Escapes that already exist: TryPlayMoverDodgeMontage and a follow-up attack both call ClearAttackRootMotionState() + FoundCharacterMover->CancelFeaturesWithTag(Mover_AnimRootMotion_Montage, false). Movement has no such path, and CanRequestSprint() (Source\Ascentia\Private\Combat\AscentiaActionStateComponent.cpp:566) refuses sprint while State.Combat.Attacking is set — which is the whole clip.
+
+BUILD IT IN THE EXISTING PATTERNS, do not invent a second one. Global defaults belong in FAscentiaAttackTuning (Source\Ascentia\Public\Combat\AscentiaCombatTuningDataAsset.h), which already carries LightComboCancelDelaySeconds and is surfaced through DA_CombatTuning with the Resolve()-or-CDO fallback, so a fresh asset changes nothing until retuned. The window itself is UAscentiaActionStateComponent::OpenTimedActionWindow with a new State.Window.* tag registered in Data\AscentiaGameplayTags — mirror how AttackDodgeCancel and ComboCancel are derived, including the replicated tag and the ASC mirror. Reuse the DodgeJumpCancelStartAlpha idiom (normalized progress into the motion) rather than a new unit. For option B, the per-clip authoring lane must copy the shipped swing-whoosh lane exactly: a placeable notify with designer knobs and a bDesignerLocked guard, Tools\animation\bake_*.py that is dry-run by default with an APPLY token and an idempotent skip for already-authored clips, evidence under Saved\AscentiaEvidence, a Docs\DesignerSurfaces guide, and a native fallback that logs itself as fallback debt (see Docs\DesignerSurfaces\Audio_Music\Swing_Whoosh_Authoring.md).
+
+MULTIPLAYER CONSTRAINT: resolve the authored recovery/cancel time AT ATTACK START and open a timed window from it. Do NOT drive movement authority from an AnimNotify event — notifies do not fire reliably on a dedicated server, which is exactly why IsAttackDodgeCancelWindowOpen() is computed from GetLastActionServerTime() instead. The teardown must go through the existing ClearAttackRootMotionState() + CancelFeaturesWithTag path so Mover prediction stays consistent, and the montage should blend out rather than pop.
+
+VALIDATE: compile-green C++ build, then Ascentia automation (hold the 52-pass baseline), then a PIE sweep of the touched verbs — light attack, heavy, dodge-cancel, combo-cancel, sprint-out-of-attack — and record before/after lock durations as evidence. Note that three reds are PRE-EXISTING and not yours (ExtensionSafetySourceContract, LivePathAssetContract, and 6 validate_item_affix_data.py runtime-contract FAILs) — see the Cross-session asks in D:\Ascentia\ops\PIPELINE_STATUS.md. Commit on green per Docs\rules\SOURCE_CONTROL.md, then emit the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md: update the ascentia project entry, prune this hand-off and the matching "attack-recovery feel target" priority, run refresh-portfolio.ps1 and check-links.ps1 plus a JavaScript syntax smoke, update D:\Ascentia\ops\PIPELINE_STATUS.md (edit it with a file-editing tool, NOT PowerShell — PS 5.1 mojibakes its UTF-8), and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+    },
     {
       id: 'worldheart-reliquary-r7-review',
       title: 'Judge three Worldheart Reliquary keeps, then pause the AAA goal',
@@ -209,25 +239,26 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       futureName: 'Planned product name: Mythic Core',
       role: 'Main game',
       state: 'active',
-      phase: 'Front end shipped — Mythic Core title screen live; P11/P15 continues',
+      phase: 'Front end shipped and designer surfaces hardened; combat feel is the open question',
       summary: 'The authoritative UE 5.8 open-world RPG. The Mythic Core title screen is now the packaged front end (press-any-button attract, Elden Ring style menu, Play travels into MVP_Arena, native looping title music). Aether remains the reward layer: ETH is spell mana, enemy attacks deposit per-cell supersaturation, casts consume charge for overcharge, and depleted residue never refills through passive field time.',
-      focus: 'Let the user swap their own background/logo/wordmark art and self-made MP3 into DA_TitleScreen (the single title designer surface), and continue broader P11/P15 UI, animation, audio, and content work.',
-      capability: 'Native title screen stack: one DataAsset designer surface (art, menu entries, music, UI sounds, timing, ambient motion), BindWidgetOptional widget open to WBP/skin-tool reskins, GameMode-owned MP3-safe music looping, and a data-driven menu where only Play and Quit act. The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future environmental generators. Front-end map never loads on dedicated servers (ServerDefaultMap pinned).',
-      proof: 'Title screen PIE probe PASS 9/9 (Docs/Evidence/TitleScreen/pie_probe_report.json + in-engine captures): settings applied, music started, disabled entry refused travel, Play arrived in MVP_Arena. Aether: commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss. Branch published to GitHub 2026-07-20 (01a43b4b), clearing the prior policy-blocked push.',
+      focus: 'Let the user swap their own background/logo/wordmark art into DA_TitleScreen, and settle how melee attacks should recover — swinging currently locks the hero in place for the whole animation clip.',
+      capability: 'Native title screen stack: one DataAsset designer surface (art, menu entries, music, UI sounds, timing, ambient motion), BindWidgetOptional widget open to WBP/skin-tool reskins, GameMode-owned MP3-safe music looping, and a data-driven menu where only Play and Quit act. Designer surfaces were hardened on 2026-07-23: the registered manifest went 97 → 119 rows, DA_HUDTheme themes the production HUD, UAscentiaHUDScreen exposes a UMG skin seam for InterfaceArtForge, and combat/resource/progression magnitudes moved onto DA_CombatTuning and DA_ResourceTuning behind a Resolve()-or-CDO fallback, so an unconfigured project behaves exactly as before. The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future environmental generators. Front-end map never loads on dedicated servers (ServerDefaultMap pinned).',
+      proof: 'Title screen PIE probe PASS 9/9 (Docs/Evidence/TitleScreen/pie_probe_report.json + in-engine captures): settings applied, music started, disabled entry refused travel, Play arrived in MVP_Arena. Aether: commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss. The designer-surface pass (11 commits, 95c7f58..5a9e389, pushed) was build-green per commit and held automation at the 52-pass baseline — but its PIE playtest scenarios were never run, so those surfaces are compile-and-contract proven, not play-proven. Attack recovery is measured, not fixed: the default light attack holds movement authority for its full 2.67 s clip against a 0.75 s swing (P11 whoosh bake report, 2026-07-28 reading).',
       blockers: [
         'Unreal Content stays gitignored by design: Aether asset custody is recorded in AetherContinuationSummary.md, and the title screen content rebuilds from tracked scripts (Tools/create_title_screen_content.py + Tools/titlescreen).',
         'Specific environmental generator content does not exist yet; the authority-only regeneration hook is intentionally present for later authored integration.',
       ],
-      next: 'User: drop in your own title background/logo/wordmark and your finished MP3 via /Game/Ascentia/TitleScreen/DA_TitleScreen (steps in Docs/DesignerSurfaces/TitleScreen_README.md), then continue the P11/P15 designer-content remainder.',
+      next: 'User: name the attack-recovery feel target (recovery length, whether movement cancels the tail, sprint policy) so the ascentia-attack-recovery hand-off can be run; and drop in your own title background/logo/wordmark via /Game/Ascentia/TitleScreen/DA_TitleScreen (steps in Docs/DesignerSurfaces/TitleScreen_README.md). Then the deferred PIE playtest sweep of the hardened designer surfaces, and the first WBP_AscentiaHUD skin.',
       authority: 'D:/Ascentia/repos/game',
       evidence: [
         'Docs/Evidence/TitleScreen/pie_probe_report.json — 9/9 PIE flow probe with in-engine attract/menu/arena captures',
         'Docs/DesignerSurfaces/TitleScreen_README.md + surfaces.json frontend.title_screen — designer surface, boundaries, validation',
         'Docs/Evidence/Latest/AetherResidueRefillSummary.md — external-only refill decision, implementation, and validation proof',
         'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 34/34 dedicated two-client run',
-        'Git HEAD 01a43b4b pushed to origin/codex/designer-compendium 2026-07-20 (includes formerly blocked db4d8b7)',
+        'Git HEAD 5a9e3890 (2026-07-23) on origin/codex/designer-compendium, in sync — designer-surface consolidation on top of the 07-20 title-screen push',
+        'Saved/AscentiaEvidence/P11/SwingAudio/20260707-081157-*/swing_whoosh_notify_bake.json — per-clip length + apex measurements behind the attack-recovery finding',
       ],
-      snapshot: { branch: 'codex/designer-compendium', head: '01a43b4b', date: '2026-07-20', dirty: 0, ahead: 0, behind: 0 },
+      snapshot: { branch: 'codex/designer-compendium', head: '5a9e3890', date: '2026-07-23', dirty: 1, ahead: 0, behind: 0 },
     },
     {
       id: 'dashboard',
