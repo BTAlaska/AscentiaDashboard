@@ -172,8 +172,7 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
 
 [NO USER DECISION REQUIRED for the slice itself. Do not reopen Unreal; do not touch the frozen reference fixture; the default stays a byte-identical no-op.]
 
-Start in D:\Ascentia
-epos\landscry on branch agent/s1-sediment (keep PR #2 open for CI). Read FIRST: .agent\GOAL.md (findings 7-8 name the mechanism and the recorded evidence), docs\S1_SED05_CALIBRATION.md (the measured 1/5/25/60/100 interval ladder), docs\S1_SEDIMENT_WORK_ORDER.md:200-265 (SED-06 re-routing results), the ADR-0026 CTRL-01 pattern (relief_scale end to end), and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md.
+Start in D:\Ascentia\repos\landscry on branch agent/s1-sediment (keep PR #2 open for CI). Read FIRST: .agent\GOAL.md (findings 7-8 name the mechanism and the recorded evidence), docs\S1_SED05_CALIBRATION.md (the measured 1/5/25/60/100 interval ladder), docs\S1_SEDIMENT_WORK_ORDER.md:200-265 (SED-06 re-routing results), the ADR-0026 CTRL-01 pattern (relief_scale end to end), and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md.
 
 THE SLICE: expose erosion time-depth (SEDIMENT_EVOLUTION_INTERVALS; evolve_sediment_flux already takes intervals; post-hydrology, so composition and hydrology caches stay valid) as the second public control: engine capability behind honest authority, request contract carrier, Studio surface, canonical validation at every layer, ADR. Default = current pinned intervals with NO arithmetic on the default branch (byte-identity by construction). Declared metric: local_relief_p90_m, promised direction: down with more intervals; mechanism-per-axis holds (this is a real process depth, not a statistical imitation). Conformance: run the interval ladder and record the measured axis per family windows (multi-seed medians are the bar; single-seed passes under 0.15 margin are not locks).
 
@@ -181,8 +180,7 @@ EXIT EVIDENCE: (1) default world byte-identical (frozen gates green); (2) the co
 
 Laws: green-gated bites, commit on green, push (no PR merge); fmt after EVERY edit; frozen fixture untouched; no gate promotion; honest claims - steerability vs fidelity labels per GOAL.md.
 
-Validation: cargo fmt --all -- --check; cargo check --locked --workspace --all-targets; cargo clippy --locked --workspace --all-targets -- -D warnings; cargo test --locked --workspace; corepack pnpm check; git diff --check. Close out with the Portfolio Signal per D:\Ascentia
-epos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, re-scope this hand-off, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+Validation: cargo fmt --all -- --check; cargo check --locked --workspace --all-targets; cargo clippy --locked --workspace --all-targets -- -D warnings; cargo test --locked --workspace; corepack pnpm check; git diff --check. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, re-scope this hand-off, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
     // landscry-m3-offline-failclosed: RETIRED from dispatch by ADR-0030 (owner
     // direction 2026-08-03) — full-offline mode is decided against for now and
