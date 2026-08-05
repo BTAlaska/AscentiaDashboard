@@ -34,9 +34,9 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'Ascentia: choose the first production HUD skin direction',
-      body: 'Attack recovery authoring is closed at pushed game commit 8f084b61: all nine live MVP root-motion attacks carry authored windows, the guarded re-plan is idempotent, and the focused PIE gate passed 26/26 with an authored MoveCancel release, animation-blueprint restoration, post-release movement, screenshot evidence, and no fallback/runtime errors. Attack→dodge remains green at 21/21 and the player-path smoke remains green at 57/57. The next bounded player-facing slice is the first WBP_AscentiaHUD skin through the already-hardened DA_HUDTheme / UAscentiaHUDScreen seam; the user owns the visual direction and reference choice.',
-      owner: 'User visual direction / Ascentia UI lane',
+      title: 'Ascentia: restore the weapon-swap proof lane; HUD direction still awaits the user',
+      body: 'The Cairn Greatsword grip defect is closed at pushed game commit b99ab75: the source-owned socket-local palm correction moved the live mesh grip point from the hand_r wrist into the visible palm, and focused PIE passed 18/18 at 0.0062 cm residual error with a valid 2560×1552 capture. Player smoke remains green at 57/57. The adjacent ascentia_weapon_swap scenario is now the active machine-proof debt at 35/44: the starter greatsword presentation passes, but the scripted Rusted Sword replacement is rejected while the buckler equips. Diagnose and repair that equipment/scenario path before promoting the swap evidence again. The first production HUD skin remains a separate user-owned visual-direction decision.',
+      owner: 'Ascentia equipment proof lane / User visual direction for HUD',
     },
     {
       level: 'review',
@@ -76,6 +76,20 @@ window.PORTFOLIO_DATA = {
   // fill before pasting. Use String.raw so Windows paths survive verbatim.
   handoffs: [
     {
+      id: 'ascentia-weapon-swap-proof-repair',
+      title: 'Repair the Ascentia weapon-swap proof lane',
+      target: 'Any agent · D:\\Ascentia\\repos\\game',
+      decision: false,
+      why: 'The greatsword grip itself is measured and green, but the adjacent weapon-swap scenario is 35/44 because its Rusted Sword replacement is rejected while the buckler equips. The scenario must distinguish a real equipment regression from stale fixture assumptions and return to current proof before the lane can be promoted.',
+      prompt: String.raw`Diagnose and repair the Ascentia weapon-swap proof lane.
+
+Start in D:\Ascentia\repos\game on codex/designer-compendium. Read AGENTS.md, Docs\rules\SESSION_BOOTSTRAP.md, route through Docs\COMPENDIUM_MAP.md to the gameplay, multiplayer, data/content, testing, and designer-surface rules, then inspect Docs\Evidence\Latest\GreatswordGripAlignmentSummary.md, Tools\playtest_scenarios\gasp_weapon_swap.py, the equipment/inventory request path, generated MVP item definitions, and the two retained 20260805 ascentia_weapon_swap reports before editing. Game commit b99ab75 is the current pushed closeout. The Cairn grip correction is finished and proven at 18/18 with 0.0062 cm error; preserve it unless a new regression is measured.
+
+Reproduce why the scripted Rusted Sword replacement is rejected while the Wooden Buckler equips. Determine whether the defect is runtime equipment/inventory behavior, stat/setup preconditions, or a stale scenario assumption. Make the narrowest authoritative, replication-safe, source-owned correction; do not weaken assertions merely to turn the report green. Preserve generated-asset custody and the existing request/result APIs.
+
+Required proof: return ascentia_weapon_swap to green with valid visual media and scoped clean logs, rerun ascentia_weapon_grip_alignment and ascentia_player_smoke as regressions, run the narrow Ascentia editor build plus relevant source/data/designer-surface audits, and disclose any aggregate vendored InterfaceArtForge build blocker separately. Update the owning evidence and Designer Surface records. Commit and push on green per Docs\rules\SOURCE_CONTROL.md, then perform the Portfolio Signal: reconcile priorities/handoffs/project/gap data, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, update D:\Ascentia\ops\PIPELINE_STATUS.md with a file-editing tool, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+    },
+    {
       id: 'ascentia-first-hud-skin',
       title: 'Build the first production WBP_AscentiaHUD skin',
       target: 'Any agent · D:\\Ascentia\\repos\\game',
@@ -86,7 +100,7 @@ window.PORTFOLIO_DATA = {
 MY VISUAL DIRECTION: [describe the desired HUD mood, materials, density, and color language]
 REFERENCE: [attach an image or name an approved reference; write "use the current Mythic Core title-screen language" if no new reference]
 
-Start in D:\Ascentia\repos\game on codex/designer-compendium. Read AGENTS.md, Docs\rules\SESSION_BOOTSTRAP.md, route through Docs\COMPENDIUM_MAP.md to the UI/designer-surface rules, then inspect Docs\DesignerSurfaces\Presentation_UI\README.md, the presentation.hud_theme_and_screen surfaces.json row, DA_HUDTheme, UAscentiaHUDScreen, WBP_AscentiaHUD, and nearby PIE evidence before editing. Game commit 8f084b61 is the current pushed recovery closeout. The attack-recovery concern is finished; do not reopen it unless a regression is observed.
+Start in D:\Ascentia\repos\game on codex/designer-compendium. Read AGENTS.md, Docs\rules\SESSION_BOOTSTRAP.md, route through Docs\COMPENDIUM_MAP.md to the UI/designer-surface rules, then inspect Docs\DesignerSurfaces\Presentation_UI\README.md, the presentation.hud_theme_and_screen surfaces.json row, DA_HUDTheme, UAscentiaHUDScreen, WBP_AscentiaHUD, and nearby PIE evidence before editing. Game commit b99ab75 is the current pushed grip-alignment closeout. Attack recovery and Cairn Greatsword grip placement are finished; do not reopen them unless a regression is observed. The separate ascentia_weapon_swap 35/44 proof debt belongs to its own hand-off.
 
 Create one coherent production HUD skin through the existing theme/UMG seam. Preserve native view models, authority, replication, settings/accessibility boundaries, and input/glyph ownership; styling must never read or mutate gameplay state directly. Use the vendored InterfaceArtForge plugin only as it currently exists in this repo; canonical-to-vendored sync is now repeatable, so do not edit this consumer copy directly or take over the separate Fab/Git release lane. Keep every content mutation narrow, reproducible, and evidence-producing; Content is intentionally gitignored, so record exact asset custody/rebuild steps.
 
@@ -261,16 +275,18 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       futureName: 'Planned product name: Mythic Core',
       role: 'Main game',
       state: 'active',
-      phase: 'Front end shipped; attack recovery authored and PIE-proven; first production HUD skin awaits visual direction',
+      phase: 'Front end shipped; attack recovery and Cairn grip are PIE-proven; weapon-swap proof needs repair',
       summary: 'The authoritative UE 5.8 open-world RPG. The Mythic Core title screen is now the packaged front end (press-any-button attract, Elden Ring style menu, Play travels into MVP_Arena, native looping title music). Aether remains the reward layer: ETH is spell mana, enemy attacks deposit per-cell supersaturation, casts consume charge for overcharge, and depleted residue never refills through passive field time.',
-      focus: 'Choose and build the first WBP_AscentiaHUD production skin, let the user swap their own background/logo/wordmark art into DA_TitleScreen, and retain a human multi-weapon recovery-feel review as taste evidence rather than a machine gate.',
-      capability: 'Native title screen stack: one DataAsset designer surface (art, menu entries, music, UI sounds, timing, ambient motion), BindWidgetOptional widget open to WBP/skin-tool reskins, GameMode-owned MP3-safe music looping, and a data-driven menu where only Play and Quit act. Designer surfaces were hardened on 2026-07-23: the registered manifest went 97 → 119 rows, DA_HUDTheme themes the production HUD, UAscentiaHUDScreen exposes a UMG skin seam for InterfaceArtForge, and combat/resource/progression magnitudes moved onto DA_CombatTuning and DA_ResourceTuning behind a Resolve()-or-CDO fallback, so an unconfigured project behaves exactly as before. Attack recovery now resolves designer-authored per-animation windows for the nine live MVP root-motion attacks, releases movement through server-owned Mover input, and restores the full-body single-node presentation to the animation blueprint when movement resumes. The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future environmental generators. Front-end map never loads on dedicated servers (ServerDefaultMap pinned).',
-      proof: 'Title screen PIE probe PASS 9/9 (Docs/Evidence/TitleScreen/pie_probe_report.json + in-engine captures): settings applied, music started, disabled entry refused travel, Play arrived in MVP_Arena. Aether: commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss. Attack recovery is pushed at game commit 8f084b61: guarded apply 9/9, idempotent re-plan 9 already-authored / 0 planned, focused PIE 26/26 with Authored=Y, MoveCancel at 0.933 s against the 0.897 s marker, single-node → animation-blueprint restore, 120.9 cm post-release movement, screenshot and clean scoped logs; attack→dodge is 21/21 and player smoke 57/57. Win64 editor build, attack-animation audit, 120-surface contract, 16/16 controls coverage, and Python compile pass. Full Ascentia.MVP remains at the known 12-pass / 2-pre-existing-red case baseline (Aether test source scan and stale GameDefaultMap expectation).',
+      focus: 'Repair the 35/44 ascentia_weapon_swap evidence lane without regressing the now-green greatsword grip or player path. The first WBP_AscentiaHUD production skin remains queued behind the user’s visual direction/reference, and title art remains swappable through DA_TitleScreen.',
+      capability: 'Native title screen stack: one DataAsset designer surface (art, menu entries, music, UI sounds, timing, ambient motion), BindWidgetOptional widget open to WBP/skin-tool reskins, GameMode-owned MP3-safe music looping, and a data-driven menu where only Play and Quit act. Designer surfaces were hardened on 2026-07-23: the registered manifest went 97 → 119 rows, DA_HUDTheme themes the production HUD, UAscentiaHUDScreen exposes a UMG skin seam for InterfaceArtForge, and combat/resource/progression magnitudes moved onto DA_CombatTuning and DA_ResourceTuning behind a Resolve()-or-CDO fallback, so an unconfigured project behaves exactly as before. Attack recovery resolves designer-authored per-animation windows for the nine live MVP root-motion attacks. Cairn/Ashwake greatswords now share a source-owned socket-local grip correction that is imported into the generated Cairn item asset and mirrored by the native fallback. The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future environmental generators. Front-end map never loads on dedicated servers (ServerDefaultMap pinned).',
+      proof: 'Title screen PIE probe PASS 9/9 (Docs/Evidence/TitleScreen/pie_probe_report.json + in-engine captures): settings applied, music started, disabled entry refused travel, Play arrived in MVP_Arena. Aether: commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss. Attack recovery is pushed at game commit 8f084b61: guarded apply 9/9, idempotent re-plan 9 already-authored / 0 planned, focused PIE 26/26 with Authored=Y, MoveCancel at 0.933 s, animation-blueprint restoration, 120.9 cm post-release movement, and clean evidence. Grip alignment is pushed at b99ab75: focused PIE 18/18 measured 0.0062 cm grip-to-palm error (down from 3.9953 cm), grip-to-wrist distance 3.9938 cm, valid 2560×1552 capture, scoped generated-asset plan/apply/re-plan, player smoke 57/57, Ascentia module build, 120-surface contract, Python/CSV/JSON audits, and clean scoped logs. The adjacent weapon-swap scenario is not green: 35/44, with the starter greatsword passing but the Rusted Sword replacement rejected while the buckler equips. Full Ascentia.MVP remains at the known 12-pass / 2-pre-existing-red baseline; the item/affix validator retains six unrelated runtime-contract reds.',
       blockers: [
         'Unreal Content stays gitignored by design: Aether asset custody is recorded in AetherContinuationSummary.md, and the title screen content rebuilds from tracked scripts (Tools/create_title_screen_content.py + Tools/titlescreen).',
         'Specific environmental generator content does not exist yet; the authority-only regeneration hook is intentionally present for later authored integration.',
+        'The adjacent ascentia_weapon_swap proof is 35/44: investigate the rejected Rusted Sword replacement before promoting equipment-swap presentation evidence.',
+        'The aggregate AscentiaEditor build reaches and links the Ascentia module but is currently blocked later by separately owned vendored InterfaceArtForge generated-code errors; the narrow Ascentia module build passes.',
       ],
-      next: 'User: choose the first HUD visual direction/reference in the ascentia-first-hud-skin hand-off, and optionally drop in your own title background/logo/wordmark via /Game/Ascentia/TitleScreen/DA_TitleScreen. Then build and prove the first WBP_AscentiaHUD skin through DA_HUDTheme/UAscentiaHUDScreen. A human multi-weapon recovery-feel sweep may hand-tune individual clips and set bDesignerLocked, but machine authoring/runtime proof is closed.',
+      next: 'Agent: run the ascentia-weapon-swap-proof-repair hand-off and restore the 35/44 equipment proof without weakening assertions or regressing the 18/18 grip and 57/57 player smoke lanes. User: choose the first HUD visual direction/reference in the ascentia-first-hud-skin hand-off when ready, and optionally replace title art through DA_TitleScreen.',
       authority: 'D:/Ascentia/repos/game',
       evidence: [
         'Docs/Evidence/TitleScreen/pie_probe_report.json — 9/9 PIE flow probe with in-engine attract/menu/arena captures',
@@ -279,10 +295,12 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 34/34 dedicated two-client run',
         'Docs/Evidence/Latest/AttackRecoverySummary.md — 9/9 authored windows, idempotence, 26/26 recovery PIE, adjacent regressions, build/audits, and baseline disclosures',
         'Git HEAD 8f084b61 (2026-08-05) on codex/designer-compendium — attack recovery authored, PIE-proven, and pushed',
+        'Docs/Evidence/Latest/GreatswordGripAlignmentSummary.md — measured palm correction, 18/18 focused PIE, screenshot, generated-asset custody, validation, and adjacent swap finding',
+        'Git HEAD b99ab75 (2026-08-05) on codex/designer-compendium — Cairn/Ashwake grip source correction, focused scenario, and evidence pushed',
         'Docs/DesignerSurfaces/Combat_PlayerPath/Attack_Recovery_Authoring.md + surfaces.json combat.attack_recovery_anim_notify — designer surface, knobs, native boundary',
         'Saved/AscentiaEvidence/P11/SwingAudio/20260707-081157-*/swing_whoosh_notify_bake.json — per-clip length + apex measurements behind the attack-recovery finding',
       ],
-      snapshot: { branch: 'codex/designer-compendium', head: '8f084b61', date: '2026-08-05', dirty: 1, ahead: 0, behind: 0 },
+      snapshot: { branch: 'codex/designer-compendium', head: 'b99ab75', date: '2026-08-05', dirty: 1, ahead: 0, behind: 0 },
     },
     {
       id: 'dashboard',
