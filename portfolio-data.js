@@ -4,7 +4,7 @@ window.PORTFOLIO_DATA = {
   meta: {
     title: 'Mythic Systems',
     subtitle: 'Portfolio control room for Ascentia and its independent creation tools',
-    surveyed: '2026-07-28',
+    surveyed: '2026-08-05',
     rule: 'No global completion percentage. Report activity, capability, proof, blockers, and the next decision separately.',
   },
   priorities: [
@@ -13,6 +13,12 @@ window.PORTFOLIO_DATA = {
       title: 'Leave C: behind — retirement readiness is on this page',
       body: 'Ratified direction (2026-07-18): the portfolio is wholly D:/Ascentia plus its GitHub repos. The Retirement readiness section below classifies every old C: source as retire-ready (junction-covered, awaiting per-entry approval) or blocked with a named reason (skin-forge 147 cloud-only Saved files, landscry winding gate, worldheart file locker, game .vs indexes, quarantine placeholder families). Retirement stays a per-entry, user-approved, verified pass.',
       owner: 'User decision / Portfolio',
+    },
+    {
+      level: 'active',
+      title: 'Landscry: production goal enacted under temporary stewardship',
+      body: 'Your 2026-08-05 appointment ("you are temporary program steward. write and enact a goal to continue development toward production") is executed and governed: .agent/GOAL_PRODUCTION.md ("Sellable text-to-world v1", commit 351891e) succeeds the DEM-grade goal, whose criterion was met when the ledger moved off 15 fails. The standing score is 2 pass / 5 warn / 10 fail under your promoted per-family configuration, canonically verified. The goal carries an owner-gate register the steward cannot decide: OG-1 your composer credential (ready now - ANTHROPIC_API_KEY or ant auth login, first live composition becomes the MACRO-02 acceptance run), OG-2 un-shelving the Unreal half, OG-3 complete-world visual acceptance (package comes after the fidelity pillar exits), OG-4 LICENSE/EULA adoption, OG-5 pricing (deferred). Pillars in value order: fidelity to acceptance, the live product loop, delivery and commercial scaffolding, then Unreal at OG-2. The first enacted slice landed same-day: TEX-01 attributed the badland/karst fine-texture surplus - it is born entirely in T1 anatomy (hydrology leaves the bed untouched on five of six windows), and the dominant named mechanism is growth_jitter, the per-cell claim-order noise: zeroing it collapses bryce_west 8-32 m from 2.89x to 1.15x of real. micro_roughness and steepness_variability are measured exonerated. TEX-02 (making the jitter mechanism resolution-independent) is next.',
+      owner: 'Landscry lane (steward)',
     },
     {
       level: 'active',
@@ -161,24 +167,24 @@ MY APPROVAL — delete exactly these cache-class paths: [list from the Hygiene p
 In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved cache-class paths. Laws: repos\landscry\unreal\Binaries is generated-state, NOT cache — if I listed it, first prove a clean rebuild of the winding-fixed importer DLLs; never touch evidence/artifact/generated-state classes under a cache approval; before deleting a tree's caches confirm no editor or build is running against it (any open UE 5.8 editor blocks builds repo-wide via the Live Coding mutex); UE recreates DDC/Intermediate on demand so the directories can go entirely. Afterwards run the full refresh (refresh-portfolio.ps1) and report the reclaimed GB from the Hygiene tiles, before/after. Close out with the Portfolio Signal (update this hand-off or prune it).`,
     },
     {
-      id: 'landscry-macro-04-families',
-      title: 'MACRO-04: families under the composed envelope — plus your one credential step',
+      id: 'landscry-tex-02',
+      title: 'TEX-02: resolution-independent texture floor — plus your one credential step',
       target: 'Any agent · D:\Ascentia\repos\landscry',
       decision: false,
-      why: 'OWNER YES 2026-08-04: composed macro envelopes are entering the T3-measured chain, and fjordland is adopted as an optional terrain type pursued incrementally. Execution is underway: the fluvial hypsometry regression was fixed distribution-aware (the sine envelope was creating an arcsine height distribution; ridge-shaped de-meaned swells got hypsometry to Warn, slope_area_concavity to PASS, and the macro band to 0.96x), envelopes for all 17 corpus windows are committed with per-window measured sizing, the candidate harness runs under --envelopes with provenance-bound reports and a mixed-ledger refusal, and the multi-seed ledger re-derivation is running. The delta against the 15-fail/2-warn baseline lands when it completes - worse-anywhere halts for owner review. Fjordland is the named consumer of the coast/ocean engine slices.',
-      prompt: String.raw`Ship MACRO-04: families under the composed envelope (work order slice 4).
+      why: 'TEX-01 (2026-08-05) attributed the badland/karst fine-texture surplus by measurement: it is born entirely in T1 anatomy (hydrology leaves the bed untouched), the dominant mechanism is growth_jitter per-cell claim noise (bryce_west 8-32 m falls 2.89x -> 1.15x of real when zeroed), valley noise feeds the same cascade at karst 32-128 m (3.62x -> 1.68x), and an irreducible integration fur floor remains (karst 8-32 still 9.55x with every stochastic knob zeroed) because fixed-count hillslope diffusion reaches only ~8.5 m at native cells versus ~690 m at the reference resolution the families were calibrated at. micro_roughness, steepness_variability, and grain are measured exonerated. The fix is a named mechanism slice, not a blur: make the jitter/diffusion processes resolution-independent.',
+      prompt: String.raw`Ship TEX-02: resolution-independent texture floor for the fine-celled families.
 
-[OWNER STEP, SEPARATE FROM THIS DISPATCH: to run the first LIVE frontier composition, set ANTHROPIC_API_KEY for the Studio server process (or ant auth login), open the Studio, and press Compose with any macro prompt. Retain that bundle as the MACRO-02 acceptance run. docs\MACRO02_COMPOSER_2026-08-04.md has the exact instructions.]
+[OWNER STEP, SEPARATE FROM THIS DISPATCH: to run the first LIVE frontier composition (OG-1), set ANTHROPIC_API_KEY for the Studio server process (or ant auth login), open the Studio, and press Compose with any macro prompt. Retain that bundle as the MACRO-02 acceptance run. docs\MACRO02_COMPOSER_2026-08-04.md has the exact instructions.]
 
-[NO USER DECISION REQUIRED to start. Do not reopen Unreal; frozen fixture untouched; defaults byte-identical; no gate promotion.]
+[NO USER DECISION REQUIRED to start. Do not reopen Unreal; frozen fixture untouched; defaults byte-identical; no gate promotion by side effect.]
 
-Start in D:\Ascentia\repos\landscry on branch agent/s1-sediment (keep PR #2 open). Read FIRST: docs\MACRO_COMPOSER_WORK_ORDER.md slice 4, docs\MACRO_COMPOSER_ROUND1_2026-08-04.md (four named defects), docs\MACRO03_MACRO_BANDS_2026-08-04.md (the bands that make macro measurable), .agent\GOAL.md findings 0a-0c + scope item 4, and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md.
+Start in D:\Ascentia\repos\landscry on branch agent/s1-sediment (keep PR #2 open). Read FIRST: .agent\GOAL_PRODUCTION.md (P1), docs\TEX01_TEXTURE_FLOOR_ATTRIBUTION_2026-08-05.md (the measured attribution this slice builds on), docs\TWO_LEVER_LEDGER_2026-08-05.md (the promoted configuration and standing score 2/5/10), and the Landscry lane row in D:\Ascentia\ops\PIPELINE_STATUS.md. The instrument is crates\landscry-terrain-calibration\examples\tex01_stage_attribution.rs (--zero knob for mechanism removal).
 
-THE SLICE: give the generalized family path (arid_canyon_badland, rolling_fluvial, karst_doline, aeolian_dune) the composition stage the diagnosis showed missing: a composed macro envelope (injected macro_design.v1 or the pinned preset adapted per family) with the family T1b anatomy as modulation texture and family hydrology on top. Per family: gallery render + product scorecard + macro-band diagnostics. This is where the fur-without-structure verdict is retested - the macro bands (512-2048, 2048-8192) must move toward 1.0x where the diagnosis measured 0.30-0.57x deficits.
+THE SLICE: make the T1 anatomy texture processes resolution-independent so the fine-band surplus falls at native cells WITHOUT changing reference-resolution behaviour. Measured targets, in order: (1) growth_jitter - its per-cell claim noise must produce resolution-invariant physical fur (jitter the cost field at a physical correlation scale, or scale amplitude with cell size - design the mechanism, do not just zero it: zeroing changes drainage topology and pre-drains lakes); (2) hillslope diffusion - fixed iteration counts reach sqrt(iterations*strength)*cell metres, so the calibrated smoothing collapsed from ~690 m to ~8.5 m on karst; a physically scaled smoother (implicit/multigrid/FFT or coarse-grid diffusion, NOT 270k Jacobi passes) is the principled anti-fur lever; (3) micro_roughness_cells is unscaled in resolve_drainage_declared_boundary_config (valley/steepness cells ARE scaled) - fix for correctness even though it measures near-zero at these windows. Every change is measured through the TEX-01 instrument on koc_center/koc_nw/koc_w/bryce_west/bryce_east/bryce_amphitheater plus the full T3 ladder before any claim; alpine/fluvial must not regress (their passes came from the promoted configuration).
 
-EXIT EVIDENCE: (1) each family renders with genuine kilometre-scale structure under a composed envelope, gallery pairs re-measured through bands.tsv; (2) family macro-band ratios improve from the recorded deficits (karst 0.30x, aeolian 0.57x baselines); (3) frozen fixture untouched, defaults byte-identical, conformance standing gate stays green; (4) honest labels - no AAA claim, no gate movement.
+EXIT EVIDENCE: (1) fine-band ratios move toward 1.0x on the six karst/badland windows through the instrument; (2) full promoted-configuration ledger re-derived - no regression anywhere without a recorded halt; (3) frozen fixture untouched, defaults byte-identical where the mechanism is off, conformance gate green; (4) honest labels - the standing score only improves or holds.
 
-Laws: green-gated bites; fmt after every edit; mechanism-per-axis; the in-session model may author macro designs (hand_authored provenance) per the owner directive of 2026-08-04.
+Laws: green-gated bites; fmt after every edit; mechanism-per-axis (the Avoid list bans blur/sharpen paper-overs); never commit while an evidence run is in flight; per-family assembler consistency.
 
 Validation: cargo fmt --all -- --check; cargo check --locked --workspace --all-targets; cargo clippy --locked --workspace --all-targets -- -D warnings; cargo test --locked --workspace; corepack pnpm check; git diff --check. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, re-scope this hand-off, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
@@ -281,7 +287,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'Landscry v0.2',
       role: 'Authoritative initial terrain',
       state: 'active',
-      phase: 'M3 direct intent landed and under CI — refocused on revenue readiness',
+      phase: 'Production goal active (steward) — fidelity pillar first, standing score 2/5/10',
       summary: 'The deterministic terrain compiler behind a canonical seven-step product UX (owner, 2026-08-04): open the app, type a prompt, a frontier model designs the macro terrain, the validated macro feeds the deterministic engine, the engine models to fine shippable detail, Landscry imports it as Unreal Mesh Terrain, and Landscry PCG dresses it. Deterministic seeds, calibrated relief, bounded prompt planning, measured acceptance, and the per-family DEM conformance scorecard all sit underneath that pipeline; model nondeterminism ends at a validated artifact hash and every world replays model-free.',
       focus: 'Macro-composer lane (ADR-0030, owner direction 2026-08-03): a frontier model composes the macro design from a user prompt; the deterministic engine builds it behind the validated landscry.macro_design.v1 artifact boundary with model-free replay. Full-offline is deprioritized for now — OFF-G lanes leave the active path while the architecture and honest-claims discipline stay. The bar is AAA-quality terrain, biomes, and full Mesh Terrain with PCG-driven worlds. The DEM-grade goal continues underneath: the corpus scorecard measures every result, and the T3 ledger remains the fidelity record.',
       capability: 'The provisioned local Studio runs direct/no-model and landscry-rules@1.0.0 requests through canonical validation, local terrain execution, measured acceptance, artifact publication, and visible inspection without Cargo, pnpm, dependency resolution, or cloud fallback. ADR-0029 requires survival of lost connectivity, not network silence from the whole host/browser. Strict containment remains an optional profile.',
@@ -297,7 +303,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'Delivery is not yet a product: a 3.6 GB unarchived folder plus a source-only experimental UE 5.8 plugin that needs private engine headers and a bespoke multi-process import.',
         'Owner complete-world visual acceptance, the primary fidelity gate under ADR-0021, has still never been given.',
       ],
-      next: 'VERIFIED: the canonical run under your promoted configuration reproduces the synthesis exactly - THE STANDING SCORE IS 2 PASS / 5 WARN / 10 FAIL (was 0/2/15), with the single accepted warn landing at 0.789. gore_center and gore_se are the first passing windows in project history. Next score levers, in order: the texture-floor slice (badland and karst carry a 12.9x surplus at 8-32 m the erosion lever measurably cannot reach), gore_nw, and organic coastlines for fjordland. Still standing: your composer credential step.',
+      next: 'PRODUCTION GOAL ENACTED (.agent/GOAL_PRODUCTION.md, 351891e) with the owner-gate register OG-1..OG-5; the standing score is 2 PASS / 5 WARN / 10 FAIL. TEX-01 same-day: the badland/karst fine-texture surplus is born entirely in T1 anatomy, dominant mechanism = growth_jitter per-cell claim noise (bryce_west 8-32 m falls 2.89x -> 1.15x when zeroed); valley noise feeds the same cascade at karst 32-128 (3.62x -> 1.68x); micro_roughness, steepness_variability, grain exonerated by measurement; an irreducible integration fur floor (karst 8-32 still 9.55x with ALL stochastic knobs zeroed) survives because fixed-count hillslope diffusion reaches ~8.5 m at native cells vs ~690 m at reference - the anti-fur process does not scale. TEX-02 = resolution-independent smoothing/jitter as its own mechanism slice. Then gore_nw, organic coastlines. Owner gates ready now: OG-1 composer credential.',
       authority: 'D:/Ascentia/repos/landscry',
       evidence: [
         'MACRO-01 shipped 2026-08-04 (0ea3bb7 contract, 736f7a5 seam, 5e40ff3 evidence): landscry.macro_design.v1 carries the six composition rasters with canonical binary-encoded SHA-256 identity and a source provenance enum whose cloud_model variant is ready for MACRO-02. The composition seam takes an injected validated design, resamples it deterministically to the build grid, and re-keys every identity from the artifact hash; the default path is proven byte-identical live. A hand-authored ring-range artifact built t4b-custom-00b50f796906875f — relief 2127.6 m versus 4965.0, an 84,078-cell central lake versus 5,520 — and replayed to the identical review id and byte-identical field hashes. 459 workspace tests and pnpm check green.',
@@ -331,7 +337,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
         'docs/PREVIEW.md + agent/preview-loop f728d50..a25e5cf (pushed 2026-07-18/19): local Studio, custom review mode, 19/19 app tests, engine 50/50 lib tests, browser-verified request-to-provenance cycle',
         'Flagship Unreal export E2E-proven 2026-07-19: 256-tile complete-world package at matching engine revision, package-validation green (complete_world_acceptance and unreal_import_exercised honestly false), 87 s warm; revision-mismatch guard exercised on a real fork',
       ],
-      snapshot: { branch: 'agent/s1-sediment', head: '1c55b48', date: '2026-07-20', dirty: 1, ahead: 0, behind: 0 },
+      snapshot: { branch: 'agent/s1-sediment', head: '7166760', date: '2026-08-05', dirty: 0, ahead: 0, behind: 0 },
     },
     {
       id: 'worldheart',
