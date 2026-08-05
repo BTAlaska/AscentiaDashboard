@@ -11,7 +11,7 @@
 const GAP_META = {
   title: 'Ascentia - Coordination Depot',
   benchmark: 'Central coordination depot for game, content, tooling, evidence, release, and decisions',
-  updated: '2026-07-19',
+  updated: '2026-08-05',
   sourceDoc: 'Docs/Architecture/Item_Affix_Data_Contract.md',
   reviewDoc: 'Docs/Architecture/AAA_ARPG_Compendium.md + Docs/DesignerSurfaces/README.md',
 };
@@ -67,8 +67,8 @@ const COORDINATION_DEPOT = {
 
 const DASHBOARD_SUMMARY = {
   currentPhase: 'P0/P23 Content Spine gate, then P11 combat slices',
-  lastSourceCommit: 'db4d8b7 external-only Aether residue refill (validated closeout; Codex push policy-blocked, user publication path recorded)',
-  lastEvidenceRun: 'Tracked 2026-07-19 Aether residue decision: 20/20 automation and 34/34 dedicated two-client net-emulation fixture',
+  lastSourceCommit: '8f084b61 attack recovery authoring + PIE proof (pushed on codex/designer-compendium)',
+  lastEvidenceRun: '2026-08-05 authored recovery: 9/9 live clips applied, 0-mutation idempotence re-plan, focused PIE 26/26, attack→dodge 21/21, player smoke 57/57',
   blockingGates: [
     'P0/P23 Content Spine: CSV/source -> generated DataTable -> PDA overlay -> resolved runtime record -> dashboard evidence',
     'Decision Ledger: content authority, generated artifacts, fallback debt, mutation, and MCP policy signed before scale work',
@@ -260,6 +260,7 @@ const PROGRESS_HISTORY = [
   { t: '2026-07-18 17:00', label: 'Aether environmental magic + replication proof', have: 18, partial: 64, missing: 53, verified: 48, note: 'The P15 lane gained a substantial new system across 2026-07-16 -> 18: the Aether environmental magic field (sparse replicated grid, atomic ETH reservations, Aether Bolt, Magic Sight toggle reserving 35% MaxEth, five authoring volume types, arena director, weapon profiles, seeded pocket fields) under the revised direction — ETH is spell mana with Elden Ring rules and the FIELD is a reward layer (boss residue/supersaturation amplifies casts and drains toward the ambient norm). Recorded proof: the Ascentia.Aether automation suite stands 18/18 green (Docs/Architecture/Aether_EnvironmentalMagic.md, 2026-07-18) and the dedicated-server two-client replication fixture passed 33/33 with 120ms/5%-loss net emulation (Docs/Evidence/Latest/NetworkAetherSmokeSummary.md, run 20260718-094339): owner-scoped FastArray deltas, global modifiers, residue-draw race ledger. Diegetic ground tells (knee-high teal wisps to 50 m) and Breath-backed sprinting shipped as design/VFX iteration without automated evidence. A new "Aether environmental magic field" matrix row enters as partial (+1 row). Curation corrections in the same pass: the fallback-debt reporter row moves missing -> partial (the runtime production gate + report shipped and ran green active=0/blocking=0 on 2026-07-05; that row lives in the content-spine section, outside the 2026-06-12 baseline these counters track, so it shows in the matrix but not in these counts), and the co-op/P22 notes now reflect that the dedicated-server MP substrate is fixture-proven (checklist 10/10 as of 2026-07-06, some rows explicitly scoped). Verified counter unchanged on purpose: it counts Tools/remote_playtest.py scenarios; the Aether suite, whoosh suite, and network fixtures are recorded as their own evidence lanes. Recorded open remainder: node save-spine wiring, Magic Sight field Niagara + GameplayCues, weapon ability-set revoke, theme blending, editor heatmap, residue self-refill decision.' },
   { t: '2026-07-18 19:31', label: 'Aether save spine + Magic Sight cue art', have: 18, partial: 64, missing: 53, verified: 48, note: 'Published commit 370a754e closes the ready continuation: version-14 OwnedFragments with a fail-closed Save.Fragment.WorldActors.AetherNodes codec, streaming-safe stable-GUID activation state, compiled typed Magic Sight Niagara, and looping/burst Magic Sight/Aether Drain GameplayCues. Proof: editor build 22/22, Ascentia.Aether 19/19, asset validation 6/6, Niagara audit 3/3 UpToDate, and the dedicated two-client fixture 33/33 at 120 ms / 5% loss. Six ignored Content assets have exact tracked custody and rebuild/audit tools. Matrix counts stay unchanged because this hardens and presents the existing partial Aether row. The branch is clean and even with origin/codex/designer-compendium; residue self-refill remains a user decision.' },
   { t: '2026-07-19 15:54', label: 'Aether external-only residue refill implemented', have: 18, partial: 64, missing: 53, verified: 48, note: 'User decision implemented in local game commit db4d8b7: supersaturation energy is injected once per cell, residue-raised capacity sits outside passive regeneration, authored baseline energy can still recover underneath it, ordinary enemies and bosses share the deposit path, and consumed seeded pockets stay dormant until the explicit future-generator seam is invoked. Proof: final editor build passed, Ascentia.Aether 20/20, and the dedicated two-client net-emulation fixture passed 34/34 at 120 ms / 5% loss, including a four-second authoritative no-refill hold after two concurrent draws. The decision priority and hand-off are pruned. Matrix counts stay unchanged because this closes behavior on the existing partial Aether row. GitHub publication requires the user-owned Git client because tenant export policy denied the Codex push even after explicit user approval.' },
+  { t: '2026-08-05 13:17', label: 'Authored attack recovery + move-cancel PIE proof', have: 18, partial: 65, missing: 52, verified: 49, note: 'Pushed game commit 8f084b61 closes the attack-recovery authoring concern. The guarded bake targeted the nine UE5 root-motion sequences the live resolver actually reads, applied 9/9 windows with zero failures, and then re-planned as 9 already-authored / 0 planned. The focused ascentia_attack_recovery PIE scenario passed 26/26: default Greatsword resolved Authored=Y at 0.897 s move-cancel / 1.137 s release, Enhanced Input drove a MoveCancel at 0.933 s, the action mesh returned from single-node takeover to its Animation Blueprint, movement continued 120.9 cm, the screenshot is valid, and scoped logs contain no fallback, Blueprint error, or invalid-bodies warning. Adjacent attack→dodge is 21/21 and player smoke 57/57; editor build and audits pass. Full MVP automation retains the same two unrelated reds. Root-motion attacks move missing → partial and the new remote scenario raises verified 48 → 49; full authored montage breadth and human feel approval remain open.' },
 ];
 
 const DESIGNER_HANDOFFS = [
@@ -504,8 +505,8 @@ const DESIGNER_HANDOFFS = [
     how: [
       'Create three light combo animations that flow together.',
       'Create running, rolling, backstep, and jump attack animations.',
-      'Place damage notifies at the part of each swing that should hit.',
-      'Tune cancel windows so attacks feel responsive but not spammy.'
+      'Keep damage on the native swept blade-contact window; use notifies for authored presentation/timing surfaces, not damage authority.',
+      'Tune the existing per-clip recovery markers so attacks feel responsive but not spammy, then set bDesignerLocked on hand-tuned clips.'
     ],
     done: [
       'Each attack type is easy to recognize from the animation.',
@@ -513,7 +514,7 @@ const DESIGNER_HANDOFFS = [
       'The player can learn when to use each attack.'
     ],
     manual: 'In the boss arena, perform each attack type and check timing, recovery, and readability.',
-    verify: 'Tools/remote_playtest.py combo_chain, movement_attack, jump_attack',
+    verify: 'Tools/remote_playtest.py combo_chain, movement_attack, jump_attack, ascentia_attack_recovery',
     settings: ['Combo leniency', 'Input buffer readability', 'Movement attack indicator', 'Jump attack assist']
   },
   {
@@ -926,9 +927,9 @@ const GAP_DATA = [
   ]},
   { id: 'animation', name: 'Presentation — Animation', icon: '🎬', features: [
     { f: 'Locomotion blendspace', s: 'have', plan: '—', n: 'Template ThirdPerson ABP (cast-free); GASP motion-matching ported 5.7→5.8 + AssassinGirl-retargeted on branch claude/phase2-mover-split, now re-based onto BP_AscentiaGaspPlayer + GM_GaspTest for the current player path.' },
-    { f: 'Attack montages + notifies', s: 'partial', plan: 'P11', n: 'Damage lands on swept BLADE CONTACT (2026-06-12 law — supersedes notify windows for damage). The 2026-07-06 montage lane converted action animations to layered DefaultSlot dynamic montages (slot path proven at runtime; slotless ABPs auto-fall back to the legacy takeover), and the notify surface is now authored: UAscentiaAnimNotify_SwingWhoosh with per-weapon-family profiles plus an offline apex-bake tool, 152/152 notifies applied across the GreatSword/SpearShield sets with suite 13/13 (2026-07-07). Remaining: authored per-action montage set, cancel windows, root motion, and GameplayCue conversion.' },
-    { f: 'Upper / lower body layering (attack while moving)', s: 'partial', plan: 'P11', n: 'DefaultSlot dynamic montages now evaluate with locomotion underneath (2026-07-06 montage lane), so layered attack-while-moving works where the ABP has slots; slotless ABPs fall back to full-body takeover. Authored layering polish, per-state blend rules, and root motion remain.' },
-    { f: 'Root-motion attacks', s: 'missing', plan: 'P11', n: 'In-place clips + impulse; convert during the P11 montage pass' },
+    { f: 'Attack montages + notifies', s: 'partial', plan: 'P11', n: 'Damage lands on swept BLADE CONTACT (2026-06-12 law — supersedes notify windows for damage). The 2026-07-06 montage lane converted action animations to DefaultSlot dynamic montages with a single-node fallback for slotless costume ABPs; swing whoosh is authored across 152 GreatSword/SpearShield clips. As of pushed commit 8f084b61 (2026-08-05), the nine root-motion attacks used by the live MVP resolver also carry per-clip Ascentia Attack Recovery notify states; focused PIE proves Authored=Y, MoveCancel timing, animation-blueprint restoration, movement, and clean logs. Remaining: a complete authored per-action/family montage set, hand-tuned feel verdicts, upper-body slot integration, and broader GameplayCue conversion.' },
+    { f: 'Upper / lower body layering (attack while moving)', s: 'partial', plan: 'P11', n: 'DefaultSlot dynamic montages evaluate with locomotion underneath where the ABP has a slot; the current slotless costume ABP falls back to full-body single-node takeover. Recovery PIE now proves the takeover returns to the Animation Blueprint at MoveCancel so freed movement does not retain a frozen attack pose. True attack-while-moving still needs the costume ABP to consume the native upper-body/per-bone layer plus authored per-state blend rules.' },
+    { f: 'Root-motion attacks', s: 'partial', plan: 'P11', n: 'The nine UE5 GreatSword/SpearShield root-motion attack sequences used by the MVP resolver are enabled and runtime-proven through Mover; authored recovery windows now release movement authority per clip, with default Greatsword MoveCancel proven in PIE at 0.933 s. Remaining: full weapon-family/action coverage, network scenario expansion for authored timing, hand-tuned feel, and final montage/root-motion policy.' },
     { f: 'Foot IK / slope adaptation', s: 'missing', plan: 'P20', n: '' },
     { f: 'Turn-in-place, start / stop, lean', s: 'partial', plan: 'P20', n: 'GASP motion-matching provides turn-in-place / start-stop / lean — ported 5.7→5.8 + retargeted onto AssassinGirl, and now running through BP_AscentiaGaspPlayer + GM_GaspTest. Remaining work is hands-on PIE smoke/feel validation plus animation polish, not another player re-base.' },
     { f: 'Contextual anims (ladder, door, pickup)', s: 'missing', plan: 'P20', n: 'Traversal actors arrive in P17; anims polish in P20' },

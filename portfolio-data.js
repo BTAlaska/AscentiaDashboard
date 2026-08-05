@@ -34,9 +34,9 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'Ascentia: author the attack recovery windows now that the surface exists',
-      body: 'Diagnosed and shipped 2026-07-28 (commit 6d7d5d86). Swinging used to pin the hero for the entire attack clip — 2.67 s for a swing whose blade peaks at 0.75 s, so 72% of the lock was the animation pack’s settle-to-idle tail, and only a dodge or follow-up attack could break out. Attacks now carry an "Ascentia Attack Recovery" notify state a designer drags over each clip’s tail: its start is the earliest frame movement may break the attack, its end is where the attack releases movement outright. An offline bake tool stamps initial windows from each clip’s measured swing apex, and un-authored clips fall back to DA_CombatTuning alphas while logging themselves as authoring debt. The mechanism is proven green (build, 52-pass automation baseline, designer-surface checker) but NOT yet play-proven: no animation carries a real window yet, so every attack is currently running on the fallback. Next is running the bake tool and a PIE sweep to tune the feel.',
-      owner: 'Ascentia (bake + PIE tuning pass)',
+      title: 'Ascentia: choose the first production HUD skin direction',
+      body: 'Attack recovery authoring is closed at pushed game commit 8f084b61: all nine live MVP root-motion attacks carry authored windows, the guarded re-plan is idempotent, and the focused PIE gate passed 26/26 with an authored MoveCancel release, animation-blueprint restoration, post-release movement, screenshot evidence, and no fallback/runtime errors. Attack→dodge remains green at 21/21 and the player-path smoke remains green at 57/57. The next bounded player-facing slice is the first WBP_AscentiaHUD skin through the already-hardened DA_HUDTheme / UAscentiaHUDScreen seam; the user owns the visual direction and reference choice.',
+      owner: 'User visual direction / Ascentia UI lane',
     },
     {
       level: 'review',
@@ -58,9 +58,9 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'review',
-      title: 'Reconcile the InterfaceArtForge history split',
-      body: 'GitHub main was force-replaced with a release-prep commit sharing no history with the local line that is actually vendored into the game and skin-forge — PRs are impossible until YOU pick the truth line. The hand-off prompt below carries the decision slot (A: local line is truth / B: remote release-prep is truth / C: propose a merge plan first).',
-      owner: 'User decision / Interface Art Forge',
+      title: 'Finish the Interface Art Forge 1.0 Fab submission',
+      body: 'The canonical working tree now contains a UE 5.8 / Win64 1.0 release candidate: current GPT Image 2 request handling, buyer-safe API-key defaults, Fab descriptor/package validation, customer docs, listing copy, and a successful binary-engine BuildPlugin -Rocket run. The two vendored copies are synchronized. Submission still waits on YOU for publisher name, Fab product ID, license-tier prices, Created-with-AI answer, third-party declaration confirmation, media/demo choice, and permission to repair/publish the disconnected Git history. Clean engine-plugin installs, one buyer-style API request, UMG write-back coverage, and real listing screenshots remain proof gates.',
+      owner: 'User decisions + Interface Art Forge release lane',
     },
     {
       level: 'active',
@@ -76,26 +76,21 @@ window.PORTFOLIO_DATA = {
   // fill before pasting. Use String.raw so Windows paths survive verbatim.
   handoffs: [
     {
-      id: 'ascentia-attack-recovery-authoring',
-      title: 'Author the per-clip attack recovery windows and tune the feel in PIE',
+      id: 'ascentia-first-hud-skin',
+      title: 'Build the first production WBP_AscentiaHUD skin',
       target: 'Any agent · D:\\Ascentia\\repos\\game',
-      decision: false,
-      why: 'The surface shipped 2026-07-28 (6d7d5d86) and is build-green, automation-green, and contract-green, but no animation carries an authored window yet — every attack is running on the DA_CombatTuning fallback. The mechanism is unproven in play until the windows are stamped and someone swings.',
-      prompt: String.raw`Author the Ascentia attack recovery windows and tune the feel in PIE.
+      decision: true,
+      why: 'The native HUD theme and UMG skin seam are hardened, but the first production visual skin is still unchosen. The user needs to name the visual direction or provide a reference before this taste-dependent slice can claim success.',
+      prompt: String.raw`Build and prove the first production Ascentia HUD skin.
 
-Start in D:\Ascentia\repos\game. Read AGENTS.md, Docs\rules\SESSION_BOOTSTRAP.md, and route via Docs\COMPENDIUM_MAP.md to the combat-motion lane. The surface and its reasoning are documented in Docs\DesignerSurfaces\Combat_PlayerPath\Attack_Recovery_Authoring.md — read that first; it carries the measured per-clip numbers and the boundaries. Branch codex/designer-compendium at 6d7d5d86.
+MY VISUAL DIRECTION: [describe the desired HUD mood, materials, density, and color language]
+REFERENCE: [attach an image or name an approved reference; write "use the current Mythic Core title-screen language" if no new reference]
 
-STATE: attacks used to hold movement authority for the whole animation clip (2.67 s default light attack against a 0.75 s swing). They now resolve a recovery window at attack start. UAscentiaAnimNotifyState_AttackRecovery is placeable per clip on the AscentiaActionWindows track, but NOTHING IS AUTHORED YET, so every attack falls back to the DA_CombatTuning alphas (UnauthoredMoveCancelStartAlpha 0.35 / UnauthoredLockReleaseAlpha 0.45) and logs 'NATIVE FALLBACK - no authored recovery window' once per clip.
+Start in D:\Ascentia\repos\game on codex/designer-compendium. Read AGENTS.md, Docs\rules\SESSION_BOOTSTRAP.md, route through Docs\COMPENDIUM_MAP.md to the UI/designer-surface rules, then inspect Docs\DesignerSurfaces\Presentation_UI\README.md, the presentation.hud_theme_and_screen surfaces.json row, DA_HUDTheme, UAscentiaHUDScreen, WBP_AscentiaHUD, and nearby PIE evidence before editing. Game commit 8f084b61 is the current pushed recovery closeout. The attack-recovery concern is finished; do not reopen it unless a regression is observed.
 
-STEP 1 - bake initial windows. Run Tools\animation\bake_attack_recovery_windows.py in plan mode first and read the report under Saved\AscentiaEvidence\P11\AttackRecovery\<RunId>\. Check the window_start / window_end / tail_removed columns against each clip's apex before applying. Then re-run with --apply --confirm APPLY_ASCENTIA_ATTACK_RECOVERY_WINDOWS. The tool is idempotent and skips already-authored and designer-locked clips. Tune --cancel-lead-seconds (default 0.18 after apex) and --release-hold-seconds (default 0.42 after apex) if the first pass reads wrong; do not hand-edit clips before baking or the bake will skip them.
+Create one coherent production HUD skin through the existing theme/UMG seam. Preserve native view models, authority, replication, settings/accessibility boundaries, and input/glyph ownership; styling must never read or mutate gameplay state directly. Use the vendored InterfaceArtForge plugin only as it currently exists in this repo; canonical-to-vendored sync is now repeatable, so do not edit this consumer copy directly or take over the separate Fab/Git release lane. Keep every content mutation narrow, reproducible, and evidence-producing; Content is intentionally gitignored, so record exact asset custody/rebuild steps.
 
-STEP 2 - PIE tuning sweep. Play MVP_Arena and swing each weapon family: light, heavy, charged heavy, sword+shield, air attack. The log prints 'Lock=<s> MoveCancel=<s> Authored=Y|N' per attack and 'Ascentia attack recovery released: ... Reason=RecoveryEnd|MoveCancel|Dodge|Attack|Fall'. Confirm Authored=Y everywhere after step 1. Judge: does the swing still commit you, can you walk out at a point that feels earned rather than twitchy, does the montage blend out instead of popping, and does a heavier weapon still feel heavier? Hand-tune individual clips in the AnimSequence editor and set bDesignerLocked on anything you tune so re-bakes leave it alone.
-
-STEP 3 - verbs the sweep must not regress: dodge-cancel out of an attack, light combo chaining, sprint out of recovery (allowed only once the window opens), jump, and the attack fall-guard. Also run the deferred playtest scenarios the 2026-07-23 designer-surface pass never ran: Tools\remote_playtest.py gasp_smoke / gasp_dodge_motion / gasp_attack_dodge_cancel --project Ascentia.
-
-MULTIPLAYER: do not move window resolution onto runtime notify events. Attack presentation is authority-only and notifies do not fire reliably on a dedicated server, which is why the window is resolved at attack start into the replicated OpenTimedActionWindow and move-cancel reads UMoverComponent::GetLastInputCmd() rather than local Enhanced Input. If you change this, re-prove it with the dedicated-server two-client fixture.
-
-VALIDATE: editor build green, Ascentia automation at the 52-pass baseline (Ascentia.MVP.ExtensionSafetySourceContract and Ascentia.MVP.LivePathAssetContract are PRE-EXISTING reds owned by other lanes - see Cross-session asks in D:\Ascentia\ops\PIPELINE_STATUS.md), and Tools\governance\check_designer_surface_contract.py clean. Commit on green per Docs\rules\SOURCE_CONTROL.md, then emit the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md: update the ascentia entry with the play-proven result, prune this hand-off and its priority, run refresh-portfolio.ps1 + check-links.ps1 + a JavaScript syntax smoke, update D:\Ascentia\ops\PIPELINE_STATUS.md (edit it with a file-editing tool, NOT PowerShell - PS 5.1 mojibakes its UTF-8), and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+Required proof: capture readable 2560x1440-or-larger PIE frames for exploration plus combat/resource states, verify no clipping/overlap at the tested resolution, run the narrow HUD/player-path scenarios and scoped log scan, run the Win64 Development Editor build and Tools\governance\check_designer_surface_contract.py, and leave human taste/accessibility verdicts explicitly open where automation cannot decide them. Update the owning Designer Surface row and screenshot routing. Commit and push on green per Docs\rules\SOURCE_CONTROL.md, then perform the Portfolio Signal: update priorities/handoff/project consistently, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, update D:\Ascentia\ops\PIPELINE_STATUS.md with a file-editing tool, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
     {
       id: 'worldheart-reliquary-r7-review',
@@ -129,18 +124,32 @@ Start in D:\Ascentia\repos\game-world-asset-factory and read AGENTS.md, docs\pro
 For option A, select Generated result → Needs human review and Asset availability → 3D models only. Inspect Unlit texture, Neutral studio, Full screen, Open GLB, and Folder path, then record Keep or Reject plus notes. Keep means retain this exact hash-bound GLB/package as a candidate only; it does not approve Nanite, collision, PCG, Worldheart mounting, Unreal import, or production use. For option B, use Theme → Physical and Forward generation scope → Active Meshy 6 Nanite catalog, inspect the 36 forms and their Images 2 prompts, and record only prompt-level Revise/No-go notes; do not create an approval. For option C, design the smallest identity-consistent multi-view experiment, list required Images 2 calls, Meshy multi-image request shape, evidence changes, additional cost, and a no-credit test plan, then stop before implementation or provider calls. For option D, derive an exact single-image pilot only from prompt-reviewed active Meshy 6 atomic forms, list IDs and estimated credits, and stop for user approval before creating an approval record or calling providers. T2 must remain excluded in every option. Run all no-credit smokes, update docs\project-status.md first, follow D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md, refresh the dashboard, check links/JavaScript, and sweep artifacts under D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`
     },
     {
-      id: 'interfaceforge-history-split',
-      title: 'Resolve the InterfaceArtForge history split',
-      target: 'Any agent · D:\\Ascentia\\repos\\interface-forge',
+      id: 'interfaceforge-fab-release',
+      title: 'Finish and submit Interface Art Forge 1.0 to Fab',
+      target: 'User + any agent · D:\\Ascentia\\repos\\interface-forge',
       decision: true,
-      why: 'GitHub main was force-replaced with release-prep work sharing no history with the local vendored line — no PR is possible until one line is chosen.',
-      prompt: String.raw`Resolve the InterfaceArtForge history split (found 2026-07-18).
+      why: 'The local release candidate is build-green, but Fab submission needs publisher-owned listing choices, fresh visual/behavior proof, a listing-specific product ID, a stable download link, and explicit authority for Git hosting/history repair and the final external submit action.',
+      prompt: String.raw`Finish and submit Interface Art Forge 1.0 to Fab.
 
-Context: the local canonical repo D:\Ascentia\repos\interface-forge holds the line e59c0db -> 8a23b83 -> 34471dc -> 6370b66 (branch claude/docs-accuracy, pushed to origin). This line's plugin files are the ones actually vendored into D:\Ascentia\repos\game\Plugins\InterfaceArtForge and D:\Ascentia\sandboxes\skin-forge\Plugins\InterfaceArtForge (content-identical after newline normalization, verified 2026-07-18). But GitHub main (BTAlaska/InterfaceArtForge) was force-replaced at some point with the single commit b4dcfac "Initial Interface Art Forge plugin release prep", which adds Marketplace/, Tools/BuildFabPackage.ps1, and a ~374-line-larger Source/InterfaceArtForgeEditor/Private/InterfaceArtForgeEditor.cpp. The two histories share no common ancestor ("no history in common"), so PRs are impossible until reconciled. origin/main is already fetched locally.
+PUBLISHER NAME: [legal/display publisher name]
+FAB PRODUCT ID: [32-character ID from the Publisher Portal draft, or CREATE DRAFT]
+PERSONAL PRICE: [USD amount]
+PROFESSIONAL PRICE: [USD amount]
+CREATED WITH AI: [YES / NO, as the publisher's declaration]
+THIRD-PARTY SOFTWARE: [CONFIRM "uses OpenAI API remote service; no third-party libraries bundled" / REVISE]
+DEMO VIDEO: [CREATE / OMIT]
+GIT AUTHORITY: [A: preserve local canonical tree and reconnect origin/main with a history-preserving merge; B: prepare the exact merge plan only; C: leave Git untouched and use another stable host]
+FINAL SUBMIT AUTHORITY: [YES, submit after all checks / STOP AT READY-FOR-REVIEW]
 
-MY DECISION: [pick one — (A) the local line is truth: graft the remote release-prep additions on top of it; (B) remote b4dcfac is truth: replay the local docs/sync commits onto it; (C) inspect both and propose a merge plan for my review before changing anything]
+Start in D:\Ascentia\repos\interface-forge. Read AGENTS.md, README.md, Docs\FabSubmissionChecklist.md, Marketplace\FabListing.md, Docs\Feature_Set_Inventory.md, and Docs\Architecture_Review.md. Preserve the current dirty claude/docs-accuracy working tree: it contains the uncommitted 1.0 release candidate, so do not reset, checkout over it, or discard files. The canonical source is this repo; D:\Ascentia\repos\game\Plugins\InterfaceArtForge and D:\Ascentia\sandboxes\skin-forge\Plugins\InterfaceArtForge are consumers only. The current candidate targets UE 5.8 / Win64, uses gpt-image-2 via /v1/images/edits, defaults API keys to session-only, includes source/customer docs/listing copy, and passed installed-binary UE 5.8 BuildPlugin -Rocket on 2026-08-05 with exit 0 and no plugin-source warning locations. Do not claim the product is submitted, accepted, production-proven, multi-platform, or compatible with untested UE versions.
 
-Steps: read AGENTS.md first. Diff the lines (git diff origin/main claude/docs-accuracy) and summarize what each uniquely contains before acting. Whichever direction applies, preserve BOTH lines: tag the non-chosen head (e.g. archive/pre-reconcile-20260718) and push the tag — never discard history. Build the reconciled branch, run descriptor/module/preset validation, run .\sync-vendored.ps1 -DryRun to preview vendored impact (note: a full source sync flips vendored files LF->CRLF — newline-only, but say so), push, and open a PR to main once histories connect. Close out with the Portfolio Signal per D:\Ascentia\repos\dashboard\PORTFOLIO_UPDATE_PROTOCOL.md (update the interfaceforge entry, prune this hand-off, refresh the pulse).`,
+First review the working-tree diff and confirm the publisher fields above. Run the UE 5.8 BuildPlugin command from the checklist. Install that result under Engine\Plugins\Fab\InterfaceArtForge and launch fresh Blueprint and C++ projects. Run the local smoke test; create the starter UMG playground; make one real buyer-style GPT Image 2 request; and verify restart plus Texture2D write-back for Image, Border, Button, CheckBox, and ProgressBar—or narrow the listing claim. Capture real 1920x1080-or-larger PNG/JPEG listing media from the final package (each under 3 MB, all 2D media under 25 MB) covering the workbench, embedded Forge tab, Skin Fit, candidate review, and successful import. Keep generated art labeled as example output and do not treat it as included production-ready art.
+
+Create/finish the Fab draft, submit the required third-party-software detail form, then run Tools\BuildFabPackage.ps1 with the real product ID. Inspect the zip for one InterfaceArtForge root, source copyright, FabURL, Config/Content/Resources/Source, customer docs, no Binaries/Intermediate/Saved/Tools/Marketplace/.git, and paths <=170 characters. Host it behind a stable Project File Link that opens a download page without sign-in or permission requests. Complete the listing fields and only perform the irreversible external submit action if FINAL SUBMIT AUTHORITY is YES.
+
+Git history remains disconnected: origin/main is the one-commit b4dcfac release-prep line while claude/docs-accuracy descends from the locally governed line at 6370b66. The current working tree already ports the reusable release scaffolding and removes an internal Mythic Core-specific WBP helper. Under option A, preserve both heads (tag the displaced head), create a history-preserving reconciliation whose tree is the validated canonical release candidate, push, and open/review the PR; never force-push or discard either line. Under B, stop after a precise plan. Under C, leave Git unchanged.
+
+After material changes, update the plugin's governed record first, sync canonical to both consumers with sync-vendored.ps1 (dry-run, apply, dry-run = zero), then perform the Portfolio Signal in D:\Ascentia\repos\dashboard: keep priorities/handoff/project consistent, run refresh-portfolio.ps1, check-links.ps1, and a JavaScript syntax smoke. Sweep only this round's disposable .scratch outputs per D:\Ascentia\ops\ARTIFACT_HYGIENE.md; do not delete protected evidence or unrelated caches.`,
     },
     {
       id: 'retirement-approvals',
@@ -252,27 +261,28 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       futureName: 'Planned product name: Mythic Core',
       role: 'Main game',
       state: 'active',
-      phase: 'Front end shipped and designer surfaces hardened; combat feel is the open question',
+      phase: 'Front end shipped; attack recovery authored and PIE-proven; first production HUD skin awaits visual direction',
       summary: 'The authoritative UE 5.8 open-world RPG. The Mythic Core title screen is now the packaged front end (press-any-button attract, Elden Ring style menu, Play travels into MVP_Arena, native looping title music). Aether remains the reward layer: ETH is spell mana, enemy attacks deposit per-cell supersaturation, casts consume charge for overcharge, and depleted residue never refills through passive field time.',
-      focus: 'Author the new per-clip attack recovery windows and tune them in PIE, and let the user swap their own background/logo/wordmark art into DA_TitleScreen.',
-      capability: 'Native title screen stack: one DataAsset designer surface (art, menu entries, music, UI sounds, timing, ambient motion), BindWidgetOptional widget open to WBP/skin-tool reskins, GameMode-owned MP3-safe music looping, and a data-driven menu where only Play and Quit act. Designer surfaces were hardened on 2026-07-23: the registered manifest went 97 → 119 rows, DA_HUDTheme themes the production HUD, UAscentiaHUDScreen exposes a UMG skin seam for InterfaceArtForge, and combat/resource/progression magnitudes moved onto DA_CombatTuning and DA_ResourceTuning behind a Resolve()-or-CDO fallback, so an unconfigured project behaves exactly as before. The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future environmental generators. Front-end map never loads on dedicated servers (ServerDefaultMap pinned).',
-      proof: 'Title screen PIE probe PASS 9/9 (Docs/Evidence/TitleScreen/pie_probe_report.json + in-engine captures): settings applied, music started, disabled entry refused travel, Play arrived in MVP_Arena. Aether: commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss. The designer-surface pass (11 commits, 95c7f58..5a9e389, pushed) was build-green per commit and held automation at the 52-pass baseline — but its PIE playtest scenarios were never run, so those surfaces are compile-and-contract proven, not play-proven. Attack recovery shipped 2026-07-28 (6d7d5d86) build-green, with automation held at the 52-pass baseline and the designer-surface checker clean at 120 surfaces — but it is mechanism-proven only: no animation carries an authored window yet, so every attack runs the tuning fallback, and no PIE sweep has been done.',
+      focus: 'Choose and build the first WBP_AscentiaHUD production skin, let the user swap their own background/logo/wordmark art into DA_TitleScreen, and retain a human multi-weapon recovery-feel review as taste evidence rather than a machine gate.',
+      capability: 'Native title screen stack: one DataAsset designer surface (art, menu entries, music, UI sounds, timing, ambient motion), BindWidgetOptional widget open to WBP/skin-tool reskins, GameMode-owned MP3-safe music looping, and a data-driven menu where only Play and Quit act. Designer surfaces were hardened on 2026-07-23: the registered manifest went 97 → 119 rows, DA_HUDTheme themes the production HUD, UAscentiaHUDScreen exposes a UMG skin seam for InterfaceArtForge, and combat/resource/progression magnitudes moved onto DA_CombatTuning and DA_ResourceTuning behind a Resolve()-or-CDO fallback, so an unconfigured project behaves exactly as before. Attack recovery now resolves designer-authored per-animation windows for the nine live MVP root-motion attacks, releases movement through server-owned Mover input, and restores the full-body single-node presentation to the animation blueprint when movement resumes. The multiplayer-aware Aether field separates effective capacity from its regeneration ceiling; seeded pockets stay dormant after consumption and expose an authority-only regeneration seam for future environmental generators. Front-end map never loads on dedicated servers (ServerDefaultMap pinned).',
+      proof: 'Title screen PIE probe PASS 9/9 (Docs/Evidence/TitleScreen/pie_probe_report.json + in-engine captures): settings applied, music started, disabled entry refused travel, Play arrived in MVP_Arena. Aether: commit db4d8b7 passed the final editor build, Ascentia.Aether 20/20, and the dedicated-server two-client fixture 34/34 under 120 ms / 5% loss. Attack recovery is pushed at game commit 8f084b61: guarded apply 9/9, idempotent re-plan 9 already-authored / 0 planned, focused PIE 26/26 with Authored=Y, MoveCancel at 0.933 s against the 0.897 s marker, single-node → animation-blueprint restore, 120.9 cm post-release movement, screenshot and clean scoped logs; attack→dodge is 21/21 and player smoke 57/57. Win64 editor build, attack-animation audit, 120-surface contract, 16/16 controls coverage, and Python compile pass. Full Ascentia.MVP remains at the known 12-pass / 2-pre-existing-red case baseline (Aether test source scan and stale GameDefaultMap expectation).',
       blockers: [
         'Unreal Content stays gitignored by design: Aether asset custody is recorded in AetherContinuationSummary.md, and the title screen content rebuilds from tracked scripts (Tools/create_title_screen_content.py + Tools/titlescreen).',
         'Specific environmental generator content does not exist yet; the authority-only regeneration hook is intentionally present for later authored integration.',
       ],
-      next: 'Run the attack-recovery bake tool to author real per-clip windows, then a PIE sweep to tune the feel and confirm dodge-cancel, combo chaining, and sprint-out-of-recovery did not regress (ascentia-attack-recovery-authoring hand-off). User: drop in your own title background/logo/wordmark via /Game/Ascentia/TitleScreen/DA_TitleScreen (steps in Docs/DesignerSurfaces/TitleScreen_README.md). Then the deferred PIE playtest sweep of the 07-23 hardened designer surfaces, and the first WBP_AscentiaHUD skin.',
+      next: 'User: choose the first HUD visual direction/reference in the ascentia-first-hud-skin hand-off, and optionally drop in your own title background/logo/wordmark via /Game/Ascentia/TitleScreen/DA_TitleScreen. Then build and prove the first WBP_AscentiaHUD skin through DA_HUDTheme/UAscentiaHUDScreen. A human multi-weapon recovery-feel sweep may hand-tune individual clips and set bDesignerLocked, but machine authoring/runtime proof is closed.',
       authority: 'D:/Ascentia/repos/game',
       evidence: [
         'Docs/Evidence/TitleScreen/pie_probe_report.json — 9/9 PIE flow probe with in-engine attract/menu/arena captures',
         'Docs/DesignerSurfaces/TitleScreen_README.md + surfaces.json frontend.title_screen — designer surface, boundaries, validation',
         'Docs/Evidence/Latest/AetherResidueRefillSummary.md — external-only refill decision, implementation, and validation proof',
         'Docs/Evidence/Latest/NetworkAetherSmokeSummary.md — latest 34/34 dedicated two-client run',
-        'Git HEAD 6d7d5d86 (2026-07-28) on codex/designer-compendium — attack recovery authoring surface; unpushed',
+        'Docs/Evidence/Latest/AttackRecoverySummary.md — 9/9 authored windows, idempotence, 26/26 recovery PIE, adjacent regressions, build/audits, and baseline disclosures',
+        'Git HEAD 8f084b61 (2026-08-05) on codex/designer-compendium — attack recovery authored, PIE-proven, and pushed',
         'Docs/DesignerSurfaces/Combat_PlayerPath/Attack_Recovery_Authoring.md + surfaces.json combat.attack_recovery_anim_notify — designer surface, knobs, native boundary',
         'Saved/AscentiaEvidence/P11/SwingAudio/20260707-081157-*/swing_whoosh_notify_bake.json — per-clip length + apex measurements behind the attack-recovery finding',
       ],
-      snapshot: { branch: 'codex/designer-compendium', head: '6d7d5d86', date: '2026-07-28', dirty: 1, ahead: 1, behind: 0 },
+      snapshot: { branch: 'codex/designer-compendium', head: '8f084b61', date: '2026-08-05', dirty: 1, ahead: 0, behind: 0 },
     },
     {
       id: 'dashboard',
@@ -444,25 +454,27 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'Interface Art Forge / Mythic Skin Forge',
       role: 'Game UI skin tooling',
       state: 'attention',
-      phase: 'V1 implemented / Marketplace hardening',
+      phase: '1.0 Fab release candidate / owner and evidence gates open',
       summary: 'Interface Art Forge is the plugin authority; MythicSkinForge is an unversioned UE 5.8 proving-ground project that contains a copied plugin and generated UI assets. They are one product track, not two independent roadmaps.',
-      focus: 'Marketplace packaging and clean-install evidence. The canonical-to-vendored sync path now exists: sync-vendored.ps1 + Docs/VENDORED_SYNC.md (docs re-synced 2026-07-18).',
-      capability: 'The plugin documents a complete V1 workbench: standalone and embedded UMG flows, Skin Fit templates/masks, Images 2 generation, slicing, candidate lifecycle, style references, presentation controls, and supported UMG write-back.',
-      proof: 'The canonical repo passes descriptor/module/preset validation and is pushed current at 6370b66 on claude/docs-accuracy. All seven production files are content-identical across canonical, Game, and Skin copies after newline normalization (raw hashes differ only by CRLF-vs-LF, verified 2026-07-18); the successful UE 5.8 Game build compiled both equivalent modules.',
+      focus: 'Close the Fab publisher decisions and clean-install/API/write-back/media evidence, inject the real Fab product ID, host the final source zip, and submit only with explicit owner authority.',
+      capability: 'The 1.0 candidate targets UE 5.8 / Win64 and provides standalone plus embedded UMG workflows, Skin Fit template/mask export, direct GPT Image 2 edits requests, 245 traceable prompt presets, candidate review/slicing/alpha cleanup, presentation and 9-slice controls, Texture2D import, and supported UMG brush/style write-back. Release scaffolding now includes a hardened descriptor, buyer-safe session-only API-key default with explicit plaintext opt-in, customer docs, listing copy, a filtered source-package builder, FabURL injection, SHA-256 manifesting, path/copyright checks, and canonical-to-consumer sync.',
+      proof: 'On 2026-08-05, installed binary UE 5.8 BuildPlugin -Rocket compiled editor plus runtime/game Win64 targets and exited 0 with BUILD SUCCESSFUL and zero errors; warning locations were Epic UE headers, plus the installed MSVC 14.51-versus-preferred-14.50 notice, with none in plugin source. Descriptor/module/preset/PowerShell checks passed; the 245-preset JSON parses; draft structure and dummy-ID FabURL injection checks passed. The filtered UAT output includes Config/customer docs, excludes .gitkeep, and stays under the 170-character path limit. Full canonical sync followed by dry-run reports zero changes across 23 files in both Game and skin-forge consumers. This is compile/package proof, not clean-install, live-API, screenshot, acceptance, or submission proof.',
       blockers: [
         'MythicSkinForge is not under Git and mixes sample content, generated assets, caches, and the copied plugin (it now carries an AGENTS.md stating the canonical relationship).',
-        'The workbench remains a large ownership monolith slated for service/adaptor extraction.',
-        'Clean UE screenshots, demo video, API-key shipping policy, and broader smoke coverage remain; compat wording updated to UE 5.8.',
-        'HISTORY SPLIT (found 2026-07-18): GitHub main was force-replaced with a single release-prep commit b4dcfac (Marketplace/ folder, BuildFabPackage.ps1, ~374-line larger editor module) that shares NO history with the local canonical line. claude/docs-accuracy is pushed but a PR is impossible until the user reconciles which line is truth.',
+        'Owner fields remain open: publisher identity, 32-character Fab product ID, Personal/Professional prices, Created-with-AI answer, third-party declaration confirmation, media/demo choice, stable download host, and final submit authority.',
+        'Clean UE 5.8 engine-plugin installs in blank Blueprint and C++ projects, smoke/API/restart proof, representative UMG write-back coverage, and real 1920x1080-or-larger listing screenshots are not yet captured.',
+        'The workbench remains a large ownership monolith slated for post-1.0 service/adaptor extraction; it is a maintainability debt, not a current compile gate.',
+        'GitHub origin/main remains the unrelated one-commit b4dcfac release-prep history. The canonical 6370b66 line plus current release-candidate working tree is preserved, but publishing/reconciliation needs explicit user authority and must retain both heads.',
       ],
-      next: 'USER DECISION: reconcile the two InterfaceArtForge histories — remote b4dcfac release-prep versus the local docs-accuracy line (the one actually vendored into the game and skin-forge). Then merge and capture the Marketplace evidence set using sync-vendored.ps1 for installs.',
+      next: 'Use the interfaceforge-fab-release hand-off: supply the publisher/listing/price/declaration/media/Git/submit decisions; then run clean-install, live GPT Image 2, representative UMG write-back, restart, and screenshot proof; inject the real Fab product ID, host the final validated source zip, repair Git only under the chosen authority, and submit only if explicitly authorized.',
       authority: 'D:/Ascentia/repos/interface-forge (plugin); D:/Ascentia/sandboxes/skin-forge (proving ground only)',
       evidence: [
-        'Feature_Set_Inventory.md V1 completion section',
-        'Architecture_Review.md refactor targets',
-        'sync-vendored.ps1 -DocsOnly run 2026-07-18: 7 docs refreshed in both vendored copies; production files newline-only diffs',
+        'Docs/FabSubmissionChecklist.md — governed 1.0 gates and dated BuildPlugin compile evidence',
+        'Marketplace/FabListing.md — buyer-facing listing draft, exact limitations, technical fields, and media plan',
+        'Docs/Feature_Set_Inventory.md + Docs/Architecture_Review.md — current capability, API posture, boundaries, and remaining proof debt',
+        'sync-vendored.ps1 full sync 2026-08-05: 23 governed files in scope; post-sync dry-run reports zero changes for both consumers',
       ],
-      snapshot: { branch: 'claude/docs-accuracy', head: '6370b66', date: '2026-07-18', dirty: 0, ahead: 0, behind: 0 },
+      snapshot: { branch: 'claude/docs-accuracy', head: '6370b66', date: '2026-08-05', dirty: 1, ahead: 0, behind: 0 },
     },
     {
       id: 'skinforge',
@@ -524,7 +536,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       contract: 'Versioned plugin install + reviewed candidate art',
       to: 'MythicSkinForge proving ground',
       then: 'Validated skin assets/workflow → Ascentia UI',
-      posture: 'Current copied plugin is drifted; sync is not yet repeatable',
+      posture: 'Canonical → Game and skin-forge sync is repeatable and reports zero drift across its 23-file scope; Fab compile/package proof is current, while clean-install/live-API/write-back/screenshots and designer review remain open before release or Ascentia production-art claims',
     },
     {
       from: 'All projects',
