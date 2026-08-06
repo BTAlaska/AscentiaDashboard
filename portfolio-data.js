@@ -39,10 +39,10 @@ window.PORTFOLIO_DATA = {
       owner: 'Ascentia equipment proof lane / User visual direction for HUD',
     },
     {
-      level: 'review',
-      title: 'Review Worldheart\'s 1.84 km Mythic Core Apex structure',
-      body: 'WH-WO-0053 has frozen Crown of the Hollow Star, one inhabited reliquary-city and pilgrimage citadel measuring 1,840 Ã— 1,220 Ã— 771 m. Its exact manufactured and independently imported side-to-side route is 1,680.752 m, or 4 min 40.13 s at 6.0 m/s, across fifteen spatial chapters. The native plan, GLB, report, route proof, artifact identity, and decoded review pixels reproduce; clean Blender import, focused tests, and two byte-identical clean builds pass. The technical candidate is ready, but gorgeousness, qualified architecture, AAA, controller/Unreal traversal, and every affected gate remain open. YOU now judge the whole, approach, route, void, crown, section, and close detail.',
-      owner: 'User decision (Apex visual verdict) / Worldheart',
+      level: 'active',
+      title: 'Worldheart: refine the Apex crown and visual hierarchy',
+      body: 'WH-WO-0054 freezes Crown of the Hollow Star R1 as the reliable substrate: the 1,840 m whole and exact 1,680.752 m / 4 min 40.13 s route are unchanged, while real wall apertures, occupied galleries, guarded secondary circulation, roof edges, crown access, clustered shafts, capitals, and tracery survive exact GLB replay and clean Blender import. Fable\'s useful construction vocabulary was salvaged under native dimensions; its scaffold/revision sprawl remains outside authority. Direct inspection is also decisive: the whole is grand and walkable, but the neutral finish, evenly repeated arch cadence, and especially the crown custody threshold are not yet gorgeous enough. Continue only with a focused crown, program-specific hierarchy, and restrained material/value pass; do not restart the composition or move to Unreal.',
+      owner: 'Worldheart',
     },
     {
       level: 'active',
@@ -107,25 +107,18 @@ Create one coherent production HUD skin through the existing theme/UMG seam. Pre
 Required proof: capture readable 2560x1440-or-larger PIE frames for exploration plus combat/resource states, verify no clipping/overlap at the tested resolution, run the narrow HUD/player-path scenarios and scoped log scan, run the Win64 Development Editor build and Tools\governance\check_designer_surface_contract.py, and leave human taste/accessibility verdicts explicitly open where automation cannot decide them. Update the owning Designer Surface row and screenshot routing. Commit and push on green per Docs\rules\SOURCE_CONTROL.md, then perform the Portfolio Signal: update priorities/handoff/project consistently, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, update D:\Ascentia\ops\PIPELINE_STATUS.md with a file-editing tool, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
     {
-      id: 'worldheart-mythic-core-apex-review',
-      title: 'Judge Crown of the Hollow Star',
-      target: 'User + Codex - D:\\Ascentia\\repos\\worldheart',
-      decision: true,
-      why: 'WH-WO-0053 produced the requested several-minute Apex structure and stopped at the human boundary. Exact native manufacture, independent clean import, route remeasurement, deterministic replay, focused tests, and clean builds pass; direct Program Steward judgment of grandeur, beauty, detail, and the player journey is deliberately blank. Unreal, controller traversal, final materials, performance, accessibility, and gate promotion remain unproven.',
-      prompt: String.raw`Review the frozen WORLDHEART Mythic Core Apex technical candidate, Crown of the Hollow Star.
+      id: 'worldheart-mythic-core-apex-visual-hierarchy',
+      title: 'Refine Crown of the Hollow Star\'s summit hierarchy',
+      target: 'Codex - D:\\Ascentia\\repos\\worldheart',
+      decision: false,
+      why: 'WH-WO-0054 proves the several-minute Apex route, real occupied depth, and deterministic detail substrate, and direct inspection narrows the remaining failure: the crown is too blunt, district grammar is too even, and the neutral value/material hierarchy does not yet produce gorgeous architecture. The user has already directed continued development toward grand, detailed, gorgeous, walkable Mythic Core architecture.',
+      prompt: String.raw`Continue WORLDHEART's Crown of the Hollow Star toward a genuinely gorgeous Mythic Core Apex while preserving its proven grand scale and several-minute walkability.
 
-MY VERDICT: [PASS / FAIL] â€” [plain-language visible reason]
-WHOLE: [pass/fail + reason]
-APPROACH: [pass/fail + reason]
-ROUTE: [pass/fail + reason]
-VOID: [pass/fail + reason]
-CROWN: [pass/fail + reason]
-SECTION: [pass/fail + reason]
-CLOSE DETAIL: [pass/fail + reason]
+Start in D:\Ascentia\repos\worldheart on codex/mythic-core-apex-r1. Read AGENTS.md, docs\worldheart\README.md, docs\worldheart\08_workorders\WH-WO-0054_MYTHIC_CORE_APEX_ARCHITECTURAL_DEPTH_AND_OCCUPATION_R1.md, docs\worldheart\09_reviews\gates\WH-ATT-MYTHIC-CORE-APEX-R1-20260805-0002.json, and docs\worldheart\11_handoffs\WH-HANDOFF-0057_MYTHIC_CORE_APEX_ARCHITECTURAL_DEPTH_AND_OCCUPATION_R1.md. Inspect the frozen reviewer at D:\Ascentia\data\worldheart-output\master_architect_mythic_core_apex_r1\machine-attempt-0004\review.html, especially aerial.png, west_portal_detail.png, west_gallery_occupation.png, ring_civic_loggia.png, void_bridge_player.png, and crown_custody_threshold.png.
 
-Start in D:\Ascentia\repos\worldheart on codex/mythic-core-apex-r0. Read AGENTS.md, docs\worldheart\README.md, docs\worldheart\08_workorders\WH-WO-0053_MYTHIC_CORE_APEX_WALKABLE_WORLD_STRUCTURE_R0.md, docs\worldheart\09_reviews\gates\WH-ATT-MYTHIC-CORE-APEX-20260805-0002.json, and docs\worldheart\11_handoffs\WH-HANDOFF-0056_MYTHIC_CORE_APEX_WALKABLE_WORLD_STRUCTURE_R0.md. Open D:\Ascentia\data\worldheart-output\master_architect_mythic_core_apex_r0\machine-attempt-0005\review.html and inspect aerial.png, plan.png, west_approach.png, west_nave.png, void_crossing.png, crown.png, both sections, and close views. Judge whether the result is genuinely grand, architecturally detailed and gorgeous, and legibly walkable. Native admission is technical only and must not influence the visual verdict.
+Preserve the exact 1,680.752065798395 m route, fifteen chapters, 1,840 m extent, occupied depth, native authority, and append-only evidence. Do not restart the composition, add uniform procedural detail, call a model/provider, mutate Unreal, refresh frozen manifests, or promote any gate. Author one bounded successor work order with affected gates red before mutation. Focus on: (1) turning the crown custody complex into a rare institutional summit with a legible arrival court, reliquary threshold, supported vertical mass, and differentiated silhouette; (2) giving west nave, civic ring, void crossing, and east release distinct program-specific expressions within one cultural grammar; and (3) a restrained material/value hierarchy that clarifies load, depth, touch, sacred custody, and weathering without texture noise pretending to be construction. Reuse the Fable-salvaged clustered shafts, capitals, ribs, tracery, bosses/corbels only where structure or occupation calls for them.
 
-The exact route is 1,680.752 m and independently derives 280.125 s at 6.0 m/s across fifteen chapters. Preserve attempts append-only. Do not mutate Unreal, start broad visual iteration, call a provider, refresh manifests, or promote any gate. If the candidate passes, prepare but do not execute one exact controller/Unreal consumption work order naming the project and mutation root. If it fails, record the visible failure by the seven categories above and authorize only that bounded repair. Update the governed Worldheart record first, reconcile Portfolio priorities/handoff/project surfaces, run refresh-portfolio.ps1, check-links.ps1, and a JavaScript syntax smoke, then sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+Manufacture into a new append-only attempt lane under WORLDHEART_OUTPUT_PARENT. Inspect whole, crown, ring, route, and player-height close views directly. Require native /W4 /WX tests, clean Blender import, exact replay, decoded-pixel comparison, repository verification with inherited failures unchanged, and an independent clean rebuild. Record an honest visual finding; automated metrics cannot certify beauty. Update the governed Worldheart work order/gate/handoff first, then reconcile Portfolio priorities/handoff/project surfaces, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
     {
       id: 'game-world-factory-batch-review',
@@ -391,31 +384,32 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       id: 'worldheart',
       name: 'Worldheart',
       role: 'World composition + architecture',
-      state: 'review',
-      phase: 'WH-WO-0053 - Mythic Core Apex walkable world structure R0',
-      summary: 'Worldheart has frozen Crown of the Hollow Star, one inhabited Mythic Core Apex reliquary-city whose exact side-to-side route takes 4 min 40.13 s at the governed reference run speed. It is a technically admitted human-review candidate, not a self-certified gorgeous, professional, AAA, or Unreal asset.',
-      focus: 'Review Crown of the Hollow Star and record visible pass/fail reasons for the whole, approach, route, void, crown, section, and close detail before authorizing either one exact repair or one exact controller/Unreal consumption lane.',
-      capability: 'The native C++ Master Architect now owns one 1,840 Ã— 1,220 Ã— 771 m inhabited reliquary-city commission: a 1,680.752 m unequal pilgrimage spine, fifteen spatial chapters, opposed gatehouses, occupied halls and bridge houses, a 24-segment inhabited ring, 160 m commanded hollow, four unequal tower-piers, double crown gallery, nested processional portals, chapter arches, waylights, LODs, collision, exact GLB, editable scene, route proof, and thirteen-view dossier. Blender remains a supervised geometry-only adapter.',
-      proof: 'Native manufacture and factory-empty Blender 5.1.2 clean import agree on 1,222 meshes, five materials, two UV sets, 65 semantics, 1,840 m extent, a continuous fourteen-segment route, 15.999994 m minimum width, 0.067977 maximum grade, and 280.125 s duration. Attempts 0005/0006 reproduce byte-identical plan, GLB, report, route proof, reviewer, artifact identity, and decoded pixels. Two clean warnings-as-errors app/test builds are byte-identical and focused tests pass. Both repository verifiers retain exactly eight inherited failures. Every affected gate remains red or unattempted.',
+      state: 'active',
+      phase: 'WH-WO-0054 - Mythic Core Apex architectural depth and occupation R1',
+      summary: 'Worldheart has frozen Crown of the Hollow Star R1 as the reliable technical substrate for the user\'s goal: a grand 1.84 km Mythic Core Apex with a 4 min 40.13 s side-to-side route, real occupied architectural depth, and deterministic construction detail. Direct inspection keeps the visual result open: the crown, district hierarchy, and neutral finish are not yet gorgeous enough.',
+      focus: 'Preserve the exact R1 route and substrate while developing one focused crown, program-specific architectural hierarchy, and restrained material/value refinement; do not restart the Apex or advance to Unreal.',
+      capability: 'The native C++ Master Architect preserves the 1,840 x 1,220 x 771 m inhabited reliquary-city and exact 1,680.752 m pilgrimage while supervising a 3,382-mesh R1 GLB with 114 deep apertures, twelve occupied gallery floors, 44 ring loggia bays, 126 roof-edge elements, sixteen crown-walk segments, 46 secondary circulation connections, and 700 clustered-shaft, capital, tracery, finial, and load-transfer details. The useful construction grammar from Fable\'s late Reliquary work is salvaged under exact native dimensions; Blender remains a bounded geometry adapter.',
+      proof: 'Factory-empty Blender 5.1.2 recovers all 3,382 meshes, five materials, two UV sets minimum, 722,006 / 1,144 / 968 LOD triangles, 216 collision triangles, required R1 semantics, and the unchanged fourteen-segment route at 15.999994 m minimum imported width, 0.067977 maximum grade, zero joint gap, and 280.125 s duration. Attempts 0004/0005 reproduce byte-identical plan, GLB, report, route proof, reviewer, and artifact identity plus identical decoded pixels in all nineteen renders. Two clean /W4 /WX app/test builds are byte-identical and the fresh native suite passes. Both repository verifiers retain exactly eight inherited failures. Every affected gate remains red or unattempted.',
       blockers: [
-        'Program Steward visual verdict is absent for Crown of the Hollow Star.',
-        'Qualified architectural and Creative Director acceptance of coherence, detail, gorgeousness, awe, and wonder is absent.',
+        'The crown custody threshold and silhouette remain too blunt for the requested rare Apex summit.',
+        'The arch cadence and district language remain too even, and the neutral material/value study still reads unfinished.',
+        'Qualified architectural and Creative Director acceptance of coherence, gorgeousness, awe, and wonder is absent.',
         'No controller or Unreal consumption, navigation, streaming, performance, accessibility, gameplay, final-material, engineering, or canon proof exists.',
         'G01 and every affected architecture/acceptance gate remain RED; inherited verifier failures remain unwaived.',
       ],
-      next: 'Open machine-attempt-0005/review.html and record the seven-category Apex visual verdict. If accepted, authorize one exact controller/Unreal consumption lane naming the project and mutation root; if rejected, authorize only the named visible repair.',
+      next: 'Authorize and execute one bounded successor work order that preserves R1 and refines only the crown summit, program-specific district hierarchy, and material/value structure; inspect the new whole and player-height views before any controller or Unreal lane.',
       authority: 'D:/Ascentia/repos/worldheart',
       evidence: [
-        'Git implementation revision f3e58f2 and governed closeout revision 33a29f2 on codex/mythic-core-apex-r0',
-        'WH-WO-0053_MYTHIC_CORE_APEX_WALKABLE_WORLD_STRUCTURE_R0.md',
-        'WH-ATT-MYTHIC-CORE-APEX-20260805-0002.json',
-        'WH-HANDOFF-0056_MYTHIC_CORE_APEX_WALKABLE_WORLD_STRUCTURE_R0.md',
-        'Artifact sha256:d6b0f6198e154f5ab661324c93aaf5b77b71fff742daa9edfb2801a8cf4daf99',
-        'Exact GLB sha256:03ef9d359dc212fc18e6519943ec874499f78f4b4ba5ae1243a4a34e263676c0',
-        'Clean-import audit sha256:dedefcd078aa810b11bd30ee5729ebcd52254031d7a5479dce64058695464733',
-        'D:/Ascentia/data/worldheart-output/master_architect_mythic_core_apex_r0/machine-attempt-0005/review.html',
+        'Git implementation revision 5823ea5 and governed closeout revision 4eedb3b on codex/mythic-core-apex-r1',
+        'WH-WO-0054_MYTHIC_CORE_APEX_ARCHITECTURAL_DEPTH_AND_OCCUPATION_R1.md',
+        'WH-ATT-MYTHIC-CORE-APEX-R1-20260805-0002.json',
+        'WH-HANDOFF-0057_MYTHIC_CORE_APEX_ARCHITECTURAL_DEPTH_AND_OCCUPATION_R1.md',
+        'Artifact sha256:69d234ab062a83c6ac9bfb237bbce8707b2411250b35b4d5f4efb1364d267360',
+        'Exact GLB sha256:2d3d887a4e2cdacc1885a8dc0f1aa849fb50f5838a5c9d3051fd81f940ad5211',
+        'Clean-import audit sha256:4df3a8b77a8a0b22a35ffc88a74476305f5c2b9c37f198025b43175acd3b498b',
+        'D:/Ascentia/data/worldheart-output/master_architect_mythic_core_apex_r1/machine-attempt-0004/review.html',
       ],
-      snapshot: { branch: 'codex/mythic-core-apex-r0', head: '33a29f2', date: '2026-08-05', dirty: null, ahead: null, behind: null },
+      snapshot: { branch: 'codex/mythic-core-apex-r1', head: '4eedb3b', date: '2026-08-05', dirty: null, ahead: null, behind: null },
     },
     {
       id: 'assetfactory',
