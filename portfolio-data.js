@@ -40,8 +40,8 @@ window.PORTFOLIO_DATA = {
     },
     {
       level: 'active',
-      title: 'Worldheart: turn the proven continuity kernel into architecture',
-      body: 'WH-WO-0056 is stopped after a useful but visually rejected R3. Exact manufacture and factory-empty import now prove closed analytic annuli, parent-curve radial bays, 245 zero-gap bearings, route-derived openings, one full-detail Nanite source, and simple collision while preserving the exact 1,680.752 m / 4 min 40.13 s route. Direct review still rejects blunt inherited massing, tube-like smooth sections, cramped/dark player space, and occluded proof views. WH-WO-0057 is active with all affected gates red: replace those generator systems with section-authored curved members, complete foundation-to-roof bay cells, occupied porosity constraints, crown/ring hierarchy, and diagnostic cameras that refuse occluded subjects. No object-by-object repair or Unreal mutation is authorized.',
+      title: 'Worldheart: replace the rejected ring with inhabitable hierarchy',
+      body: 'WH-WO-0057 is stopped after a technically useful but visually rejected R4. Attempt 0008 and factory-empty import prove crisp profiled annuli, 82 shared-datum bay cells, 931 zero-gap bearings, route-safe porosity, one 786,282-triangle Nanite source, and 1,536-triangle simple collision while preserving the exact 1,680.752 m / 4 min 40.13 s route. Direct review rejects the oversized ring-and-isolated-tower silhouette, roof bands that bury the arcade, dark/blocked player space, and cameras that frame fragments instead of assemblies. WH-WO-0058 is active with all affected gates red: replace the composition with program-led mass hierarchy, coupled inhabitable sections, daylit multi-station player-space checks, cadence groups, and assembly-level framing. No object-by-object repair, manual LOD chain, or Unreal mutation is authorized.',
       owner: 'Worldheart',
     },
     {
@@ -107,18 +107,18 @@ Create one coherent production HUD skin through the existing theme/UMG seam. Pre
 Required proof: capture readable 2560x1440-or-larger PIE frames for exploration plus combat/resource states, verify no clipping/overlap at the tested resolution, run the narrow HUD/player-path scenarios and scoped log scan, run the Win64 Development Editor build and Tools\governance\check_designer_surface_contract.py, and leave human taste/accessibility verdicts explicitly open where automation cannot decide them. Update the owning Designer Surface row and screenshot routing. Commit and push on green per Docs\rules\SOURCE_CONTROL.md, then perform the Portfolio Signal: update priorities/handoff/project consistently, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, update D:\Ascentia\ops\PIPELINE_STATUS.md with a file-editing tool, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
     {
-      id: 'worldheart-mythic-core-grammar-r4',
-      title: 'Build the Mythic Core section-and-bay grammar',
+      id: 'worldheart-mythic-core-hierarchy-r5',
+      title: 'Build the Mythic Core hierarchy-and-space grammar',
       target: 'Codex - D:\\Ascentia\\repos\\worldheart',
       decision: false,
-      why: 'R3 proves that continuous curved topology, exact bearings, route-aware openings, and the Nanite-source policy are reusable, but it also proves that continuity alone does not create architecture. The next bounded generator must author section hierarchy, full radial bay cells, occupied porosity, and honest proof views without hand-nudged repair.',
-      prompt: String.raw`Continue WORLDHEART under the active architectural-grammar work order; do not hand-edit the rejected R3 artifact.
+      why: 'R4 proves that curved section and full-bay construction can survive clean import, but it also proves that correct parts do not create a coherent whole. The next bounded generator must reserve program-led volumes, couple arcade/wall/vault/roof sections, keep player space open and daylit, and frame whole assemblies without hand-authored repair.',
+      prompt: String.raw`Continue WORLDHEART under the active hierarchy-and-inhabitable-space work order; do not hand-edit or decorate the rejected R4 artifact.
 
-Start in D:\Ascentia\repos\worldheart on codex/mythic-core-architectural-grammar-r4 at or after a65b047. Read AGENTS.md, docs\worldheart\README.md, docs\worldheart\08_workorders\WH-WO-0057_MYTHIC_CORE_SECTION_AND_RADIAL_BAY_GRAMMAR_R4.md, docs\worldheart\09_reviews\gates\WH-ATT-MYTHIC-CORE-GRAMMAR-R4-20260805-0001.json, docs\worldheart\08_workorders\WH-WO-0056_MYTHIC_CORE_CONTINUOUS_ASSEMBLY_KERNEL_R3.md, and docs\worldheart\11_handoffs\WH-HANDOFF-0059_MYTHIC_CORE_CONTINUITY_R3_TECHNICAL_KERNEL.md. Treat D:\Ascentia\data\worldheart-output\master_architect_mythic_core_continuity_r3\machine-attempt-0005 as technical substrate and visual failure evidence only.
+Start in D:\Ascentia\repos\worldheart on codex/mythic-core-hierarchy-r5 at or after a3082f8. Read AGENTS.md, docs\worldheart\README.md, docs\worldheart\08_workorders\WH-WO-0058_MYTHIC_CORE_HIERARCHY_AND_INHABITABLE_SPACE_GRAMMAR_R5.md, docs\worldheart\09_reviews\gates\WH-ATT-MYTHIC-CORE-HIERARCHY-R5-20260805-0001.json, docs\worldheart\08_workorders\WH-WO-0057_MYTHIC_CORE_SECTION_AND_RADIAL_BAY_GRAMMAR_R4.md, docs\worldheart\09_reviews\gates\WH-ATT-MYTHIC-CORE-GRAMMAR-R4-20260805-0002.json, and docs\worldheart\11_handoffs\WH-HANDOFF-0060_MYTHIC_CORE_GRAMMAR_R4_TECHNICAL_SUBSTRATE.md. Treat D:\Ascentia\data\worldheart-output\master_architect_mythic_core_grammar_r4\machine-attempt-0008 as technical substrate and visual failure evidence only.
 
-Preserve the exact R3 plan identity, R1 1,680.752065798395 m route, fifteen chapters, 1,840 m extent, occupied depth, native authority, append-only evidence, analytic curvature, route-derived openings, structural joint graph, one Nanite source, and simple collision. Implement reusable native-planned profiled_annular_member_v1, radial_bay_cell_v1, occupied_porosity_solver_v1, and subject_visibility_camera_v1 systems. Crisp section roles must survive smooth circumferential shading; each bay must derive foundation, bundled shafts, capital, arch, spandrel, clerestory, guard, upper band, and roof bearing from shared datums; player clearance and view porosity must be measured; crown/ring hierarchy must replace inherited blunt bands rather than decorate them; occluded proof views must refuse admission.
+Preserve the exact R4 plan identity, R1 1,680.752065798395 m route, fifteen chapters, 1,840 m site extent, program, occupied depth, native authority, append-only evidence, R3 analytic continuity/joint kernel, R4 profiled members/shared bay datums, one Nanite source, and simple collision. Implement native-planned program_hierarchy_parti_v1, coupled_inhabitable_section_v1, daylit_occupiable_space_solver_v1, and assembly_framing_camera_v2 systems. Reserve primary sanctuary/crown, cardinal thresholds, occupied ring, processional halls, and subordinate chapel/service volumes before geometry; derive arcade, wall, buttress, vault/roof ribs, openings, drainage, guards, and bearings from coupled sections; measure multiple player stations; refuse dominant visual belts, isolated towers, dark tunnels, clipped fragments, and cameras without assembly context.
 
-Manufacture into a new append-only R4 lane under WORLDHEART_OUTPUT_PARENT. Directly inspect whole, ring, crown, roof-bearing, section, and player-height views before spending deterministic replay. Require factory-empty import, focused native tests, warnings-as-errors builds, repository verification with inherited failures disclosed, independent rebuild, and artifact hygiene. Keep architecture, gorgeousness, awe, wonder, Unreal readiness, and every affected gate red until direct authorized review. Do not mutate Unreal, Landscry, ThemeForge, providers, SitePainter, dressing-factory files, or Fable's untracked revision chain. Update governed Worldheart records first, then reconcile all three portfolio surfaces, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
+Manufacture into a new append-only R5 lane under WORLDHEART_OUTPUT_PARENT. Directly inspect high-key neutral whole/site, approach, sanctuary, ring assembly, crown, section, and at least six player-height views before spending deterministic replay. Require factory-empty import, focused native tests, warnings-as-errors builds, repository verification with inherited failures disclosed, independent rebuild, and artifact hygiene. Keep architecture, gorgeousness, awe, wonder, Unreal readiness, and every affected gate red until direct authorized review. Do not mutate Unreal, Landscry, ThemeForge, providers, SitePainter, dressing-factory files, or Fable's untracked revision chain. Update governed Worldheart records first, then reconcile all three portfolio surfaces, run refresh-portfolio.ps1, check-links.ps1, a JavaScript syntax smoke, and sweep artifacts per D:\Ascentia\ops\ARTIFACT_HYGIENE.md.`,
     },
     {
       id: 'game-world-factory-batch-review',
@@ -385,33 +385,34 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'Worldheart',
       role: 'World composition + architecture',
       state: 'active',
-      phase: 'WH-WO-0057 - Mythic Core section and radial bay grammar R4',
-      summary: 'Crown of the Hollow Star R3 is a technically proven continuity substrate and an explicitly rejected visual candidate. R4 now replaces blunt profiles and disjoint architectural expression at the generator level rather than repairing individual objects.',
-      focus: 'Compile section-authored annular members, complete foundation-to-roof radial bay cells, occupied clearance/porosity, crown/ring hierarchy, and occlusion-refusing review cameras while preserving the exact route, scale, Nanite source, collision, and R3 joint kernel.',
-      capability: 'The native/DCC lane now clean-imports ten closed analytic annuli, 58 parent-curve bays, 62 supports, 245 zero-gap bearings, route-derived openings with zero intrusions, one 613,306-triangle Nanite source, and 1,536-triangle simple collision. The exact 1,680.752 m pilgrimage and 1,840 x 1,220 x 771 m inhabited reliquary-city substrate remain intact. R4 section and bay grammar is authorized but not yet proven.',
-      proof: 'R3 attempt 0005 passed native admission and factory-empty audit at artifact sha256:e29751ec45fb1900c125d149ab5b16aca212e602b3cd6dcf35a20cbb7c8825b3 and GLB sha256:15bb2e6150dd191111753d52ad25588fd7e0d4a63c1e517489805947b9b7fcf0. Direct review rejects its blunt massing, tube-like blanket-smoothed profiles, cramped/dark player views, and occluded cameras; deterministic replay was intentionally not spent. R4 is pre-mutation with every affected gate red or unattempted.',
+      phase: 'WH-WO-0058 - Mythic Core hierarchy and inhabitable-space grammar R5',
+      summary: 'Crown of the Hollow Star R4 is a technically proven curved-construction substrate and an explicitly rejected visual candidate. R5 now replaces the uniform ring composition with program-led hierarchy and coupled inhabitable space rather than adding more pieces.',
+      focus: 'Compile program-led primary/secondary/tertiary mass hierarchy, coupled arcade-wall-vault-roof sections, daylit multi-station player-space checks, cadence groups, and assembly-level framing while preserving the exact route, program, R3/R4 compiler substrate, Nanite source policy, and collision.',
+      capability: 'The native/DCC lane now clean-imports 15 closed annular assemblies, 11 crisp profiled member families, 82 shared-datum bay cells, 931 zero-gap bearings, zero route intrusions, one 786,282-triangle Nanite source, and 1,536-triangle simple collision. The exact 1,680.752 m pilgrimage and 1,840 x 1,220 m inhabited reliquary-city substrate remain intact. R5 hierarchy-and-space grammar is authorized but not yet proven.',
+      proof: 'R4 attempt 0008 passed native admission and factory-empty audit at artifact sha256:2a63f0fb2e8855080371ddbb9d449091510cdb6fd58a1a80b71ca09b52c25443 and GLB sha256:29dffea5d51fd627fa4f6a295348a40c1fb77e71621c3f97bd4d60af818fc341. Direct review rejects its oversized ring-and-isolated-tower silhouette, overdominant roof bands, dark/blocked player views, weak spatial hierarchy, and fragmentary camera framing; deterministic replay was intentionally not spent. R5 is pre-mutation with every affected gate red or unattempted.',
       blockers: [
-        'Continuous curved topology still uses blunt rectangular sections whose blanket smoothing reads as oversized tubes.',
-        'Radial bays do not yet form a complete foundation-to-roof architectural cell from shared datums.',
-        'Player-space clearance and visual porosity are not yet compiled as generator constraints.',
-        'Crown/ring hierarchy and subject-visible diagnostic cameras remain unproven.',
+        'The accepted program is not yet compiled into legible primary, secondary, and tertiary mass families.',
+        'Arcade, wall, buttress, vault/roof, opening, and route envelopes are not yet one coupled inhabitable section.',
+        'Player-space admission lacks multi-station daylight, sight-distance, enclosure, orientation, and destination checks.',
+        'Cadence groups and hierarchy breaks have not replaced the rejected uniform ring and isolated tower field.',
+        'Assembly-level framing and high-key neutral diagnostic evidence remain unproven.',
         'Qualified architectural and Program Steward acceptance of coherence, gorgeousness, awe, and wonder is absent.',
         'No controller or Unreal consumption, navigation, streaming, performance, accessibility, gameplay, final-material, engineering, or canon proof exists.',
         'G01 and every affected architecture/acceptance gate remain RED; inherited verifier failures remain unwaived.',
       ],
-      next: 'Execute WH-WO-0057: manufacture and directly inspect one systemic R4 section-and-bay attempt, rejecting it before replay if it remains blunt, cramped, disjoint, or visually dishonest.',
+      next: 'Execute WH-WO-0058: manufacture and directly inspect one systemic R5 hierarchy-and-space attempt, rejecting it before replay if it retains the ring belt, isolated towers, dark tunnels, uniform cadence, or dishonest framing.',
       authority: 'D:/Ascentia/repos/worldheart',
       evidence: [
-        'Git R3 technical closeout revision 9c8b213 and R4 authority revision a65b047',
+        'Git R4 technical closeout revision 6a1bacc and R5 authority revision a3082f8',
+        'WH-WO-0058_MYTHIC_CORE_HIERARCHY_AND_INHABITABLE_SPACE_GRAMMAR_R5.md',
+        'WH-ATT-MYTHIC-CORE-HIERARCHY-R5-20260805-0001.json',
         'WH-WO-0057_MYTHIC_CORE_SECTION_AND_RADIAL_BAY_GRAMMAR_R4.md',
-        'WH-ATT-MYTHIC-CORE-GRAMMAR-R4-20260805-0001.json',
-        'WH-WO-0056_MYTHIC_CORE_CONTINUOUS_ASSEMBLY_KERNEL_R3.md',
-        'WH-ATT-MYTHIC-CORE-CONTINUITY-R3-20260805-0002.json',
-        'WH-HANDOFF-0059_MYTHIC_CORE_CONTINUITY_R3_TECHNICAL_KERNEL.md',
-        'R3 artifact sha256:e29751ec45fb1900c125d149ab5b16aca212e602b3cd6dcf35a20cbb7c8825b3',
-        'D:/Ascentia/data/worldheart-output/master_architect_mythic_core_continuity_r3/machine-attempt-0005/review.html',
+        'WH-ATT-MYTHIC-CORE-GRAMMAR-R4-20260805-0002.json',
+        'WH-HANDOFF-0060_MYTHIC_CORE_GRAMMAR_R4_TECHNICAL_SUBSTRATE.md',
+        'R4 artifact sha256:2a63f0fb2e8855080371ddbb9d449091510cdb6fd58a1a80b71ca09b52c25443',
+        'D:/Ascentia/data/worldheart-output/master_architect_mythic_core_grammar_r4/machine-attempt-0008/review.html',
       ],
-      snapshot: { branch: 'codex/mythic-core-architectural-grammar-r4', head: 'a65b047', date: '2026-08-05', dirty: null, ahead: null, behind: null },
+      snapshot: { branch: 'codex/mythic-core-hierarchy-r5', head: 'a3082f8', date: '2026-08-05', dirty: null, ahead: null, behind: null },
     },
     {
       id: 'assetfactory',
