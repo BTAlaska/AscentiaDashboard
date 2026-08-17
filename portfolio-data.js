@@ -4,7 +4,7 @@ window.PORTFOLIO_DATA = {
   meta: {
     title: 'Mythic Systems',
     subtitle: 'Portfolio control room for Ascentia and its independent creation tools',
-    surveyed: '2026-08-16',
+    surveyed: '2026-08-17',
     rule: 'No global completion percentage. Report activity, capability, proof, blockers, and the next decision separately.',
   },
   priorities: [
@@ -85,6 +85,12 @@ window.PORTFOLIO_DATA = {
       title: 'Review retained world assets and the new Physical geology library',
       body: 'Generation remains stopped and locked. Owner direction now hard-pauses T2 at prompt-Go, queue, reference-generation, and provider layers. The current v4 catalog has 891 Meshy 6 Nanite-active, 90 T2-paused, and 180 historical review-only plans. Physical has 55 active Meshy 6 entries plus 2 paused T2 entries, including the 36-form atomic geology expansion. The reference pipeline is explicitly single-view: one Images 2 output feeds Meshy single-image reconstruction; multi-view is not implemented. Existing review stands at 6 Keep / 0 Reject / 44 awaiting review.',
       owner: 'User decision (candidate + v4 Physical prompt review) / Game World Asset Factory',
+    },
+    {
+      level: 'review',
+      title: 'ThemeForge 3D Prop Foundry is live — choose the first concept batch',
+      body: 'A new category-specific lane now sits beside the immutable contact-sheet atlas without touching or relabeling T subjects. It exposes 4,320 authored open-world ARPG prop ideas — 96 across twelve functional families for every one of 45 canonical themes — then gates paid GPT Image 2 concepts, concept approval, configurable Meshy 7 generation, downloaded draft review, and final Accept/Reject through persistent local state. Both provider credentials authenticate and the live worker is healthy; no generation or credit spend was performed during implementation. Your next action is simply to open /props, select a small first batch, and explicitly confirm it.',
+      owner: 'User decision (first 3D Prop concept selection and paid confirmation) / ThemeForge',
     },
     {
       level: 'review',
@@ -223,7 +229,7 @@ In D:\Ascentia (read ops\ARTIFACT_HYGIENE.md first): delete ONLY the approved ca
       title: 'Landscry: one macro-cadence loop fixes both owner verdicts — severity s_crit ladder + zebra re-promote on the FIXED tectonic solver',
       target: 'Any agent · D:\\Ascentia\\repos\\landscry',
       decision: false,
-      why: String.raw`Two owner verdicts now share one birthplace. SEVERITY (2026-08-14 on nr5): walls are BORN IN THE TECTONIC MACRO (band median slopes 47-57 deg at 23 m cells; s_crit=0 in the tectonic run; 16k talus knobs were a NULL). ZEBRA (2026-08-16, root-caused): the banding is inherited cell-scale noise in the SAME tectonic macro, born from supercritical explicit diffusion — FIXED 2026-08-16 in fastscape_evolve.py (diffusion sub-steps to stability, noise fields in metres, k_var_floor_m elevation gate; the fluv_cap capacity bug is committed as a cut-rate gate 0d4e3ee). The relief-envelope kernel bite from the old version of this hand-off is DONE (7bd1c51). Full day-session chain: repos\landscry\docs\HANDOFF_2026-08-16_zebra-day.md. What remains is one loop: ladder s_crit in the tectonic pass ON the fixed solver, then re-promote wmsujhg70 (and nr6/nr7 when green) so both defects die at the source.`,
+      why: String.raw`RE-SCOPED 2026-08-17: the ZEBRA half of this hand-off is DONE (routing-dither root cause, zrfd1 owner sign-off "good enough for terrain") and the FLUTE cascade landed separately (chan_amin_m2 / macro_erode_steps / hard_fine 2728cd8; zcane5 awaiting owner eye; kernel WGSL discharge gate + amphitheater wall relief are the named next levers — see the 2026-08-16/17 board headers). What remains HERE is the SEVERITY s_crit ladder on the alpine line, unchanged below. SEVERITY (2026-08-14 on nr5): walls are BORN IN THE TECTONIC MACRO (band median slopes 47-57 deg at 23 m cells; s_crit=0 in the tectonic run; 16k talus knobs were a NULL). ZEBRA (2026-08-16, root-caused): the banding is inherited cell-scale noise in the SAME tectonic macro, born from supercritical explicit diffusion — FIXED 2026-08-16 in fastscape_evolve.py (diffusion sub-steps to stability, noise fields in metres, k_var_floor_m elevation gate; the fluv_cap capacity bug is committed as a cut-rate gate 0d4e3ee). The relief-envelope kernel bite from the old version of this hand-off is DONE (7bd1c51). Full day-session chain: repos\landscry\docs\HANDOFF_2026-08-16_zebra-day.md. What remains is one loop: ladder s_crit in the tectonic pass ON the fixed solver, then re-promote wmsujhg70 (and nr6/nr7 when green) so both defects die at the source.`,
       prompt: String.raw`Landscry severity + zebra re-promote loop, in D:\Ascentia\repos\landscry on agent/s1-sediment. Read FIRST: docs\HANDOFF_2026-08-16_zebra-day.md (root cause, fixes, M7 recipe, metric traps), the 2026-08-16 day header + 2026-08-15 severity entry in D:\Ascentia\ops\PIPELINE_STATUS.md, then artifacts\frontier-macro-20260807\promote_v2_causal.py (tectonic pass = the IMG branch), fastscape_evolve.py (NOW carries: sub-stepped stable diffusion, physical-unit noise scales, k_var_floor_m gate — verify these are present before trusting any old calibration numbers), and artifacts\gpu-erode\zebra_candidate_m7.py + band_profile_probe.py (the M7 recipe + the ABSOLUTE band-RMS scorer).
 
 THE LOOP, macro-only cadence (~90 s/round): ladder s_crit in the TECTONIC pass — 0 (control) / 1.0 / 1.2 — ON THE FIXED SOLVER, measuring per round: macro band-median slopes + p95 (severity bar: p95 meaningfully under 70 deg, massif_connectivity azimuthal >0.35) AND absolute 40-120 m band RMS on fixed downslope profiles (zebra bar: owner-face-class faces under ~2 m; score in METRES, never peak/median ratios — they punish planed faces, see the metric-trap record). Couplings on record: dissected surfaces erode ~2x (image_relief_m must rise to hold ~5000 m summits); dominance thin at 1.16x (uplift_pow is the lever); landslide_relax once worsened a row-anomaly metric (2026-08-12) — check macro hillshades via block-mean-then-hillshade renders (LANCZOS moires fine texture into fake bands). THEN one full 16k promote of wmsujhg70 (same seed 1786808228, control map staged at artifacts\preview\.requests\gpu-wmsujhg70\, fresh Studio tag, fluv_cap=40 + the NIGHT-LAB I RECIPE as the taste baseline — OWNER VERDICT 2026-08-16 pm in the Studio 3-D: "i-face is superior and there are no zebra stripes"; M7 was REJECTED on taste despite winning every scorer, so the M7 levers (sigma band-limits, k_var_floor_m gate, built-in-kn swap) are OPTIONAL owner-eye A/Bs, never defaults) + slope_profile + prompt_adherence + band_profile_probe, echo PIPE16 params into the promote log first. Judge candidates in the STUDIO 3-D VIEW, never hillshade sheets (retired as acceptance media: terminator gain + downscale moire fabricate zebra; prep_bench_bundle.py cuts 1:1 bundles).
@@ -398,7 +404,7 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'Landscry v0.2',
       role: 'Authoritative initial terrain',
       state: 'active',
-      phase: 'Production goal active (steward) — CPU standing score 4/8/5; text-prompt COMPOSER CHAIN live 2026-08-13/14 (control map -> tectonic pass -> relief envelope -> 16k; macro authority measured: customer owns >=2 km, physics <500 m; adherence scored per clause); nr6 flagship candidate awaiting owner fly; SEVERITY open, localized to the tectonic pass, dispatched; relief-envelope kernel bite uncommitted; FjordWorldTiled walked 2026-08-10 ("honestly VERY good"); PCG foliage library open (10 entries, 133 meshes)',
+      phase: 'Production goal active (steward) — CPU standing score 4/8/5; ARCHETYPE LIBRARY v1 live 2026-08-16/17 (8 calibrated presets, all promoted with flowline networks; terrain zrfd1 signed off, hydrology ribbons shipped); STRUCTURE ETCH in the promote chain (grooves 23.3->10.0 m, lakes preserved); FLUTE CASCADE root-caused 2026-08-17 (parallel channels born independently at three chain stages on planar walls — tectonic channel-initiation gate + macro-erode skip + kernel hard_fine 2728cd8; canyon zcane5 pooled 7.4->6.2 m, owner eye pending; residual = kernel WGSL discharge gate + amphitheater wall relief, next-session scope); SEVERITY s_crit ladder still open (alpine); PCG foliage library open (10 entries, 133 meshes)',
       summary: 'The deterministic terrain compiler behind a canonical seven-step product UX (owner, 2026-08-04): open the app, type a prompt, a frontier model designs the macro terrain, the validated macro feeds the deterministic engine, the engine models to fine shippable detail, Landscry imports it as Unreal Mesh Terrain, and Landscry PCG dresses it. Deterministic seeds, calibrated relief, bounded prompt planning, measured acceptance, and the per-family DEM conformance scorecard all sit underneath that pipeline; model nondeterminism ends at a validated artifact hash and every world replays model-free.',
       focus: 'Macro-composer lane (ADR-0030, owner direction 2026-08-03): a frontier model composes the macro design from a user prompt; the deterministic engine builds it behind the validated landscry.macro_design.v1 artifact boundary with model-free replay. Full-offline is deprioritized for now — OFF-G lanes leave the active path while the architecture and honest-claims discipline stay. The bar is AAA-quality terrain, biomes, and full Mesh Terrain with PCG-driven worlds. The DEM-grade goal continues underneath: the corpus scorecard measures every result, and the T3 ledger remains the fidelity record.',
       capability: 'The provisioned local Studio runs direct/no-model and landscry-rules@1.0.0 requests through canonical validation, local terrain execution, measured acceptance, artifact publication, and visible inspection without Cargo, pnpm, dependency resolution, or cloud fallback. ADR-0029 requires survival of lost connectivity, not network silence from the whole host/browser. Strict containment remains an optional profile.',
@@ -590,16 +596,16 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       name: 'ThemeForge library family',
       role: 'Read-only Worldheart visual upstream',
       state: 'active',
-      phase: 'Verified 45-theme corpus on D:',
-      summary: 'ThemeForge, PCG Sheet Library, and PCG Contact Sheets are migrated together under D:/Ascentia/libraries/themeforge with lineage and immutable evidence preserved.',
-      focus: 'Consume the migrated reflib read-only, keep mutable incremental state D:-native, and preserve historical manifests without path rewriting.',
-      capability: '47,490 files, 22,729 PNGs, the processed reflib/out corpus, gates, state, handoffs, immutable snapshots, and unborn tooling Git state are present on D:.',
-      proof: 'Complete SHA-256 family manifests, 45-theme reconciliation checks, current-manifest dry runs, and all 1,819 immutable snapshot PNG checks pass.',
+      phase: 'Verified 45-theme corpus, live local atlas, guarded T bridge, and persistent 3D Prop Foundry on D:',
+      summary: 'ThemeForge, PCG Sheet Library, and PCG Contact Sheets remain migrated together under D:/Ascentia/libraries/themeforge with lineage and immutable evidence preserved. The source sheets remain browseable read-only; T turnarounds retain their separate guarded Meshy bridge; and the browser now owns a new category-specific 3D Prop concept-to-Meshy review lane without mutating or relabeling the corpus.',
+      focus: 'Use /props to choose a small first 3D Prop concept batch, explicitly confirm GPT Image 2 spend, review the resulting single-angle concepts, and only then authorize selected Meshy 7 drafts. Keep every generated result in D:/Ascentia/data/themeforge-meshy-output and preserve the T lane and historical manifests unchanged.',
+      capability: 'The local browser scans 1,891 immutable PNGs and serves a deterministic 4,320-candidate 3D Prop catalog: 96 materially different ARPG prop roles across twelve families for each of 45 canonical themes. GPT Image 2 prompts enforce one isolated object and exactly one front-three-quarter view. SQLite persists revisions, approvals, provider tasks, result files, final Accept/Reject, and append-only events. The Meshy 7 queue exposes geometry-only/base/PBR textures, 2K/4K/8K, Ultra, high-fidelity or remeshed game targets, triangle/quad topology, custom polycount, scale/origin, cardinal previews, and GLB/FBX/OBJ downloads. Credentials never enter browser JavaScript or disk state; paid POSTs require explicit confirmation, ambiguous submissions are not retried, and provider result URLs are downloaded before expiry then removed from durable state. The separate T adapter remains available for accepted turnarounds.',
+      proof: 'Thirteen browser/state/HTTP tests pass, including the paid-confirmation and local-mutation-token gates, interrupted-submission ambiguity/non-retry behavior, hidden rejection tombstones, full 45 x 96 catalog census, state transitions, current Meshy 7 request shape, and generated-media path confinement. Deterministic catalog rebuild/check, Node syntax checks, PowerShell launcher syntax, and live HTTP checks for all five pages are green. The live port-8765 service reports version 2.0.0, both credential names available, and a healthy worker. OPENAI_API_KEY authenticated through a no-generation GET for gpt-image-2; MESHY_API previously authenticated through Meshy\'s no-cost balance endpoint. No paid provider POST or credit spend occurred. Existing SHA-256 family manifests remain the immutable corpus authority.',
       blockers: [],
-      next: 'Use D: defaults for future runs; do not regenerate evidence merely to prove access.',
+      next: 'User decision: open http://127.0.0.1:8765/props, select a deliberately small first 3D Prop concept batch, review it, then choose exact Meshy settings and explicitly confirm only the concepts that pass. T-lane pilot selection remains a separate optional decision.',
       authority: 'D:/Ascentia/libraries/themeforge',
-      evidence: ['D:/Ascentia/ops/verification/themeforge-family-corpus.json'],
-      snapshot: { branch: '', head: '', date: '2026-07-18', dirty: 0, ahead: null, behind: null },
+      evidence: ['D:/Ascentia/libraries/themeforge/PCG Contact Sheets/sheet_library_tools/MESHY7_PIPELINE.md', 'D:/Ascentia/libraries/themeforge/contact_sheet_browser/README.md', 'D:/Ascentia/ops/verification/themeforge-family-corpus.json'],
+      snapshot: { branch: '', head: '', date: '2026-08-17', dirty: 0, ahead: null, behind: null },
     },
   ],
   flows: [
@@ -623,6 +629,20 @@ In D:\Ascentia\repos\landscry (read AGENTS.md and the mountain-region lane row i
       to: 'ImportQueue world-asset quarantine',
       then: 'PCG/manual composition plus human Nanite/Worldheart-mount review → guarded Ascentia intake',
       posture: 'Generation stopped and locked; 6 of 50 landed candidates are retained, 44 await hash-bound Keep/Reject, T2 is hard-paused, four composite archetypes are review-only across all themes, and the 36-form Physical expansion remains prompt-only. The current reference transport is one Images 2 output to Meshy single-image reconstruction; multi-view is an open decision, with no direct Content writes or Unreal/Nanite/PCG acceptance claims',
+    },
+    {
+      from: 'ThemeForge T-lane',
+      contract: 'Immutable accepted turnaround PNGs -> in-memory ordered view crops + hash-bound request state',
+      to: 'Meshy 7 Multi-Image to 3D',
+      then: 'D:/Ascentia/data/themeforge-meshy-output review artifacts; no direct Worldheart or Unreal intake',
+      posture: 'Bridge implemented and authenticated without credit spend; every paid task requires explicit confirmation, and one user-selected pilot must pass preview review before any batch',
+    },
+    {
+      from: 'ThemeForge 3D Prop Foundry',
+      contract: 'Stable P3D candidate -> one isolated GPT Image 2 concept angle -> explicit concept approval -> explicit settings-and-credit confirmation',
+      to: 'Meshy 7 single-image reconstruction',
+      then: 'Downloaded local draft + cardinal previews -> Accept/Reject; no direct Worldheart or Unreal intake',
+      posture: 'Live local workflow with 4,320 candidates, persistent SQLite provenance, secret-free browser state, explicit paid gates, and no automatic retry of ambiguous submissions; first paid concept batch awaits the user',
     },
     {
       from: 'Interface Art Forge',
