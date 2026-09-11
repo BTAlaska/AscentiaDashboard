@@ -255,6 +255,7 @@ if (-not $SkipDisk) {
         @{ Id = "landscry-content"; Path = (Join-Path $AscentiaRoot "data\landscry-content") },
         @{ Id = "landscry-saved"; Path = (Join-Path $AscentiaRoot "data\landscry-saved") },
         @{ Id = "worldheart-output"; Path = (Join-Path $AscentiaRoot "data\worldheart-output") },
+        @{ Id = "themeforge-meshy-output"; Path = (Join-Path $AscentiaRoot "data\themeforge-meshy-output") },
         @{ Id = "archives"; Path = (Join-Path $AscentiaRoot "archives") },
         @{ Id = "worktrees"; Path = (Join-Path $AscentiaRoot "worktrees") },
         @{ Id = "ops"; Path = (Join-Path $AscentiaRoot "ops") }
@@ -292,6 +293,7 @@ if (-not $SkipDisk) {
         @{ Project = "gameworldfactory"; Rel = "repos\game-world-asset-factory\PromptReviews"; Class = "evidence"; Note = "Prompt verdict and generation-approval evidence" },
         @{ Project = "worldheart"; Rel = "repos\worldheart\out"; Class = "evidence"; Note = "Governed append-only output; Worldheart lane only" },
         @{ Project = "worldheart"; Rel = "data\worldheart-output"; Class = "evidence"; Note = "Governed output corpus + detached snapshots" },
+        @{ Project = "themeforge"; Rel = "data\themeforge-meshy-output"; Class = "artifact"; Note = "T-lane task ledgers plus 3D Prop SQLite state, GPT Image 2 concepts, generated models, textures, previews, and diagnostics; source corpus remains read-only" },
         @{ Project = "skinforge"; Rel = "sandboxes\skin-forge\Saved"; Class = "generated-state"; Note = "UE Saved state (147 source placeholders remain on C:)" },
         @{ Project = "skinforge"; Rel = "sandboxes\skin-forge\Intermediate"; Class = "cache"; Note = "UE build intermediates" },
         @{ Project = "skinforge"; Rel = "sandboxes\skin-forge\DerivedDataCache"; Class = "cache"; Note = "UE local DDC" }
@@ -340,7 +342,7 @@ if (-not $SkipDisk) {
     $knownSets = @(
         @{ Root = $AscentiaRoot; Known = @("repos", "sandboxes", "data", "archives", "libraries", "ops", "worktrees", "README.md", "AGENTS.md", "CLAUDE.md", "Portfolio.html") },
         @{ Root = (Join-Path $AscentiaRoot "repos"); Known = @("game", "dashboard", "landscry", "worldheart", "asset-factory", "game-world-asset-factory", "interface-forge") },
-        @{ Root = (Join-Path $AscentiaRoot "data"); Known = @("landscry-content", "landscry-saved", "worldheart-output") },
+        @{ Root = (Join-Path $AscentiaRoot "data"); Known = @("landscry-content", "landscry-saved", "worldheart-output", "themeforge-meshy-output") },
         @{ Root = (Join-Path $AscentiaRoot "sandboxes"); Known = @("skin-forge") },
         @{ Root = (Join-Path $AscentiaRoot "archives"); Known = @("dashboard-divergence", "quarantine") }
     )
